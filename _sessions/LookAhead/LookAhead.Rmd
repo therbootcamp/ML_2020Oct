@@ -5,7 +5,7 @@ author: "Maschinelles Lernen mit R<br>
     The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+  <a href='https://therbootcamp.github.io/ML_2020Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Maschinelles Lernen mit R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "April 2020"
+date: "Oktober 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Maschinelles Lernen mit R | April 2020
+      Maschinelles Lernen mit R | Oktober 2020
       </font>
     </a>
     </span>
@@ -69,7 +69,7 @@ options(digits = 4)
 <br><br><br><br><br>
 #  Hallo Machine Learning Experten!
 
-In 2 Tagen, 7 Sessions, und 15 Stunden habt ihr euch die Grundlagen des maschinellen Lernens angeeignet.
+In 2 Tagen habt ihr euch die Grundlagen des maschinellen Lernens angeeignet.
 
 ]
 
@@ -103,61 +103,6 @@ In 2 Tagen, 7 Sessions, und 15 Stunden habt ihr euch die Grundlagen des maschine
 <img src="image/bigdatagrowth.png" height = 400px>
 </p>
 ]
-
----
-
-# Änderungen in der Wirtschaft
-
-.pull-left4[
-### Unternehmeen die AI/ML verwenden
-<p align="left">
-  <img src="image/bytemarks.png" height=380>
-</p>
-]
-
-.pull-right55[
-### Jobs werden obsolet
-<p align="left">
-  <img src="image/obsolete.png" height=380>
-</p>
-]
-
-<!---<iframe width="1200" height="560" src="https://www.bloomberg.com/graphics/2017-job-risk/#dvz-asset-d3js-scatterplot-container" frameborder="0">
---->
-
----
-
-#  Repeating the past
-
-.pull-left35[
-### Ein nerdy Cartoon
-<p align="center">
-
-</p>
-
-<p align = "center">
-  <img src="image/garbage_in_garbage_out.png" height = 375px><br>
-  <font style="font-size:10px">from <a href="https://www.smbc-comics.com/comic/rise-of-the-machines">smbc-comics.com</a></font>
-</p>
-
-
-
-]
-
-.pull-right6[
-### In der realen Welt: Predictive policing
-<a href="https://www.economist.com/briefing/2013/07/20/dont-even-think-about-it">The Economist</a><br>
-<a href="http://harvardcrcl.org/minority-report-why-we-should-question-predictive-policing/">Harvard Civil Rights Review</a>
-<p align = "center">
-  <img src="image/predpol.jpg" height = 268px><br>
-  <font style="font-size:10px">from <a href="https://www.smithsonianmag.com/innovation/artificial-intelligence-is-now-used-predict-crime-is-it-biased-180968337/">smithsonianmag.com</a></font>
-</p>
-
-
-
-
-]
-
 
 ---
 
@@ -296,7 +241,7 @@ Hier ist eine unvollständige Liste guter Bücher über R lose geordnet nach vor
   </td>
 
   <td>
-  <a href="www.rcpp.org/"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSO9T6JQYtpQgcaCXudbqMB-fnvTjGowsnmeh9-BQku3zveR4-J" height="180" ></a>
+  <a href="www.rcpp.org/"><img border="0" alt="W3Schools" src="https://exlibris.azureedge.net/covers/9781/4614/6868/4/9781461468684xl.jpg" height="180" ></a>
   </td>
   
   

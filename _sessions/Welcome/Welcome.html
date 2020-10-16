@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Willkommen
-### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### April 2020
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Oktober 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Maschinelles Lernen mit R | April 2020
+      Maschinelles Lernen mit R | Oktober 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -42,29 +42,6 @@ layout: true
 
 ---
 
-
-
-
-
-.pull-left45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-#  Agenda und Materialien
-
-Klicke auf &lt;high&gt;"....running..."&lt;/high&gt; auf unserer Website!
-
-&lt;font style="font-size:28px"&gt;&lt;a href="www.therbootcamp.com"&gt;&lt;b&gt;www.therbootcamp.com&lt;/b&gt;&lt;/a&gt;&lt;/font&gt;
-
-]
-
-.pull-right5[
-
-&lt;br&gt;&lt;br&gt;
-&lt;iframe src="https://therbootcamp.github.io/ML_2020Apr/" width="500" height="500"&gt;&lt;/iframe&gt;
-
-]
-
-
----
 
 
 
@@ -192,42 +169,6 @@ Klicke auf &lt;high&gt;"....running..."&lt;/high&gt; auf unserer Website!
 
 ---
 
-# Cheatsheets
-
-&lt;table width="100%" style="cellspacing:0; cellpadding:0; border:none"&gt;
-  &lt;tr&gt;    
-  &lt;td&gt;
-  &lt;p align = 'center'&gt;RStudio&lt;br&gt;&lt;br&gt;
-  &lt;a href="image/rstudio-ide.pdf"&gt;&lt;img border="0" alt="W3Schools" src="image/rstudio.png" height="180"&gt;&lt;/a&gt;&lt;/p&gt;
-  &lt;/td&gt;
- 
-  &lt;td&gt;
-   &lt;p align = 'center'&gt;Base R&lt;br&gt;&lt;br&gt;
-  &lt;a href="image/base-r.pdf"&gt;&lt;img border="0" alt="W3Schools" src="image/baser.png" height="180"&gt;&lt;/a&gt;&lt;/p&gt;
-  &lt;/td&gt;  
-  
-  &lt;td&gt; 
-   &lt;p align = 'center'&gt;Data Import&lt;br&gt;&lt;br&gt;
-  &lt;a href="image/data-import.pdf" download&gt;&lt;img border="0" alt="W3Schools" src="image/import.png" height="180"&gt;&lt;/a&gt;&lt;/p&gt;
-  &lt;/td&gt;
-  
-  &lt;td&gt;
-  &lt;p align = 'center'&gt;Data Wrangling&lt;br&gt;&lt;br&gt;
-  &lt;a href="image/data-transformation.pdf"&gt;&lt;img border="0" alt="W3Schools" src="image/wrangling.png" height="180"&gt;&lt;/a&gt;&lt;/p&gt;
-  &lt;/td&gt;
-
-  &lt;td&gt;
-  &lt;p align = 'center'&gt;Data Visualization&lt;br&gt;&lt;br&gt;
-  &lt;a href="image/data-visualization-2.1.pdf"&gt;&lt;img border="0" alt="W3Schools" src="image/plotting.png" height="180" &gt;&lt;/a&gt;&lt;/p&gt;
-  &lt;/td&gt;
-  
-
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;
-
----
-
 # Vorstellung
 
 .pull-left5[
@@ -306,6 +247,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -323,17 +290,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

@@ -5,7 +5,7 @@ author: "Maschinelles Lernen mit R<br>
     The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+  <a href='https://therbootcamp.github.io/ML_2020Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Maschinelles Lernen mit R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "April 2020"
+date: "Oktober 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Maschinelles Lernen mit R | April 2020
+      Maschinelles Lernen mit R | Oktober 2020
       </font>
     </a>
     </span>
@@ -61,29 +61,6 @@ options(digits = 4)
 
 knitr::opts_chunk$set(fig.align = 'center')
 ```
-
-
-.pull-left45[
-<br><br><br><br><br>
-#  Agenda und Materialien
-
-Klicke auf <high>"....running..."</high> auf unserer Website!
-
-<font style="font-size:28px"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font>
-
-]
-
-.pull-right5[
-
-<br><br>
-<iframe src="https://therbootcamp.github.io/ML_2020Apr/" width="500" height="500"></iframe>
-
-]
-
-
----
-
-
 
 
 .pull-left6[
@@ -209,42 +186,6 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
 
 ---
 
-# Cheatsheets
-
-<table width="100%" style="cellspacing:0; cellpadding:0; border:none">
-  <tr>    
-  <td>
-  <p align = 'center'>RStudio<br><br>
-  <a href="image/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="image/rstudio.png" height="180"></a></p>
-  </td>
- 
-  <td>
-   <p align = 'center'>Base R<br><br>
-  <a href="image/base-r.pdf"><img border="0" alt="W3Schools" src="image/baser.png" height="180"></a></p>
-  </td>  
-  
-  <td> 
-   <p align = 'center'>Data Import<br><br>
-  <a href="image/data-import.pdf" download><img border="0" alt="W3Schools" src="image/import.png" height="180"></a></p>
-  </td>
-  
-  <td>
-  <p align = 'center'>Data Wrangling<br><br>
-  <a href="image/data-transformation.pdf"><img border="0" alt="W3Schools" src="image/wrangling.png" height="180"></a></p>
-  </td>
-
-  <td>
-  <p align = 'center'>Data Visualization<br><br>
-  <a href="image/data-visualization-2.1.pdf"><img border="0" alt="W3Schools" src="image/plotting.png" height="180" ></a></p>
-  </td>
-  
-
-  </tr>
-</table>
-<br>
-
----
-
 # Vorstellung
 
 .pull-left5[
@@ -274,4 +215,4 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2020Apr/index.html>Agenda</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Oct/index.html>Agenda</a></h1>
