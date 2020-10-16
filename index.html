@@ -1,378 +1,320 @@
-<!DOCTYPE html>
-
 <html>
-
-<head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-
-<meta name="author" content="             The R Bootcamp    April 2020" />
-
-
-<title>Machine Learning mit R</title>
-
-<script src="index_files/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="index_files/navigation-1.1/tabsets.js"></script>
-<link href="index_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="index_files/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-<link rel="stylesheet" href="index.css" type="text/css" />
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
-
-
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Machine Learning mit R</h1>
-<h4 class="author"><a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;'></i> </a> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:1em;' ></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp</font> </a> <br> <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:17px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:8px'>April 2020</font></h4>
-
-</div>
-
-
-<p><br></p>
-<div id="downloads" class="section level3">
-<h3>Downloads</h3>
-<div id="projekt" class="section level5">
-<h5><a href="https://www.dropbox.com/s/jas48hijozni5gk/TheRBootcamp.zip?dl=1"><strong>Projekt</strong></a></h5>
-</div>
-<div id="cheatsheets" class="section level5">
-<h5><a href="https://www.dropbox.com/s/26kjubck26lbwnw/cheatsheets.pdf?dl=1"><strong>Cheatsheets</strong></a></h5>
-<p><br></p>
-</div>
-</div>
-<div id="materialien" class="section level3">
-<h3>Materialien</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">Tag</th>
-<th align="left">Tag 2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left">Willkommen!<br><a href="_sessions/Welcome/Welcome.html">Folien</a></td>
-<td align="left">Wiederholung<br><a href="_sessions/Recap/Recap.html">Folien</a></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">Was ist ML?<br><a href="_sessions/WhatIsML/WhatIsML.html">Folien</a></td>
-<td align="left">Unsupervised learning <br><a href="_sessions/Unsupervised/Unsupervised.html">Folien</a>, <a href="_sessions/Unsupervised/Unsupervised_practical.html">Practical</a></td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">Fitting <br><a href="_sessions/Fitting/Fitting.html">Folien</a>, <a href="_sessions/Fitting/Fitting_practical.html">Practical</a></td>
-<td align="left">Features <br><a href="_sessions/Features/Features.html">Folien</a>, <a href="_sessions/Features/Features_practical.html">Practical</a></td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">Predicting<br><a href="_sessions/Prediction/Prediction.html">Folien</a>, <a href="_sessions/Prediction/Prediction_practical.html">Practical</a></td>
-<td align="left">Modelle <br><a href="_sessions/Models/Models.html">Folien</a>, <a href="_sessions/Models/Models_practical.html">Practical</a></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">Optimizing <br><a href="_sessions/Optimization/Optimization.html">Folien</a>, <a href="_sessions/Optimization/Optimization_practical.html">Practical</a></td>
-<td align="left">Ausblick <br><a href="_sessions/LookAhead/LookAhead.html">Folien</a></td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-</div>
-<div id="schedule" class="section level3">
-<h3>Schedule</h3>
-<p align="center">
-<p><br> <img border="0" alt="Oct2019Schedule" src="_sessions/Welcome/image/schedule.png" style="width:340px"></a><br></p>
-<!---
-
-
-<table cellspacing=0 cellpadding=0 margin=0 padding=0 class="my-table">
-
-<col width="10%">
-<col width="40%">
-<col width="40%">
-
-<tr>
-  <th style="text-align:left"> &nbsp; </th>
-  <th style="text-align:left">Day 1 - Basic</th>
-  <th style="text-align:left">Day 2 - Advanced</th>
-</tr>
-  
-<tr>  
-   <th>9:00</th>
-   <td class="td-special-blue">Welcome</td>
-   <td class="td-special-blue">Recap</td>
-</tr>
-
-<tr>
-  <th>9:30</th>
-  <td class="td-red" rowspan = 1><e>What is ML</e></td>
-  <td class="td-grey" rowspan = 5><e>Optimization</e><br>
-    <font class="sub">Practical</font>
-  </td>
-</tr>
- 
-<tr>
-  <th>10:00</th>
-  <td class="td-red" rowspan=4><e>R for ML</e><br>
-    <font class="sub">Interactive</font><br>
-  </td>
-  <td> &nbsp; </td>
-</tr>
-  
-<tr> <th>&nbsp;</th> </tr>
-<tr> <th>&nbsp;</th> </tr>
-<tr> <th>&nbsp;</th> </tr>
-  
-<tr>
-  <th align="right">12:00</th>
-  <td rowspan = 2 class="td-special-grey">Lunch
-  <td rowspan = 2 class="td-special-grey">Lunch
-</tr>
-
-<tr>
-   <th>&nbsp;</th>
-</tr>
-
-<tr>
-   <th align="right">13:00</th>
-   <td class="td-grey" rowspan = 5 ><e>Fitting</e><br>
-   <font class="sub">Practical</font><br>
-   <td class="td-grey" rowspan = 5 ><e>Models</e><br>
-   <font class="sub">Practical</font><br>
-</tr>
-
-<tr> <th>&nbsp;</th> </tr>
-<tr> <th>&nbsp;</th> </tr>
-<tr> <th>&nbsp;</th> </tr>
-<tr> <th>&nbsp;</th> </tr>
-
-<tr>
-   <th align="right">15:30</th>
-   <td class="td-grey" rowspan = 5 ><e>Prediction</e><br>
-   <font class="sub">Practical</font><br>
-   <td class="td-grey" rowspan = 4 ><e>Features</e><br>
-</tr>
-
-<tr> <th align="right">&nbsp;</th> </tr>
-<tr> <th align="right">&nbsp;</th> </tr>
-<tr> <th align="right">&nbsp;</th> </tr>
-
-<tr>
-   <th align="right">17:30</th>
-   <td class="td-red" valign="top"><e>Looking forward</e>
-</tr>
-
-<tr>
-   <th align="right">18:00</th>
-   <td class="td-special-blue"> Wrap-up
-   <td class="td-special-grey"> Apero</tr>
-</tr>
-</table>
-  
---->
-</div>
-
-
-
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
+  <head>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="index.css">
+  </head>
+
+  <body>
+
+    <div align="center">
+      <div id="header" align=left style="display:inline-block;width:100%">
+        <h1 width=100%><br>Maschinelles Lernen mit R</h1>
+        <span style="white-space: nowrap">
+          <a href='https://therbootcamp.github.io'><i class='fas fa-home'></i></a>
+          <a href='https://therbootcamp.github.io/ML_2020Oct/'><i class='fas fa-clock'></i></a>
+          <a href='mailto:therbootcamp@gmail.com'><i class='fas fa-envelope'></i></a>
+          <a href='https://www.linkedin.com/company/basel-r-bootcamp/'><i class='fab fa-linkedin'></i></a>
+          <a href='https://therbootcamp.github.io'>
+            <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp</font>
+          </a>
+        </span>
+        <br>
+        <span style="white-space: nowrap">
+          <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:2rem; vertical-align:baseline'/>
+          <font style='font-size:2rem;font-style:normal;padding-left:8px'>September 2020</font>
+        <span>
+    </div>
+
+    <br><br>
+
+    <div align="center" style="max-width:940px">
+
+      <h2>ZOOM</h2>
+      <table width=50% cellspacing=0 cellpadding=0 class="zoom">
+        <tr>
+          <td class="td-grey">
+            <a href="https://unibas.zoom.us/j/91999337061" style="display:block;height:100%;width:100%">
+              <div style="display:table;height:60px;width:100%">
+               <div style="display:table-cell;vertical-align:middle;text-align:center;width:100%">eintreten</div>
+             </div>
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <br><br>
+
+      <h2>DOWNLOADS</h2>
+      <table width=50% cellspacing=0 cellpadding=0 class="downloads">
+        <col width=33%>
+        <col width=33%>
+        <tr>
+          <td align=center>
+            <h4>Projekt</h4>
+            <a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/TheRBootcamp.zip">
+            <span class="fa-stack fa-3x active">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-code fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+          </td>
+          <td align=center>
+            <h4>Lösungen</h4>
+            <a href="">
+            <span class="fa-stack fa-3x inactive">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-lightbulb fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <br><br>
+
+      <h2>PROGRAMM</h2>
+      <table width=60% cellspacing=0 cellpadding=0 class="my-table">
+      <col width="6%">
+      <col width="47%">
+      <col width="47%">
+      <tr>
+         <td class="time">0900</td>
+         <td class="td-special-blue">
+           <a href="_sessions/Welcome/Welcome.html" style="display:block;height:100%;width:100%">
+             <div style="display:table;height:100%;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:75%"><e>Willkommen!</e></div>
+              <div style="display:table-cell;vertical-align:top"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+            </div>
+           </a>
+         </td>
+         <td class="td-special-blue">
+           <a href="_sessions/Recap/Recap.html" style="display:block;height:100%;width:100%">
+             <div style="display:table;height:100%;width:100%">
+              <div style="display:table-cell;vertical-align:middle;width:75%"><e>Wiederholung</e></div>
+              <div style="display:table-cell;vertical-align:middle"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr>
+         <td class="time">0930</td>
+         <td class="td-red" rowspan=2>
+           <a href="_sessions/WhatIsML/WhatIsML.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Was ist ML?</div>
+            </div>
+           </a>
+         </td>
+         <td class="td-grey" rowspan=4>
+           <a href="_sessions/Unsupervised/Unsupervised.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Unüberwachtes Lernen</div>
+            </div>
+           </a>
+           <a href="_sessions/Unsupervised/Unsupervised.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+
+            </div>
+           </a>
+           <a href="_sessions/Unsupervised/Unsupervised_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td class="time">1030</td>
+        <td class="td-grey" rowspan=2>
+          <a href="_sessions/Fitting/Fitting.html" style="display:block;height:40px;width:100%">
+            <div style="display:table;height:40px;width:100%">
+             <div style="display:table-cell;vertical-align:top;width:100%">Fitting</div>
+           </div>
+          </a>
+          <a href="_sessions/Fitting/Fitting.html" style="display:block;height:28px;width:100%">
+            <div style="display:table;height:28px;width:100%">
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+           </div>
+          </a>
+          <a href="_sessions/Fitting/Fitting_practical.html" style="display:block;height:28px;width:100%">
+            <div style="display:table;height:28px;width:100%">
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+           </div>
+          </a>
+        </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1200</td>
+         <td class="td-special-grey" rowspan=2>Pause</td>
+         <td class="td-special-grey" rowspan=2>Pause</td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td class="time">1300</td>
+        <td class="td-grey" rowspan=1>
+          <a href="_sessions/Fitting/Fitting_practical.html" style="display:block;height:40px;width:100%">
+            <div style="display:table;height:40px;width:100%">
+             <div style="display:table-cell;vertical-align:top;width:100%">Fitting</div>
+           </div>
+          </a>
+        </td>
+        <td class="td-grey" rowspan=4>
+          <a href="_sessions/Features/Features.html" style="display:block;height:40px;width:100%">
+            <div style="display:table;height:40px;width:100%">
+             <div style="display:table-cell;vertical-align:top;width:100%">Robuste Statistik</div>
+           </div>
+          </a>
+          <a href="_sessions/Features/Features.html" style="display:block;height:28px;width:100%">
+            <div style="display:table;height:28px;width:100%">
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+
+           </div>
+          </a>
+          <a href="_sessions/Features/Features_practical.html" style="display:block;height:28px;width:100%">
+            <div style="display:table;height:28px;width:100%">
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+             <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+           </div>
+          </a>
+        </td>
+      </tr>
+      <tr>
+         <td class="time">1345</td>
+         <td class="td-grey" rowspan=4>
+           <a href="_sessions/Predicting/Predicting.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Prediction</div>
+            </div>
+           </a>
+           <a href="_sessions/Predicting/Predicting.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/Predicting/Predicting_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+
+      </tr>
+      <tr><td></td><td></td><td></td></tr>  <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1515</td>
+         <td class="td-special-grey">Pause</td>
+         <td class="td-special-grey">Pause</td>
+      </tr>
+      <tr>
+         <td class="time">1530</td>
+         <td class="td-grey" rowspan=4>
+           <a href="_sessions/Optimizing/Optimizing.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Optimizing</div>
+            </div>
+           </a>
+           <a href="_sessions/Optimizing/Optimizing.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png" height=20px></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/Optimizing/Optimizing_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+         <td class="td-grey" rowspan=4>
+           <a href="_sessions/Models/Models.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:75%">Modelle</div>
+            </div>
+           </a>
+           <a href="_sessions/Models/Models.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png" height=20px></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/Models/Models_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr> <tr><td></td><td></td><td></td></tr>
+        <tr>
+          <td class="time">1740</td>
+          <td class="td-red">
+          <a href="_sessions/NextSteps/NextSteps.html" style="display:block;height:100%;width:100%">
+            <div style="display:table;height:100%;width:100%">
+             <div style="display:table-cell;vertical-align:middle;width:75%"><e>Ausblick</e></div>
+             <div style="display:table-cell;vertical-align:middle"><img src="https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/master/src/img/slide.png"></div>
+           </div>
+          </a>
+        </td>
+      </tr>
+      </table>
+
+      <br><br>
+
+      <h2>LITERATUR</h2>
+      <table width=50% cellspacing=0 cellpadding=0 class="literature">
+        <col width=50%>
+        <col width=50%>
+        <tr>
+          <td align=center>
+            <a href="https://bookdown.org/ndphillips/YaRrr/">
+            <h4><br>Phillips<br><i>YaRrr! The Pirate's Guide to R</i></h4>
+              <img class="literature-img" src="https://bookdown.org/ndphillips/YaRrr/images/YaRrr_Cover.jpg">
+            </a>
+          </td>
+          <td align=center>
+            <a href="https://ggplot2-book.org/">
+            <h4><br><br>Field<br><i>Discovering Statistics Using R</i></h4>
+              <img class="literature-img" src="https://images-na.ssl-images-amazon.com/images/I/41M2PgYiZXL._SX366_BO1,204,203,200_.jpg">
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <br><br>
+
+      <h2>FOLGEKURSE</h2>
+      <table width=50% cellspacing=0 cellpadding=0 class="courses">
+        <col width=50%>
+        <col width=50%>
+        <tr>
+          <td align=center>
+            <a href="https://advancedstudies.unibas.ch/studienangebot/kurs/maschinelles-lernen-mit-r-272008">
+            <h4><span style="font-size:12px">Webinar</span><br>Maschinelles Lernen mit R</h4>
+              <img class="course-img" src="https://therbootcamp.github.io/img/courses/3.png">
+            </a>
+          </td>
+          <td align=center>
+            <a href="https://advancedstudies.unibas.ch/studienangebot/kurs/reporting-with-r-webinar-283873">
+            <h4><span style="font-size:12px"><br>Webinar</span><br>Reporting mit R</h4>
+              <img class="course-img" src="https://therbootcamp.github.io/img/courses/4.png">
+            </a>
+          </td>
+        </tr>
+      </table>
+
+
+    </div>
+  </body>
 </html>
