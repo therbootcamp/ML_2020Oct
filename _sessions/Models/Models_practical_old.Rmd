@@ -1,0 +1,190 @@
+---
+title: "Models"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Machine Learning with R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2019May/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Basel R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+<p align="center">
+<img width="100%" src="image/minority.gif" margin=0><br>
+<font style="font-size:10px">from [gifer.com](https://gifer.com/en/6Hql)</font>
+</p>
+
+# {.tabset}
+
+## Overview
+
+In this practical, you get the chance to enter two model competitions, one on regression and one on classification, that will allow you to demonstrate your knowledge of:
+
+1. Machine learning models
+2. Fitting and prediction
+3. Cross-validation and optimization
+4. Data preprocessing and feature selection
+
+...and to be like Tom Cruise!
+
+## Tasks
+
+### Mission statement
+
+The members of governing council of Basel-Stadt recently met at the comfortable, yet luxurious home of Elisabeth Ackerman's, the council's president, to watch the latest science-fiction blockbuster, <a href="https://de.wikipedia.org/wiki/Minority_Report">Minority report</a>. In this uplifting, utopian movie, Chief John Anderton, marvelously played by Tom Cruise, works together with friendly but slightly introverted super-beings with the rare (but scientifically proven - see rigorous academic [paper](image/2011-01894-001.pdf)) ability to foresee the future in order to arrest perpetrators not after they committed a crime (boring!) but before. Aside from spending a wonderful evening with his colleagues, Baschi Dürr, head of justice and homeland security department and the one who proposed the movie, was hoping to win over his fellow council members for a revolutionary program to tackle an unprecedented swell in non-violent crimes and murders in Basel-Stadt in recent months. Baschi Dürr knew, of course, that *precogs* - this is how the super-beings were called - belonged to the land of fairy tails, but during his visit to the recent useR! conference in Brisbane he had learned of the next best thing: machine learning. His goal was, thus, to hire an elite team of programmers and to equip them with a maximally informative data set of past crimes to predict where future crimes would occur. Knowing that Basel shares many similarities with the United States of America, Baschi Dürr already had spent a significant amount of money to acquire a data set of murders and non-violent crimes across American counties. Now, he only needed to convince his colleagues. And Fortuna was on his side. The movie and the few bottles of Napoleon French Brandy that he had bought at Coop earlier that day impressed so much that Elisabeth Ackerman decided to dissolve the investigative branch of the police and invest all of its budget into the new ML task force. The next morning, with a slight, manageable hangover, Baschi Dürr announced an international ML modeling competition promising that whoever built the best model would head the new task force and, in addition, be rewarded with a lot of &#127851;&#127851;&#127851;. 
+
+(Names, characters, businesses, places, events, locales, and incidents are either the products of the author's imagination or used in a fictitious manner. Any resemblance to actual persons, living or dead, or actual events is purely coincidental.)
+
+
+### A - Preliminaries
+
+1. Open your `BaselRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
+
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `Models_practical.R` in the `2_Code` folder.  
+
+3. Using `library()` load the set of packages for this practical listed in the packages section above.
+
+```{r, eval = FALSE, echo = TRUE}
+# Load packages necessary for this script
+
+library(tidyverse)
+library(caret)
+```
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+library(tidyverse)
+```
+
+4. IMPORTANT! Download the data sets listed under the *Dataset* tab and save them in your `1_Data` folder. They are slightly different from the ones used in the *Features* session. Alternatively, you can also directly add the url in quotation marks as input to the `file` argument of `read_csv()`.
+
+5. With the code below, load each of the data sets listed in the `Datasets` as new objects and, importantly, change any character to factors.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+
+# REGRESSION -----
+
+# Load non-violent crime statistics training data
+nonviolent_crime <- read_csv(file = "https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/_sessions/Models/competition/1_Data/competition_nonvio_train.csv?token=AGKBX5RHL5SCEO7FHHHDSU243CAZ2")
+
+# change character to factor
+nonviolent_crime <- nonviolent_crime %>% mutate_if(is.character, as.factor)
+
+
+# CLASSIFICATION -----
+
+# Load murders crime statistics training data
+murders_crime <- read_csv(file = "https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/_sessions/Models/competition/1_Data/competition_murder_train.csv?token=AGKBX5WP5YQA6D5EA3AE6LK43CAUK")
+
+# change character to factor
+murders_crime <- murders_crime %>% mutate_if(is.character, as.factor)
+```
+
+### B Competition rules
+
+1. You may enter either one or both of two competitions, one on regression (`nonviolent_crime`) and on classification (`murders_crime`), each offering as a price plenty of &#127851;&#127851;&#127851;.
+
+2. To enter the competitions, you must submit for each competition you enter no more, no less than one caret `train`-object containing your candidate model. To submit the model, first save your model as an `.RDS`-file named `yourname_regression.RDS` and `yourname_classification.RDS`, respectively, with `yourname` replaced by your real name or pseudonym using the code below. Do not use any `-` or `_` in the file names.
+
+```{r}
+# save train obect as .RDS
+saveRDS(training_model_regression,'1_Data/yourname_regression.RDS')
+saveRDS(training_model_classification,'1_Data/yourname_classification.RDS')
+```
+
+3. Submit your `.RDS` file (containing your training object) via these following Links sheets:
+
+<div align = "center">
+<table>
+<tr>
+<th>Task type</th>
+<th>Criterion</th>
+<th>Performance measure</th>
+<th>Submission link</th>
+</tr>
+<tr>
+  <td>Regression</td> 
+  <td>non-violent crimes (`nonViolPerPop`)</td>
+  <td>MAE</td>
+  <td>[**Submit candidate**](https://docs.google.com/forms/d/e/1FAIpQLSevxp_hxSUrAYgiSU-Xv3hRw_get43qk15blw7QEeLHlbrNbA/viewform?usp=sf_link)</td>
+</tr>
+<tr>
+  <td>Classification</td> 
+  <td>murders (`murders`)</td>
+  <td>Accuracy</td>
+  <td>[**Submit candidate**](https://docs.google.com/forms/d/e/1FAIpQLSciw9WyTttmG9Oq93xjGKw_kxNJY9YmtLQvf_p35BcFNm1G-A/viewform?usp=sf_link)</td>
+</tr>
+</table>
+</div>
+
+4. You may work alone or team up with fellow participants. We recommend the latter, although working alone may, of course, mean more &#127851;&#127851;&#127851;.  
+
+5. Use any trick in your bag (or `caret`'s bag). Feel free to try different models, use different tuning parameter settings, select any variables or variable selection methods that you deem useful.
+
+6. In order to be able to fit the models refrain from any feature manipulation other than those accessible via the `preProcess` argument in the `train()` function.
+
+
+## Datasets
+
+|File  |Rows | Columns |
+|:----|:-----|:------|
+|[murders_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/_sessions/Models/competition/1_Data/competition_murder_train.csv?token=AGKBX5WP5YQA6D5EA3AE6LK43CAUK)| 1000 | 102|
+|[nonviolent_crime](https://raw.githubusercontent.com/therbootcamp/ML_2019May/master/_sessions/Models/competition/1_Data/competition_nonvio_train.csv?token=AGKBX5RHL5SCEO7FHHHDSU243CAZ2)| 1000 | 102|
+
+
+
+```{r, message = FALSE, eval = TRUE, echo = FALSE}
+# Load datasets locally
+library(tidyverse)
+```
+
+- The `murders_crime` and `violent_crime` data are subsets of the Communities and Crime Unnormalized Data Set data set from the UCI Machine Learning Repository. To see column descriptions, visit this site: [Communities and Crime Unnormalized Data Set](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized)
+
+## Resources
+
+### Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>

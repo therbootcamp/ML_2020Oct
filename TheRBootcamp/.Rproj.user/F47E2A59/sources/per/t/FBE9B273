@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585907130146.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3387136327",
+    "id" : "FBE9B273",
+    "lastKnownWriteTime" : 1585922417,
+    "last_content_update" : 1585922417439,
+    "path" : "~/Dropbox (2.0)/Work/Software/RBootcamps/ML_2020Apr/TheRBootcamp/2_Code/plenum_predicting.R",
+    "project_path" : "2_Code/plenum_predicting.R",
+    "properties" : {
+        "cursorPosition" : "58,43",
+        "scrollLine" : "45",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

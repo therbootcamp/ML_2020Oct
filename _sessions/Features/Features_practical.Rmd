@@ -1,0 +1,777 @@
+---
+title: "Features"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>The R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+```{r, message = FALSE, eval = TRUE, echo = FALSE}
+# Load datasets locally
+library(tidyverse)
+library(ggthemes)
+require(caret)
+diabetes <- read_csv("1_Data/diabetes.csv")
+murders_crime <- read_csv("1_Data/murders_crime.csv")
+violent_crime <- read_csv("1_Data/violent_crime.csv")
+nonviolent_crime <- read_csv("1_Data/nonviolent_crime.csv")
+```
+
+<p align="center">
+<img width="100%" src="image/wrongdata.gif" margin=0>
+<br>
+<font style="font-size:10px">from [dilbert.com](https://dilbert.com/)</font>
+</p>
+
+# {.tabset}
+
+
+## Überblick
+
+Am Ende des Practicals wirst du wissen...
+
+1. Warum Featurereduktion Sinn macht. 
+2. Wie du Features auf verschiedenen Wegen eliminieren kannst.
+
+## Aufgaben
+
+### A - Setup
+
+1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Features Practical" als Kommentare an den Anfang des Skripts.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Features Practical
+```
+
+3. Speichere das neue Skript unter dem Namen `features_practical.R` im `2_Code` Ordner.
+
+4. Lade die Pakete `tidyverse`, `caret`, `party`, `partykit`.
+
+```{r}
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)
+```
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Datensatz 1: <b>Diabetes</b>
+</p>
+
+
+### B - Lade den Diabetes Datensatz
+
+1. Verwende die `read_csv()` Funktion um `diabetes.csv` einzulesen.
+
+```{r, echo = T, eval = T, message = F}
+# Lese Daten ein
+diabetes <- read_csv(file = "1_Data/diabetes.csv")
+```
+
+2. Printe den Datensatz. 
+
+3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
+
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
+
+```{r, echo = TRUE}
+# Konvertiere alle character zu factor
+diabetes <- diabetes %>% mutate_if(is.character, factor)
+```
+
+### C - Trenne Training und Test
+
+1. Bevor du irgendwas machst solltest du den Datensatz erst in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `diabetes_train` und `diabetes_test` zu erstellen. Das Kriterium ist das Feature `Diabetes`. Dabei sollen *nur* `5%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
+
+```{r, echo = TRUE, eval = FALSE}
+# Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index <- createDataPartition(XX$XX, p = .05, list = FALSE)
+
+# Kreiere Training- und Testdaten
+diabetes_train <- XX %>% slice(train_index)
+diabetes_test  <- XX %>% slice(-train_index)
+```
+
+```{r}
+# Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index <- createDataPartition(diabetes$Diabetes, p = .05, list = FALSE)
+
+# Kreiere Training- und Testdaten
+diabetes_train <- diabetes %>% slice(train_index)
+diabetes_test  <- diabetes %>% slice(-train_index)
+```
+
+### D - Entferne ungewollte Features
+
+1. Bevor du mit der Eliminierung der Features beginnen kannst, musst du Features und Kriterium voneinander trennen. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Wähle Features aus
+diabetes_train_pred <- diabetes_train %>% select(-XX)
+
+# Wähle Kriterium aus
+diabetes_train_crit <- diabetes_train %>% select(XX)
+```
+
+```{r}
+# Wähle Features aus
+diabetes_train_pred <- diabetes_train %>% select(-Diabetes)
+
+# Wähle Kriterium aus
+diabetes_train_crit <- diabetes_train %>% select(Diabetes)
+```
+
+2. Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit `cor()`. Anschliessend übergebe diese an `findCorrelation()`. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Bestimme die Korrelationsmatrix
+corr_matrix <- cor(XX_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)
+```
+
+```{r}
+# Bestimmte die Korrelationsmatrix
+corr_matrix <- cor(diabetes_train_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)
+```
+
+8. Nun teste, ob es vll. Features mit limitierter "Varianz" gibt. Gibes es welche?
+
+```{r, echo = TRUE, eval = FALSE}
+# Identifiziere Features ohne "Varianz"
+nearZeroVar(XX_pred)
+```
+
+```{r}
+# Identifiziere Features ohne "Varianz"
+nearZeroVar(diabetes_train_pred)
+```
+
+9. Es wurden weder übermässig korrelierte Prädiktoren gefunden, noch solche ohne "Varianz". Füge nun Features und Kriterium wieder zu `diabetes_train` zusammen. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Füge nun Features und Kriterium zusammen
+diabetes_train <- XX_crit %>% bind_cols(XX_pred)
+```
+
+```{r}
+# Füge nun Features und Kriterium zusammen
+diabetes_train <- diabetes_train_crit %>% bind_cols(diabetes_train_pred)
+```
+
+### E - Featurewichtigkeit
+
+1. Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium `Diabetes` durch die anderen Features vorhersagt.   
+
+```{r, echo = TRUE, eval = FALSE}
+# Fitte Regression
+diabetes_glm <- train(Diabetes ~ .,
+                      data = XX,
+                      method = "XX")
+```
+
+```{r}
+# Fitte Regression
+diabetes_glm <- train(Diabetes ~ .,
+                      data = diabetes_train,
+                      method = "glm")
+```
+
+2. Berechne die Featurewichtigkeit mittels `varImp()`. Der Output der Funktion präsentiert in diesem Fall die *t*-Werte skaliert auf den Bereich 0 bis 100. Mit `scale = TRUE` könntest du dir die tatsächlichen *t*-Werte anzeigen lassen.
+
+```{r, echo = TRUE, eval = FALSE}
+# Bestimme Featurewichtigkeit
+varimp_glm <- varImp(XX)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)
+```
+
+```{r}
+# Bestimme Featurewichtigkeit
+varimp_glm <- varImp(diabetes_glm)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)
+```
+
+### F - Modellvergleiche
+
+1. Fitte nun eine zweite Regression zur Vorhersage von `Diabetes`, diesmal aber unter der Verwendung nur des besten Prädiktors gemäss den Ergebnissen der letzten Sektion.
+
+```{r, echo = TRUE, eval = FALSE}
+# Fitte Regression mit nur dem besten Prädiktor
+diabetes_glm1 <- train(diabetes ~ XX,
+                       data = XX,
+                       method = XX)
+```
+
+```{r}
+# Fitte Regression mit dem besten Prädiktor
+diabetes_glm1 <- train(Diabetes ~ Glucose,
+                       data = diabetes_train,
+                       method = "glm")
+```
+
+2. Vergleiche auf die bekannte Art und Weise, wie gut die Modelle die Trainings und die Testdaten erklären. Wie unterschiedlich sind die Modelle im Traning, wie unterschiedlich im Test? Welches ist besser? 
+
+```{r, echo = TRUE, eval = FALSE}
+# Evaluation des Tranings
+confusionMatrix(predict(XX), reference = XX)
+confusionMatrix(predict(XX), reference = XX)
+
+# Evaluation des Tests
+confusionMatrix(predict(XX, newdata = XX), reference = XX)
+confusionMatrix(predict(XX, newdata = XX), reference = XX)
+```
+
+```{r}
+# Evaluation des Tranings
+confusionMatrix(predict(diabetes_glm), reference = diabetes_train$Diabetes)
+confusionMatrix(predict(diabetes_glm1), reference = diabetes_train$Diabetes)
+
+# Evaluation des Tests
+confusionMatrix(predict(diabetes_glm, newdata = diabetes_test), reference = diabetes_test$Diabetes)
+confusionMatrix(predict(diabetes_glm1, newdata = diabetes_test), reference = diabetes_test$Diabetes)
+```
+
+3. Wahrscheinlich hast du beobachtet, dass das Modell mit vielen Prädiktoren im Test deutlich schwächer als im Traning war, aber auch, dass es immer noch leicht besser als das Modell mit nur einem Prädiktor war. Unter welchen Bedingungen würdest du erwarten, dass das Modell mit nur einem Prädiktor die Oberhand im Test erhält?
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Datensatz 2: <b>Murders</b>
+</p>
+
+### G - Lade den Murders Datensatz
+
+1. Verwende die `read_csv()` Funktion um `murders_crime.csv` einzulesen.
+
+```{r, echo = T, eval = T, message = F}
+# Lese Daten ein
+murders <- read_csv(file = "1_Data/murders_crime.csv")
+```
+
+2. Printe den Datensatz. 
+
+3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
+
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
+
+```{r, echo = TRUE}
+# Konvertiere alle character zu factor
+murders <- murders %>% mutate_if(is.character, factor)
+```
+
+### H - Trenne Training und Test
+
+1. Trenne den Datensatz in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `murders_train` und `murders_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
+
+```{r, echo = TRUE, eval = FALSE}
+# Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index <- createDataPartition(XX$XX, p = .25, list = FALSE)
+
+# Kreiere Training- und Testdaten
+murders_train <- XX %>% slice(train_index)
+murders_test  <- XX %>% slice(-train_index)
+```
+
+```{r}
+# Setze Random seed
+set.seed(100)
+
+# split index
+train_index <- createDataPartition(murders$murders, p = .25, list = FALSE)
+
+# train and test sets
+murders_train <- murders %>% slice(train_index)
+murders_test  <- murders %>% slice(-train_index)
+```
+
+### I - Entferne ungwollte Features
+
+1. Bevor du mit der Eliminierung der Features beginnst, trenne Features und Kriterium voneinander. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Wähle Features aus
+murders_train_pred <- murders_train %>% select(-XX)
+
+# Wähle Kriterium aus
+murders_train_crit <- murders_train %>% select(XX)
+```
+
+```{r}
+# Wähle Features aus
+murders_train_pred <- murders_train %>% select(-murders)
+
+# Wähle Kriterium aus
+murders_train_crit <- murders_train %>% select(murders)
+```
+
+2. Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit `cor()`. Anschliessend übergebe diese an `findCorrelation()`. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Bestimmte die Korrelationsmatrix
+corr_matrix <- cor(XX_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)
+```
+
+```{r}
+# Bestimmte die Korrelationsmatrix
+corr_matrix <- cor(murders_train_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)
+```
+
+3. Verwende den Code unten um die übermässig korrelierten Features zu entfernen. 
+
+```{r, echo = TRUE}
+# Entferne korrelierte Features
+murders_train_pred <- murders_train_pred %>% select(-findCorrelation(corr_matrix))
+```
+
+4. Nun teste, ob es Prädiktoren mit limitierter "Varianz" gibt. Gibes es welche?
+
+```{r, echo = TRUE, eval = FALSE}
+# Identifiziere Features ohne "Varianz"
+nearZeroVar(XX_pred)
+```
+
+```{r}
+# Identifiziere Features ohne "Varianz"
+nearZeroVar(murders_train_pred)
+```
+
+4. Verwende den code unten um die Prädiktoren ohne "Varianz" zu entfernen. 
+
+```{r, echo = TRUE}
+# Entferne Features ohne Varianz
+murders_train_pred <- murders_train_pred %>% select(-nearZeroVar(murders_train_pred))
+```
+
+5. Füge nun Features und Kriterium als neuen Trainingsdatensatz `murders_train_reduziert` zusammen. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Füge nun Features und Kriterium zusammen
+murders_train_reduziert <- XX_crit %>% bind_cols(XX_pred)
+```
+
+```{r}
+# Füge nun Features und Kriterium zusammen
+murders_train_reduziert <- murders_train_crit %>% bind_cols(murders_train_pred)
+```
+
+### J - Featurewichtigkeit
+
+1. Fitte eine logistische Regression auf die reduzierten Traningsdaten `murders_train_reduziert`, die das Feature `murders` durch die anderen Feature vorhersagt.   
+
+```{r, echo = TRUE, eval = FALSE}
+# Fitte Regression
+murders_glm_reduziert <- train(murders ~ .,
+                               data = XX,
+                               method = "XX")
+```
+
+```{r}
+# Fitte Regression
+murders_glm_reduziert <- train(murders ~ .,
+                               data = murders_train_reduziert,
+                               method = "glm")
+```
+
+2. Berechne und Plotte die Featurewichtigkeit mittels `varImp()`
+
+```{r, echo = TRUE, eval = FALSE}
+# Bestimme Featurewichtigkeit
+varimp_glm <- varImp(XX)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)
+```
+
+```{r}
+# Bestimme Featurewichtigkeit
+varimp_glm <- varImp(murders_glm_reduziert)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)
+```
+
+3. Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit `Importance > 50` und einen der nur Features mit `Importance > 30` enthält.
+
+```{r echo=TRUE}
+# Features mit Imp > 50
+murders_train_reduziert50 <- murders_train_reduziert %>% 
+  select(1, which(varimp_glm$importance > 50) + 1)
+
+# Features mit Imp > 30
+murders_train_reduziert30 <- murders_train_reduziert %>% 
+  select(1, which(varimp_glm$importance > 30) + 1)
+
+```
+
+### K - Datenkomprimierung mit PCA
+
+1. Eine Alternative zu manueller Featurereduktion ist die `principal component analysis`. Fitte zwei Regressionsmodelle, die `murders` durch die anderen Features vorhersagen unter Verwendung des Arguments `preProcess = c("pca")`. Zusätzlich verwende das `trControl` Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.
+
+```{r echo = TRUE}
+# Fitte Regression mit 80% Varianz präserviert
+murders_glm_pca80 = train(murders ~ .,
+                          data = murders_train,
+                          method = "glm",
+                          preProcess = c("pca"),
+                          trControl = trainControl(preProcOptions = list(thresh = .8)))
+
+# Fitte Regression mit 50% Varianz präserviert
+murders_glm_pca50 = train(murders ~ .,
+                          data = murders_train,
+                          method = "glm",
+                          preProcess = c("pca"),
+                          trControl = trainControl(preProcOptions = list(thresh = .5)))
+```
+
+
+### L - Modellvergleiche
+
+1. Fitte jeweils eigene Regressionsmodelle unter Verwendung des ursprünglichen Trainingsdatensatzes `murders_train` und den Trainingsdatensätzen `murders_train_reduziert50` und `murders_train_reduziert30`. 
+
+```{r echo = TRUE}
+# Fitte Regression mit reduziertem Datensatz
+murders_glm <- train(murders ~ .,
+                     data = murders_train,
+                     method = "glm")
+
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp > 50
+murders_glm_reduziert50 <- train(murders ~ .,
+                               data = murders_train_reduziert50,
+                               method = "glm")
+
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp > 20
+murders_glm_reduziert30 <- train(murders ~ .,
+                               data = murders_train_reduziert30,
+                               method = "glm")
+```
+
+2. Vergleiche die Modelle `murders_glm`, `murders_glm_reduziert`, `murders_glm_reduziert50`, `murders_glm_reduziert30`, `murders_glm_pca80`, `murders_glm_pca50` in ihrer Fähigkeit die Testdaten vorherzusagen. Waren die Strategien der Featurereduktion erfolgreich? Welche Strategien waren am erfolgreichsten?
+
+```{r}
+# Evaluation des Tests für murders_glm
+confusionMatrix(predict(murders_glm, 
+                        newdata = murders_test), 
+              reference = murders_test$murders)
+
+# Evaluation des Tests für murders_glm_reduziert
+confusionMatrix(predict(murders_glm_reduziert, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)
+
+# Evaluation des Tests für murders_glm_reduziert50
+confusionMatrix(predict(murders_glm_reduziert50, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)
+
+# Evaluation des Tests für murders_glm_reduziert30
+confusionMatrix(predict(murders_glm_reduziert30, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)
+
+# Evaluation des Tests für murders_glm_pca80
+confusionMatrix(predict(murders_glm_pca80, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)
+
+# Evaluation des Tests für murders_glm_pca50
+confusionMatrix(predict(murders_glm_pca50, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)
+```
+
+
+
+### X - Challenges: Violent & Non-violent Crime Data
+
+1. Versuche neue Trainingsdatensätze unter Verwendung manueller Reduktion oder PCA zu generieren die zu noch besseren Vorhersagen führen. 
+
+2. Verwende Random Forest anstatt Regression als zugrundeliegendes Modell. Achte darauf, dass `mtry` nicht zu hoch ist, damit es nicht so lange dauert.
+
+3. Für die Datensätze `violent_crime.csv` und `nonviolent_crime.csv` modelliere `ViolentCrimesPerPop` respektive `nonViolPerPop` als Funktion einer sinnvollen Auswahl an Featuren. Beide Kriterien sind numerisch, was bedeutet, dass es sich hier um ein Regressionsproblem handelt.  
+
+## Beispiele
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Schritt 0: Pakete laden-----------
+
+library(tidyverse)   
+library(caret)   
+library(party)
+library(partykit)
+
+# Schritt 1: Lade Daten ----------------------
+
+# Lese Daten
+data <- mpg
+
+# Konvertiere character in factor
+data <- data %>%
+  mutate_if(is.character, factor)
+
+
+# Schritt 2: Kreiere Training und Test -------------
+
+# Kreiere Trainingsindex
+train_index <- createDataPartition(criterion, 
+                                   p = .8, 
+                                   list = FALSE)
+
+# Kreiere Training und Test
+data_train <- data %>% slice(train_index)
+data_test <- data %>% slice(-train_index)
+
+# Trenne Features und Kriterium
+criterion_train <- data_train %>% select(hwy) %>% pull()
+predictors_train <- data_train %>% select(-hwy)
+criterion_test <- data_test %>% select(hwy) %>% pull()
+predictors_test <- data_test %>% select(-hwy)
+
+# Schritt 3: Bereinige Daten -------------
+
+# Teste auf Multikollinearität
+corr_matrix <- cor(predictors_train)
+corr_features <- findCorrelation(corr_matrix)
+
+# Entferene exzessiv korrelierte Feature
+predictors_train <- predictors_train %>% select(-corr_features)
+
+# Teste auf zu wenig "Varianz"
+zerovar_features <- nearZeroVar(predictors_train)
+
+# Entferene Feature mit zu wenig "Varianz"
+predictors_train <- predictors_train %>% select(-zerovar_features)
+
+# Verbinde Prädiktoren und Kriterium
+data_train <- predictors_train %>% add_column(hwy = criterion_train)
+
+# Schritt 4: Definiere Kontrollparameter -------------
+
+# Trainiere mittels Cross-Validation
+ctrl_cv <- trainControl(method = "cv") 
+
+# Schritt 5: Fitte die Modelle -------------
+
+# Fitte vanilla flavor Regression
+hwy_glm <- train(form = hwy ~ .,
+                 data = data_train,
+                 method = "glm",
+                 trControl = ctrl_cv)
+
+# Fitte mit PCA transformation
+hwy_glm_pca <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv,
+                     preProcess = c('pca'))
+
+# Fitte mit Standardisierung
+hwy_glm_sca <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv,
+                     preProcess = c('scale', 'center'))
+
+# Extrahiere fits
+glm_fit     <- predict(hwy_glm)
+glm_pca_fit <- predict(hwy_glm_pca)
+glm_sca_fit <- predict(hwy_glm_sca)
+
+# Schritt 6: Evaluiere die Featurewichtigkeiet -------------
+
+# Berechne Wichtigkeit
+imp_glm     <- varImp(hwy_glm)
+imp_glm_pca <- varImp(hwy_glm_pca)
+imp_glm_sca <- varImp(hwy_glm_sca)
+
+# Plotte Wichtigkeit
+plot(imp_glm)
+plot(imp_glm_pca)
+plot(imp_glm_sca)
+
+# Schritt 7: Wähle Variablen aus -------------
+
+# Per Hand
+hwy_glm_sel <- train(form = hwy ~ cty,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv)
+
+# Setze PCA Varianz auf 50%
+ctrl_cv_pca <- trainControl(method = "cv",
+                            preProcOptions = list(thresh = 0.50)) 
+
+# Modell mit PCA mit 50% Varianz
+hwy_glm_sel <- train(form = hwy ~ .,
+                     data = data_train,
+                     method = "glm",
+                     trControl = ctrl_cv_pca,
+                     preProcess = c('pca'))
+
+# Schritt 8: Rekursive Featurerediktion -------------
+
+# RFE Einstellungen 
+ctrl_rfe <- rfeControl(functions = lmFuncs,  # linear model
+                       method = "cv",
+                       verbose = FALSE)
+
+# RFE
+profile <- rfe(x = predictors_train, 
+               y = criterion_train,
+               sizes = c(1, 2, 3),    # Kandidaten
+               rfeControl = ctrl_rfe)
+
+# Plotte Ergebnisse
+trellis.par.set(caretTheme())
+plot(profile, type = c("g", "o"))
+
+# Schritt 9: Evaluiere die Modelle -------------
+
+# Ihr wisst wie...
+
+```
+
+
+## Datensätze
+
+|Datei  |Zeilen | Spalten |
+|:----|:-----|:------|
+|[diabetes.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/diabetes.csv)| 724 | 7|
+|[murders_crime.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/murders_crime.csv)| 1000 | 102|
+|[violent_crime.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/violent_crime.csv)| 1000 | 102|
+|[nonviolent_crime.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/nonviolent_crime.csv)| 1000 | 102|
+
+#### `diabetes`
+
+Der `diabetes` Datensatz entstammt dem `PimaIndiansDiabetes` Datensatz aus dem `mlbench` Paket. Er beinhaltet medizinische und demographische Daten der [Pima](https://de.wikipedia.org/wiki/Pima).
+
+Die Pima sind eine in Arizona lebende Untergruppe der Indianer. Eine genetische Prädisposition erlaubte es ihnen sich jahrelang von einer sehr kohlenhydratarmen Diät zu ernähren. Der Wechsel von traditionellem Anbau zu industriell verarbeiteten Nahrungsmitteln zusammen mit einem Rückgang physischer Aktivität hat bei den Pima zu einer sehr hohen Rate and Typ 2 Diabetes geführt. Aus diesem Grund sind sie Gegenstand vieler medizinischer Untersuchungen. 
+
+| Name | Beschreibung |
+|:----|:-----|:------|
+|Diabetes| Diagnose: positiv (pos) oder negativ (pos) |
+|Schwangerschaften| Anzahl Schwangerschaften |
+|Glucose| Glukosekonzentration im Plasma |
+|Blutdruck| Diastolischer Blutdruck |
+|BMI| Body Mass Index |
+|fam_Vorerkrankungen| Familiäre Vorerkrankungen (pedigree function) |
+|Alter| Alter in Jahren |
+
+
+#### `murders_crime`, `violent_crime`, und `non_violent_crime`
+
+Die Datensätze `murders_crime`, `violent_crime`, und `non_violent_crime` entstammen dem *Communities and Crime Unnormalized Data Set* aus dem [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). Für die Featurebeschreibungen siehe: [Communities and Crime Unnormalized Data Set](https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized). Aufgrund der grossen Anzahl der Feature (102) verzichten wir auf hier auf die Tabelle.
+
+Der Datensatz kombiniert sozio-demographische Daten des US 1990 Zensus, Daten aus dem *Law Enforcement Management and Admin Stats Survey*, und  Kriminaldaten des FBI.
+
+## Funktionen
+
+### Pakete
+
+|Paket| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`caret`|`install.packages("caret")`|
+|`partykit`|`install.packages("partykit")`|
+|`party`|`install.packages("party")`|
+
+### Funktionen
+
+| Funktion| Paket | Beschreibung |
+|:---|:------|:---------------------------------------------|
+| `trainControl()`|`caret`|   Definiere wie das Modell trainiert wird | 
+| `train()`|`caret`|  Trainiere (fitte) ein Modell   |
+| `predict(object, newdata)`|`stats`| Vorhersage des Kriteriumswerts in `newdata` |
+| `postResample()`|`caret`| Evaluiere Performanz in Regressionsfällen   |
+| `confusionMatrix()`|`caret`|   Evaluiere Performanz in Klassifikationsfällen |
+| `varImp()`|`caret`| Determiniere modellspezifische, wichtige Features  |
+| `findCorrelation()`, `nearZeroVar()` |`caret`|  Identifiziere hochkorrelierte Features und Features mit fast keiner Varianz. | 
+| `rfe()`, `rfeControl()` |`caret`| Verwende und kontrolliere rekursive Featureselektion. | 
+
+## Materialien
+
+### Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+

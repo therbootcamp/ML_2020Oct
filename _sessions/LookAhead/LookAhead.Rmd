@@ -1,0 +1,464 @@
+---
+title: "Ausblick"
+author: "Maschinelles Lernen mit R<br>
+  <a href='https://therbootcamp.github.io'>
+    The R Bootcamp
+  </a>
+  <br>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "April 2020"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+      Maschinelles Lernen mit R | April 2020
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# see: https://github.com/yihui/xaringan
+# install.packages("xaringan")
+# see: 
+# https://github.com/yihui/xaringan/wiki
+# https://github.com/gnab/remark/wiki/Markdown
+options(width=110)
+options(digits = 4)
+```
+
+
+.pull-left45[
+<br><br><br><br><br>
+#  Hallo Machine Learning Experten!
+
+In 2 Tagen, 7 Sessions, und 15 Stunden habt ihr euch die Grundlagen des maschinellen Lernens angeeignet.
+
+]
+
+.pull-right4[
+
+<img src="image/schedule.png" height="580" align="center">
+]
+
+---
+
+#  Willkommen zur Datenrevolution
+
+.pull-left4[
+
+<i>"Machine learning will be the <high>engine of global growth</high>."</i><br>
+
+[Financial times, July 2018]()
+
+<i>"<high>Fuel of the future</high> - Data is giving rise to a new economy."</i><br>
+
+[The Economist, May 2017]()
+
+<i>"Wie Big Data die <high>Finanzmärkte verändern</high> könnte"</i><br>
+
+[NZZ, August 2018]()
+
+]
+
+.pull-right55[
+<p align="center">
+<img src="image/bigdatagrowth.png" height = 400px>
+</p>
+]
+
+---
+
+# Änderungen in der Wirtschaft
+
+.pull-left4[
+### Unternehmeen die AI/ML verwenden
+<p align="left">
+  <img src="image/bytemarks.png" height=380>
+</p>
+]
+
+.pull-right55[
+### Jobs werden obsolet
+<p align="left">
+  <img src="image/obsolete.png" height=380>
+</p>
+]
+
+<!---<iframe width="1200" height="560" src="https://www.bloomberg.com/graphics/2017-job-risk/#dvz-asset-d3js-scatterplot-container" frameborder="0">
+--->
+
+---
+
+#  Repeating the past
+
+.pull-left35[
+### Ein nerdy Cartoon
+<p align="center">
+
+</p>
+
+<p align = "center">
+  <img src="image/garbage_in_garbage_out.png" height = 375px><br>
+  <font style="font-size:10px">from <a href="https://www.smbc-comics.com/comic/rise-of-the-machines">smbc-comics.com</a></font>
+</p>
+
+
+
+]
+
+.pull-right6[
+### In der realen Welt: Predictive policing
+<a href="https://www.economist.com/briefing/2013/07/20/dont-even-think-about-it">The Economist</a><br>
+<a href="http://harvardcrcl.org/minority-report-why-we-should-question-predictive-policing/">Harvard Civil Rights Review</a>
+<p align = "center">
+  <img src="image/predpol.jpg" height = 268px><br>
+  <font style="font-size:10px">from <a href="https://www.smithsonianmag.com/innovation/artificial-intelligence-is-now-used-predict-crime-is-it-biased-180968337/">smithsonianmag.com</a></font>
+</p>
+
+
+
+
+]
+
+
+---
+
+#  Repeating the past
+
+.pull-left45[
+### Risikoscore für Rezidivität
+<p align="center">
+  <img src="image/risk_score.png" height=347px><br>
+  <font style="font-size:10px">from <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">propublica.org</a></font>
+</p>
+</p>
+
+]
+
+.pull-right45[
+### Evaluation der Ergebnisse
+<a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Pro Publica I</a>, 
+<a href="https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm">Pro Publica II</a>
+
+<p align = "center">
+  <img src="image/risk_score_eval.png" height=300px><br>
+  <font style="font-size:10px">from <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">propublica.org</a></font>
+</p>
+
+]
+
+---
+
+# Das Ende der Privatheit
+
+.pull-left3[
+
+<i>"Most technologies have their bright and dark side [...] My personal opinion is that a machine's ability to better understand us would lead to improved consumer experience, products, etc… But imagine that we published a clone of youarewhatyoulike.com that simply predicted which of your friends was gay (or Christian or liberal or HIV-positive, etc); lynches are not unlikely to follow…"</i>
+
+Michal Kosinski, Stanford University <a href="https://www.theguardian.com/world/2014/aug/03/internet-death-privacy-google-facebook-alex-preston" style="font-size:8px">[Full text]</a>
+
+]
+
+.pull-right65[
+
+<p align = "center">
+  <img src="image/endofprivacy.jpg" height=410px><br>
+  <font style="font-size:10px">from <a href="https://www.pnas.org/content/112/4/1036">pnas.org</a></font>
+</p>
+
+]
+
+
+
+
+---
+
+<div class="center_text_2">
+  <span>
+  Was denkst du?
+  </span>
+</div> 
+
+
+---
+
+# Nächste Schritte
+
+.pull-left5[
+<font size = 4><i>
+<font size = 6>
+1. Anwenden<br>
+2. Bücher<br>
+3. Webseiten<br>
+4. Hilfe & Consulting<br>
+5. Weiterführende Kurse<br>
+]
+
+</font>
+<br>
+
+.pull-right5[
+<p align="center"><img border="0" alt="W3Schools" src="http://www.theunmanageableemployee.com/wp-content/uploads/2011/07/5cs-stones-cropped-11052730.jpg?w=112"></p>
+]
+
+---
+
+# Bücher  
+
+Hier ist eine unvollständige Liste guter Bücher über R lose geordnet nach vorausgesetzter Erfahrung.<br><br>
+
+<table width="80%" style="cellspacing:0; cellpadding:0; border:none;">
+
+  <tr>    
+
+  <td> 
+  <a href="http://r4ds.had.co.nz/"><img border="0" alt="W3Schools" src="http://r4ds.had.co.nz/cover.png" height="180"></a>
+  </td>
+
+  <td>
+  <a href="https://covers.oreillystatic.com/images/0636920028574/cat.gif"><img border="0" alt="W3Schools" src="https://covers.oreillystatic.com/images/0636920028574/cat.gif" height="180"></a>
+  </td>
+
+  <td> 
+  <a href="https://ggplot2-book.org/"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/31uoy-qmhEL._SX331_BO1,204,203,200_.jpg" height="180"></a>
+  </td>
+
+  <td>
+  <a href="https://www.springer.com/de/book/9783540799979"><img border="0" alt="W3Schools" src="https://images.springer.com/sgw/books/medium/9783540799979.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://bookdown.org/ndphillips/YaRrr/"><img border="0" alt="W3Schools" src="https://bookdown.org/ndphillips/YaRrr/images/YaRrr_Cover.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.orellfuessli.ch/shop/home/artikeldetails/ID35367941.html?ProvID=10917736&gclid=Cj0KCQiAg_HhBRDNARIsAGHLV5238Q26gQmFttHRnYGjcAhz4CslStb-3qBegvuZS5gnCpWSLNlQvF0aAgfOEALw_wcB"><img border="0" alt="W3Schools" src="https://assets.thalia.media/img/35367941-00-00.jpg" height="180" ></a>
+  </td>
+  
+  </tr>
+  
+
+  <tr style="background-color:#ffffff">
+
+  <td>
+  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+
+
+  <td>
+  <a href="https://csgillespie.github.io/efficientR/"><img border="0" alt="W3Schools" src="https://csgillespie.github.io/efficientR/figures/f0_web.png" height="180" ></a>
+  </td>
+
+  <td>
+  <a href="www.rcpp.org/"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSO9T6JQYtpQgcaCXudbqMB-fnvTjGowsnmeh9-BQku3zveR4-J" height="180" ></a>
+  </td>
+  
+  
+  <td>
+  <a href="http://adv-r.had.co.nz/"><img border="0" alt="W3Schools" src="https://images.tandf.co.uk/common/jackets/amazon/978146658/9781466586963.jpg" height="180" ></a>
+  </td>
+
+
+  </tr>
+  
+
+
+</table>
+<br>
+
+
+---
+
+.pull-left4[
+
+# Webseiten
+
+Das Netz ist vll. der beste Ort für Informationen über R.
+
+<font size = 4><i>Beginnt eure Suche mit:</i></font>
+
+[Google](www.google.com). Stellt sicher, dass ihr *R* oder *Rproject* mit in eurer Suche habt. 
+
+<br>
+<font size = 4><i>Meistens werdet ihr dann weitergeleitet zu:</i></font>
+
+[R-bloggers](www.r-bloggers.com) informiert euch über die neusten R Entwicklungen. Meldet euch für den Newsletter an.
+
+[Stackoverflow](https://stackoverflow.com/questions/tagged/r) ist eine Seite für R Probleme und Lösungen. Versucht selbst mal ein Problem zu posten. Oft bekommt ihr erstaunlich schnell Antwort.
+
+]
+
+.pull-right5[
+<p align="left" style="padding: 0 0px"><br><br><br><br><br><br><br><br><br>
+    <a href="https://www.google.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/google.png" height="100"></a><br><br><br2>
+    <a href="https://www.r-bloggers.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbloggers.png" height="105" style="margin-bottom:10px"></a><br>
+  <a href="https://stackoverflow.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/stackoverflow.png" height="105"></a>
+</p>
+]
+
+---
+
+# Support
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
+  <col width="22%">
+  <col width="22%">
+  <col width="22%">
+  <tr>
+    <th class="tg-yw4l" valign='top'>
+    <p align="center"><br>
+    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/1.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Dirk Wulff</font><br><br>
+    <a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
+    <a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
+    <a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
+    </p>  
+  </th>
+  
+  <th class="tg-yw4l" valign='top'><p align="center"><br>
+    <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/2.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Markus Steiner</font><br><br>
+    <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
+    <font size=4><i>packages: </i></font> 
+    <a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
+    <a href="https://github.com/mdsteiner/EFAtools"><b>EFAtools</b></a> <br><br>
+    </p>
+  </th>
+  
+  <th class="tg-yw4l" valign='top'>
+    <p align="center">
+    <p align="center"><br>
+    <a href="https://www.schulte-mecklenbeck.com/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/3.png" height="230" style="border-radius:50%"></a><br>
+    <p align="center">
+    <font size = 5>Dr. Michael Schulte-<br>Mecklenbeck</font><br><br>
+    <a href="www.schulte-mecklenbeck.com"><b>schulte-mecklenbeck.com</b></a><br>
+    <a href="https://github.com/schultem"><b>github.com/schultem</b></a><br><br>
+    </p>
+  </th>
+
+
+</tr>
+
+</table>
+
+---
+
+
+# Weiterführende Kurse
+
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none;">
+<tr valign="top">
+  <col width="25%">
+  <col width="25%">
+  <col width="25%">
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/2.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Mai 8/9, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Reporting mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Juni 5/6, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
+  <td>
+    <p align="center">
+      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Explorative Datenanalyse<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/3.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>September 4/5, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  
+  </tr>
+
+
+---
+
+.pull-left45[
+# Bitte gebt uns Feedback
+<br><br>
+
+<p align = "center">
+  <img src="image/feedback.png" height=350px></img><br>
+  <font style="font-size:10px">from <a href="https://cdn-images-1.medium.com/max/1600/1*5OZNYAfzDZfM1lwJBZEuHQ.png">medium.com</a></font>
+</p>
+
+]
+
+.pull-right45[
+
+<p align="center"><br><br>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7mIQxM9Ll32l2e5P6DNLv0yl5ugiSwmZgDRzRhcOnpHQveg/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
+]
+
+---
+class: center, middle
+
+# Herzlichen Dank! und noch eine Sache...
+

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Modelling Wettberweb</title>
+
+<script src="Models_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Models_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Models_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Models_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Models_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Models_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Models_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Models_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Modelling Wettberweb</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p><img src="image/twitter.gif" width="100%" style="display: block; margin: auto;" /></p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="uberblick" class="section level2">
+<h2>Überblick</h2>
+<p>Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne 🍫🍫🍫.</p>
+<p>Der Wettbewerb läuft noch…</p>
+<font style="font-size:32px">
+<p id="demo" align="center">
+</p>
+<p></font></p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Apr 4, 2020 17:05:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+</div>
+<div id="wettbewerb" class="section level2">
+<h2>Wettbewerb</h2>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
+<ol style="list-style-type: decimal">
+<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Modelling Wettbewerb” als Kommentare an den Anfang des Skripts.</p></li>
+</ol>
+<pre class="r"><code>## NAME
+## DATUM
+## Modelling Wettbewerb</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Speichere das neue Skript unter dem Namen <code>modelling_wettbewerb.R</code> im <code>2_Code</code> Ordner.</p></li>
+<li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, und <code>partykit</code>.</p></li>
+<li><p>Mit dem Code unten lade den <code>tweets</code> Datensatz und ändere <code>character</code> in <code>factor</code>.</p></li>
+</ol>
+<pre class="r"><code># Lade tweets daten
+tweets &lt;- read_csv(file = &quot;1_Data/tweets_train.csv&quot;)
+
+# Ändere character zu factor
+tweets &lt;- tweets %&gt;% mutate_if(is.character, as.factor)</code></pre>
+</div>
+<div id="b---wettbewerbsregeln" class="section level3">
+<h3>B - Wettbewerbsregeln</h3>
+<ol style="list-style-type: decimal">
+<li><p>Das Ziel des Wettbewerbs ist die maximale <code>Accuracy</code> in der Vorhersage, ob der Twitter User <code>female</code> oder <code>male</code> ist, zu erzielen.</p></li>
+<li><p>Um am Wettbewerb teilzunehmen, reicht <b>bis zu drei</b> <code>train</code>-Objekte (also der Output der <code>train()</code>-Funktion ein).</p></li>
+<li><p>Um ein <code>train</code>-Objekt einzureichen, speichert es zuerst als <code>.RDS</code>-Datei, die ihr benennt mit <code>PSEUDONYM_VERSION.RDS</code>, wobei ihr <code>PSEUDONYM</code> mit einem selbstgewählten Pseudonym ersetzt und <code>VERSION</code> mit einer selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten.</p></li>
+</ol>
+<pre class="r"><code># Fitte Modell
+my_train &lt;- train(...)
+
+# Speichere train Objekt
+saveRDS(my_train,&#39;1_Data/PSEUDONYM_VERSION.RDS&#39;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Reiche deine <code>.RDS</code> Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schicke uns das Objekt oder die Objekte per <a href="mailto:therbootcamp@gmail.com"><strong>Mail</strong></a>.</li>
+</ol>
+<div align="center">
+<table>
+<tr>
+<th>
+Problemtyp
+</th>
+<th>
+Kriterium
+</th>
+<th>
+Gütekriterium
+</th>
+<th>
+Submission link
+</th>
+</tr>
+<tr>
+<td>
+Klassifikation
+</td>
+<td>
+tweets (<code>gender</code>)
+</td>
+<td>
+Accuracy
+</td>
+<td>
+<a href="https://www.dropbox.com/request/qNeX6wMNDbDtbJuVnxx0"><strong>Submit candidate</strong></a>
+</td>
+</tr>
+</table>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Du darfst alle Waffen in <code>caret</code>s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungsmethoden. Verwende alle oder nur einige Features.</p></li>
+<li><p><font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen Vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das <code>preProcess</code>-Argument der <code>train()</code> Funktion durchgeführt werden. </font></p></li>
+</ol>
+</div>
+</div>
+<div id="datensatz" class="section level2">
+<h2>Datensatz</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Datei</th>
+<th align="left">Zeilen</th>
+<th align="left">Spalten</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/tweets_train.csv">tweets.csv</a></td>
+<td align="left">2500</td>
+<td align="left">23</td>
+</tr>
+</tbody>
+</table>
+<p>Der <code>tweets.csv</code> Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt dieses Datensatzes von <a href="https://www.kaggle.com/crowdflower/twitter-user-gender-classification">Kaggle</a>.</p>
+<table>
+<colgroup>
+<col width="39%" />
+<col width="60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">Das Kriterium. Ob die tweetende Person männlich (<code>male</code>) oder weiblich (<code>female</code>) ist.</td>
+</tr>
+<tr class="even">
+<td align="left">year_created</td>
+<td align="left">Das Jahr in dem der Twitter Account erstellt wurde.</td>
+</tr>
+<tr class="odd">
+<td align="left">hour_created</td>
+<td align="left">Die Stunde des Tages (1:24h) in der der Twitter Account erstellt wurde.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_count</td>
+<td align="left">Die Anzahl der Tweets, die über den Account gepostet wurden.</td>
+</tr>
+<tr class="odd">
+<td align="left">retweet_count</td>
+<td align="left">Die Anzahl der Retweets, die über den Account gepostet wurden.</td>
+</tr>
+<tr class="even">
+<td align="left">user_timezone</td>
+<td align="left">Die Zeitzone des Accounts relativ zu GMT.</td>
+</tr>
+<tr class="odd">
+<td align="left">name_nchar</td>
+<td align="left">Die Anzahl der Buchstaben im Namen des Accounts.</td>
+</tr>
+<tr class="even">
+<td align="left">name_male</td>
+<td align="left"><code>1</code>, wenn der Account Name einen der 1,000 Häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left">name_female</td>
+<td align="left"><code>1</code>, wenn der Account Name einen der 1,000 Häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="even">
+<td align="left">descr_nchar</td>
+<td align="left">Die Anzahl der Buchstaben im Namen Description Feld des Accounts</td>
+</tr>
+<tr class="odd">
+<td align="left">descr_male</td>
+<td align="left"><code>1</code>, wenn das Description Feld des Accounts einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="even">
+<td align="left">descr_female</td>
+<td align="left"><code>1</code>, wenn das Description Feld des Accounts einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left">descr_sent</td>
+<td align="left">Durchschnittlicher Sentiment Score (&gt;0 = positives Sentiment) des Texts im Description Feld des Accounts.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_nchar</td>
+<td align="left">Die Anzahl der Buchstaben in einem zufällig ausgewählten Tweets des Accounts.</td>
+</tr>
+<tr class="odd">
+<td align="left">tweet_male</td>
+<td align="left"><code>1</code>, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="even">
+<td align="left">tweet_female</td>
+<td align="left"><code>1</code>, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten <code>0</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left">tweet_sent</td>
+<td align="left">Durchschnittlicher Sentiment Score (&gt;0 = positives Sentiment) des Texts zufällig ausgewählte Tweets.</td>
+</tr>
+<tr class="even">
+<td align="left">linkcol_red</td>
+<td align="left">Rotwert (1:255) in der Linkfarbe des Accounts.</td>
+</tr>
+<tr class="odd">
+<td align="left">linkcol_green</td>
+<td align="left">Grünwert (1:255) in der Linkfarbe des Accounts.</td>
+</tr>
+<tr class="even">
+<td align="left">linkcol_blue</td>
+<td align="left">Blauwert (1:255) in der Linkfarbe des Accounts.</td>
+</tr>
+<tr class="odd">
+<td align="left">sidecol_red</td>
+<td align="left">Rotwert (1:255) in Seitenbande des Accounts.</td>
+</tr>
+<tr class="even">
+<td align="left">sidecol_green</td>
+<td align="left">Grünwert (1:255) in Seitenbande des Accounts.</td>
+</tr>
+<tr class="odd">
+<td align="left">sidecol_blue</td>
+<td align="left">Blauwert (1:255) in Seitenbande des Accounts.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cheatsheet" class="section level2">
+<h2>Cheatsheet</h2>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

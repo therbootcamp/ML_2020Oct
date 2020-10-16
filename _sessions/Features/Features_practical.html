@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Features</title>
+
+<script src="Features_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Features_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Features_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Features_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Features_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Features_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Features_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Features_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Features</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p align="center">
+<img width="100%" src="image/wrongdata.gif" margin=0> <br> <font style="font-size:10px">from <a href="https://dilbert.com/">dilbert.com</a></font>
+</p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="uberblick" class="section level2">
+<h2>Überblick</h2>
+<p>Am Ende des Practicals wirst du wissen…</p>
+<ol style="list-style-type: decimal">
+<li>Warum Featurereduktion Sinn macht.</li>
+<li>Wie du Features auf verschiedenen Wegen eliminieren kannst.</li>
+</ol>
+</div>
+<div id="aufgaben" class="section level2">
+<h2>Aufgaben</h2>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
+<ol style="list-style-type: decimal">
+<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Features Practical” als Kommentare an den Anfang des Skripts.</p></li>
+</ol>
+<pre class="r"><code>## NAME
+## DATUM
+## Features Practical</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Speichere das neue Skript unter dem Namen <code>features_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
+<li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, <code>partykit</code>.</p></li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
+Datensatz 1: <b>Diabetes</b>
+</p>
+</div>
+<div id="b---lade-den-diabetes-datensatz" class="section level3">
+<h3>B - Lade den Diabetes Datensatz</h3>
+<ol style="list-style-type: decimal">
+<li>Verwende die <code>read_csv()</code> Funktion um <code>diabetes.csv</code> einzulesen.</li>
+</ol>
+<pre class="r"><code># Lese Daten ein
+diabetes &lt;- read_csv(file = &quot;1_Data/diabetes.csv&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Printe den Datensatz.</p></li>
+<li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
+<li><p>Wiederum, führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
+</ol>
+<pre class="r"><code># Konvertiere alle character zu factor
+diabetes &lt;- diabetes %&gt;% mutate_if(is.character, factor)</code></pre>
+</div>
+<div id="c---trenne-training-und-test" class="section level3">
+<h3>C - Trenne Training und Test</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du irgendwas machst solltest du den Datensatz erst in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist das Feature <code>Diabetes</code>. Dabei sollen <em>nur</em> <code>5%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+</ol>
+<pre class="r"><code># Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index &lt;- createDataPartition(XX$XX, p = .05, list = FALSE)
+
+# Kreiere Training- und Testdaten
+diabetes_train &lt;- XX %&gt;% slice(train_index)
+diabetes_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
+<pre class="r"><code># Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index &lt;- createDataPartition(diabetes$Diabetes, p = .05, list = FALSE)
+
+# Kreiere Training- und Testdaten
+diabetes_train &lt;- diabetes %&gt;% slice(train_index)
+diabetes_test  &lt;- diabetes %&gt;% slice(-train_index)</code></pre>
+</div>
+<div id="d---entferne-ungewollte-features" class="section level3">
+<h3>D - Entferne ungewollte Features</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du mit der Eliminierung der Features beginnen kannst, musst du Features und Kriterium voneinander trennen.</li>
+</ol>
+<pre class="r"><code># Wähle Features aus
+diabetes_train_pred &lt;- diabetes_train %&gt;% select(-XX)
+
+# Wähle Kriterium aus
+diabetes_train_crit &lt;- diabetes_train %&gt;% select(XX)</code></pre>
+<pre class="r"><code># Wähle Features aus
+diabetes_train_pred &lt;- diabetes_train %&gt;% select(-Diabetes)
+
+# Wähle Kriterium aus
+diabetes_train_crit &lt;- diabetes_train %&gt;% select(Diabetes)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten.</li>
+</ol>
+<pre class="r"><code># Bestimme die Korrelationsmatrix
+corr_matrix &lt;- cor(XX_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)</code></pre>
+<pre class="r"><code># Bestimmte die Korrelationsmatrix
+corr_matrix &lt;- cor(diabetes_train_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)</code></pre>
+<pre><code>integer(0)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Nun teste, ob es vll. Features mit limitierter “Varianz” gibt. Gibes es welche?</li>
+</ol>
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
+nearZeroVar(XX_pred)</code></pre>
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
+nearZeroVar(diabetes_train_pred)</code></pre>
+<pre><code>integer(0)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Es wurden weder übermässig korrelierte Prädiktoren gefunden, noch solche ohne “Varianz”. Füge nun Features und Kriterium wieder zu <code>diabetes_train</code> zusammen.</li>
+</ol>
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
+diabetes_train &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
+diabetes_train &lt;- diabetes_train_crit %&gt;% bind_cols(diabetes_train_pred)</code></pre>
+</div>
+<div id="e---featurewichtigkeit" class="section level3">
+<h3>E - Featurewichtigkeit</h3>
+<ol style="list-style-type: decimal">
+<li>Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium <code>Diabetes</code> durch die anderen Features vorhersagt.</li>
+</ol>
+<pre class="r"><code># Fitte Regression
+diabetes_glm &lt;- train(Diabetes ~ .,
+                      data = XX,
+                      method = &quot;XX&quot;)</code></pre>
+<pre class="r"><code># Fitte Regression
+diabetes_glm &lt;- train(Diabetes ~ .,
+                      data = diabetes_train,
+                      method = &quot;glm&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Berechne die Featurewichtigkeit mittels <code>varImp()</code>. Der Output der Funktion präsentiert in diesem Fall die <em>t</em>-Werte skaliert auf den Bereich 0 bis 100. Mit <code>scale = TRUE</code> könntest du dir die tatsächlichen <em>t</em>-Werte anzeigen lassen.</li>
+</ol>
+<pre class="r"><code># Bestimme Featurewichtigkeit
+varimp_glm &lt;- varImp(XX)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)</code></pre>
+<pre class="r"><code># Bestimme Featurewichtigkeit
+varimp_glm &lt;- varImp(diabetes_glm)
+
+# Printe Featurewichtigkeit
+varimp_glm</code></pre>
+<pre><code>glm variable importance
+
+                    Overall
+Glucose               100.0
+Alter                  57.8
+fam_Vorerkrankungen    55.9
+BMI                    54.7
+Blutdruck              40.6
+Schwangerschaften       0.0</code></pre>
+<pre class="r"><code># Plotte Featurewichtigkeit
+plot(varimp_glm)</code></pre>
+<p><img src="Features_practical_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="f---modellvergleiche" class="section level3">
+<h3>F - Modellvergleiche</h3>
+<ol style="list-style-type: decimal">
+<li>Fitte nun eine zweite Regression zur Vorhersage von <code>Diabetes</code>, diesmal aber unter der Verwendung nur des besten Prädiktors gemäss den Ergebnissen der letzten Sektion.</li>
+</ol>
+<pre class="r"><code># Fitte Regression mit nur dem besten Prädiktor
+diabetes_glm1 &lt;- train(diabetes ~ XX,
+                       data = XX,
+                       method = XX)</code></pre>
+<pre class="r"><code># Fitte Regression mit dem besten Prädiktor
+diabetes_glm1 &lt;- train(Diabetes ~ Glucose,
+                       data = diabetes_train,
+                       method = &quot;glm&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Vergleiche auf die bekannte Art und Weise, wie gut die Modelle die Trainings und die Testdaten erklären. Wie unterschiedlich sind die Modelle im Traning, wie unterschiedlich im Test? Welches ist besser?</li>
+</ol>
+<pre class="r"><code># Evaluation des Tranings
+confusionMatrix(predict(XX), reference = XX)
+confusionMatrix(predict(XX), reference = XX)
+
+# Evaluation des Tests
+confusionMatrix(predict(XX, newdata = XX), reference = XX)
+confusionMatrix(predict(XX, newdata = XX), reference = XX)</code></pre>
+<pre class="r"><code># Evaluation des Tranings
+confusionMatrix(predict(diabetes_glm), reference = diabetes_train$Diabetes)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction neg pos
+       neg  22   1
+       pos   2  12
+                                        
+               Accuracy : 0.919         
+                 95% CI : (0.781, 0.983)
+    No Information Rate : 0.649         
+    P-Value [Acc &gt; NIR] : 0.000161      
+                                        
+                  Kappa : 0.825         
+                                        
+ Mcnemar&#39;s Test P-Value : 1.000000      
+                                        
+            Sensitivity : 0.917         
+            Specificity : 0.923         
+         Pos Pred Value : 0.957         
+         Neg Pred Value : 0.857         
+             Prevalence : 0.649         
+         Detection Rate : 0.595         
+   Detection Prevalence : 0.622         
+      Balanced Accuracy : 0.920         
+                                        
+       &#39;Positive&#39; Class : neg           
+                                        </code></pre>
+<pre class="r"><code>confusionMatrix(predict(diabetes_glm1), reference = diabetes_train$Diabetes)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction neg pos
+       neg  21   8
+       pos   3   5
+                                       
+               Accuracy : 0.703        
+                 95% CI : (0.53, 0.841)
+    No Information Rate : 0.649        
+    P-Value [Acc &gt; NIR] : 0.308        
+                                       
+                  Kappa : 0.285        
+                                       
+ Mcnemar&#39;s Test P-Value : 0.228        
+                                       
+            Sensitivity : 0.875        
+            Specificity : 0.385        
+         Pos Pred Value : 0.724        
+         Neg Pred Value : 0.625        
+             Prevalence : 0.649        
+         Detection Rate : 0.568        
+   Detection Prevalence : 0.784        
+      Balanced Accuracy : 0.630        
+                                       
+       &#39;Positive&#39; Class : neg          
+                                       </code></pre>
+<pre class="r"><code># Evaluation des Tests
+confusionMatrix(predict(diabetes_glm, newdata = diabetes_test), reference = diabetes_test$Diabetes)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction neg pos
+       neg 374  94
+       pos  77 142
+                                        
+               Accuracy : 0.751         
+                 95% CI : (0.717, 0.783)
+    No Information Rate : 0.656         
+    P-Value [Acc &gt; NIR] : 5.31e-08      
+                                        
+                  Kappa : 0.438         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.221         
+                                        
+            Sensitivity : 0.829         
+            Specificity : 0.602         
+         Pos Pred Value : 0.799         
+         Neg Pred Value : 0.648         
+             Prevalence : 0.656         
+         Detection Rate : 0.544         
+   Detection Prevalence : 0.681         
+      Balanced Accuracy : 0.715         
+                                        
+       &#39;Positive&#39; Class : neg           
+                                        </code></pre>
+<pre class="r"><code>confusionMatrix(predict(diabetes_glm1, newdata = diabetes_test), reference = diabetes_test$Diabetes)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction neg pos
+       neg 378 107
+       pos  73 129
+                                        
+               Accuracy : 0.738         
+                 95% CI : (0.703, 0.771)
+    No Information Rate : 0.656         
+    P-Value [Acc &gt; NIR] : 2.63e-06      
+                                        
+                  Kappa : 0.398         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.0139        
+                                        
+            Sensitivity : 0.838         
+            Specificity : 0.547         
+         Pos Pred Value : 0.779         
+         Neg Pred Value : 0.639         
+             Prevalence : 0.656         
+         Detection Rate : 0.550         
+   Detection Prevalence : 0.706         
+      Balanced Accuracy : 0.692         
+                                        
+       &#39;Positive&#39; Class : neg           
+                                        </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Wahrscheinlich hast du beobachtet, dass das Modell mit vielen Prädiktoren im Test deutlich schwächer als im Traning war, aber auch, dass es immer noch leicht besser als das Modell mit nur einem Prädiktor war. Unter welchen Bedingungen würdest du erwarten, dass das Modell mit nur einem Prädiktor die Oberhand im Test erhält?</li>
+</ol>
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
+Datensatz 2: <b>Murders</b>
+</p>
+</div>
+<div id="g---lade-den-murders-datensatz" class="section level3">
+<h3>G - Lade den Murders Datensatz</h3>
+<ol style="list-style-type: decimal">
+<li>Verwende die <code>read_csv()</code> Funktion um <code>murders_crime.csv</code> einzulesen.</li>
+</ol>
+<pre class="r"><code># Lese Daten ein
+murders &lt;- read_csv(file = &quot;1_Data/murders_crime.csv&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Printe den Datensatz.</p></li>
+<li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
+<li><p>Wiederum, führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
+</ol>
+<pre class="r"><code># Konvertiere alle character zu factor
+murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
+</div>
+<div id="h---trenne-training-und-test" class="section level3">
+<h3>H - Trenne Training und Test</h3>
+<ol style="list-style-type: decimal">
+<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>murders_train</code> und <code>murders_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+</ol>
+<pre class="r"><code># Setze Random seed
+set.seed(100)
+
+# Index für Training
+train_index &lt;- createDataPartition(XX$XX, p = .25, list = FALSE)
+
+# Kreiere Training- und Testdaten
+murders_train &lt;- XX %&gt;% slice(train_index)
+murders_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
+<pre class="r"><code># Setze Random seed
+set.seed(100)
+
+# split index
+train_index &lt;- createDataPartition(murders$murders, p = .25, list = FALSE)
+
+# train and test sets
+murders_train &lt;- murders %&gt;% slice(train_index)
+murders_test  &lt;- murders %&gt;% slice(-train_index)</code></pre>
+</div>
+<div id="i---entferne-ungwollte-features" class="section level3">
+<h3>I - Entferne ungwollte Features</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du mit der Eliminierung der Features beginnst, trenne Features und Kriterium voneinander.</li>
+</ol>
+<pre class="r"><code># Wähle Features aus
+murders_train_pred &lt;- murders_train %&gt;% select(-XX)
+
+# Wähle Kriterium aus
+murders_train_crit &lt;- murders_train %&gt;% select(XX)</code></pre>
+<pre class="r"><code># Wähle Features aus
+murders_train_pred &lt;- murders_train %&gt;% select(-murders)
+
+# Wähle Kriterium aus
+murders_train_crit &lt;- murders_train %&gt;% select(murders)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Nun teste ob es ggf. übermässig korrelierte Prädiktoren gibt. Berechne hierzu zunächst die Korrelationsmatrix mit <code>cor()</code>. Anschliessend übergebe diese an <code>findCorrelation()</code>. Gibt es Variablen die übermässig korreliert sind? Keine Werte würde nein bedeuten.</li>
+</ol>
+<pre class="r"><code># Bestimmte die Korrelationsmatrix
+corr_matrix &lt;- cor(XX_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)</code></pre>
+<pre class="r"><code># Bestimmte die Korrelationsmatrix
+corr_matrix &lt;- cor(murders_train_pred)
+
+# Identifiziere übermässig korrelierte Features
+findCorrelation(corr_matrix)</code></pre>
+<pre><code> [1]  8 11 17 27 30 41 44 49 53 54 55 57 58 59 60 61 64 65 71 80 81 84 85
+[24] 87 91  7 14 13 20 21 31 38 43  1 62 67 51</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Verwende den Code unten um die übermässig korrelierten Features zu entfernen.</li>
+</ol>
+<pre class="r"><code># Entferne korrelierte Features
+murders_train_pred &lt;- murders_train_pred %&gt;% select(-findCorrelation(corr_matrix))</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Nun teste, ob es Prädiktoren mit limitierter “Varianz” gibt. Gibes es welche?</li>
+</ol>
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
+nearZeroVar(XX_pred)</code></pre>
+<pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
+nearZeroVar(murders_train_pred)</code></pre>
+<pre><code>integer(0)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Verwende den code unten um die Prädiktoren ohne “Varianz” zu entfernen.</li>
+</ol>
+<pre class="r"><code># Entferne Features ohne Varianz
+murders_train_pred &lt;- murders_train_pred %&gt;% select(-nearZeroVar(murders_train_pred))</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Füge nun Features und Kriterium als neuen Trainingsdatensatz <code>murders_train_reduziert</code> zusammen.</li>
+</ol>
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
+murders_train_reduziert &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
+<pre class="r"><code># Füge nun Features und Kriterium zusammen
+murders_train_reduziert &lt;- murders_train_crit %&gt;% bind_cols(murders_train_pred)</code></pre>
+</div>
+<div id="j---featurewichtigkeit" class="section level3">
+<h3>J - Featurewichtigkeit</h3>
+<ol style="list-style-type: decimal">
+<li>Fitte eine logistische Regression auf die reduzierten Traningsdaten <code>murders_train_reduziert</code>, die das Feature <code>murders</code> durch die anderen Feature vorhersagt.</li>
+</ol>
+<pre class="r"><code># Fitte Regression
+murders_glm_reduziert &lt;- train(murders ~ .,
+                               data = XX,
+                               method = &quot;XX&quot;)</code></pre>
+<pre class="r"><code># Fitte Regression
+murders_glm_reduziert &lt;- train(murders ~ .,
+                               data = murders_train_reduziert,
+                               method = &quot;glm&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Berechne und Plotte die Featurewichtigkeit mittels <code>varImp()</code></li>
+</ol>
+<pre class="r"><code># Bestimme Featurewichtigkeit
+varimp_glm &lt;- varImp(XX)
+
+# Printe Featurewichtigkeit
+varimp_glm
+
+# Plotte Featurewichtigkeit
+plot(varimp_glm)</code></pre>
+<pre class="r"><code># Bestimme Featurewichtigkeit
+varimp_glm &lt;- varImp(murders_glm_reduziert)
+
+# Printe Featurewichtigkeit
+varimp_glm</code></pre>
+<pre><code>glm variable importance
+
+  only 20 most important variables shown (out of 64)
+
+                    Overall
+LandArea              100.0
+PctBornSameState       73.5
+PopDens                57.9
+PctSameState85         51.2
+pctWInvInc             49.6
+racepctblack           47.8
+FemalePctDiv           47.8
+PctKidsBornNeverMar    45.6
+MedNumBR               44.9
+LemasPctOfficDrugUn    44.7
+PctUsePubTrans         44.6
+MedRentPctHousInc      43.2
+agePct16t24            42.8
+PctUnemployed          40.0
+PersPerFam             37.3
+racePctAsian           35.9
+MalePctNevMarr         35.7
+PctWOFullPlumb         34.8
+OwnOccLowQuart         32.0
+PctLess9thGrade        31.9</code></pre>
+<pre class="r"><code># Plotte Featurewichtigkeit
+plot(varimp_glm)</code></pre>
+<p><img src="Features_practical_files/figure-html/unnamed-chunk-41-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Benutze den folgenden Code um zwei neue Trainingsdatensätze zu generieren, einen der nur Features mit <code>Importance &gt; 50</code> und einen der nur Features mit <code>Importance &gt; 30</code> enthält.</li>
+</ol>
+<pre class="r"><code># Features mit Imp &gt; 50
+murders_train_reduziert50 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 50) + 1)
+
+# Features mit Imp &gt; 30
+murders_train_reduziert30 &lt;- murders_train_reduziert %&gt;% 
+  select(1, which(varimp_glm$importance &gt; 30) + 1)</code></pre>
+</div>
+<div id="k---datenkomprimierung-mit-pca" class="section level3">
+<h3>K - Datenkomprimierung mit PCA</h3>
+<ol style="list-style-type: decimal">
+<li>Eine Alternative zu manueller Featurereduktion ist die <code>principal component analysis</code>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Features vorhersagen unter Verwendung des Arguments <code>preProcess = c(&quot;pca&quot;)</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
+</ol>
+<pre class="r"><code># Fitte Regression mit 80% Varianz präserviert
+murders_glm_pca80 = train(murders ~ .,
+                          data = murders_train,
+                          method = &quot;glm&quot;,
+                          preProcess = c(&quot;pca&quot;),
+                          trControl = trainControl(preProcOptions = list(thresh = .8)))
+
+# Fitte Regression mit 50% Varianz präserviert
+murders_glm_pca50 = train(murders ~ .,
+                          data = murders_train,
+                          method = &quot;glm&quot;,
+                          preProcess = c(&quot;pca&quot;),
+                          trControl = trainControl(preProcOptions = list(thresh = .5)))</code></pre>
+</div>
+<div id="l---modellvergleiche" class="section level3">
+<h3>L - Modellvergleiche</h3>
+<ol style="list-style-type: decimal">
+<li>Fitte jeweils eigene Regressionsmodelle unter Verwendung des ursprünglichen Trainingsdatensatzes <code>murders_train</code> und den Trainingsdatensätzen <code>murders_train_reduziert50</code> und <code>murders_train_reduziert30</code>.</li>
+</ol>
+<pre class="r"><code># Fitte Regression mit reduziertem Datensatz
+murders_glm &lt;- train(murders ~ .,
+                     data = murders_train,
+                     method = &quot;glm&quot;)
+
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp &gt; 50
+murders_glm_reduziert50 &lt;- train(murders ~ .,
+                               data = murders_train_reduziert50,
+                               method = &quot;glm&quot;)
+
+# Fitte Regression mit reduziertem Datensatz mit Features mit Imp &gt; 20
+murders_glm_reduziert30 &lt;- train(murders ~ .,
+                               data = murders_train_reduziert30,
+                               method = &quot;glm&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Vergleiche die Modelle <code>murders_glm</code>, <code>murders_glm_reduziert</code>, <code>murders_glm_reduziert50</code>, <code>murders_glm_reduziert30</code>, <code>murders_glm_pca80</code>, <code>murders_glm_pca50</code> in ihrer Fähigkeit die Testdaten vorherzusagen. Waren die Strategien der Featurereduktion erfolgreich? Welche Strategien waren am erfolgreichsten?</li>
+</ol>
+<pre class="r"><code># Evaluation des Tests für murders_glm
+confusionMatrix(predict(murders_glm, 
+                        newdata = murders_test), 
+              reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  430 187
+       yes 200 550
+                                        
+               Accuracy : 0.717         
+                 95% CI : (0.692, 0.741)
+    No Information Rate : 0.539         
+    P-Value [Acc &gt; NIR] : &lt;2e-16        
+                                        
+                  Kappa : 0.429         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.542         
+                                        
+            Sensitivity : 0.683         
+            Specificity : 0.746         
+         Pos Pred Value : 0.697         
+         Neg Pred Value : 0.733         
+             Prevalence : 0.461         
+         Detection Rate : 0.315         
+   Detection Prevalence : 0.451         
+      Balanced Accuracy : 0.714         
+                                        
+       &#39;Positive&#39; Class : no            
+                                        </code></pre>
+<pre class="r"><code># Evaluation des Tests für murders_glm_reduziert
+confusionMatrix(predict(murders_glm_reduziert, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  471 187
+       yes 159 550
+                                       
+               Accuracy : 0.747        
+                 95% CI : (0.723, 0.77)
+    No Information Rate : 0.539        
+    P-Value [Acc &gt; NIR] : &lt;2e-16       
+                                       
+                  Kappa : 0.492        
+                                       
+ Mcnemar&#39;s Test P-Value : 0.147        
+                                       
+            Sensitivity : 0.748        
+            Specificity : 0.746        
+         Pos Pred Value : 0.716        
+         Neg Pred Value : 0.776        
+             Prevalence : 0.461        
+         Detection Rate : 0.345        
+   Detection Prevalence : 0.481        
+      Balanced Accuracy : 0.747        
+                                       
+       &#39;Positive&#39; Class : no           
+                                       </code></pre>
+<pre class="r"><code># Evaluation des Tests für murders_glm_reduziert50
+confusionMatrix(predict(murders_glm_reduziert50, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  403 255
+       yes 227 482
+                                        
+               Accuracy : 0.647         
+                 95% CI : (0.621, 0.673)
+    No Information Rate : 0.539         
+    P-Value [Acc &gt; NIR] : 3.21e-16      
+                                        
+                  Kappa : 0.293         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.219         
+                                        
+            Sensitivity : 0.640         
+            Specificity : 0.654         
+         Pos Pred Value : 0.612         
+         Neg Pred Value : 0.680         
+             Prevalence : 0.461         
+         Detection Rate : 0.295         
+   Detection Prevalence : 0.481         
+      Balanced Accuracy : 0.647         
+                                        
+       &#39;Positive&#39; Class : no            
+                                        </code></pre>
+<pre class="r"><code># Evaluation des Tests für murders_glm_reduziert30
+confusionMatrix(predict(murders_glm_reduziert30, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  469 198
+       yes 161 539
+                                        
+               Accuracy : 0.737         
+                 95% CI : (0.713, 0.761)
+    No Information Rate : 0.539         
+    P-Value [Acc &gt; NIR] : &lt;2e-16        
+                                        
+                  Kappa : 0.474         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.0574        
+                                        
+            Sensitivity : 0.744         
+            Specificity : 0.731         
+         Pos Pred Value : 0.703         
+         Neg Pred Value : 0.770         
+             Prevalence : 0.461         
+         Detection Rate : 0.343         
+   Detection Prevalence : 0.488         
+      Balanced Accuracy : 0.738         
+                                        
+       &#39;Positive&#39; Class : no            
+                                        </code></pre>
+<pre class="r"><code># Evaluation des Tests für murders_glm_pca80
+confusionMatrix(predict(murders_glm_pca80, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  506 186
+       yes 124 551
+                                       
+               Accuracy : 0.773        
+                 95% CI : (0.75, 0.795)
+    No Information Rate : 0.539        
+    P-Value [Acc &gt; NIR] : &lt; 2e-16      
+                                       
+                  Kappa : 0.547        
+                                       
+ Mcnemar&#39;s Test P-Value : 0.000531     
+                                       
+            Sensitivity : 0.803        
+            Specificity : 0.748        
+         Pos Pred Value : 0.731        
+         Neg Pred Value : 0.816        
+             Prevalence : 0.461        
+         Detection Rate : 0.370        
+   Detection Prevalence : 0.506        
+      Balanced Accuracy : 0.775        
+                                       
+       &#39;Positive&#39; Class : no           
+                                       </code></pre>
+<pre class="r"><code># Evaluation des Tests für murders_glm_pca50
+confusionMatrix(predict(murders_glm_pca50, 
+                        newdata = murders_test), 
+                reference = murders_test$murders)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  no yes
+       no  467 195
+       yes 163 542
+                                        
+               Accuracy : 0.738         
+                 95% CI : (0.714, 0.761)
+    No Information Rate : 0.539         
+    P-Value [Acc &gt; NIR] : &lt;2e-16        
+                                        
+                  Kappa : 0.475         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.101         
+                                        
+            Sensitivity : 0.741         
+            Specificity : 0.735         
+         Pos Pred Value : 0.705         
+         Neg Pred Value : 0.769         
+             Prevalence : 0.461         
+         Detection Rate : 0.342         
+   Detection Prevalence : 0.484         
+      Balanced Accuracy : 0.738         
+                                        
+       &#39;Positive&#39; Class : no            
+                                        </code></pre>
+</div>
+<div id="x---challenges-violent-non-violent-crime-data" class="section level3">
+<h3>X - Challenges: Violent &amp; Non-violent Crime Data</h3>
+<ol style="list-style-type: decimal">
+<li><p>Versuche neue Trainingsdatensätze unter Verwendung manueller Reduktion oder PCA zu generieren die zu noch besseren Vorhersagen führen.</p></li>
+<li><p>Verwende Random Forest anstatt Regression als zugrundeliegendes Modell. Achte darauf, dass <code>mtry</code> nicht zu hoch ist, damit es nicht so lange dauert.</p></li>
+<li><p>Für die Datensätze <code>violent_crime.csv</code> und <code>nonviolent_crime.csv</code> modelliere <code>ViolentCrimesPerPop</code> respektive <code>nonViolPerPop</code> als Funktion einer sinnvollen Auswahl an Featuren. Beide Kriterien sind numerisch, was bedeutet, dass es sich hier um ein Regressionsproblem handelt.</p></li>
+</ol>
+</div>
+</div>
+<div id="beispiele" class="section level2">
+<h2>Beispiele</h2>
+<pre class="r"><code># Schritt 0: Pakete laden-----------
+
+library(tidyverse)   
+library(caret)   
+library(party)
+library(partykit)
+
+# Schritt 1: Lade Daten ----------------------
+
+# Lese Daten
+data &lt;- mpg
+
+# Konvertiere character in factor
+data &lt;- data %&gt;%
+  mutate_if(is.character, factor)
+
+
+# Schritt 2: Kreiere Training und Test -------------
+
+# Kreiere Trainingsindex
+train_index &lt;- createDataPartition(criterion, 
+                                   p = .8, 
+                                   list = FALSE)
+
+# Kreiere Training und Test
+data_train &lt;- data %&gt;% slice(train_index)
+data_test &lt;- data %&gt;% slice(-train_index)
+
+# Trenne Features und Kriterium
+criterion_train &lt;- data_train %&gt;% select(hwy) %&gt;% pull()
+predictors_train &lt;- data_train %&gt;% select(-hwy)
+criterion_test &lt;- data_test %&gt;% select(hwy) %&gt;% pull()
+predictors_test &lt;- data_test %&gt;% select(-hwy)
+
+# Schritt 3: Bereinige Daten -------------
+
+# Teste auf Multikollinearität
+corr_matrix &lt;- cor(predictors_train)
+corr_features &lt;- findCorrelation(corr_matrix)
+
+# Entferene exzessiv korrelierte Feature
+predictors_train &lt;- predictors_train %&gt;% select(-corr_features)
+
+# Teste auf zu wenig &quot;Varianz&quot;
+zerovar_features &lt;- nearZeroVar(predictors_train)
+
+# Entferene Feature mit zu wenig &quot;Varianz&quot;
+predictors_train &lt;- predictors_train %&gt;% select(-zerovar_features)
+
+# Verbinde Prädiktoren und Kriterium
+data_train &lt;- predictors_train %&gt;% add_column(hwy = criterion_train)
+
+# Schritt 4: Definiere Kontrollparameter -------------
+
+# Trainiere mittels Cross-Validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;) 
+
+# Schritt 5: Fitte die Modelle -------------
+
+# Fitte vanilla flavor Regression
+hwy_glm &lt;- train(form = hwy ~ .,
+                 data = data_train,
+                 method = &quot;glm&quot;,
+                 trControl = ctrl_cv)
+
+# Fitte mit PCA transformation
+hwy_glm_pca &lt;- train(form = hwy ~ .,
+                     data = data_train,
+                     method = &quot;glm&quot;,
+                     trControl = ctrl_cv,
+                     preProcess = c(&#39;pca&#39;))
+
+# Fitte mit Standardisierung
+hwy_glm_sca &lt;- train(form = hwy ~ .,
+                     data = data_train,
+                     method = &quot;glm&quot;,
+                     trControl = ctrl_cv,
+                     preProcess = c(&#39;scale&#39;, &#39;center&#39;))
+
+# Extrahiere fits
+glm_fit     &lt;- predict(hwy_glm)
+glm_pca_fit &lt;- predict(hwy_glm_pca)
+glm_sca_fit &lt;- predict(hwy_glm_sca)
+
+# Schritt 6: Evaluiere die Featurewichtigkeiet -------------
+
+# Berechne Wichtigkeit
+imp_glm     &lt;- varImp(hwy_glm)
+imp_glm_pca &lt;- varImp(hwy_glm_pca)
+imp_glm_sca &lt;- varImp(hwy_glm_sca)
+
+# Plotte Wichtigkeit
+plot(imp_glm)
+plot(imp_glm_pca)
+plot(imp_glm_sca)
+
+# Schritt 7: Wähle Variablen aus -------------
+
+# Per Hand
+hwy_glm_sel &lt;- train(form = hwy ~ cty,
+                     data = data_train,
+                     method = &quot;glm&quot;,
+                     trControl = ctrl_cv)
+
+# Setze PCA Varianz auf 50%
+ctrl_cv_pca &lt;- trainControl(method = &quot;cv&quot;,
+                            preProcOptions = list(thresh = 0.50)) 
+
+# Modell mit PCA mit 50% Varianz
+hwy_glm_sel &lt;- train(form = hwy ~ .,
+                     data = data_train,
+                     method = &quot;glm&quot;,
+                     trControl = ctrl_cv_pca,
+                     preProcess = c(&#39;pca&#39;))
+
+# Schritt 8: Rekursive Featurerediktion -------------
+
+# RFE Einstellungen 
+ctrl_rfe &lt;- rfeControl(functions = lmFuncs,  # linear model
+                       method = &quot;cv&quot;,
+                       verbose = FALSE)
+
+# RFE
+profile &lt;- rfe(x = predictors_train, 
+               y = criterion_train,
+               sizes = c(1, 2, 3),    # Kandidaten
+               rfeControl = ctrl_rfe)
+
+# Plotte Ergebnisse
+trellis.par.set(caretTheme())
+plot(profile, type = c(&quot;g&quot;, &quot;o&quot;))
+
+# Schritt 9: Evaluiere die Modelle -------------
+
+# Ihr wisst wie...</code></pre>
+</div>
+<div id="datensatze" class="section level2">
+<h2>Datensätze</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Datei</th>
+<th align="left">Zeilen</th>
+<th align="left">Spalten</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/diabetes.csv">diabetes.csv</a></td>
+<td align="left">724</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/murders_crime.csv">murders_crime.csv</a></td>
+<td align="left">1000</td>
+<td align="left">102</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/violent_crime.csv">violent_crime.csv</a></td>
+<td align="left">1000</td>
+<td align="left">102</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/nonviolent_crime.csv">nonviolent_crime.csv</a></td>
+<td align="left">1000</td>
+<td align="left">102</td>
+</tr>
+</tbody>
+</table>
+<div id="diabetes" class="section level4">
+<h4><code>diabetes</code></h4>
+<p>Der <code>diabetes</code> Datensatz entstammt dem <code>PimaIndiansDiabetes</code> Datensatz aus dem <code>mlbench</code> Paket. Er beinhaltet medizinische und demographische Daten der <a href="https://de.wikipedia.org/wiki/Pima">Pima</a>.</p>
+<p>Die Pima sind eine in Arizona lebende Untergruppe der Indianer. Eine genetische Prädisposition erlaubte es ihnen sich jahrelang von einer sehr kohlenhydratarmen Diät zu ernähren. Der Wechsel von traditionellem Anbau zu industriell verarbeiteten Nahrungsmitteln zusammen mit einem Rückgang physischer Aktivität hat bei den Pima zu einer sehr hohen Rate and Typ 2 Diabetes geführt. Aus diesem Grund sind sie Gegenstand vieler medizinischer Untersuchungen.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beschreibung</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Diabetes</td>
+<td align="left">Diagnose: positiv (pos) oder negativ (pos)</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Schwangerschaften</td>
+<td align="left">Anzahl Schwangerschaften</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Glucose</td>
+<td align="left">Glukosekonzentration im Plasma</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Blutdruck</td>
+<td align="left">Diastolischer Blutdruck</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">BMI</td>
+<td align="left">Body Mass Index</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">fam_Vorerkrankungen</td>
+<td align="left">Familiäre Vorerkrankungen (pedigree function)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Alter</td>
+<td align="left">Alter in Jahren</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="murders_crime-violent_crime-und-non_violent_crime" class="section level4">
+<h4><code>murders_crime</code>, <code>violent_crime</code>, und <code>non_violent_crime</code></h4>
+<p>Die Datensätze <code>murders_crime</code>, <code>violent_crime</code>, und <code>non_violent_crime</code> entstammen dem <em>Communities and Crime Unnormalized Data Set</em> aus dem <a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a>. Für die Featurebeschreibungen siehe: <a href="https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime+Unnormalized">Communities and Crime Unnormalized Data Set</a>. Aufgrund der grossen Anzahl der Feature (102) verzichten wir auf hier auf die Tabelle.</p>
+<p>Der Datensatz kombiniert sozio-demographische Daten des US 1990 Zensus, Daten aus dem <em>Law Enforcement Management and Admin Stats Survey</em>, und Kriminaldaten des FBI.</p>
+</div>
+</div>
+<div id="funktionen" class="section level2">
+<h2>Funktionen</h2>
+<div id="pakete" class="section level3">
+<h3>Pakete</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Paket</th>
+<th align="left">Installation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>caret</code></td>
+<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>partykit</code></td>
+<td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>party</code></td>
+<td align="left"><code>install.packages(&quot;party&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="funktionen-1" class="section level3">
+<h3>Funktionen</h3>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Funktion</th>
+<th align="left">Paket</th>
+<th align="left">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>trainControl()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Definiere wie das Modell trainiert wird</td>
+</tr>
+<tr class="even">
+<td align="left"><code>train()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Trainiere (fitte) ein Modell</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict(object, newdata)</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">Vorhersage des Kriteriumswerts in <code>newdata</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>postResample()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Evaluiere Performanz in Regressionsfällen</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>confusionMatrix()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Evaluiere Performanz in Klassifikationsfällen</td>
+</tr>
+<tr class="even">
+<td align="left"><code>varImp()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Determiniere modellspezifische, wichtige Features</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>findCorrelation()</code>, <code>nearZeroVar()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Identifiziere hochkorrelierte Features und Features mit fast keiner Varianz.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>rfe()</code>, <code>rfeControl()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Verwende und kontrolliere rekursive Featureselektion.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="materialien" class="section level2">
+<h2>Materialien</h2>
+<div id="cheatsheet" class="section level3">
+<h3>Cheatsheet</h3>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

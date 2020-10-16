@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <script type="text/javascript" async="" src="./The R Bootcamp - Lerne Data Science mit R_files/f.txt"></script><script type="text/javascript" async="" src="./The R Bootcamp - Lerne Data Science mit R_files/analytics.js"></script><script async="" src="./The R Bootcamp - Lerne Data Science mit R_files/gtm.js"></script><script>
+    //var ml_text = "DE | Apr 3/4 | Anmelden<p style='border-top: 1px solid #6c757d;margin-top:4px;margin-bottom:-2px'>Online Kurs</p>";
+    //var ml_link = "https://advancedstudies.unibas.ch/studienangebot/kurs/maschinelles-lernen-mit-r-272008#collapsible-heading-anmeldung"
+    var ml_text = "DE | Okt 23/24 | Voranmelden";
+    var ml_link = "mailto:therbootcamp@gmail.com?subject=Voranmeldug für Maschinelles Lernen mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Maschinelles Lernen mit R' voranmelden."
+    var ml_font = "lighter";
+
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MTX32PL');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>The R Bootcamp - Lerne Data Science mit R</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/all.min.css" rel="stylesheet" type="text/css">
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/css" rel="stylesheet" type="text/css">
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/css(1)" rel="stylesheet" type="text/css">
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/css(2)" rel="stylesheet" type="text/css">
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/css(3)" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="./The R Bootcamp - Lerne Data Science mit R_files/agency.min.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="http://localhost:3000/fav/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="http://localhost:3000/fav/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:3000/fav/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://localhost:3000/fav/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:3000/fav/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="http://localhost:3000/fav/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="http://localhost:3000/fav/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="http://localhost:3000/fav/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/fav/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="http://localhost:3000/fav/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:3000/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="http://localhost:3000/fav/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:3000/fav/favicon-16x16.png">
+  <link rel="manifest" href="http://localhost:3000/fav/manifest.json">
+
+  <!--- Flags --->
+  <link rel="stylesheet" type="text/css" href="./The R Bootcamp - Lerne Data Science mit R_files/flags32.css">
+
+<script src="./The R Bootcamp - Lerne Data Science mit R_files/f(1).txt"></script><script src="./The R Bootcamp - Lerne Data Science mit R_files/f(2).txt"></script></head>
+
+<body id="page-top"><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
+//]]></script><script async="" src="./The R Bootcamp - Lerne Data Science mit R_files/browser-sync-client.js"></script>
+
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTX32PL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost:3000/#page-top">The R Bootcamp</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="http://localhost:3000/#services">We Teach R</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger active" href="http://localhost:3000/#courses">Kurse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="http://localhost:3000/#testimonials">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="http://localhost:3000/#team">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="http://localhost:3000/#contact">Kontakt</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://therbootcamp.github.io/en">🇬🇧</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">Lerne Data Science mit R</div>
+        <div class="intro-heading text-uppercase">The R Bootcamp</div>
+        <!---<div class="intro-heading text-uppercase" style='margin-bottom:0px;'>The R Bootcamp<br><a href="https://therbootcamp.github.io/ML_2020Apr/"><font style="font-size:40%;line-height:50px;color:#EA4B68;vertical-align: text-top;text-transform: lowercase;">...running...</font></a></div>--->
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="http://localhost:3000/#services">Mehr erfahren</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="page-section bg-light" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">We Teach R</h2>
+          <!---<h3 class="section-subheading text-muted">We are Switzerland-based data scientists who have jointly spent over 25 years doing data science with R for both research and industry. Our goal is to help you learn the skills needed to discover and communicate insights from data and join the data revolution.</h3>--->
+          <p class="text-muted">Wir sind Data Scientists, die zusammengenommen über 25 Jahre Erfahrung R und Data Science in der Wissenschaft und in der Industrie gesammelt haben. Unser Ziel ist es, Ihnen die nötigen Fähigkeiten beizubringen, damit Sie neue Erkenntnisse aus Daten gewinnen und kommunizieren können.</p><br><br>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <a class="js-scroll-trigger" href="http://localhost:3000/#courses">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-graduation-cap fa-stack-1x fa-inverse"></i>
+            </span>
+        </a>
+          <h4 class="service-heading">Kurse</h4>
+          <p class="text-muted">Wir bieten unterschiedliche Kurse für alle, die sich in Richtung Data Science entwickeln wollen. Mehr informationen finden Sie unter <a class="js-scroll-trigger" href="http://localhost:3000/#courses"><b>unsere Kurse</b></a>.</p>
+        </div>
+        <div class="col-md-4">
+          <a class="js-scroll-trigger" href="http://localhost:3000/#contact">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-briefcase fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+          <h4 class="service-heading">Beratung</h4>
+          <p class="text-muted">Haben Sie ein Data Science Problem? Wir können helfen! Senden Sie uns eine <a class="js-scroll-trigger" href="http://localhost:3000/#contact"><b>Nachricht</b></a> und wir melden uns umgehend bei Ihnen.</p>
+        </div>
+        <div class="col-md-4">
+          <a data-toggle="modal" href="http://localhost:3000/#arxiv">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-code fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+          <h4 class="service-heading">Code</h4>
+          <p class="text-muted">Wir sind aktive R-Entwickler und teilen R's offene Philosophie. Deshalb finden Sie alle unsere Materialien jederzeit <a data-toggle="modal" href="http://localhost:3000/#arxiv"><b>öffentlich und frei zugänglich</b></a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Courses -->
+  <section class="page-section" id="courses">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Unsere Kurse</h2>
+          <!---
+          <h3 class="section-subheading text-muted" style="margin:10px;font-size:1.5em"><i>For everyone!</i></h3>
+          <h3 class="section-subheading text-muted">Balancing short, interactive presentations and longer hands-on, step-by-step practicals our courses are designed to cater to your specific level and needs, may you be a beginner or advanced data analyst. There will be multiple instructors to ensure that no one gets lost. Feel to contact us, if you have questions, and explore our open materials.</h3>
+          --->
+          <p class="text-muted" style="margin:0px;font-size:1.5em">Für Anfänger und Fortgeschrittene!</p>
+          <p class="text-muted">Unsere Kurse setzen sich aus kurzen, interaktive Präsentationen und längere, Schritt-für-Schritt Übungen zusammen. Dabei gehen wir auf Ihr spezifisches Niveau und Ihre Bedürfnisse ein, egal ob Sie noch in den Anfängen stecken oder schon fortgeschritten sind. Es sind jeweils mehrere Anleiter vor Ort, um sicherzustellen, dass alle Teilnehmenden den Kursinhalten folgen können. Bitte kontaktieren Sie uns, wenn Sie Fragen haben, und erkunden Sie unsere <a href="http://localhost:3000/therbootcamp.github.io/#materials">offenen Materialien</a>.
+
+          </p><br><br><br>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <a data-toggle="modal" href="http://localhost:3000/#I2R">
+                  <img class="rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/0.png" alt="">
+                </a>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Einführung in die moderne Datenanalyse mit R</h4>
+                  <p class="text-muted" style="margin-bottom:2px;font-size:1.2em">200CHF @ Uni Basel</p>
+                </div>
+                <div class="timeline-body">
+                  <a class="course-link" data-toggle="modal" href="http://localhost:3000/#I2R">
+                  <div class="course-hover">
+                    <div class="course-hover-content">
+                      <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <p class="text-muted">
+                    Daten sind das Gold des 21. Jahrhunderts. Machen Sie ihre ersten Schritte in der Welt von Data Science und Big Data mit dieser kurzen Einführung in R, die Programmiersprache für Data Analytics.
+                </p>
+                </a></div><a class="course-link" data-toggle="modal" href="http://localhost:3000/#I2R">
+                </a>
+                <div class="timeline-dates">
+                  <!---<a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/einfuehrung-in-die-moderne-datenanalyse-mit-r-272005#collapsible-heading-anmeldung">DE | Mär 11 | Anmelden</a><br>--->
+                  <a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug%20f%C3%BCr%20Einf%C3%BChrung%20in%20die%20moderne%20Datenanalyse%20mit%20R&amp;body=Ich%20m%C3%B6chte%20mich%20f%C3%BCr%20das%20n%C3%A4chste%20R%20Bootcamp%20%27Einf%C3%BChrung%20in%20die%20moderne%20Datenanalyse%20mit%20R%27%20am%2028.%20August%20voranmelden.">DE | Aug 28 | Voranmelden</a><br>
+                  <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Einführung in die moderne Datenanalyse mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Einführung in die moderne Datenanalyse mit R' am 7. Februar  voranmelden.">DE | Feb 7 | Voranmelden</a>--->
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <a data-toggle="modal" href="http://localhost:3000/#R4DS">
+                  <img class="rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/1.png" alt="">
+                </a>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Explorative Datenanalyse mit R</h4>
+                  <p class="text-muted" style="margin-bottom:2px;font-size:1.2em">990CHF @ Uni Basel</p>
+                </div>
+                <div class="timeline-body">
+                  <a class="course-link" data-toggle="modal" href="http://localhost:3000/#R4DS">
+                  <div class="course-hover">
+                    <div class="course-hover-content">
+                      <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <p class="text-muted">
+                    Jedes datengestützte Projekt beginnt hier. Lernen Sie wie Sie Daten aus verschiedenen Quellen bereinigen und verknüpfen können und wie Sie die darin enthaltenen Zusammenhänge ästhetisch ansprechend visualisieren können.
+                </p>
+                </a></div><a class="course-link" data-toggle="modal" href="http://localhost:3000/#R4DS">
+                </a>
+                <div class="timeline-dates">
+                  <!---<a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/explorative-datenanalyse-mit-r-272006#collapsible-heading-anmeldung">DE | Feb 14/15 | Anmelden</a>--->
+                  <a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug%20f%C3%BCr%20Explorative%20Datenanalyse%20mit%20R&amp;body=Ich%20m%C3%B6chte%20mich%20f%C3%BCr%20das%20n%C3%A4chste%20R%20Bootcamp%20%27Explorative%20Datenanalyse%20mit%20R%27%20voranmelden.">DE | Sep 4/5 | Voranmelden</a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <a data-toggle="modal" href="http://localhost:3000/#SwR">
+                  <img class="rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/2.png" alt="">
+                </a>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Statistik mit R</h4>
+                  <p class="text-muted" style="margin-bottom:2px;font-size:1.2em">990CHF @ Uni Basel</p>
+                </div>
+                <div class="timeline-body">
+                  <a class="course-link" data-toggle="modal" href="http://localhost:3000/#SwR">
+                  <div class="course-hover">
+                    <div class="course-hover-content">
+                      <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <p class="text-muted">Die Grundlage robuster, entscheidungsrelevanter Erkenntnisse ist die Statistik. Lernen Sie Grundlagen und Anwendung in derjenigen Programmiersprache kennen, die genau für diesen Zweck entwickelt wurde - R.</p>
+                  </a>
+                </div>
+                <div class="timeline-dates">
+                  <a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/statistik-mit-r-233189#collapsible-heading-anmeldung">DE | Mai 8/9 | Anmelden<p style="border-top: 1px solid #6c757d;margin-top:4px;margin-bottom:-2px">Online Kurs</p></a>
+                  <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Statistik mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Statistik mit R' voranmelden.">DE | Mär 20/21 | Voranmelden</a>--->
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <a data-toggle="modal" href="http://localhost:3000/#MLwR">
+                  <img class="rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/3.png" alt="">
+                </a>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Maschinelles Lernen mit R</h4>
+                  <p class="text-muted" style="margin-bottom:2px;font-size:1.2em">990CHF @ Uni Basel</p>
+                <div class="timeline-body">
+                  <a class="course-link" data-toggle="modal" href="http://localhost:3000/#MLwR">
+                  <div class="course-hover">
+                    <div class="course-hover-content">
+                      <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <p class="text-muted">Fragen Sie sich was maschinelles Lernen eigentlich ist und ob es für Sie nützlich sein könnte? Lernen Sie die Hintergründe und wie Sie mit R alle gängigen Algorithmen auf ihre Daten anwenden können.</p>
+                  </a>
+                </div>
+                <div class="timeline-dates">
+                  <a class="date" id="ml"></a>
+                </div>
+              </div>
+            </div></li>
+            <li>
+              <div class="timeline-image">
+                <a data-toggle="modal" href="http://localhost:3000/#RwR">
+                  <img class="rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/4.png" alt="">
+                </a>
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>Reporting mit R</h4>
+                  <p class="text-muted" style="margin-bottom:2px;font-size:1.2em">990CHF @ Uni Basel</p>
+                </div>
+                <div class="timeline-body">
+                  <a class="course-link" data-toggle="modal" href="http://localhost:3000/#RwR">
+                  <div class="course-hover">
+                    <div class="course-hover-content">
+                      <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                  </div>
+                  <p class="text-muted">
+                    Resultate datengestützter Projekte müssen intern oder nach aussen kommuniziert werden. Lernen Sie mit R reproduzierbare Berichte, Slides und interaktive Shiny dashboards Ihrer Resultate zu erstellen.
+                </p>
+                </a></div><a class="course-link" data-toggle="modal" href="http://localhost:3000/#RwR">
+                </a>
+                <div class="timeline-dates">
+                  <a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/reporting-with-r-283873#collapsible-heading-anmeldung">DE | Jun 5/6 | Anmelden</a>
+                  <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Explorative Datenanalyse mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Explorative Datenanalyse mit R' voranmelden.">DE | Feb 14/15 | Voranmelden</a>--->
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted" style="padding-top:50px" id="materials">
+              <div class="timeline-image">
+                <a class="material-link" data-toggle="modal" href="http://localhost:3000/#arxiv" style="text-decoration:none">
+                <div class="material-hover material-size">
+                  <div class="material-hover-content plus">
+                    <i class="fas fa-plus fa-2x"></i>
+                  </div>
+                </div>
+                <div class="mats" style="margin-top:-7px; &gt; &lt;!--- text-shadow: 0px 0px 20px #82E5BF" ---="">
+                  Offene Materialien erkunden
+                </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials-->
+  <section class="page-section bg-light" id="testimonials">
+    <div id="myCarousel" class="carousel slide container" data-ride="carousel" style="height:400px">
+        <ol class="carousel-indicators" style="bottom:-50px">
+            <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="1" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="2" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="3" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="4" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="5" style="background-color:#6c757d"></li>
+            <li data-target="#myCarousel" data-slide-to="6" style="background-color:#6c757d"></li>
+        </ol>
+        <div class="carousel-inner col-lg-12 text-center" style="padding-bottom:100px;font-size:1em">
+           <h2 class="section-heading text-uppercase" style="margin-bottom:40px">Was Teilnehmer sagen</h2>
+           <div class="carousel-item active">
+               <p class="section-subheading text-muted">"Vielen Dank für den hervorragenden Kurs, ich habe wirklich viel gelernt. Die Materialien waren super nützlich und die Beispiele wirklich interessant. Außerdem wart ihr alle fantastisch, super hilfsbereit, engagiert und die Atmosphäre war wirklich anregend."</p>
+               <br><p class="text-muted"><b>BRUNO</b>, Head of Clinical Development</p>
+           </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Ein perfekter Kurs, für jeden der oder die ein gutes Verständnis für das maschinelle Lernen und seine Anwendung in R erlangen möchten. Der Kurs behandelt die wichtigsten Themen des maschinellen Lernens und ist sehr gut strukturiert. Am Ende werden Sie in der Lage sein, effektive maschinelle Lernmodelle zu erstellen, zu bewerten und zu optimieren. Die Dozenten sind begeistert vom Thema und haben alles auf sehr verständliche Weise erklärt."</p>
+                <br><p class="text-muted"><b>FREDERIK</b>, Senior consultant</p>
+            </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Ihr verdient alle Komplimente: für die Präsentation, das Training, eure Hilfe und nicht zuletzt für eure freundliche Art. Der Kurs lag über meinen Erwartungen! Das präsentierte Material war praxisnah und aktuell!"</p>
+                <br><p class="text-muted"><b>STEFAN</b>, Senior Risk Modeller &amp; Researcher</p>
+            </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Ich habe von den Grundlagen bis hin zu wirklich coolen Dingen wie interaktiven Plots gelernt. Gleich nach dem Bootcamp entschied ich mich, komplett auf R umzusteigen. Wirklich tolles Bootcamp!"</p>
+                <br><p class="text-muted"><b>EDGAR</b>, Associate Professor</p>
+            </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Jeder Teilnehmer wird etwas für sie oder ihn relevantes gefunden haben, sei es Statistik, Visualisierung, Präsentation oder Web-Applikation. Es hat mich sicherlich dazu gebracht, meinen Computer nehmen zu wollen und sofort loszulegen!"</p>
+                <br><p class="text-muted"><b>JOHAN</b>, Analyst</p>
+            </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Lernen R im The R Bootcamp hat mir das Gefühl gegeben [...], in der sich wandelnden Finanzindustrie relevant zu bleiben."</p>
+                <br><p class="text-muted"><b>IRENA</b>, Credit Officer</p>
+            </div>
+            <div class="carousel-item">
+                <p class="section-subheading text-muted">"Ich hatte keine Programmiererfahrung, aber mit dem R Bootcamp (nach nur einem halbem Tag!) wurde R auf eine lockere und bequeme Art für mich zugänglich gemacht. Ich freue mich auf die nächsten Schritte mit R und R Bootcamp."</p>
+                <br><p class="text-muted"><b>SARAH</b>, Wissenschaftliche Mitarbeiterin, Pharma</p>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="http://localhost:3000/#myCarousel" data-slide="prev">
+            <!---<span class="carousel-control-prev-icon"></span>--->
+        </a>
+        <a class="carousel-control-next" href="http://localhost:3000/#myCarousel" data-slide="next">
+            <!---<span class="carousel-control-next-icon"></span>--->
+        </a>
+
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Unsere R Experten</h2><br><br>
+          <!---<h3 class="section-subheading text-muted">We have over 25 years of experience with R and contributed our own R packages. Click on our profiles to learn more about each of us.</h3>
+          <p class="text-muted">We have over 25 years of experience with R and contributed our own R packages. Click on our profiles to learn more about each of us.</p><br><br>--->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <a class="team-link" data-toggle="modal" href="http://localhost:3000/#dirk">
+            <div class="team-hover">
+              <div class="team-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="mx-auto rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/1(1).png" alt="">
+            </a>
+            <h4>Dr. Dirk Wulff</h4>
+            <p class="text-muted">Gründer &amp; Leitender Ausbilder</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://dirkwulff.org/">
+                  <i class="fas fa-home"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/dirk-wulff-723a7772/">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/dwulff">
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <a class="team-link" data-toggle="modal" href="http://localhost:3000/#markus">
+            <div class="team-hover">
+              <div class="team-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="mx-auto rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/2(1).png" alt="">
+            </a>
+            <h4>MSc Markus Steiner</h4>
+            <p class="text-muted">Ausbilder @ Basel</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/">
+                  <i class="fas fa-home"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/in/markus-steiner-b6ab56162/">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/mdsteiner">
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <a class="team-link" data-toggle="modal" href="http://localhost:3000/#michael">
+            <div class="team-hover">
+              <div class="team-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="mx-auto rounded-circle img-fluid" src="./The R Bootcamp - Lerne Data Science mit R_files/3(1).png" alt="">
+            </a>
+            <h4>Dr. Michael Schulte-Mecklenbeck</h4>
+            <p class="text-muted">Ausbilder @ Bern</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="https://www.schulte-mecklenbeck.com/">
+                  <i class="fas fa-home"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/michaelschulte">
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!---
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        </div>
+      </div>
+      --->
+    </div>
+  </section>
+
+
+  <!-- Clients
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- Contact --->
+  <section class="page-section" id="contact">
+    <form action="https://formspree.io/therbootcamp@gmail.com" method="POST" id="Contact_form" name="Contact_form">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Kontaktieren Sie uns!</h2>
+          <font style="top:30px;" class="checkbox">Ich möchte der mailing list beitreten! <input type="checkbox" name="mailing list"></font><br>
+          <br><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+
+            <input type="hidden" name="Form" value="Contact form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" name="name" type="text" placeholder="Ihr Name *" required="required" data-validation-required-message="Bitte geben Sie Ihren Namen ein.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="email" type="email" placeholder="Ihre Email *" required="required" data-validation-required-message="Bitte geben Sie Ihre Email ein.">
+                  <p class="help-block text-danger"></p>
+                </div>
+
+                <div class="form-group">
+                  <input class="form-control" name="phone" type="tel" placeholder="Ihre Telefonnummer" data-validation-required-message="Bitte geben Sie ihre Telefonnummer ein.">
+                  <p class="help-block text-danger"></p>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" name="message" placeholder="Ihre Nachricht" data-validation-required-message="Bitte geben Sie eine Nachricht ein."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="col-lg-12 text-center">
+
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Nachricht absenden</button>
+              </div>
+
+            </div>
+          
+        </div>
+      </div>
+    </div></form>
+  </section>
+
+
+
+  <!-- Contact
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Contact Us</h2><br><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <span class="copyright">Copyright © The R Bootcamp 2019</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/therbootcamp">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/therbootcamp">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com/company/27090302">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a data-toggle="modal" href="http://localhost:3000/#privacy">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a data-toggle="modal" href="http://localhost:3000/#terms">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!--
+  TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM
+  TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM
+  TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM
+  TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM TEAM
+  -->
+
+
+
+  <!-- DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK DIRK -->
+  <div class="team-modal modal fade" id="dirk" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/1(1).png" alt="">
+                <h4 style="padding:0px;margin:0px">Dr. Dirk Wulff</h4>
+                <p class="text-muted" style="margin-bottom:10px">Gründer &amp; Leitender Ausbilder</p>
+                <ul class="list-inline social-buttons">
+                  <li class="list-inline-item">
+                    <a href="https://dirkwulff.org/">
+                      <i class="fas fa-home fa-sm"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/in/dirk-wulff-723a7772/">
+                      <i class="fab fa-linkedin-in fa-sm"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://github.com/dwulff">
+                      <i class="fab fa-github fa-sm"></i>
+                    </a>
+                  </li>
+                </ul>
+                <p class="item-intro text-muted entry">Ich forsche an der Universität Basel zum Themen Entscheidungswissenschaft und verwende Big Data um unser Verständnis des menschlichen Verhaltens zu verbessern.</p>
+                <p class="head">Lieblings R-Paket</p>
+                <p class="text-muted entry"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=Rcpp">Rcpp</a> um R blitzschnell zu machen.</p>
+                <p class="head">Meine eigenen R-Pakete</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=cstab">cstab</a> für Clusteringmethoden.</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=memnet">memnet</a> zur Analyse von Gedächtnisnetzwerken.</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=mousetrap">mousetrap</a> zur Analyse von Bewegungsverläufen.</p>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- MARKUS MARKUS MARKUS MARKUS MARKUS MARKUS MARKUS MARKUS MARKUS MARKUS -->
+  <div class="team-modal modal fade" id="markus" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/2(1).png" alt="">
+                <h4 style="padding:0px;margin:0px">MSc Markus Steiner</h4>
+                <p class="text-muted" style="margin-bottom:10px">Ausbilder @ Basel</p>
+                <ul class="list-inline social-buttons">
+                  <li class="list-inline-item">
+                    <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/">
+                      <i class="fas fa-home fa-sm"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/in/markus-steiner-b6ab56162/">
+                      <i class="fab fa-linkedin-in fa-sm"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://github.com/mdsteiner">
+                      <i class="fab fa-github fa-sm"></i>
+                    </a>
+                  </li>
+                </ul>
+                <p class="item-intro text-muted entry">Ich forsche an der Universität Basel, wo ich Modelle von Risikoentscheidungen erstelle, mit dem Ziel Entscheidungen aus dem realen Leben vorherzusagen und zu verbessern.</p>
+                <p class="head">Lieblings R-Paket</p>
+                <p class="text-muted entry"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=rstanarm">rstanarm</a> für Bayesianische Statistik.</p>
+                <p class="head">Meine eigenen R-Pakete</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="https://github.com/mdsteiner/ShinyPsych">ShinyPsych</a> für die Datenerhebung mit R Shiny.</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="https://github.com/mdsteiner/EFAdiff">EFAdiff</a> für explorativer Faktorenanalyse.</p>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MICHAEL MICHAEL MICHAEL MICHAEL MICHAEL MICHAEL MICHAEL MICHAEL -->
+  <div class="team-modal modal fade" id="michael" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/3(1).png" alt="">
+                <h4 style="padding:0px;margin:0px">Dr. Michael Schulte-Mecklenbeck</h4>
+                <p class="text-muted" style="margin-bottom:10px">Ausbilder @ Bern</p>
+                <ul class="list-inline social-buttons">
+                  <li class="list-inline-item">
+                    <a href="https://www.schulte-mecklenbeck.com/">
+                      <i class="fas fa-home fa-sm"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://github.com/michaelschulte">
+                      <i class="fab fa-github fa-sm"></i>
+                    </a>
+                  </li>
+                </ul>
+                <p class="item-intro text-muted entry">Ich lehre Methodik am Departement Betriebswirtschaft der Universität Bern und erforsche menschliche Entscheidungsprozesse mittels Augen- und Bewegungsverfolgung.</p>
+                <p class="head">Lieblings R-Paket</p>
+                <p class="text-muted entry"><a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a> um Data Science effizient zu machen.</p>
+                <p class="head">Meine eigenen R-Pakete</p>
+                <p class="text-muted pckg"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=mousetrap">mousetrap</a> zur Analyse von Bewegungsverläufen.</p>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+  COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES
+  COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES
+  COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES
+  COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES COURSES
+  -->
+
+  <!-- I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R I2R -->
+  <div class="course-modal modal fade" id="I2R" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/0.png" alt="">
+                <h4 style="padding:0px;margin:0px">Einführung in die moderne Datenanalyse mit R</h4>
+                <p class="item-intro text-muted">Lerne Data Science von Grund auf</p>
+                <!---<a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/einfuehrung-in-die-moderne-datenanalyse-mit-r-272005#collapsible-heading-anmeldung">DE | Mär 11 | Anmelden</a><br>--->
+                <!---<a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/einfuehrung-in-die-moderne-datenanalyse-mit-r-272005#collapsible-heading-anmeldung">DE | Feb 7 | Anmelden</a><br>--->
+                <a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug%20f%C3%BCr%20Einf%C3%BChrung%20in%20die%20moderne%20Datenanalyse%20mit%20R&amp;body=Ich%20m%C3%B6chte%20mich%20f%C3%BCr%20das%20n%C3%A4chste%20R%20Bootcamp%20%27Einf%C3%BChrung%20in%20die%20moderne%20Datenanalyse%20mit%20R%27%20am%2028.%20August%20voranmelden.">DE | Aug 28 | Voranmelden</a>
+                <br><br>
+                <p class="head">Beschreibung</p>
+                <p class="text-muted entry">Daten sind das Gold des 21. Jahrhunderts. Wer Zugang zu Daten hat und sie zu nutzen weiss, kann beispielsweise den wissenschaftlichen und technologischen Fortschritt im Gesundheitswesen vorantreiben oder sich durch intelligentes Marketing kritische Wettbewerbsvorteile sichern. Egal welches Ziel das Ihre ist, ob Sie im Management oder in der Entwicklung arbeiten, Expertise im Bereich der modernen Datenanalyse wird zunehmend zum entscheidenden Faktor. Dieser Nachmittagskurs ermöglicht Ihnen den Einstieg in die Welt von Data Science und Big Data mittels der offenen Programmiersprache R, welche speziell für den Zweck von Data Analytics entwickelt wurde und zu den gefragtesten Tools in diesem Bereich zählt. Sie lernen die Grundlagen der Sprache kennen und werden in interaktiven Elementen an die eigenständige Umsetzung herangeführt. Am Schluss erfahren Sie wie Sie Ihre Reise in die Welt der modernen Datenanalyse fortsetzen können.</p>
+                <p class="head">Voraussetzungen</p>
+                <p class="text-muted entry">Die Teilnahme an diesem Kurses benötigt keinerlei Vorkenntnisse. Teilnehmende sind gebeten, einen eigenen Laptop mitzubringen.</p>
+                <p class="head">Details</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem">Kurssprache</td>
+                    <td>Deutsch</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Zeiten</td>
+                    <td>Eintagskurs: Fr, 13.00-18.00 Uhr</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Ort</td>
+                    <!---<td><a href="https://advancedstudies.unibas.ch/courses/course/r-for-data-science-208287">Advanced Studies</a> - University of Basel <a href="https://www.google.com/maps/place/Advanced+Studies+der+Universit%C3%A4t+Basel/@47.5542123,7.5852195,15z/data=!4m5!3m4!1s0x0:0x1b8cefd9e51f9e3c!8m2!3d47.5542123!4d7.5852195"><i class="fas fa-map-marker-alt"></i></a></td>--->
+                    <td>Basel - Veranstaltungsort tba</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Gruppengrösse</td>
+                    <td>Max. 18 Teilnehmende</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Preis</td>
+                    <td>200.- CHF</td>
+                  </tr>
+                </tbody></table>
+                <p class="head">Aufbau</p>
+                <p class="text-muted entry">Der Kurs findet von 13:00 bis 18:00 Uhr statt und besteht aus einer Mischung aus Kurzvorträgen und interaktiven Elementen, in denen Sie die praktische Anwendung üben können. Alle Kursmaterialien, Beispiele, Übungen und Lösungen stehen Ihnen während und nach dem Kurs jederzeit online zur Verfügung.</p>
+                <p class="head">Programm &amp; Materialien <font style="font-size:12px"> (Änderungen vorbehalten)</font></p>
+                <table class="text-muted entry schedule" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <th></th>
+                    <th>Tag 1</th>
+                  </tr>
+                  <tr>
+                    <td class="time">1300</td>
+                    <td>Wilkommen</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1315</td>
+                    <td>Warum R?</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1400</td>
+                    <td>R(Studio)</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1430</td>
+                    <td>Assignments</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1515</td>
+                    <td>Funktionen</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1545</td>
+                    <td>Daten I/O</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1615</td>
+                    <td>Datenanalyse</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1645</td>
+                    <td>Nächste Schritte</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1745</td>
+                    <td>Apero</td>
+                  </tr>
+                </tbody></table>
+                <p class="head">Wichtige Pakete</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">base</a></td>
+                    <td>Einfach base R.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=stats">stats</a></td>
+                    <td>Rs Standard für Statistik.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=graphics">graphics</a></td>
+                    <td>Rs Standard für Visualisierungen (nicht zu verwechseln mit <a class="pckg" target="_blank" href="http://cran.r-project.org/package=ggplot2">ggplot2</a>).</td>
+                  </tr>
+                </tbody></table>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS R4DS -->
+  <div class="course-modal modal fade" id="R4DS" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/1.png" alt="">
+                <h4 style="padding:0px;margin:0px">Explorative Datenanalyse mit R</h4>
+                <p class="item-intro text-muted">Exploriere und visualisiere Daten mit R</p>
+                <!---<a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/explorative-datenanalyse-mit-r-272006#collapsible-heading-anmeldung">DE | Feb 14/15 | Anmelden</a>--->
+                <a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug%20f%C3%BCr%20Explorative%20Datenanalyse%20mit%20R&amp;body=Ich%20m%C3%B6chte%20mich%20f%C3%BCr%20das%20n%C3%A4chste%20R%20Bootcamp%20%27Explorative%20Datenanalyse%20mit%20R%27%20voranmelden.">DE | tba | Voranmelden</a>
+                <br><br>
+                <p class="head">Beschreibung</p>
+                <p class="text-muted entry">Jedes datengestützte Projekt beginnt mit der Datenaufbereitung und -exploration. Von diesem ebenso aufwendigen wie bedeutendem Projektabschnitt hängt alles Folgende ab. Er umfasst das Bereinigen und Verknüpfen von Datensätzen aus verschiedenen Quellen und die Visualisierung der darin enthaltenen Zusammenhänge. Kaum ein Werkzeug eignet sich für diese Aufgaben so gut wie die Programmiersprache R. An diesem vollgepackten Wochenende lernen Sie, wie Sie alle Elemente der Datenaufbereitung und -exploration mit R durchführen können. Sie lernen, wie Sie Daten von der Festplatte oder aus dem Internet laden, wie sie Daten bereinigen und organisieren, wie sie einfache deskriptive Analysen durchführen und, nicht zuletzt, wie Sie ästhetisch ansprechende, publikationsreife Visualisierungen erstellen.</p>
+                <p class="head">Voraussetzungen</p>
+                <p class="text-muted entry">Teilnehmende dieses Kurses sollten über Grundkenntnisse in der Programmiersprache R verfügen. Für Interessierte ohne oder mit geringer Erfahrung in R empfehlen wir den Nachmittagskurs <i>Einführung in die moderne Datenanalyse mit R</i> zu besuchen. Wenn Sie nicht sicher sind, ob Sie über genügend Grundkenntnisse verfügen setzen Sie sich entweder direkt mit uns in Verbindung oder nehmen Sie zunächst am diesem <a href="http://bit.ly/weissichgenug%C3%BCberR"><b>QUIZ</b></a> teil. Teilnehmende sind gebeten, einen eigenen Laptop mit Software-Installationsrechten mitzubringen.</p>
+                <p class="head">Details</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem">Kurssprache</td>
+                    <td>Deutsch</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Zeiten</td>
+                    <td>Zweitageskurs: Fr-Sa, 09.00-18.00 Uhr</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Ort</td>
+                    <!---<td><a href="https://advancedstudies.unibas.ch/courses/course/r-for-data-science-208287">Advanced Studies</a> - University of Basel <a href="https://www.google.com/maps/place/Advanced+Studies+der+Universit%C3%A4t+Basel/@47.5542123,7.5852195,15z/data=!4m5!3m4!1s0x0:0x1b8cefd9e51f9e3c!8m2!3d47.5542123!4d7.5852195"><i class="fas fa-map-marker-alt"></i></a></td>--->
+                    <td>Basel - Veranstaltungsort tba</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Gruppengrösse</td>
+                    <td>Max. 18 Teilnehmende</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Preis</td>
+                    <td>990.- CHF</td>
+                  </tr>
+                </tbody></table>
+                <p class="head">Aufbau</p>
+                <p class="text-muted entry">Der Kurs findet an zwei Tagen jeweils von 9:00 bis 18:00 Uhr statt. An beiden Tagen dienen Kurzvorträge und Beispiele zur Einführung in die einzelnen Themen. Der Grossteil der Zeit wird anschliessend praktischen Übungen gewidmet, die Ihnen "learning by doing" ermöglichen sollen. Mit mindestens 2 Anleitern vor Ort wird es ausreichend Zeit für eine 1:1 Betreuung während der Übungen geben. Alle Kursmaterialien, Tutorials, Beispiele, Übungen und Lösungen stehen Ihnen während und nach dem Kurs jederzeit online zur Verfügung. Sie finden unsere Materialien zu vergangenen Kursen unter <a href="https://therbootcamp.github.io/#materials">offene Materialien erkunden</a>.</p>
+                <p class="head">Programm &amp; Materialien <font style="font-size:12px"> (Feb, 2019, Änderungen vorbehalten)</font></p>
+                <table class="text-muted entry schedule" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <th></th>
+                    <th>Tag 1</th>
+                    <th>Tag 2</th>
+                  </tr>
+                  <tr>
+                    <td class="time">0900</td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Welcome/Welcome.html">Willkommen</a></td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Recap/Recap.html">Rückblick</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">0930</td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/IntroToR/IntroToR.html">Einführung in R</a></td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Analysing/Analysing.html">Analyse</a> <a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Analysing/Analysing_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1200</td>
+                    <td>Lunch</td>
+                    <td>Lunch</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1300</td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Wrangling/Wrangling.html">Daten</a> <a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Data/Data_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Plotting/Plotting.html">Visualisierung</a> <a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Wrangling/Wrangling_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1530</td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Wrangling/Wrangling.html">Wrangling</a> <a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Plotting/Plotting_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/CaseStudies/CaseStudies.html">Fallstudien</a>: <a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/CaseStudies/Clinical_Data_Case_Study.html">I</a>, <a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/CaseStudies/Financial_Data_Case_Study.html">II</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1745</td>
+                    <td>Wrap-up</td>
+                    <td>Apero</td>
+                  </tr>
+                </tbody></table>
+                <p class="head">Wichtige Pakete</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=tidyverse">tidyverse</a></td>
+                    <td>Eine Sammlung moderner Data Science-Pakete, einschliesslich <a class="pckg" target="_blank" href="http://cran.r-project.org/package=readr">readr</a>, <a class="pckg" target="_blank" href="http://cran.r-project.org/package=dplyr">dplyr</a>, and <a class="pckg" target="_blank" href="http://cran.r-project.org/package=ggplot2">ggplot2</a>.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=readr">readr</a></td>
+                    <td>Praktisches Paket zum Einlesen von Textdateiformaten wie .csv und .txt.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=dplyr">dplyr</a></td>
+                    <td>R's go-to Paket für data wrangling: Aufbereitung, Organisation und Zusammenführung von Datensets.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=ggplot2">ggplot2</a></td>
+                    <td>Wohl das beste Paket zur Datenvisualisierung überhaupt, nicht nur in R.</td>
+                  </tr>
+                </tbody></table>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR SWR -->
+  <div class="course-modal modal fade" id="SwR" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/2.png" alt="">
+                <h4 style="padding:0px;margin:0px">Statistik mit R</h4>
+                <p class="item-intro text-muted">Treffen Sie datenbasierte Entscheidungen mit R</p>
+
+                <a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/statistik-mit-r-233189#collapsible-heading-anmeldung">DE | Mai 8/9 | Anmelden<p style="border-top: 1px solid #6c757d;margin-top:4px;margin-bottom:-2px">Online Kurs</p></a>
+                <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Statistik mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Statistik mit R' voranmelden.">DE | Mär 20/21 | Voranmelden</a>--->
+
+                <br><br>
+
+                <p class="head">Beschreibung</p>
+                <p class="text-muted entry">Um robuste, entscheidungsrelevante Erkenntnisse aus Daten ziehen zu können, benötigen Sie Statistik. In diesem intensiven Kurs lernen Sie die Grundprinzipien der statistischen Datenanalyse mit R kennen, der Programmiersprache für Data Analytics und Statistik. Nach einer Einführung in die theoretischen Grundlagen lernen Sie, wie Sie Daten durch beschreibende Statistiken zusammen fassen können. Anschliessend lernen Sie, Regressionsmodelle zu implementieren und zu verstehen (z.B., Regression und ANOVA), um versteckte Zusammenhänge in Ihren Daten ersichtlich zu machen und auf ihre Robustheit zu prüfen. Sie erhalten darüber hinaus Einblick in neuere Methoden wie hierarchische Regression, Bayesianische Statistik und robuste Analyseverfahren.</p>
+
+                <p class="head">Voraussetzungen</p>
+                <p class="text-muted entry">Teilnehmende dieses Kurses sollten über Grundkenntnisse in der Programmiersprache R verfügen. Für Interessierte ohne oder mit geringer Erfahrung in R empfehlen wir den Nachmittagskurs <i>Einführung in die moderne Datenanalyse mit R</i> zu besuchen. Wenn Sie nicht sicher sind, ob Sie über genügend Grundkenntnisse verfügen setzen Sie sich entweder direkt mit uns in Verbindung oder nehmen Sie zunächst am diesem <a href="http://bit.ly/weissichgenug%C3%BCberR"><b>QUIZ</b></a> teil. Teilnehmende sind gebeten, einen eigenen Laptop mit Software-Installationsrechten mitzubringen. Neben Grundkenntnissen in R, sind Grundkenntnisse in Statistik hilfreich, aber nicht zwingend nötig.</p>
+
+                <p class="head">Details</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem">Kurssprache</td>
+                    <td>Deutsch</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Zeiten</td>
+                    <td>Zweitageskurs: Fr-Sa, 09.00-18.00 Uhr</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Ort</td>
+                    <!---<td><a href="https://advancedstudies.unibas.ch/courses/course/r-for-data-science-208287">Advanced Studies</a> - University of Basel <a href="https://www.google.com/maps/place/Advanced+Studies+der+Universit%C3%A4t+Basel/@47.5542123,7.5852195,15z/data=!4m5!3m4!1s0x0:0x1b8cefd9e51f9e3c!8m2!3d47.5542123!4d7.5852195"><i class="fas fa-map-marker-alt"></i></a></td>--->
+                    <td>Web-basierter online Kurs</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Gruppengrösse</td>
+                    <td>Max. 18 Teilnehmende</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Preis</td>
+                    <td>990.- CHF</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Aufbau</p>
+                <p class="text-muted entry">Der Kurs findet an zwei Tagen jeweils von 9:00 bis 18:00 Uhr statt. An beiden Tagen dienen Kurzvorträge und Beispiele zur Einführung in die einzelnen Themen. Der Grossteil der Zeit wird anschliessend praktischen Übungen gewidmet, die Ihnen "learning by doing" ermöglichen sollen. Mit mindestens 2 Anleitern vor Ort wird es ausreichend Zeit für eine 1:1 Betreuung während der Übungen geben. Alle Kursmaterialien, Tutorials, Beispiele, Übungen und Lösungen stehen Ihnen während und nach dem Kurs jederzeit online zur Verfügung. Sie finden unsere Materialien zu vergangenen Kursen unter <a href="https://therbootcamp.github.io/#materials">offene Materialien erkunden</a>. </p>
+
+                <p class="head">Programm &amp; Materialien <font style="font-size:12px"> (Apr, 2019, Änderungen vorbehalten)</font></p>
+                <table class="text-muted entry schedule" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <th></th>
+                    <th>Tag 1</th>
+                    <th>Tag 2</th>
+                  </tr>
+                  <tr>
+                    <td class="time">0900</td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/Welcome/Welcome.html">Willkommen</a></td>
+                    <td><a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Recap/Recap.html">Rückblick</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">0930</td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/Intro2Stats/Intro2Stats.html">Einführung in Statistik</a> </td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels.html">Hierarchische Modelle</a> <a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Analysing/Analysing_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1200</td>
+                    <td>Lunch</td>
+                    <td>Lunch</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1300</td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/LinearModelsI/LinearModelsI.html">Lineare Modelle I</a> <a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/LinearModelsI/LinearModelsI_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/RobustStats/RobustStats.html">Robuste Statistik</a> <a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/RobustStats/RobustStats_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1530</td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/LinearModelsII/LinearModelsII.html">Lineare Modelle II</a> <a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/LinearModelsII/LinearModelsII_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/NewStats/NewStats.html">Neue Statistik</a> <a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/NewStats/NewStats_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1745</td>
+                    <td>Wrap-up</td>
+                    <td>Apero</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Wichtige Pakete</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=stats">stats</a></td>
+                    <td>Beinhaltet <code-inline>lm</code-inline> und <code-inline>glm</code-inline> - R's Paket für (generalisierte) lineare Modelle aka Regressionsmodelle.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=lme4">lme4</a></td>
+                    <td>Erweitert <a class="pckg" target="_blank" href="http://cran.r-project.org/package=stats">stats</a> um hierarchische Modelle zu implementieren.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=boot">boot</a></td>
+                    <td>Multifunktionswerkzeug für robuste Bootstrappinganalysen.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=pwr">pwr</a></td>
+                    <td>Für Poweranalysen in R.</td>
+                  </tr>
+
+                </tbody></table>
+
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR MLWR -->
+  <div class="course-modal modal fade" id="MLwR" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/3.png" alt="">
+                <h4 style="padding:0px;margin:0px">Maschinelles Lernen mit R</h4>
+                <p class="item-intro text-muted">Lernen Sie prädiktive Algorithmen mit R zu erstellen.</p>
+
+                <a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/maschinelles-lernen-mit-r-272008#collapsible-heading-anmeldung">DE | Apr 3/4 | Anmelden<p style="border-top: 1px solid #6c757d;margin-top:4px;margin-bottom:-2px">Online Kurs</p></a>
+                <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Maschinelles Lernen mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Maschinelles Lernen mit R' voranmelden.">DE | Apr 3/4 | Voranmelden</a>--->
+
+                <br><br>
+
+                <p class="head">Beschreibung</p>
+                <p class="text-muted entry">Maschinelles Lernen (Machine Learning) ist die Grundlage bahnbrechender Entwicklungen und Technologien in nahezu allen Wirtschafts- und Forschungszweigen. Wollen Sie erfahren was maschinelles Lernen so erfolgreich macht und wie Sie es mittels der Programmiersprache R für Ihre eigenen Zwecke nutzbar machen können? In diesem intensiven Kurs lernen sie die grundlegenden Prinzipien des maschinellen Lernens kennen und wie Sie diese mithilfe von R umsetzen können: vom Einlesen der Daten, über die Anwendung verschiedener Algorithmen, bis hin zur Bewertung derer Güte und Akkuratheit. Sie lernen die Besonderheiten gängiger Algorithmen wie Regression, Entscheidungsbäume oder Random Forests kennen. Sie erfahren von neueren Entwicklungen, wie dem Deep Learning, und erhalten einen Überblick über die verschiedenen Problemtypen, wie Regression, Klassifizierung, oder Clustering, und diskutieren mit uns die Chancen und Risiken des maschinellen Lernens für Wirtschaft und Gesellschaft.</p>
+
+                <p class="head">Voraussetzungen</p>
+                <p class="text-muted entry">Teilnehmende dieses Kurses sollten über Grundkenntnisse in der Programmiersprache R verfügen. Für Interessierte ohne oder mit geringer Erfahrung in R empfehlen wir den Nachmittagskurs <i>Einführung in die moderne Datenanalyse mit R</i> zu besuchen. Wenn Sie nicht sicher sind, ob Sie über genügend Grundkenntnisse verfügen setzen Sie sich entweder direkt mit uns in Verbindung oder nehmen Sie zunächst am diesem <a href="http://bit.ly/weissichgenug%C3%BCberR"><b>QUIZ</b></a> teil. Teilnehmende sind gebeten, einen eigenen Laptop mit Software-Installationsrechten mitzubringen. Neben Grundkenntnissen in R, sind Grundkenntnisse in Statistik hilfreich. Teilnehmende profitieren von einer vorherigen Teilnahme am Kurs <i>Statistik mit R</i>. </p>
+
+                <p class="head">Details</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem">Kurssprache</td>
+                    <td>Deutsch</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Zeiten</td>
+                    <td>Zweitageskurs: Fr-Sa, 09.00-18.00 Uhr</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Ort</td>
+                    <!---<td><a href="https://advancedstudies.unibas.ch/courses/course/r-for-data-science-208287">Advanced Studies</a> - University of Basel <a href="https://www.google.com/maps/place/Advanced+Studies+der+Universit%C3%A4t+Basel/@47.5542123,7.5852195,15z/data=!4m5!3m4!1s0x0:0x1b8cefd9e51f9e3c!8m2!3d47.5542123!4d7.5852195"><i class="fas fa-map-marker-alt"></i></a></td>--->
+                    <td>Web-basierter online Kurs</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Gruppengrösse</td>
+                    <td>Max. 18 Teilnehmende</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Preis</td>
+                    <td>990.- CHF</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Aufbau</p>
+                <p class="text-muted entry">Der Kurs findet an zwei Tagen jeweils von 9:00 bis 18:00 Uhr statt. An beiden Tagen dienen Kurzvorträge und Beispiele zur Einführung in die einzelnen Themen. Der Grossteil der Zeit wird anschliessend praktischen Übungen gewidmet, die Ihnen "learning by doing" ermöglichen sollen. Mit mindestens 2 Anleitern vor Ort wird es ausreichend Zeit für eine 1:1 Betreuung während der Übungen geben. Alle Kursmaterialien, Tutorials, Beispiele, Übungen und Lösungen stehen Ihnen während und nach dem Kurs jederzeit online zur Verfügung. Sie finden unsere Materialien zu vergangenen Kursen unter <a href="https://therbootcamp.github.io/#materials">offene Materialien erkunden</a>. </p>
+
+                <p class="head">Programm &amp; Materialien <font style="font-size:12px"> (Oct, 2019, Änderungen vorbehalten)</font></p>
+                <table class="text-muted entry schedule" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <th></th>
+                    <th>Tag 1</th>
+                    <th>Tag 2</th>
+                  </tr>
+                  <tr>
+                    <td class="time">0900</td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Welcome/Welcome.html">Willkommen</a></td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Recap/Recap.html">Rückblick</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">0930</td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/WhatIsML/WhatIsML.html">Was ist ML?</a></td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Optimization/Optimization.html">Optimisierung</a> <a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Optimization/Optimization_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1200</td>
+                    <td>Lunch</td>
+                    <td>Lunch</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1300</td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Fitting/Fitting.html">Fitting</a> <a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Fitting/Fitting_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Features/Features.html">Features</a> <a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Features/Features_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1530</td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Prediction/Prediction.html">Vorhersage</a> <a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Prediction/Prediction_practical.html">+</a></td>
+                    <td><a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Models/Models.html">Ausblick</a> <a href="https://therbootcamp.github.io/ML_2019Oct/_sessions/Models/Models_practical.html">+</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1745</td>
+                    <td>Wrap-up</td>
+                    <td>Apero</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Wichtige Pakete</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=caret">caret</a></td>
+                    <td>R's Schweizer Taschenmesser für das Training und die Evaluation über 200 Algorithmen des maschinellen Lernens.</td>
+                  </tr>
+                </tbody></table>
+
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR RwR -->
+  <div class="course-modal modal fade" id="RwR" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/4.png" alt="">
+                <h4 style="padding:0px;margin:0px">Reporting mit R</h4>
+                <p class="item-intro text-muted">Lernen Sie dynamische, interaktive Berichte mit R zu erstellen.</p>
+
+                <a class="date" href="https://advancedstudies.unibas.ch/studienangebot/kurs/reporting-with-r-283873#collapsible-heading-anmeldung">DE | Jun 5/6 | Anmelden</a>
+                <!---<a class="pre-date" href="mailto:therbootcamp@gmail.com?subject=Voranmeldug für Maschinelles Lernen mit R&amp;body=Ich möchte mich für das nächste R Bootcamp 'Maschinelles Lernen mit R' voranmelden.">DE | Apr 3/4 | Voranmelden</a>--->
+
+                <br><br>
+
+                <p class="head">Beschreibung</p>
+                <p class="text-muted entry">Eine der wichtigsten Aufgaben bei datengestützten Projekten ist die Kommunikation der Ergebnisse. Dabei kann es sich um Berichte, Präsentationen, oder interaktive Dashboards handeln. Die Programmiersprache R und R Studio gehören für diese Zwecke zu den besten verfügbaren Tools. In diesem intensiven Zweitageskurs lernen Sie, wie Sie mit Hilfe von RMarkdown dynamische Berichte und Folien ganz einfach in unterschiedlichen Formaten wie .pdf, .docx oder .pptx erstellen und gestalten können. Dabei lernen Sie Analysen, Visualisierungen und Text in einem einzigen, beliebig reproduzierbaren Dokument zu erstellen. Ausserdem lernen Sie interaktive Dashboards mit Shiny erstellen können, damit Sie Daten und Abbildungen einfach explorieren und zur Exploration zur Verfügung stellen können.</p>
+
+                <p class="head">Voraussetzungen</p>
+                <p class="text-muted entry">Teilnehmende dieses Kurses sollten über Grundkenntnisse in der Programmiersprache R verfügen. Für Interessierte ohne oder mit unzureichender Erfahrung in R empfehlen wir die Kurse Einführung in die moderne Datenanalyse mit R,  oder Explorative Datenanalyse mit R zu besuchen. Wenn Sie nicht sicher sind, ob Sie über genügend Grundkenntnisse verfügen setzen Sie sich entweder direkt mit uns in Verbindung oder nehmen Sie zunächst am diesem <a href="http://bit.ly/weissichgenug%C3%BCberR"><b>QUIZ</b></a> (bitly.com/weissichgenugüberR) teil. Teilnehmende sind gebeten, einen eigenen Laptop mit Software-Installationsrechten mitzubringen. </p>
+
+                <p class="head">Details</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem">Kurssprache</td>
+                    <td>Deutsch</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Zeiten</td>
+                    <td>Zweitageskurs: Fr-Sa, 09.00-18.00 Uhr</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Ort</td>
+                    <!---<td><a href="https://advancedstudies.unibas.ch/courses/course/r-for-data-science-208287">Advanced Studies</a> - University of Basel <a href="https://www.google.com/maps/place/Advanced+Studies+der+Universit%C3%A4t+Basel/@47.5542123,7.5852195,15z/data=!4m5!3m4!1s0x0:0x1b8cefd9e51f9e3c!8m2!3d47.5542123!4d7.5852195"><i class="fas fa-map-marker-alt"></i></a></td>--->
+                    <td>Basel - Veranstaltungsort tba</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Gruppengrösse</td>
+                    <td>Max. 18 Teilnehmende</td>
+                  </tr>
+                  <tr>
+                    <td class="elem">Preis</td>
+                    <td>990.- CHF</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Aufbau</p>
+                <p class="text-muted entry">Der Kurs findet an zwei Tagen jeweils von 9:00 bis 18:00 Uhr statt. An beiden Tagen dienen Kurzvorträge und Beispiele zur Einführung in die einzelnen Themen. Der Grossteil der Zeit wird anschliessend praktischen Übungen gewidmet, die Ihnen "learning by doing" ermöglichen sollen. Mit mindestens 2 Anleitern vor Ort wird es ausreichend Zeit für eine 1:1 Betreuung während der Übungen geben. Alle Kursmaterialien, Tutorials, Beispiele, Übungen und Lösungen stehen Ihnen während und nach dem Kurs jederzeit online zur Verfügung. Sie finden unsere Materialien zu vergangenen Kursen auf <a href="https://therbootcamp.github.io/#materials">offene Materialien erkunden</a>. </p>
+
+                <p class="head">Programm &amp; Materialien <font style="font-size:12px"> (Feb, 2020, Änderungen vorbehalten)</font></p>
+                <table class="text-muted entry schedule" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <th></th>
+                    <th>Tag 1</th>
+                    <th>Tag 2</th>
+                  </tr>
+                  <tr>
+                    <td class="time">0900</td>
+                    <td><a href="http://localhost:3000/">Willkommen</a></td>
+                    <td><a href="http://localhost:3000/">Rückblick</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">0930</td>
+                    <td><a href="http://localhost:3000/">Dynamisches Reporting</a></td>
+                    <td><a href="http://localhost:3000/">Markdown zu Office Dateien</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1200</td>
+                    <td>Lunch</td>
+                    <td>Lunch</td>
+                  </tr>
+                  <tr>
+                    <td class="time">1300</td>
+                    <td><a href="http://localhost:3000/">Reports mit Markdown I</a></td>
+                    <td><a href="http://localhost:3000/">Dashboards mit Shiny</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1530</td>
+                    <td><a href="http://localhost:3000/">Reports mit Markdown II</a></td>
+                    <td><a href="http://localhost:3000/">Dashboards mit Shiny II</a></td>
+                  </tr>
+                  <tr>
+                    <td class="time">1745</td>
+                    <td>Wrap-up</td>
+                    <td>Apero</td>
+                  </tr>
+                </tbody></table>
+
+                <p class="head">Wichtige Pakete</p>
+                <table class="text-muted entry" cellspacing="0" cellpadding="0">
+                  <tbody><tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=rmarkdown">rmarkdown</a></td>
+                    <td>Paket zur Erstellung reproduzierbarer Berichte im .html, .doc, .ppt oder .pdf Format.</td>
+                  </tr>
+                  <tr>
+                    <td class="elem"><a class="pckg" target="_blank" href="http://cran.r-project.org/package=shiny">shiny</a></td>
+                    <td>Paket zur erstellung interaktiver Dashboards.</td>
+                  </tr>
+                </tbody></table>
+
+              <button class="btn btn-primary" data-dismiss="modal" type="button">
+                <i class="fas fa-times"></i>
+                Schliessen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+  PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO
+  PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO
+  PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO
+  PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO PORTFOLIO
+  -->
+
+  <!-- WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR WHYR -->
+  <div class="portfolio-modal modal fade" id="whyr" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" src="./The R Bootcamp - Lerne Data Science mit R_files/R.png" alt="">
+                <h2 class="text-uppercase">Why R?</h2>
+                <p class="item-intro text-muted">5 reasons why you should learn R today.</p>
+
+                <p class="head">1. R was designed for analytics</p>
+                <p class="text-muted entry">R was designed first and foremost as a language for analytics and statistics. For that reason, R makes it easy for you to run statistical analyses, may it be an A/B test or a complex machine learning algorithm, with minimal code. Thanks to modern packages such as <a class="pckg" target="_blank" href="http://cran.r-project.org/package=dbplyr">dbplyr</a> and <a class="pckg" target="_blank" href="http://cran.r-project.org/package=RHadoop">RHadoop</a>, R also enables you to use virtually the same code when analysing Gigabytes of data stored on databases as you would on a data from a small Excel spreadsheet. </p>
+
+                <p class="head">2. R has an unrivaled set of free packages</p>
+                <p class="text-muted entry">As great as R’s core framework is, the language would not be nearly as popular as it is today if it weren’t for R’s unrivaled collection of (freely available!) packages. What is an R package? An R package is a collection of code designed to help you, the programmer, solve a particular task without having to program a solution yourself. It really is difficult to overstate comprehensiveness of the R package universe.</p>
+
+                <p class="head">3. R enables you to make striking visualisations</p>
+                <p class="text-muted entry">As good as R is for statistics, it is as good, if not better, for data visualisation. Why? One word: <a class="pckg" target="_blank" href="http://cran.r-project.org/package=ggplot2">ggplot2</a>. The <a class="pckg" target="_blank" href="http://cran.r-project.org/package=ggplot2">ggplot2</a> package makes it easy for anyone to create colorful, complex, striking visualisations with minimal code. For example, you can create the plot below with essentially only 5 lines of code.</p>
+
+                <img src="./The R Bootcamp - Lerne Data Science mit R_files/ggplot.png" style="max-width:400px">
+
+                <p class="head">4. R works great with other languages</p>
+                <p class="text-muted entry">There are cases where you may want to take advantage of the features of other languages, such as C++ for its blinding speed or SQL for querying relational databases. Thankfully, with packages such as <a class="pckg" target="_blank" href="http://cran.r-project.org/package=Rcpp">Rcpp</a> for C++ or <a class="pckg" target="_blank" href="http://cran.r-project.org/package=dbplyr">dbplyr</a> for SQL combined with the amazing RStudio integrated developer environment, you can easily supplement your R code with these and other languages.</p>
+
+                <p class="head">5. R has a passionate, open community</p>
+                <p class="text-muted entry">Without question, one of the best things about R is its community of passionate users, developers and bloggers who will jump at the chance to show you all of the amazing things they are doing with R. With hundreds of bloggers sharing their code at <a href="http://localhost:3000/www.r-bloggers.com">r-bloggers.com</a> or local meetup groups such as <a href="https://rladies.org/">R-Ladies</a> or Michael's <a href="https://www.meetup.com/Bern-R/">Bern R Meetup</a>, the opportunities to meet with and learn from other R users are really endless.</p>
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIDYVERSE TIDYVERSE TIDYVERSE TIDYVERSE TIDYVERSE TIDYVERSE TIDYVERSE -->
+  <div class="portfolio-modal modal fade" id="tidyverse" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" src="./The R Bootcamp - Lerne Data Science mit R_files/tidyverse.png" alt="">
+                <h2 class="text-uppercase">R for Data Science</h2>
+                <p class="item-intro text-muted">using the amazing <a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a></p>
+
+                <p class="text-muted entry"> According to many <a target="_blank" href="https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#7bf8733f6f63">estimates</a>, data scientists spend most time not on the implementation of sophisticated algorithms, but on the preceding steps: first, cleaning and organizing the data, and then mining and visualizing their important trends. There are many tools to carry out these steps, but there is no better in R or any other language than the amazing <a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a>.</p>
+
+                <p class="head">What is the tidyverse?</p>
+                <p class="text-muted entry">  The <a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a> is a meta-package that combines several individual R packages - packages are free and openly available collections of functions -  each geared towards an elementary Data Science task. For example, the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=readr">readr</a> package allows you to read in data files from your hard-drive, the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=dplyr">dplyr</a> package efficiently handles all cleaning, organization, and joining of data sets, and the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=ggplot2">ggplot2</a> package makes creating striking, publication-ready visualizations a piece-of cake. </p>
+
+                <p class="head">The tidyverse is more</p>
+                <p class="text-muted entry">The <a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a> is also a new framework of working in R. The tidyverse comes with a novel, improved coding style centering on modular programming using the pipe operator <code-inline>%&gt;%</code-inline> from the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=magrittr">magrittr</a> package. Today many packages are build around the <a class="pckg" target="_blank" href="https://www.tidyverse.org/">tidyverse</a>' functionality and in doing so also adopt its coding style.</p>
+
+                <p class="head">Tidyverse vs. classic R</p>
+                <p class="text-muted entry">For these and other reasons, we focus our bootcamp on <b>R for Data Science</b> predominantly on the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=tidyverse">tidyverse</a> rather than the classic functionality within R. Not convinced about the beauty of the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=tidyverse">tidyverse</a>? Check out the example below comparing the same analysis in tidyverse and more basic R style or join our course on <b>R for Data Science</b>.</p>
+
+                <p class="head" style="font-weight:400"><i>Tidyverse</i></p>
+                <p class="code">  # 1. Load tidyverse &amp; data
+  library(tidyverse) # makes all tidyverse packages available
+  titanic &lt;- read_csv("https://osf.io/aupb4/download") # load data
+
+  # 2. data transformation and aggregation using dplyr
+  titanic &lt;- titanic %&gt;%
+    mutate(sex = case_when(Sex == "male" ~ "Male",
+                           TRUE ~ "Female"),
+           age = case_when(Age &gt;= 18 ~ "Adult",
+                             Age &lt;  18 ~ "Minor"),
+           class = factor(PClass)) %&gt;%
+    drop_na() %&gt;%
+    rename(gender = sex) %&gt;%
+    group_by(class, gender, age) %&gt;%
+    summarise(survival = mean(Survived))
+
+  # 3. plot using ggplot2
+  ggplot(titanic, aes(class, survival, fill = gender)) +
+    geom_bar(stat = "identity", position = position_dodge()) +
+    labs(x = "Class",
+         y = "Proportion Survived",
+         title = "Titanic Survivors") +
+    facet_wrap(~ age) +
+    theme_light()</p>
+
+                <img src="./The R Bootcamp - Lerne Data Science mit R_files/titanic.png" style="max-width:600px;padding-top:10px">
+
+                <p class="head" style="font-weight:400"><i>Classic R</i></p>
+                  <p class="code">  # 1. Load data
+  titanic &lt;- read.csv("https://osf.io/aupb4/download") # load data
+
+  # 2. data transformation and aggregation using base R
+  titanic$gender = titanic$Sex
+  titanic$gender[titanic$gender == "male"] &lt;- "Male"
+  titanic$gender[titanic$gender == "female"] &lt;- "Female"
+  titanic$age &lt;- ifelse(titanic$Age &gt;= 18, "Adult", "Minor")
+  titanic$class &lt;- factor(titanic$PClass)
+  titanic &lt;- aggregate(titanic$Survived,
+                       list(class = titanic$class,
+                            gender = titanic$gender,
+                            age = titanic$age),
+                       mean)
+  names(titanic)[4] &lt;- "survival"
+
+  # 3. plot using base R
+  layout(matrix(c(1,2,3), nrow = 1), width = c(.4,.4,.2))
+  par(mar &lt;- c(5.1, 4.1, 6.1,0))
+  cols &lt;- c(rgb(232, 125, 114, maxColorValue = 255),
+           rgb(84, 188, 194, maxColorValue = 255))
+  barplot(survival ~ gender + class,
+          data = subset(titanic, age == "Adult"),
+          beside = TRUE, ylim = c(0, 1),
+          ylab = "Proportion Survived", xlab = "Class",
+          main = "Titanic Survivors", las = 1,
+          cex.lab = 1.5, cex.axis = 1.25, cex.main = 1.8,
+          col = cols, border = NA)
+  axis(side = 1, at = c(-1, 12))
+  rect(0.68, 1.01, 9, 1.08, col = "lightgrey", border = NA,
+       xpd = TRUE)
+  text(5, 1.04, "Adult", xpd = TRUE, cex = 1.6)
+  barplot(survival ~ gender + class,
+          data = subset(titanic, age == "Child"),
+          beside = TRUE, ylim = c(0, 1),
+          ylab = "Proportion Survived", xlab = "Class",
+          las = 1, cex.lab = 1.5, cex.axis = 1.25,
+          col = cols, border = NA)
+  axis(side = 1, at = c(-1, 12))
+  rect(0.68, 1.01, 9, 1.08, col = "lightgrey", border = NA,
+       xpd = TRUE)
+  text(5, 1.04, "Minor", xpd = TRUE, cex = 1.6)
+  plot.new()
+  plot.window(xlim = c(0, 1), ylim = c(0, 1))
+  par(mar = c(0, 0, 0, 0))
+  points(c(-.5, -.5), c(.525, .445), pch = 15, col = cols,
+         cex = 4, xpd = TRUE)
+  text(c(-.25, -.25), c(.525, .445),
+      labels = c("Female", "Male"),offset = 0,
+      cex = 1.8, adj = 0)
+  text(-.55, .65, "Gender", cex = 2, font = 2,
+       adj = 0, offset = 0)</p>
+
+                <img src="./The R Bootcamp - Lerne Data Science mit R_files/titanic_base.png" style="max-width:600px;padding-top:10px">
+
+                <br><br>
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SENTIMENT SENTIMENT SENTIMENT SENTIMENT SENTIMENT SENTIMENT SENTIMENT -->
+  <div class="portfolio-modal modal fade" id="sentiment" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" src="./The R Bootcamp - Lerne Data Science mit R_files/emoji.png" alt="">
+                <h2 class="text-uppercase">Sentiment</h2>
+                <p class="item-intro text-muted">Analyse sentiment using <a class="pckg" target="_blank" href="https://www.tidytextmining.com/">tidytext</a></p>
+
+                <p class="text-muted entry"> Sentiment analysis is a powerful tool with diverse areas of application that allows one to assess the affective content of pieces of text. For example, say you are interested in the impact of a novel compaign targeted at improving your companies image. One way to track the success of your compaign would be to analyze the sentiment that customers express on social media posts or product reviews.</p>
+
+                <p class="head">R is great for natural language processing</p>
+                <p class="text-muted entry"> Turns out that R has a number of tidyverse-related packages that make carrying out such analyses surprisingly easy. The packages <a class="pckg" target="_blank" href="https://cran.r-project.org/package=xml2">xml2</a> and <a class="pckg" target="_blank" href="https://cran.r-project.org/package=rvest">rvest</a> help you pull any kind of information from the internet and, once text is imported into R, the <a class="pckg" target="_blank" href="https://cran.r-project.org/package=tidytext">tidytext</a> package allows you to very efficiently perform many natural langugage processing tasks including sentiment analysis.
+
+                </p><p class="head">Sentiment of Swiss companies</p>
+                <p class="text-muted entry">The example below illustrates the ease of conducting sentiment analysis of text available online. The analysis first downloads the English Wikipedia pages of the twelve highest-grossing Swiss companies. Then, in just five lines, the code computes the average sentiment of each company based on the words available in the respective articles.</p>
+
+                <p class="code">  # 0. load packages
+  require(tidyverse)
+  require(xml2)
+  require(rvest)
+  require(tidytext)
+
+  # 1. get website urls
+  companies &lt;- c(
+    "Glencore", "Vitol", "Trafigura",
+    "Mercuria_Energy_Group", "Nestlé",
+    "Gunvor_(company)", "Hoffmann-La_Roche",
+    "Novartis", "ABB_(company)",
+    "Coop_(Switzerland)", "Migros",
+    "LafargeHolcim")
+  urls &lt;- paste0("https://en.wikipedia.org/wiki/",
+                 companies)
+
+  # 2. read Wikipedia articles
+  texts &lt;- map(urls, function(x){
+    x %&gt;% read_html() %&gt;%
+    html_node("body") %&gt;%
+    html_text()})
+  texts&lt;- tibble(company = companies,
+                 text = unlist(texts))</p>
+
+                <p class="code_img"><img src="./The R Bootcamp - Lerne Data Science mit R_files/texts.png" style="max-width:600px;padding-top:10px"></p>
+                <p class="code">  # 3. get sentiments using tidytext
+  sentiment &lt;- texts %&gt;%
+    unnest_tokens(word, text) %&gt;%
+    inner_join(get_sentiments("afinn")) %&gt;%
+    group_by(company) %&gt;%
+    summarize(sentiment = mean(score))</p>
+                <p class="code_img"><img src="./The R Bootcamp - Lerne Data Science mit R_files/sentiment.png" style="align:left;max-width:600px;max-height:300px;padding-top:10px"></p>
+                <br><br>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MARKDOWN MARKDOWN MARKDOWN MARKDOWN MARKDOWN MARKDOWN MARKDOWN -->
+  <div class="portfolio-modal modal fade" id="markdown" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <img class="img-fluid d-block mx-auto" src="./The R Bootcamp - Lerne Data Science mit R_files/markdown.png" alt="">
+                <h2 class="text-uppercase">Dynamic Reports</h2>
+                <p class="item-intro text-muted">created  easily using <a class="pckg" target="_blank" href="https://rmarkdown.rstudio.com/">tidytext</a></p>
+
+                <p class="text-muted entry">The critical, final stage of any analysis is communication. In one way or another, the collected insights must find their way into a document or presentation, may for it be a periodical report or a research project. This achieved by transferring the numerical results and figures into another software used for creating the report by hand. Clearly, however, this is unnecessarily tedious, inflexible, and prone to errors. That is, if you knew R Markdown.</p>
+
+                <p class="head">What is R Markdown?</p>
+                <p class="text-muted entry"> R Markdown is an extension to Markdown, a lightweight markup language (https://en.wikipedia.org/wiki/Markdown). R Markdown provides you with a very simple syntax for creating and formatting documents that allows you to combine your R analysis code, the output that it produces, and plain text surrounding analysis. This means that when using R Markdown there is no more copy and pasting, everything is in one place.</p>
+
+                <p class="head">Creating dynamic reports with R Markdown</p>
+                <p class="text-muted entry"> Using R Markdown has loads of advantages. The most important one is that your documents become reproducible and dynamic. When you have everything in one place, making changes to the analysis or using a different set of data becomes entirely hassle-free. All you need to do is to make these changes and then re-”knit” the document, which will automatically re-create your document with all changes incorporated. Another benefit is that you can be sure your document reflects with 100% accuracy the results of your analysis. Typos in any of the important numbers? Not possible.</p>
+
+                <p class="head">R Markdown is amazingly versatile</p>
+                <p class="text-muted entry"> We rely heavily on R Markdown to create the diverse materials for our Bootcamps. All slides used for our presentations are entirely created using R Markdown, and so are documents that guide through the coding exercises. Both elements we produce as .html files so that our materials can be made accessible online. See, for instance, our slides on <a href="https://therbootcamp.github.io/ML_2019May/_sessions/WhatIsML/WhatIsML.html">What is Machine Learning?</a> or our exercise on <a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Wrangling/Wrangling_practical.html">Data Wrangling</a> (includes solutions). However, you can use R Markdown to generate many different types of formats including nicely formatted PDF or Word documents.</p>
+
+                <p class="text-muted entry">Want to learn more about R Markdown, and reporting using R in general? Check out the freely available book <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown - The Definitive Guide</a>, or join our course on Reporting with R, which we hope offer in the near future.</p>
+                <br><br>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE
+  ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE
+  ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE
+  ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE
+  -->
+
+  <!--   ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE ARCHIVE  -->
+  <div class="course-modal modal fade" id="arxiv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Offene Materialien</h2>
+                <p class="item-intro text-muted"> Im Sinne von R's offener Philosophie sind die Materialien unserer Kurse öffentlich zugänglich. Entdecken Sie unten die Materialien unserer vergangenen Kurse.</p>
+                <br>
+
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/0.png" alt="">
+                <h4 style="padding:0px;margin:0px">Einführung in die moderne Datenanalyse mit R</h4>
+                <p class="item-intro text-muted" style="margin-bottom:20px">Starte deine Reise in die Welt der Datenanalyse mit R</p>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/I2R_2020Mar/">März 2020 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/I2R_2020Feb/">Februar 2020 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/I2R_2019Nov/">November 2019 | 2-day</a><br>
+
+                <br><br><br>
+
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/1.png" alt="">
+                <h4 style="padding:0px;margin:0px">Explorative Datenanalyse</h4>
+                <p class="item-intro text-muted" style="margin-bottom:20px">Exploriere und visualisiere Daten mit R</p>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/EDA_2020Feb/">February 2020 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/R4DS_2019Feb/">February 2019 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/Intro2DataScience_2018Oct/">October 2018 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/BaselRBootcamp_2018July">July 2018 | 4-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/BaselRBootcamp_2018April/schedule">April 2018 | 4-day</a><br>
+
+                <br><br><br>
+
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/2.png" alt="">
+                <h4 style="padding:0px;margin:0px">Statistics with R</h4>
+                <p class="item-intro text-muted" style="margin-bottom:20px">Triff datenbasierte Entscheidungen mit R</p>
+
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/SwR_2019Apr/">April 2019 | 2-day</a><br>
+
+                <br><br><br>
+
+                <img class="img-fluid d-block mx-auto" style="margin-bottom:20px" src="./The R Bootcamp - Lerne Data Science mit R_files/3.png" alt="">
+                <h4 style="padding:0px;margin:0px">Machine Learning with R</h4>
+                <p class="item-intro text-muted" style="margin-bottom:20px">Lerne mit R prädiktive Algorithmen zu erstellen</p>
+
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/ML_2019Oct/">October 2019 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/ML_2019May/">May 2019 | 2-day</a><br>
+                <a class="arxiv" target="_blank" href="https://therbootcamp.github.io/appliedML_2019Jan/">January 2019 | 2-day</a><br>
+
+                <br><br>
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS
+  TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS
+  TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS
+  TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS
+  -->
+
+
+  <!-- TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS TERMS -->
+  <div class="portfolio-modal modal fade" id="terms" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Terms of Use</h2>
+                <br>
+                <p class="text-muted" align="center">13 June 2019</p>
+                <p class="head">Agreement to terms</p>
+                <p class="text-muted entry">You agree that by accessing the Site. you have read, understood, and agreed to be bound by all of these Terms of Use. Supplementary terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. You will be deemed to have been made aware of and have accepted the changes in any revised Terms of Use by your continued use of the Site.</p>
+
+                <p class="head">License</p>
+                <p class="text-muted entry">
+                Unless otherwise indicated, the Site and its contents are licensed under the Creative <a href="http://creativecommons.org/licenses/by/4.0/">Commons Attribution 4.0</a> licensing terms. If you are interested in using content on this size, please take a moment to read the full <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a> licensing terms.
+
+                  </p><p align="center">
+                    <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">
+                      <img src="./The R Bootcamp - Lerne Data Science mit R_files/cc.png">
+                      <img src="./The R Bootcamp - Lerne Data Science mit R_files/by.png">
+                      <img src="./The R Bootcamp - Lerne Data Science mit R_files/sa.png">
+                    </a>
+                  </p>
+                <p></p>
+
+                <p class="head">Third-party content</p>
+                <p class="text-muted entry">
+                The site may contain links to other websites and conent belonging to third parties. Such websites and content are not investigated by us and we are not responsible for any third-party websites or content accessed through the Site.
+                </p>
+
+                <p class="head">Term and termination</p>
+                <p class="text-muted entry">
+                  These Terms of Use shall remain in full force and effect while you use the Site.
+                </p>
+
+                <p class="head">Modifications</p>
+                <p class="text-muted entry">
+                We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Site. We also reserve the right to modify or discontinue all or part of the Site without notice at any time.
+                </p>
+
+                <p class="head">Contact us</p>
+                <p class="text-muted entry">
+                In order to resolve complaint regarding the Site or to receive further information regarding use of the site, please contuct us at:
+                <br><br>
+                <b>
+                The R Bootcamp<br>
+                Faculty of Psychology<br>
+                Missionstrasse 64A<br>
+                CH-4055 Basel<br>
+                <a data-dismiss="modal" href="http://localhost:3000/#contact">Mail</a>
+                </b>
+                </p>
+
+                  <br><br>
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY -->
+  <div class="portfolio-modal modal fade" id="privacy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Privacy</h2>
+                <br>
+                <p class="text-muted" align="center">13 June 2019</p>
+
+                <p class="text-muted entry">This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.</p>
+
+                <p class="head">Information collection and use</p>
+                <p class="text-muted entry">
+                  While using our Site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to your name.
+                </p>
+
+                <p class="head">Log data</p>
+                <p class="text-muted entry">
+                  Like many site operators, we collect information that your browser sends whenever you visit our Site.  This Log Data may include information such as your computer's Internet Protocol address, browser type, browser version, the pages of our Site that you visit, the time and date of your visit, the time spent on those pages and other statistics. In addition, we may use third party services such as Google Analytics that collect, monitor and analyze this data.
+                </p>
+
+                <p class="head">Communications</p>
+                <p class="text-muted entry">
+                  We may use your Personal Information to contact you with newsletters, marketing or promotional materials and other information pertaining to our training and consultinig services.
+                </p>
+
+                <p class="head">Cookies</p>
+                <p class="text-muted entry">
+                  Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive. Like many sites, we use "cookies" to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.
+                </p>
+
+                <p class="head">Securities</p>
+                <p class="text-muted entry">
+                  The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.
+                </p>
+
+                <p class="head">Changes to this privacy policy</p>
+                <p class="text-muted entry">
+                  This Privacy Policy is effective and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on this page.
+
+                  We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.
+                </p>
+
+                <p class="head">Contact us</p>
+                <p class="text-muted entry">
+                In order to resolve complaint regarding the Site or to receive further information regarding use of the site, please contact us at:
+                <br><br>
+                <b>
+                The R Bootcamp<br>
+                Faculty of Psychology<br>
+                Missionstrasse 64A<br>
+                CH-4055 Basel<br>
+                <a data-dismiss="modal" href="http://localhost:3000/contact">Mail</a>
+                </b>
+                </p>
+
+                  <br><br>
+
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/jquery.min.js"></script>
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/jquery.easing.min.js"></script>
+
+  <!-- Contact form JavaScript -->
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/jqBootstrapValidation.js"></script>
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="./The R Bootcamp - Lerne Data Science mit R_files/agency.min.js"></script>
+
+  <!-- PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY PRIVACY -->
+  <script>
+    var i2r = document.getElementById("i2r");
+    i2r.innerHTML = i2r_text;
+    i2r.href = i2r_link;
+    i2r.style.fontWeight = ml_font;
+    var expl = document.getElementById("expl");
+    expl.innerHTML = expl_text;
+    expl.href = expl_link;
+    expl.style.fontWeight = expl_font;
+    var stat = document.getElementById("stat");
+    stat.innerHTML = stat_text;
+    stat.href = stat_link;
+    stat.style.fontWeight = stat_font;
+    var ml = document.getElementById("ml");
+    ml.innerHTML = ml_text;
+    ml.href = ml_link;
+    ml.style.fontWeight = ml_font;
+    var rep = document.getElementById("rep");
+    rep.innerHTML = rep_text;
+    rep.href = rep_link;
+    rep.style.fontWeight = rep_font;
+  </script>
+
+
+
+
+</body></html>

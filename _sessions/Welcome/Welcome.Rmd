@@ -1,0 +1,277 @@
+---
+title: "Willkommen"
+author: "Maschinelles Lernen mit R<br>
+  <a href='https://therbootcamp.github.io'>
+    The R Bootcamp
+  </a>
+  <br>
+  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "April 2020"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+      Maschinelles Lernen mit R | April 2020
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(width=110)
+options(digits = 4)
+
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+
+.pull-left45[
+<br><br><br><br><br>
+#  Agenda und Materialien
+
+Klicke auf <high>"....running..."</high> auf unserer Website!
+
+<font style="font-size:28px"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font>
+
+]
+
+.pull-right5[
+
+<br><br>
+<iframe src="https://therbootcamp.github.io/ML_2020Apr/" width="500" height="500"></iframe>
+
+]
+
+
+---
+
+
+
+
+.pull-left6[
+
+<br><br><br><br><br>
+
+# Ziel
+
+>###Das Ziel dieses Kurses ist Euch den kompetenten Umgang mit Methoden des maschinellen Lernens und deren Implementierung zu vermitteln. 
+
+]
+
+.pull-right4[
+
+<br><br><br><br>
+<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/target.png" height="350"></p>
+
+]
+
+
+---
+
+
+.pull-left4[
+
+<br>
+# Agenda 
+
+<ul>
+  <li class="m1"><span><high>Workshop</high></span></li>
+  <ul class="level">
+    <li><span>3 Blöcke zu Fundamentals: Fitting, Predicting, Optimizing</span></li>
+    <li><span>1 Block zu Unsupervised Learning</span></li>
+    <li><span>2 Blöcke zu praktischen Überlegungen</span></li>
+  </ul><br>
+  <li class="m2"><span><high>Block</high>
+  <ul class="level">
+    <li><span>Folien-basierte Einführung</span></li>
+    <li><span>Viele Übungen</span></li>
+    <li><span>Interaktive Zusammenfassung</span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right45[
+<br><br>
+<img src="image/schedule.png" height="525" align="center">
+
+]
+
+
+---
+
+
+# Einführung
+
+.pull-left45[
+<br2>
+
+<ul>
+  <li class="m1"><span><high>Einführung</high>
+  <br><br>
+  <ul class="level">
+    <li><span>30-45 min</span></li>
+    <li><span>Konzepte & Code Beispiele</span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Materialien</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Immer <a href="https://therbootcamp.github.io/ML_2020Apr/">online verfügbar</a></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right55[
+
+<p align="center">
+<img src="image/present.jpg" style="width:350px">
+<br>
+<font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
+</p>
+
+]
+
+
+---
+
+.pull-left45[
+
+# Übungen
+
+
+<ul>
+  <li class="m1"><span><high>Selber Programmieren</high>
+  <br><br>
+  <ul class="level">
+    <li><span>20 - 50 Aufgaben</span></li>
+    <li><span>Zu Beginn einfach dann zunehmend schwieriger.</span></li>
+    <li><span>Folgt Eurem eigenen Tempo.</span></li>
+    <li><span>Antworten kommen später.</span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+
+
+
+.pull-right5[
+<br>
+
+  <iframe src="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
+
+  Beispiel:<a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html"> Fitting </a>
+
+]
+
+---
+
+# Cheatsheets
+
+<table width="100%" style="cellspacing:0; cellpadding:0; border:none">
+  <tr>    
+  <td>
+  <p align = 'center'>RStudio<br><br>
+  <a href="image/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="image/rstudio.png" height="180"></a></p>
+  </td>
+ 
+  <td>
+   <p align = 'center'>Base R<br><br>
+  <a href="image/base-r.pdf"><img border="0" alt="W3Schools" src="image/baser.png" height="180"></a></p>
+  </td>  
+  
+  <td> 
+   <p align = 'center'>Data Import<br><br>
+  <a href="image/data-import.pdf" download><img border="0" alt="W3Schools" src="image/import.png" height="180"></a></p>
+  </td>
+  
+  <td>
+  <p align = 'center'>Data Wrangling<br><br>
+  <a href="image/data-transformation.pdf"><img border="0" alt="W3Schools" src="image/wrangling.png" height="180"></a></p>
+  </td>
+
+  <td>
+  <p align = 'center'>Data Visualization<br><br>
+  <a href="image/data-visualization-2.1.pdf"><img border="0" alt="W3Schools" src="image/plotting.png" height="180" ></a></p>
+  </td>
+  
+
+  </tr>
+</table>
+<br>
+
+---
+
+# Vorstellung
+
+.pull-left5[
+
+<ul>
+  <li class="m1"><span>Wie heisst Du?</span></li>
+  <li class="m2"><span>Was ist dein Beruf?</span></li>
+  <li class="m3"><span>Hast du Programmiererfahrung mit R oder anderen Programmiersprachen?</span></li>
+  <li class="m4"><span>Wieso möchtest Du R lernen?</span></li>
+  <li class="m5"><span>Kaffee oder Tee?</span></li>
+  <li class="m6"><span>Bier oder Wein?</span></li>
+  <li class="m7"><span>Berlin oder Paris?</span></li>
+</ul>
+
+]
+
+.pull-right45[
+
+<p align="center">
+<img src="image/vorstellung.jpg" height="360px">
+<br>
+<font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
+</p>
+
+]
+
+---
+class: middle, center
+
+<h1><a href=https://therbootcamp.github.io/ML_2020Apr/index.html>Agenda</a></h1>

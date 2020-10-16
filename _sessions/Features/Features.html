@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Features</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Features
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+      Maschinelles Lernen mit R | April 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+
+.pull-left45[
+
+# Feature Probleme
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Zu viele Features&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Fluch der &lt;high&gt;Dimensionalität&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Feature &lt;high&gt;Wichtigkeit&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Falsche Features&lt;/b&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Skalierung&lt;/high&gt; der Features&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Korrelation&lt;/high&gt; der Features&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Qualität&lt;/high&gt; der Features&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Neue Features kreieren&lt;/b&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;"Engineerig"&lt;/high&gt; der Features&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="image/dumbdata.png" height = 500px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/1838/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Fluch der Dimensionalität
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Dichte&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Die Menge der Fälle, die notwendig sind um den &lt;high&gt;Datenraum abzudecken&lt;/high&gt; steigt exponentiell mit der Menge der Features.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Redundanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Redundanz zwischen den Features steigt i.a.R. mit der Anzahl der Features, was zu &lt;high&gt;Unsicherheiten&lt;/high&gt; in der Schätzung führt.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Effizienz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Mit der Menge der Feature steigt i.a.R die Anzahl der &lt;high&gt;Parameter&lt;/high&gt; und damit auch i.a.R die benötigten &lt;high&gt;komputationalen Ressourcen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="image/cod.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.freecodecamp.org/the-curse-of-dimensionality-how-we-can-save-big-data-from-itself-d9fa0f872335?gi=6e6735e00188"&gt;medium.freecodecamp.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+
+---
+
+# Wie Dimensionalität reduzieren?
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Manuelle Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Features können manuell auf Basis &lt;high&gt;statistischer oder theoretischer Gesichtspunkte&lt;/high&gt; ausgewählt werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Automatische Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Verwende &lt;high&gt;Modelle&lt;/high&gt; die automatisch Features selegieren, z.B., Lasso Regression, oder Algorithmen für Featureselektion&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Automatische Reduktion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Komprimiere die Dimensionalität&lt;/high&gt; mit Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA).&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/highd.jpeg" height=350&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href=""&gt;Interstellar&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Feature Wichtigkeit
+
+.pull-left4[
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Feature Wichtigkeit ist ein Mass für die &lt;high&gt;Bedeutung eines Features für Fit/Vorhersage der Daten&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; berechnet die Feature Wichtigkeit &lt;high&gt;Modell-spezifisch und skaliert&lt;/high&gt; sie auf Werte innerhalb &lt;mono&gt;[0, 100]&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Strategien&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;1-Feature&lt;/high&gt; Modelle (z.B. &lt;mono&gt;LOESS&lt;/mono&gt;)&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Loss durch &lt;high&gt;Scrambling&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Wichtigkeit in &lt;high&gt;komplexen Modellen&lt;/high&gt; (z.B. Random Forest)&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;etc.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right5[
+
+```r
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `varImp()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;varImp()&lt;/mono&gt; Funktion liefert &lt;high&gt;Modell-spezifische Schätzungen&lt;/high&gt; der Feature Wichtigkeit&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+```r
+varImp(einkommen_lm)
+```
+
+
+```
+lm variable importance
+
+        Overall
+alter   100.000
+essen    53.793
+glueck   32.530
+alkohol  29.211
+kinder    5.732
+tattoos   4.987
+fitness   4.689
+groesse   3.463
+```
+
+]
+
+.pull-right5[
+
+```r
+# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+plot(varImp(einkommen_lm))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+.pull-left35[
+
+# `rfe()`
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die rekursive Featureselektion &lt;mono&gt;rfe()&lt;/mono&gt; verwendet &lt;high&gt;Cross-Validation&lt;/high&gt; um die besten &lt;i&gt;n&lt;/i&gt; Features zu identifizieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Kandidatenset&lt;/high&gt; &lt;mono&gt;n = [2, 3, 5, 10]&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Wiederholtes &lt;high&gt;Resampling&lt;/high&gt; und Aufteilen der Daten.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Evaluiere &lt;high&gt;Vorhersageleistung&lt;/high&gt; für jeweils die besten &lt;mono&gt;n&lt;/mono&gt; Features.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Selegiere bestes &lt;mono&gt;n&lt;/mono&gt; auf Basis der &lt;high&gt;aggregierten Vorhersageleistung&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Rekursive Featureselektion
+rfe(x = ..., y = ..., 
+    sizes = c(3, 4, 5, 10), # Kandidaten für N
+    rfeControl = rfeControl(functions = lmFuncs))
+```
+
+
+```
+
+Recursive feature selection
+
+Outer resampling method: Bootstrapped (25 reps) 
+
+Resampling performance over subset size:
+
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
+         3 0.392    0.853 0.312 0.0125     0.0105 0.00987         
+         4 0.364    0.873 0.289 0.0123     0.0104 0.01019        *
+         5 0.365    0.872 0.290 0.0127     0.0109 0.01087         
+        10 0.367    0.871 0.292 0.0125     0.0109 0.01052         
+        14 0.367    0.871 0.292 0.0125     0.0110 0.01046         
+
+The top 4 variables (out of 4):
+   alter, essen, alkohol, glueck
+```
+
+]
+
+---
+
+# Principal component analysis
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Das &lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Verwendet ein lineares Modell (Regression) um die Features in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt; zu re-repräsentieren.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum wird so gewählt, dass er die &lt;high&gt;maximal mögliche Varianz&lt;/high&gt; an den ursprünglichen Features präserviert.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/pca.png" height=350&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://blog.umetrics.com/what-is-principal-component-analysis-pca-and-how-it-is-used
+"&gt;blog.umetrics.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# `preProc = c('pca')`
+
+.pull-left45[
+
+
+```r
+# Trainiere Modell OHNE PCA
+model = train(einkommen ~ ., method = 'lm', 
+           data = bas_train)
+
+plot(varImp(model))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right45[
+
+
+```r
+# Trainiere Modell MIT PCA
+model = train(einkommen ~ ., method = 'lm', 
+              data = bas_train,
+              preProc = c('pca'))
+plot(varImp(model))
+```
+
+&lt;img src="Features_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Andere, einfache Feature Probleme
+
+.pull-left45[
+
+### Multikollinearität
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Multikollinearität bedeutet, dass Features zu stark korreliert sind, was in schädlicher Redundanz, &lt;high&gt;instabilen Fits resultiert&lt;/high&gt;, und zu &lt;high&gt;schlechteren Vorhersagen führt&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+```r
+# Identifiziere redundante Features
+findCorrelation(cor(basel))
+```
+
+```
+[1] 5
+```
+
+```r
+# Entferne redundante Features
+remove &lt;- findCorrelation(cor(basel))
+basel &lt;- basel %&gt;%
+  select(-remove)
+```
+
+]
+
+.pull-right45[
+
+### Ungleiche oder zu niedrige Varianz
+
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Ungleiche Varianzen &lt;high&gt;verzerren&lt;/high&gt; Methoden, die gleiche Varianz erwarten (z.B. LASSO).&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+```r
+# Standardisiere Features
+train(..., preProc = c("center", "scale"))
+```
+
+&lt;ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Features ohne "Varianz" tragen nicht zur Vorhersage bei, aber &lt;high&gt;vergrössern die Komplexität des Modells.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+```r
+# Identifiziere Feature ohne Varianz
+nearZeroVar(basel)
+```
+
+```
+integer(0)
+```
+
+]
+
+
+---
+
+# Schwierige Feature Probleme
+
+&lt;br&gt;
+.pull-left35[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Triviale Features&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Erfolgreiche Vorhersage bedeutet nicht, dass ein &lt;high&gt;bedeutsames Muster&lt;/high&gt; identifiziert wurde&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Fehlende Features&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Erfolgreiche Vorhersage basiert i.d.R. auf der Entwicklung &lt;high&gt;neuer, relvanterer Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right55[
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/here_to_help.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://xkcd.com/1831/"&gt;xkcd.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Triviale Features
+
+.pull-left3[
+
+&lt;u&gt;&lt;a href="https://www.gwern.net/Tanks"&gt;Ein urban myth?!&lt;/a&gt;&lt;/u&gt;
+
+"The Army trained a program to differentiate American tanks from Russian tanks with 100% accuracy. Only later did analysts realize that the American tanks had been photographed on a sunny day and the Russian tanks had been photographed on a cloudy day. The computer had learned to detect brightness."&lt;br&gt;&lt;br&gt;
+New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-sexual-orientation-study.html" style="font-size:8px"&gt;[Full text]&lt;/a&gt;
+
+]
+
+.pull-right6[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/tank.jpg"&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://en.wikipedia.org/wiki/British_heavy_tanks_of_World_War_I#/media/File:Mark_I_series_tank.jpg"&gt;wikipedia.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+
+
+]
+
+
+---
+
+# Triviale Features
+
+In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausgänge der Präsidentschaftswahlen in 50 Staaten voraus, nachdem er dies für 49 Staaten in 2008 getan hat. &lt;high&gt;Wie ist dieser Erfolg zu bewerten?&lt;/high&gt;
+
+.pull-left5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/elect2008.png" height = 360px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.vox.com/policy-and-politics/2016/11/8/13563106/election-map-historical-vote"&gt;vox.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/elect2012.png" height = 360px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.vox.com/policy-and-politics/2016/11/8/13563106/election-map-historical-vote"&gt;vox.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+
+---
+
+# (Immer!) fehlende Features
+
+
+.pull-left85[
+
+&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? &lt;high&gt;Easily the most important factor is the features used&lt;/high&gt;."&lt;/i&gt;
+
+[Pedro Domingos](https://en.wikipedia.org/wiki/Pedro_Domingos)
+
+&lt;br&gt;
+
+&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] &lt;high&gt;We spent most of our efforts in feature engineering&lt;/high&gt;. [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+
+[Xavier Conort]()
+
+&lt;br&gt;
+
+&lt;i&gt;"Coming up with features is difficult, time-consuming, requires expert knowledge. &lt;high&gt;Applied machine learning is basically feature engineering&lt;/high&gt;."&lt;/i&gt;
+
+[Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)
+
+]
+
+---
+
+# Feature Engineering
+
+.pull-left45[
+
+&lt;br&gt;
+
+&lt;i&gt;“Feature engineering is the process of &lt;high&gt;transforming raw data&lt;/high&gt; into features that &lt;high&gt;better represent the underlying problem&lt;/high&gt; to the predictive models, resulting in improved model accuracy on unseen data.”&lt;/i&gt;
+
+[Jason Brownlee]()
+
+&lt;br&gt;
+
+&lt;i&gt;"...while avoiding the &lt;high&gt;curse of dimensionality&lt;/high&gt;."&lt;/i&gt;
+
+[duw]()
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/albert.jpeg"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://www.open.edu/openlearncreate/mod/oucontent/view.php?id=80245&amp;section=1"&gt;open.edu&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Features/Features_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

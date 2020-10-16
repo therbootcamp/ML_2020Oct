@@ -1,0 +1,715 @@
+---
+title: "Predicting"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>The R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE, message=F}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)
+
+```
+
+<p align="center">
+<img width="100%" src="https://cdn-images-1.medium.com/max/1200/0*F0y1bmOEzCFCcPE_" margin=0><br>
+<font style="font-size:10px">from [Medium.com](https://Medium.com/)</font>
+</p>
+
+# {.tabset}
+
+
+## Überblick
+
+In diesem Practical wirst modellbasierte Vorhersagen generieren und die Modelle anhand der Qualität dieser messen. 
+
+Am Ende des Practicals wirst du wissen wie man...
+
+1. Regression, Decision tree, und Random forest an Trainingsdaten fitted. 
+2. Modelle anhand der Traningsdaten und anhand der Testdaten evaluiert und vergleicht.
+
+## Aufgaben
+
+### A - Setup
+
+1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Predicting Practical" als Kommentare an den Anfang des Skripts.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Predicting Practical
+```
+
+3. Speichere das neue Skript unter dem Namen `predicting_practical.R` im `2_Code` Ordner.
+
+4. Lade die Pakete `tidyverse`, `caret`, `party`, `partykit`.
+
+```{r}
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)
+```
+
+
+5. Definiere wie zuvor ein `ctrl_none` Objekt mit dem wir im Traning die Samplingmethode auf `none` setzen. Erst in der nächsten Session beginnen wir dies zu ändern.
+
+```{r echo = TRUE}
+# Setze Samplingmethode auf none
+ctrl_none <- trainControl(method = "none") 
+```
+
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Datensatz 1: <b>College Abschlussraten</b>
+</p>
+
+
+### B - Lade die `graduation` Datensätze
+
+1. Verwende die `read_csv()` Funktion um die Datensätze `graduation_train.csv` und `graduation_test.csv` einzulesen.
+
+```{r, echo = T, eval = T, message = F}
+# Lese Daten ein
+graduation_train <- read_csv(file = "1_Data/graduation_train.csv")
+graduation_test <- read_csv(file = "1_Data/graduation_test.csv")
+```
+
+2. Printe die Datensätze. 
+
+3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
+
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
+
+```{r, echo = TRUE}
+# Konvertiere alle character zu factor
+graduation_train <- graduation_train %>%
+          mutate_if(is.character, factor)
+
+graduation_test <- graduation_test %>%
+          mutate_if(is.character, factor)
+```
+
+
+### C - Fitting
+
+#### Regression
+
+1. Verwende `train()` um ein Regressionsmodell namens `abschluss_glm` zu fitten, das die `Abschlussrate` als Funktion aller anderen im Datensatz enthaltenen Features vorhersagt. D.h.,...
+
+- setze das `form` Argument auf `Abschlussrate ~ .`.
+- setze das `data` Argument auf `graduation_train`.
+- setze das `method` Argument auf `method = "glm"`.
+- setze das `trControl` Argument auf `ctrl_none` (siehe oben).
+
+```{r, echo = TRUE, eval = FALSE}
+abschluss_glm <- train(form = XX ~ .,
+                  data = XX,
+                  method = "XX",
+                  trControl = ctrl_none)
+```
+
+
+```{r}
+abschluss_glm <- train(form = Abschlussrate ~ .,
+                  data = graduation_train,
+                  method = "glm",
+                  trControl = ctrl_none)
+```
+
+3. Exploriere `abschluss_glm` indem du `abschluss_glm$finalModel` printest und `summary()` auf das Fit-Objekt anwendest. Wie beurteilst du die Outputs?
+
+```{r, eval = FALSE, echo = TRUE}
+abschluss_glm$XX
+summary(XX)
+```
+
+```{r}
+abschluss_glm$finalModel
+summary(abschluss_glm)
+```
+
+4. Mittels `predict()` generiere die gefitteten Werte von `abschluss_glm` und speichere sie als `glm_fit` ab. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die gefitteten Werte
+glm_fit <- predict(XX)
+```
+
+```{r}
+glm_fit <- predict(abschluss_glm)
+```
+
+5. Printe `glm_fit` und kriere ein Histogramm der Werte mittels `hist()`. Sind die Werte in einer plausiblen Region?
+
+```{r, echo = TRUE, eval = FALSE}
+# Inspeziere die gefitteten Werte
+XX
+hist(XX)
+```
+
+```{r}
+glm_fit[1:10]
+hist(glm_fit)
+```
+
+#### Decision Trees
+
+6. Verwende `train()` um einen Decision Tree namens `abschluss_rpart` zu fitten, welcher die `Abschlussrate` als Funktion aller anderen im Datensatz enthaltenen Features vorhersagt. D.h.,...
+
+- setze das `form` Argument auf `Abschlussrate ~ .`.
+- setze das `data` Argument auf  `graduation_train`.
+- setze das `method` Argument auf `method = "rpart"`..
+- setze das `trControl` Argument auf your `ctrl_none`..
+- setze das `tuneGrid` Argument auf `cp = 0.01`. 
+
+```{r, echo = TRUE, eval = FALSE}
+abschluss_rpart <- train(form = XX ~ .,
+                         data = XX,
+                         method = "XX",
+                         trControl = XX,
+                         tuneGrid = expand.grid(cp = XX)) 
+```
+
+```{r}
+abschluss_rpart <- train(form = Abschlussrate ~ .,
+                  data = graduation_train,
+                  method = "rpart",
+                  trControl = ctrl_none,
+                  tuneGrid = expand.grid(cp = .01))
+```
+
+7. Exploriere `abschluss_rpart` indem du `abschluss_rpart$finalModel` printest und mit `plot(as.party(abschluss_rpart$finalModel))` den Decision Tree plottest. Wie beurteilst du die Outputs?
+
+```{r}
+abschluss_rpart$finalModel
+plot(as.party(abschluss_rpart$finalModel))
+```
+
+8. Mittels `predict()` generiere die gefitteten Werte von `abschluss_rpart` und speichere sie als `rpart_fit` ab.
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die gefitteten Werte
+rpart_fit <- predict(XX)
+```
+
+```{r}
+rpart_fit <- predict(abschluss_rpart)
+```
+
+9. Printe `rpart_fit` und kriere ein Histogramm der Werte mittels `hist()`. Sind die Werte in einer plausiblen Region?
+
+```{r, echo = TRUE, eval = FALSE}
+# Inspeziere die gefitteten Werte
+XX
+hist(XX)
+```
+
+```{r}
+rpart_fit[1:10]
+hist(rpart_fit)
+```
+
+#### Random Forests
+
+10. Verwende `train()` um einen Random Forest namens `abschluss_rf` zu fitten, welcher die `Abschlussrate` als Funktion aller anderen im Datensatz enthaltenen Features vorhersagt. D.h.,...
+
+- setze das `form` Argument auf `Abschlussrate ~ .`.
+- setze das `data` Argument auf  `graduation_train`.
+- setze das `method` Argument auf `method = "rf"`.
+- setze das `trControl` Argument auf `ctrl_none`.
+- setze das `tuneGrid` Argument auf `expand.grid(mtry = 2)`. 
+
+```{r, echo = TRUE, eval = FALSE}
+abschluss_rf <- train(form = XX ~ .,   
+                 data = XX,
+                 method = "XX",
+                 trControl = XX,
+                 tuneGrid = expand.grid(mtry = 2))  
+```
+
+```{r}
+abschluss_rf <- train(form = Abschlussrate ~ .,   
+                 data = graduation_train,
+                 method = "rf",
+                 trControl = ctrl_none,
+                 tuneGrid = expand.grid(mtry = 2))  
+```
+
+11. Mittels `predict()` generiere die gefitteten Werte von `abschluss_rf` und speichere sie als `rf_fit` ab.
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die gefitteten Werte
+rf_fit <- predict(XX)
+```
+
+```{r}
+rf_fit <- predict(abschluss_rf)
+```
+
+12. Printe `rf_fit` und kriere ein Histogramm der Werte mittels `hist()`. Sind die Werte in einer plausiblen Region?
+
+```{r, echo = TRUE, eval = FALSE}
+# Inspiziere die gefitteten Werte
+XX
+hist(XX)
+```
+
+```{r}
+rf_fit[1:10]
+hist(rf_fit)
+```
+
+#### Beruteile die Accuracy im Fitting
+
+13. Speichere das Kriterium im **Trainingsdatensatz** (`graduation_train$Abschlussrate`) als eigenes Objekt mit dem Namen `criterion_train` ab. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die Kriteriumswerte im Training
+criterion_train <- XX$XX
+```
+
+```{r}
+criterion_train <- graduation_train$Abschlussrate
+```
+
+14. Verwende `postResample()` um die Fitting Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_train` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_fit`).
+
+```{r, echo = TRUE, eval = FALSE}
+
+# Regression
+postResample(pred = XX, obs = XX)
+
+# Decision Tree
+postResample(pred = XX, obs = XX)
+
+# Random Forest
+postResample(pred = XX, obs = XX)
+```
+
+```{r}
+# Regression
+postResample(pred = glm_fit, obs = criterion_train)
+
+# Decision Trees
+postResample(pred = rpart_fit, obs = criterion_train)
+
+# Random Forests
+postResample(pred = rf_fit, obs = criterion_train)
+```
+
+15. Welches Modell hat den besten Fit?  
+
+
+### D - Prediction Accuracy
+
+1. Verwende `predict()` um für jedes Modell Vorhersagen für die Testdaten zu machen. Hierfür setzt du für das `newdata` Argument den gesamten Testdatensatz `graduation_test` ein. Speichere die Objekte als `glm_pred`, `rpart_pred` und `rf_pred`. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Regression
+glm_pred <- predict(XX, newdata = XX)
+
+# Decision Trees
+rpart_pred <- predict(XX, newdata = XX)
+
+# Random Forests
+rf_pred <- predict(XX, newdata = XX)
+```
+
+```{r}
+# Regression
+glm_pred <- predict(abschluss_glm, newdata = graduation_test)
+
+# Decision Tree
+rpart_pred <- predict(abschluss_rpart, newdata = graduation_test)
+
+# Random Forest
+rf_pred <- predict(abschluss_rf, newdata = graduation_test)
+```
+
+2. Speichere das Kriterium im **Testdatensatz** (`graduation_test$Abschlussrate`) als eigenes Objekt mit dem Namen `criterion_test` ab. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die Kriteriumswerte des Testdatensatzes
+criterion_test <- XX$XX
+```
+
+```{r}
+# Speichere die Kriteriumswerte des Testdatensatzes
+criterion_test <- graduation_test$Abschlussrate
+```
+
+
+3. Verwende wiederum `postResample()` um nun die *Vorhersage* Performanz der drei Modelle zu vergleichen. Setze hierfür das `obs` Argument auf das eben erstellte `criterion_test` und das `pred` Argument auf die gefitteten Werte des jeweiligen Modells (z.B. `glm_pred`).
+
+```{r, echo = TRUE, eval = FALSE}
+# Regression
+postResample(pred = XX, obs = XX)
+
+# Decision Trees
+postResample(pred = XX, obs = XX)
+
+# Random Forests
+postResample(pred = XX, obs = XX)
+```
+
+```{r}
+# Regression
+postResample(pred = glm_pred, obs = criterion_test)
+
+# Decision Trees
+postResample(pred = rpart_pred, obs = criterion_test)
+
+# Random Forests
+postResample(pred = rf_pred, obs = criterion_test)
+```
+
+4. Welches Modell zeigt die beste Vorhersageperformanz?
+
+```{r}
+# Der Random Forest!
+```
+
+5. Vergleiche jeweils die Performanz der Modelle für Training und Test. In welchem Fall sind die Modelle schlechter? Welches Modell zeigt den grössten Unterschied? 
+
+```{r}
+# Der Fit der Regression blieb relativ konstant. Die Performanz des Random
+# hat deutlich abgenommen.
+```
+
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Datensatz 2: <b>Hauspreise King County, Washington</b>
+</p>
+
+### E - Lade die `house` Datensätze
+
+1. Verwende die `read_csv()` Funktion um die Datensätze `house_train.csv` und `house_test.csv` einzulesen.
+
+```{r, echo = T, eval = T, message = F}
+# Lese Daten ein
+house_train <- read_csv(file = "1_Data/house_train.csv")
+house_test <- read_csv(file = "1_Data/house_test.csv")
+```
+
+2. Printe die Datensätze. 
+
+3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
+
+4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
+
+```{r, echo = TRUE}
+# Konvertiere alle character zu factor
+house_train <- house_train %>%
+          mutate_if(is.character, factor)
+
+house_test <- house_test %>%
+          mutate_if(is.character, factor)
+```
+
+
+### F - Modelliere die `house` Daten
+
+1. Fitte eine Regression, einen Decision Tree und einen Random Forest für `house_train.csv` wobei du `Preis` durch alle anderen Features im Datensatz vorherzusagen versuchst.      
+
+```{r}
+# Regression
+preis_glm <- train(form = Preis ~ .,
+                  data = house_train,
+                  method = "glm",
+                  trControl = ctrl_none)
+
+# Decision tree
+preis_rpart <- train(form = Preis ~ .,
+                  data = house_train,
+                  method = "rpart",
+                  trControl = ctrl_none,
+                  tuneGrid = expand.grid(cp = .01)) 
+
+# Random Forest
+preis_rf <- train(form = Preis ~ .,
+                 data = house_train,
+                 method = "rf",
+                 trControl = ctrl_none,
+                 tuneGrid = expand.grid(mtry = 2))
+```
+
+2. Exploriere die Objekte indem du `XX$finalModel` inspizierst und `summary()` anwendest. 
+
+3. Verwende `predict()` um jeweils für die drei Modelle die vorhergesagten Werte separat für den Trainingsdatensatz und für den Testdatensatz zu generieren. Kreiere also drei Objekte mit Namen `XX_fit` und drei Objekte mit Namen `XX_pred`. 
+
+```{r, echo = TRUE, eval = FALSE}
+# Gefittete Werte
+glm_fit <- predict(preis_glm)
+rpart_fit <- predict(preis_rpart)
+rf_fit <- predict(preis_rf)
+
+# Vorhergesagte Werte
+glm_pred <- predict(preis_glm, newdata = house_test)
+rpart_pred <- predict(preis_rpart, newdata = house_test)
+rf_pred <- predict(preis_rf, newdata = house_test)
+
+```
+
+4. Speichere die Kriteriumswerte im Trainings- und Testdatensatz separat als `criterion_train` und `criterion_test` ab. 
+
+```{r}
+# Speichere die Kriteriumswerte
+criterion_train <- house_train$Preis
+criterion_test <- house_test$Preis
+```
+
+6. Verwende `postResample()` um nun die *Fitting* und *Vorhersage* Performanz der drei Modelle zu vergleichen.
+
+```{r}
+# Fitting
+postResample(pred = glm_fit, obs = criterion_train)
+postResample(pred = rpart_fit, obs = criterion_train)
+postResample(pred = rf_fit, obs = criterion_train)
+
+# Prediction
+postResample(pred = glm_pred, obs = criterion_test)
+postResample(pred = rpart_pred, obs = criterion_test)
+postResample(pred = rf_pred, obs = criterion_test)
+```
+
+7. Welches Modell hat die beste Performanz im Fit? Welches in der Vorhersage? Welches zeigt den grössten Unterschied zwischen Fit und Vorhersage?
+
+```{r}
+# Random Forest!
+```
+
+8. Welches Modell würdet ihr nun für den Einsatz in der Praxis empfehlen? Und welche Vorhersagegenauigkeit ist in der Realität zu erwarten?
+
+### X - Challenges: Model Tuning Parameter
+
+1. In allen Decision Trees wurde bisher der Komplexitätsparameter `cp` auf `0.01` gesetzt. Probiere nun aus was passiert, wenn du etwas an ihm drehst. Setze ihn z.B. auf `0.2` und schaue dir dann an wie der Plot des Baums (`plot(as.party(XX_rpart$finalModel))`) sich verändert. Werden die Bäume komplizierter? Wie verändert sich Fit- und Vorhersageperformanz?
+
+2. In allen Random Forests wurde bisher der Paramater `mtry` auf `2` gesetzt. Probiere nun aus was passiert, wenn du etwas an ihm drehst. Setze ihn z.B. auf `5`  und beobachte wie sich Fit- und Vorhersageperformanz, sowie die Zeit, die für das Training des Modells beansprucht wird, verändern.
+
+## Beispiele
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Schritt 0: Pakete laden -----------
+
+library(tidyverse)    
+library(caret)     
+library(partykit)  
+library(party)    
+
+# Schritt 1: Daten laden, aufbereiten und explorieren ----------------------
+
+# Trainingsdaten und Testdaten
+data_train <- read_csv("1_Data/mpg_train.csv")
+data_test <- read_csv("1_Data/mpg_test.csv")
+
+# Konvertiere character zu factor
+data_train <- data_train %>% mutate_if(is.character, factor)
+data_test <- data_test %>% mutate_if(is.character, factor)
+
+# Speichere das Kriterium in Training und Test
+criterion_train <- data_train$hwy
+criterion_test <- data_test$hwy
+
+# Schritt 3: Trainiere Modelle: -----------------------------
+
+# Regression 
+hwy_glm <- train(form = hwy ~ year + cyl + displ,
+                 data = data_train,
+                 method = "glm",
+                 trControl = trainControl(method = "none"))
+
+# Inspiziere gefittete Regression
+hwy_glm$finalModel
+summary(hwy_glm)
+
+# Decision Tree
+hwy_rpart <- train(form = hwy ~ year + cyl + displ,
+                data = data_train,
+                method = "rpart",
+                trControl = trainControl(method = "none"),
+                tuneGrid = expand.grid(cp = .01))
+
+# Inspiziere gefitteten Decision Tree
+hwy_rpart$finalModel
+plot(as.party(hwy_rpart$finalModel))
+
+# Random Forests 
+hwy_rf <- train(form = hwy ~ year + cyl + displ,
+                data = data_train,
+                method = "rf",
+                trControl = trainControl(method = "none"),
+                tuneGrid = expand.grid(mtry = 2))  
+
+# Inspiziere gefitteten Random Forest
+hwy_rf$finalModel
+
+
+# Schritt 4: Evaluiere Fit: -----------------------------
+
+# Speichere gefittete Werte
+glm_fit <- predict(hwy_glm)
+rpart_fit <- predict(hwy_rpart)
+rf_fit <- predict(hwy_rf)
+
+# Evaluiere fit
+postResample(pred = glm_fit, obs = criterion_train)
+postResample(pred = rpart_fit, obs = criterion_train)
+postResample(pred = rf_fit, obs = criterion_train)
+
+# Schritt 5: Evaluiere Vorhersage: -----------------------------
+
+# Speichere vorhergesagte Werte
+glm_pred <- predict(hwy_glm, newdata = data_test)
+rpart_pred <- predict(hwy_rpart, newdata = data_test)
+rf_pred <- predict(hwy_rf, newdata = data_test)
+
+# Evaluiere fit
+postResample(pred = glm_pred, obs = criterion_test)
+postResample(pred = rpart_pred, obs = criterion_test)
+postResample(pred = rf_pred, obs = criterion_test)
+
+```
+
+
+## Datensätze
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+|Datei  |Zeilen | Spalten |
+|:----|:-----|:------|
+|[graduation_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_train.csv)| 500 | 18|
+|[graduation_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_test.csv)| 277 | 18|
+|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/house_train.csv)| 5000 | 21|
+|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/house_test.csv)| 1000 | 21|
+
+
+#### `graduation_train` und `graduation_test`
+
+Die `graduation_train` und `graduation_test` Datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
+
+| Name | Beschreibung |
+|:-------------|:-------------------------------------|
+|Privatuniversitaet| Ja oder Nein |
+|Bewerbungen| Anzahl Bewerbungen |
+|Angenommen| Anzahl angenommene Bewerbungen  |
+|Eingeschrieben| Anzahl eingeschrieben  |
+|Prozent_Top10| Prozent der Studierenden innerhalb Top 10% in High School |
+|Prozent_Top25| Prozent der Studierenden innerhalb Top 25% in High School   |
+|Vollzeit| Anzahl Studierende in Vollzeit  |
+|Teilzeit| Anzahl Studierende in Teilzeit  |
+|Kosten_ausserhalb| Kosten für Studierende aus einem anderen Staat |
+|Kosten_Unterkunft| Kosten für Studierende für Unterkunft und Verpflegung  |
+|Kosten_Buecher| Kosten für Studierende für Bücher  |
+|Kosten_persoenlich| Kosten für Studierende für Persönliches  |
+|Prozent_PhD| Anteil PhDs innerhalb der Dozentenschaft |
+|Prozent_Degree| Anteil Abschlüsse innerhalb der Dozentenschaft |
+|Verhaeltnis_Stud.Doz.| Verhältnis Studierene zu Dozenten  |
+|Prozent_Spenden| Anteil Alumnis, die an das College spenden |
+|Kosten_Student| Ausbildungskosten für das College pro Student |
+|Abschlussrate| Abschlussrate |
+
+
+#### `house_train` and `house_test`
+
+Die `house_train` und `house_test` Datensätze enthalten Hauspreise und -Eigenschaften in der King County in den USA, welches die Stadt Seattle beinhaltet. Quelle der Daten ist [Kaggle](https://www.kaggle.com/harlfoxem/housesalesprediction).
+
+| Name | Beschreibung |
+|:-------------|:-------------------------------------|
+|Preis| Preis des Hauses |
+|Schlafzimmer| Anzahl Schlafzimmer  |
+|Baeder| Anzahl Bäder |
+|Gesamt_sqft| Gesamtfläche des Hauses in square foot |
+|Grundstück_sqft| Fläche des Grundstücks in square foot |
+|Stockwerke| Anzahl Stockwerke |
+|Uferlage| 0 = Nein, 1 = Ja |
+|Besichtigung| Wurde das Haus besichtigt  |
+|Zustand| Wie gut ist der Zustand des Hauses |
+|Einstufung| Einstufung gemäss King County Einstufungssystem |
+|Wohnraum_sqft| Wohnraum des Hauses in square foot|
+|Keller_sqft| Kellerraum des Hauses in square foot |
+|Baujahr| Baujahr |
+|Renovationsjahr| Renovationsjahr |
+|Postleitzahl| Postleitzahl |
+|Breitengrad| Breitengrad |
+|Laengengrad| Längengrad |
+|Gesamt_sqft_2015| Gesamtfläche des Hauses in square foot in 2015 |
+|Grundstück_sqft_2015| Fläche des Grundstücks in square foot in 2015 |
+
+## Funktionen
+
+### Pakete
+
+|Paket| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`caret`|`install.packages("caret")`|
+|`partykit`|`install.packages("partykit")`|
+|`party`|`install.packages("party")`|
+
+### Funktionen
+
+| Funktion | Paket | Beschreibung |
+|:---|:------|:---------------------------------------------|
+| `trainControl()`|`caret`|   Definiere wie das Modell trainiert wird | 
+| `train()`|`caret`|  Trainiere (fitte) ein Modell   |
+| `predict(object, newdata)`|`stats`| Vorhersage des Kriteriumswerts in `newdata` |
+| `postResample()`|`caret`| Evaluiere Performanz in Regressionsfällen   |
+| `confusionMatrix()`|`caret`|   Evaluiere Performanz in Klassifikationsfällen | 
+
+## Materialien
+
+### Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+

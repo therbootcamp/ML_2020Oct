@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Modelle</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Modelle
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+      Maschinelles Lernen mit R | April 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+# There is no free lunch
+
+.pull-left35[
+
+&lt;i&gt;"The no-free-lunch theorem of optimization is an impossibility theorem telling us that a general-purpose, universal optimization strategy is impossible. The only way one strategy can outperform another is if it is specialized to the structure of the specific problem
+under consideration."&lt;/i&gt;
+
+&lt;a href="https://link.springer.com/article/10.1023/A:1021251113462"&gt;Ho &amp; Pepyne, 1997&lt;/a&gt;
+&lt;a href="https://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf"&gt;Wolpert &amp; Macready, 1997&lt;/a&gt;
+
+]
+
+.pull-right55[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/free_lunch.jpg" height=400px width=650px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="http://christianfunnypictures.com/2016/02/theres-no-such-thing-as-a-free-lunch-or-is-there.html"&gt;christianfunnypictures.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+.pull-left4[
+
+# Kenne dein Problem
+
+&lt;u&gt;Bias-Variance Dilemma&lt;/u&gt;
+
+&lt;br&gt;
+
+`$$\large Error = Bias + Variance\;(+ Noise)$$`
+
+
+&lt;ul style="margin-top:40px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Bias&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellannahmen&lt;/high&gt; nicht mit dem Problem übereinstimmen.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Variance&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Ensteht, wenn &lt;high&gt;Modellflexibilität&lt;/high&gt; zu hoch ist.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Noise&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;(Absolut) zufälliges Rauschen.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align="left"&gt;
+  &lt;br&gt;
+  &lt;img src="image/bias_variance.png" height=580px&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+class: center, middle
+
+&lt;h1&gt;&lt;a&gt;Kenne dein Problem&lt;/a&gt;&lt;/h1&gt;
+
+---
+
+.pull-left4[
+# Linear oder Nicht-linear
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Lineare Modelle&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Machen die Annahme, dass die Welt linear ist. Stimmt selten, führt jedoch zu &lt;high&gt;weniger overfitting&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Nicht-lineare Modelle&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Beinhaltet (meist) lineare Modelle als Spezialfall und neigen damit zu &lt;high&gt;mehr overfitting&lt;/high&gt;. Lohnt sich i.A. nur, wenn lineare Modelle das Problem schlecht approximieren. &lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right5[
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  
+&lt;p align = "center"&gt;
+  &lt;img src="image/linearity.png" height=480px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html"&gt;scikit-learn.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+
+
+---
+
+.pull-left45[
+
+# Kernel Trick
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Transformiert ursprünglichen Featurespace in einen neuen, der damit z.B. das Trennen von Klassen ermöglicht.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Verwendet z.B. in &lt;high&gt;Support Vector Machines&lt;/high&gt; (z.B. &lt;mono&gt;method = "svmRadial"&lt;/mono&gt;) meist unter Verwendung einer &lt;high&gt;radial basis function&lt;/high&gt; (rdf).&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+  &lt;img src="image/kernel_bw.png" height=160px&gt;
+&lt;/p&gt;
+
+]
+
+
+.pull-right5[
+
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p align = "center"&gt;
+  &lt;img src="image/linearity.png" height=480px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html"&gt;scikit-learn.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Automatische Featureentwicklung
+
+.pull-left3[
+
+&lt;br&gt;
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Deep learning&lt;/high&gt; (insbesondere Convolutional Neural Networks) sind besonders gut darin, &lt;high&gt;Features selber zu entwickeln&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Das &lt;mono&gt;tensorflow&lt;/mono&gt; Paket bietet Zugang zur mächtigen &lt;high&gt;Tensorflow&lt;/high&gt; Library für Deep Learning von Google.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right6[
+
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/power_of_deeplearning.png"&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://towardsdatascience.com/cnn-application-on-structured-data-automated-feature-extraction-8f2cd28d9a7e"&gt;towardsdatascience.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+class: center, middle
+
+&lt;h1&gt;&lt;a&gt;Sorge für Robustheit&lt;/a&gt;&lt;/h1&gt;
+
+---
+
+# Robustheit
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Es gibt eine Reihe von &lt;high&gt;Tricks&lt;/high&gt; um Modelle robuster zu machen, d.h. um den &lt;i&gt;Variance&lt;/i&gt; Fehler zu minimieren.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/robustness_sel.png" width=350px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://www.istockphoto.com/ch/grafiken/kraftathlet?sort=mostpopular&amp;mediatype=illustration&amp;assetfiletype=eps&amp;phrase=kraftathlet"&gt;istockphoto.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+
+.pull-right55[
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="210"&gt;
+  &lt;col width="210"&gt;
+  &lt;col width="210"&gt;
+&lt;tr&gt;
+  &lt;th&gt;Approach&lt;/th&gt;
+  &lt;th&gt;Implementation&lt;/th&gt;
+  &lt;th&gt;Examples&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Tolerance&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Vergrössert Fehlertoleranz&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;svmRadial&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Regularization&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Strafe für Komplexität&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;lasso&lt;/mono&gt;, &lt;mono&gt;ridge&lt;/mono&gt;, &lt;mono&gt;elasticnet&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Ensemble&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Bagging&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;treebag&lt;/mono&gt;, &lt;mono&gt;randomGLM&lt;/mono&gt;, &lt;mono&gt;randomForest&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Ensemble&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Boosting&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;adaboost&lt;/mono&gt;, &lt;mono&gt;xgbTree&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Feature selection&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Regularization&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;lasso&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;i&gt;Feature selection&lt;/i&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;Importance&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;mono&gt;random forest&lt;/mono&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+
+---
+
+# Regularization
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Regularisierung bestraft den Fit für die &lt;high&gt; modell-spezifische Komplexität&lt;/&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+&lt;br2&gt;
+&lt;p align = 'center'&gt;&lt;font size=5&gt;&lt;high&gt;Loss&lt;/high&gt; = &lt;high&gt;Misfit&lt;/high&gt; + &lt;high&gt;Penalty&lt;/high&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="160"&gt;
+  &lt;col width="160"&gt;
+  &lt;col width="160"&gt;
+&lt;tr&gt;
+  &lt;th&gt;Name&lt;/th&gt;
+  &lt;th&gt;Penalty&lt;/th&gt;
+  &lt;th&gt;`caret`&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;high&gt;AIC/BIC&lt;/high&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;img src="image/regularization/aicbic.png" height=24px&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;high&gt;Lasso&lt;/high&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;img src="image/regularization/lasso.png" height=24px&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;`method = "glmnet"`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;high&gt;Ridge&lt;/high&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;img src="image/regularization/ridge.png" height=24px&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;`method = "glmnet"`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="background-color:#ffffff"&gt;
+  &lt;td align="center"&gt;&lt;high&gt;Elastic Net&lt;/high&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;&lt;img src="image/regularization/ridge.png" height=24px&gt;&lt;/td&gt;
+  &lt;td align="center"&gt;`method = "glmnet"`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+
+.pull-right5[
+
+&lt;img src="Models_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+.pull-left45[
+
+# Bagging
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Aggregieren&lt;/high&gt; der Vorhersagen multipler Modelle, die auf Basis von &lt;high&gt;Stichproben&lt;/high&gt; aus den Daten gefitted werden.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Besonders nützlich bei Modellen mit moderat guter, varierender Performanz.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Stichprobe&lt;/high&gt; aus den Daten mit zurücklegen&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Fitte&lt;/high&gt; Modelle zu Stichproben&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittele&lt;/high&gt; die Vorhersage&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p align = "center"&gt;
+  &lt;img src="image/münchhausen.jpg" height=450px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://en.wikipedia.org/wiki/M%C3%BCnchhausen_trilemma"&gt;wikipedia.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+
+]
+
+---
+
+# Boosting
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine Art iteratives Bagging auf Basis einer &lt;high&gt;adaptiven Gewichtung&lt;/high&gt; der Daten.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Variante Extreme Gradient Boosting &lt;mono&gt;xgbTree&lt;/mono&gt; zählt zu den &lt;high&gt;besten verfügbaren Modellen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Algorithmus&lt;/b&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;ol&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Gewichte&lt;/high&gt; alle Datenpunkte gleich.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Fitte&lt;/high&gt; ein moderat flexibles Modell.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Erhöhe&lt;/high&gt; Gewicht schlecht vorhergesagter Punkte.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Wiederhole&lt;/high&gt; iterativ.&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span&gt;&lt;high&gt;Mittele&lt;/high&gt; Vorhersage proportional zum Modellfit.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/bagg_boost.png" height=410px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html"&gt;scikit-learn.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Automatische Featureselektion
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;LASSO&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Schätzt oft &lt;high&gt;&lt;mono&gt;beta = 0&lt;/mono&gt;&lt;/high&gt;, was effektiv das Feature aus dem Modell eliminiert.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Decision Tree / Random forests&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;Features müssen nicht für die Vorhersage verwendet werden (bei hohem &lt;mono&gt;mtry&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+  
+  &lt;img src="image/self_tuning.png" height=420px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+  
+&lt;/p&gt;
+
+]
+
+---
+
+&lt;p align = "center"&gt;
+&lt;img src="image/Algorithms.png"  height = 590px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+
+---
+
+# Erinnere
+
+.pull-left45[
+
+&lt;br&gt;
+
+&lt;i&gt;"…some machine learning projects succeed and some fail. What makes the difference? &lt;high&gt;Easily the most important factor is the features used&lt;/high&gt;."&lt;/i&gt;
+
+[Pedro Domingos](https://en.wikipedia.org/wiki/Pedro_Domingos)
+
+&lt;br&gt;
+
+&lt;i&gt;"The algorithms we used are very standard for Kagglers. […] &lt;high&gt;We spent most of our efforts in feature engineering.&lt;/high&gt; [...] We were also very careful to discard features likely to expose us to the risk of over-fitting our model."&lt;/i&gt;
+
+[Xavier Conort]()
+
+]
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+  &lt;img src="image/albert.jpeg" &gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://www.open.edu/openlearncreate/mod/oucontent/view.php?id=80245&amp;section=1"&gt;open.edu&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Models/Models_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Predicting</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maschinelles Lernen mit R   The R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Predicting
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### April 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+      Maschinelles Lernen mit R | April 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+# Prediction...
+
+.pull-left45[
+
+&lt;p&gt;
+&lt;font style="font-size:32px"&gt;&lt;i&gt;Prediction is very difficult, especially if it's about the future.&lt;/i&gt;&lt;/font&gt;
+&lt;br&gt;&lt;br&gt;
+Nils Bohr, Nobelpreisträger in Physik
+&lt;br&gt;&lt;br&gt;
+&lt;font style="font-size:32px"&gt;&lt;i&gt;An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today.&lt;/i&gt;&lt;/font&gt;
+&lt;br&gt;&lt;br&gt;
+
+Evan Esar, Satiriker
+
+&lt;/p&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/bohr.jpg"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://futurism.com/know-your-scientist-niels-bohr-the-father-of-the-atom"&gt;futurism.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# "Hold-out"-Daten
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die Performanz eines Models wird i.a.R. über die Vorhersage &lt;high&gt;&lt;i&gt;ungesehener&lt;/i&gt; Daten&lt;/high&gt; evaluiert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Die &lt;i&gt;ungesehenen&lt;/i&gt; Daten können &lt;high&gt;natürlich vorkommen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;zB. Aktiendaten aus 2019 für ein Modell auf Basis von Aktiendaten aus 2018&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Meist werden die &lt;i&gt;ungesehenen&lt;/i&gt; Daten manuell kreiert in dem die verfügbaren Daten in &lt;high&gt;Training und Test&lt;/high&gt; aufgeteilt werden.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/testdata.png" height=430px&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Training &lt;font style="font-size:20px"&gt;(= Fitting)&lt;/font&gt;
+
+&lt;p align = "center" style="margin-top:40px"&gt;
+&lt;img src="image/training_flow.png" height=430px&gt;
+&lt;/p&gt;
+
+
+---
+
+# Test
+
+&lt;p align = "center" style="margin-top:40px"&gt;
+&lt;img src="image/testing_flow.png" height=390px&gt;
+&lt;/p&gt;
+
+---
+
+# Warum wird Training und Test getrennt?
+
+&lt;br&gt;
+&lt;p align = "center"&gt;&lt;font size = 6&gt;&lt;i&gt;"Könnt ihr euch ein Modell vorstellen, das perfekten Fit im Training liefert und in der Vorhersage nutzlos ist?"&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+.pull-left45[
+
+
+&lt;high&gt;Trainingsdaten&lt;/high&gt;
+&lt;br&gt;
+
+
+| id|sex | age|fam_history |smoking | criterion|
+|--:|:---|---:|:-----------|:-------|---------:|
+|  1|f   |  45|No          |TRUE    |         0|
+|  2|m   |  43|No          |FALSE   |         0|
+|  3|f   |  40|Yes         |FALSE   |         1|
+|  4|f   |  51|Yes         |TRUE    |         1|
+|  5|m   |  44|Yes         |FALSE   |         0|
+
+]
+
+.pull-right45[
+
+
+&lt;high&gt; Testdaten&lt;/high&gt;
+&lt;br&gt;
+
+
+| id|sex | age|fam_history |smoking |criterion |
+|--:|:---|---:|:-----------|:-------|:---------|
+| 91|f   |  51|No          |FALSE   |?         |
+| 92|m   |  47|No          |TRUE    |?         |
+| 93|f   |  39|Yes         |TRUE    |?         |
+| 94|f   |  51|Yes         |TRUE    |?         |
+| 95|f   |  50|No          |TRUE    |?         |
+
+]
+
+
+
+---
+
+.pull-left4[
+
+&lt;br&gt;&lt;br&gt;
+# Overfitting
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Tritt ein, wenn ein Modell die &lt;high&gt;Daten zu genau fitted&lt;/high&gt; und deswegen &lt;high&gt;keine guten Vorhersagen&lt;/high&gt; liefert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Ein zu genauer fit bedeutet, dass z.T. züfällige Tendenzen, sog. &lt;high&gt;Rauschen gefittet&lt;/high&gt; wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;"Komplexere" Modelle&lt;/high&gt; neigen mehr zu overfitting.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right5[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/overfitting.png"&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Overfitting
+
+&lt;img src="Prediction_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+
+&lt;h1&gt;&lt;a&gt;Zwei neue Modelle&lt;/a&gt;&lt;/h1&gt;
+
+---
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
+
+---
+
+# CART
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;CART = Classification And Regression trees&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Modelliert das Kriterium als &lt;high&gt;Sequenz logischer Entscheidungen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Classificiation trees
+
+.pull-left45[
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification und regression trees werden mit dem folgengen &lt;high&gt;Algorithmus&lt;/high&gt; gefitted:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Trenne&lt;/high&gt; Knoten so, dass &lt;mono&gt;purity gain&lt;/mono&gt; (zB., Gini gain) maximiert wird.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Wiederhole&lt;/high&gt; bis zu einer vordefinierten Schwelle (zB. &lt;mono&gt;minsplit&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Stutze&lt;/high&gt; den Baum gemäss &lt;mono&gt;complexity parameter&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Auftrennen der Knoten
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees versuchen ingesammt &lt;highm&gt;impurity&lt;/highm&gt; zu minimieren.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+`$$\large Gini(S) = 1 - \sum_j^kp_j^2$$`
+
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Durch das Auftrennen eines Knotens werden Cases so aufgeteilt, dass der resultierende &lt;highm&gt;purity gain&lt;/highm&gt; maxmial ist.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+`$$Gini \; gain = Gini(S) - Gini(A,S)$$`
+
+mit
+
+`$$Gini(A, S) = \sum \frac{n_i}{n}Gini(S_i)$$`
+
+]
+
+
+.pull-right45[
+
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Stutzen der Bäume
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees werden schlussendlich &lt;high&gt;gestutzt (pruned)&lt;/high&gt; sodass jedes Auftrennen eines Knotens einen gain von mindestens &lt;highm&gt;cp&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+
+]
+
+.pull-right45[
+
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting.png"&gt;
+&lt;/p&gt;
+
+]
+---
+
+# Regression trees
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Regression trees &lt;high&gt;minimieren die Binnenvarianz der Knoten&lt;/high&gt;, bzw. maximieren Homogenität innerhalb der Knoten.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+`$$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y}_2)^2$$`
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithmus:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Trenne&lt;/high&gt; Knoten, sodass der grösste &lt;high&gt;Zugewinn an Homogenität entsteht&lt;/high&gt;.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Wiederhole&lt;/high&gt; bis zu einer vordefinierten Schwelle (zB. &lt;mono&gt;minsplit&lt;/mono&gt;).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Stutze&lt;/high&gt; den Baum gemäss &lt;mono&gt;complexity parameter&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+&lt;/ul&gt;
+
+]
+
+
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting_regr.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# CART in &lt;mono&gt;caret&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte einen decision tree in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rpart"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; einen Classificaton tree, anonsten einen Regression tree&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# Fitte einen decision tree
+
+train(form = verzug ~ ., # factor
+      data = Darlehen,
+      method = "rpart",
+      trControl = ctrl)
+
+# Fitte einen regression tree
+
+train(form = einkommen ~ ., # kein factor
+      data = basel,
+      method = "rpart",
+      trControl = ctrl)
+```
+
+
+]
+
+
+
+---
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/high&gt;
+
+---
+
+.pull-left45[
+
+# Random Forest
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;In Random Forests wird das Kriterium als &lt;high&gt;Aggregat vieler Entscheidungsbäume&lt;/high&gt; modelliert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithmus:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Wiederhole&lt;/high&gt; &lt;mono&gt;n&lt;/mono&gt; mal.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Resample&lt;/high&gt; die Daten.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Fitte&lt;/high&gt; nicht-gestutzte Entscheidungsbäume.&lt;br&gt;&lt;br&gt;Berücksichtige bei jeder Auftrennung nur &lt;high&gt;&lt;mono&gt;m&lt;/mono&gt; Features&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Mittle&lt;/high&gt; die gefitteten Werte.&lt;/li&gt;&lt;/span&gt;&lt;br&gt;  
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right45[
+&lt;br&gt;
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/rf.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Random Forest
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random Forests bedienen sich des &lt;high&gt;Baggings&lt;/high&gt; (&lt;high&gt;Resampling&lt;/high&gt; und &lt;high&gt;Averaging&lt;/high&gt;) um höhere Vorhersageleistungen zu erzielen.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Element&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Resampling&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Kreiert neue Datensätze die in ihrer Komposition variieren. Dabei werden &lt;high&gt;Eigenheiten&lt;/high&gt; der vorhandenen Daten &lt;high&gt;weniger Gewicht gegeben&lt;/high&gt;. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Averaging&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Das Kombinieren von Vorhersagen gleicht typischerweise &lt;hoch&gt;Eigenheiten&lt;/hoch&gt; der aus einzelnen Datensätzen erstellten Modelle aus. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree_crowd.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+
+---
+
+
+# Random forests in &lt;mono&gt;caret&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fitte einen Random Forest in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rf"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# Fitte ein random forest
+
+train(form = verzug ~ ., # factor
+      data = Darlehen,
+      method = "rf", 
+      trControl = ctrl)
+
+# Fitte ein random forest
+
+train(form = einkommen ~ ., # kein factor
+      data = basel, 
+      method = "rf", 
+      trControl = ctrl)
+```
+
+
+]
+
+
+
+---
+class: center,  middle
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;h1&gt;&lt;a&gt;Vorhersageevaluation in &lt;mono&gt;caret&lt;/mono&gt;&lt;/h1&gt;
+
+
+
+
+
+---
+
+# &lt;mono&gt;createDataPartition()&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Verwende &lt;mono&gt;createDataPartition()&lt;/mono&gt; um den &lt;high&gt;Datensatz aufzuteilen&lt;/high&gt; in Trainings- und Testdaten.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;y&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Das Kriterion. Wichtig für eine &lt;high&gt;ausgewogene Aufteilung&lt;/high&gt; der Daten.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;p&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Der &lt;high&gt;Antei der Daten&lt;/high&gt; der den Trainingsdaten zugewisen wird. Oft &lt;mono&gt;.8&lt;/mono&gt; oder &lt;mono&gt;.5&lt;/mono&gt;.    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Wichtig für konstante Ergebnisse
+set.seed(100)
+
+# Indizes für Training
+index &lt;- 
+  createDataPartition(y = basel$einkommen,
+                             p = .8,
+                             list = FALSE)
+
+# Kreiere Trainingsdaten
+basel_train &lt;- basel %&gt;% 
+  slice(index)
+
+# Kreiere Testdaten
+basel_test &lt;- basel %&gt;% 
+  slice(-index)
+```
+
+
+]
+
+
+
+
+---
+
+# &lt;mono&gt;predict(, newdata)&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Verwende &lt;mono&gt;predict()&lt;/mono&gt; um auf Basis des Testdatensatzes neue Vorhersagen zu berechnen.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;object&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;caret&lt;/mono&gt; Objekt nach dem Fitten.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;newdata&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Testdaten (Muss alle Features in &lt;mono&gt;object&lt;/mono&gt; beinhalten).    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Fitte das Modell zu dne Trainingsdaten
+mod &lt;- train(form = einkommen ~ .,
+             method = "glm",
+             data = basel_train)
+
+# Extrahiere die gefitteten Werte
+mod_fit &lt;- predict(mod)
+
+# Berechne echte Vorhersagen für Testdaten
+mod_pred &lt;- predict(mod, 
+                    newdata = basel_test)
+
+# Evaluiere das Ergebnis
+postResample(pred = mod_pred, 
+             obs = basel_test$einkommen)
+```
+
+]
+
+
+---
+class: middle, center
+
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

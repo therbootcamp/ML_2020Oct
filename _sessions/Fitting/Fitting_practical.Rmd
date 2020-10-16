@@ -1,0 +1,651 @@
+---
+title: "Fitting"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>The R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+<p align="center">
+<img width="100%" src="image/fitting_dirk.001.png" margin=0><br>
+<font style="font-size:10px">adapted from [xkcd.com](https://xkcd.com/)</font>
+</p>
+
+# {.tabset}
+
+## Überblick
+
+In diesem Practical wirst du die Grundlagen des Modellfittings und von Regressionsmodellen lernen.
+
+Am Ende dieses Practicals wirst du wissen wie du:
+
+1. Ein Regressionsmodell in R fitten kannst.
+2. Die Modelloutputs in R explorieren kannst.
+3. Die Modellperformanz einschätzen kannst.
+4. Den Effekt zusätzlicher Features erfassen kannst.
+
+
+## Tasks
+
+### A - Setup
+
+1. Öffne dein `TheRBootcamp` R Projekt. Es sollte bereits die Ordner `1_Data` und `2_Code` enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, im  `1_Data` Ordner vorhanden sind.
+
+```{r}
+# Gemacht!
+```
+
+2. Öffne ein neues R Skript. Schreibe am Anfang des Skripts mithilfe von Kommentaren deinen Namen und das Datum. Speichere das neue Skript unter dem Namen `Fitting_practical.R` im `2_Code` Ordner.  
+
+```{r}
+# Gemacht!
+```
+
+3. Verwende `library()` um die `tidyverse` und `caret` Pakete zu laden.
+
+```{r, echo = TRUE, message = FALSE}
+# Lade benötigte Pakete
+library(tidyverse)
+library(caret)
+```
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+# Lade benötigte Pakete
+library(tidyverse)
+library(caret)
+```
+
+4. In diesem Practical analysierst du einen Datensatz, der Daten von 388 U.S. Colleges enthält. Die Daten sind als `graduation_train.csv` gespeichert. Unter Verwendung des untenstehenden Codes, lese den Datensatz ein und speichere ihn unter dem Namen `graduation_train`.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+# Lese den graduation_train.csv Datensatz ein
+graduation_train <- read_csv(file = "1_Data/graduation_train.csv")
+```
+
+```{r, eval = TRUE, echo = FALSE}
+graduation_train <- read_csv(file = "1_Data/graduation_train.csv")
+```
+
+5. Schaue dir die ersten paar Zeilen des Datensatzes in der Konsole an.
+
+```{r}
+graduation_train
+```
+
+6. Schaue dir die Namen des Datensatzes mithilfe der `names()` Funktion an.
+
+```{r, echo = TRUE, eval = FALSE}
+names(XX)
+```
+
+```{r}
+names(graduation_train)
+```
+
+7. Öffne den Datensatz in einem separaten Fenster mithilfe von `View()` und schaue dir die Daten an.
+
+```{r, echo = TRUE, eval = FALSE}
+View(XX)
+```
+
+9. Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, musst du noch sicherstellen, dass alle `character` Variablen als `factor` vorliegen. Lasse dazu den untenstehenden Code laufen:
+
+```{r, echo = TRUE}
+# Konvertiere alle character variablen zu factor
+graduation_train <- graduation_train %>%
+          mutate_if(is.character, factor)
+```
+
+### B - Definiere die Kontrollparameter
+
+1. In `caret` wird die `trainControl()` Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument `method = "none"` und speichere das Objekt als `ctrl_none`. 
+
+```{r echo = TRUE}
+# Setze Samplingmethode auf "none" um für den Moment alles einfach zu halten.
+ctrl_none <- trainControl(method = "none") 
+```
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Teil 1: <b>Regressionsfall</b>
+</p>
+
+### C - Fitte ein Regressionsmodell
+
+1. Fitte eine Regression zur Vorhersage der Abschlussrate (`Abschlussrate`) als Funktion eines Features, nämlich dem Prozentsatz der Dozentenschaft mit PhDs (`Prozent_PhD`). Speichere das Resultat unter dem Namen `abschluss_glm`. Genauer:
+
+- setze das `form` Argument auf `Abschlussrate ~ Prozent_PhD`.
+- setze das `data` Argument auf `graduation_train`.
+- setze das `method` Argument auf `"glm"` für Regression.
+- setze das `trControl` Argument auf `ctrl_none`, das oben erstellte Objekt mit den Kontrollparametern.
+
+```{r, echo = TRUE, eval = FALSE}
+# abschluss_glm: Regressionsmodell
+abschluss_glm <- train(form = XX ~ XX,
+                       data = XX,
+                       method = "XX",
+                       trControl = XX)
+```
+
+
+```{r}
+# abschluss_glm: Regressionsmodell
+abschluss_glm <- train(form = Abschlussrate ~ Prozent_PhD,
+                       data = graduation_train,
+                       method = "glm",
+                       trControl = ctrl_none)
+```
+
+2. Exploriere den Modelloutput mithilfe der `summary()` Funktion.
+
+```{r, echo = TRUE, eval = FALSE}
+# Zeige Regressionstabelle
+summary(XX)
+```
+
+```{r}
+# Zeige Regressionstabelle
+summary(abschluss_glm)
+```
+
+3. Schaue dir die Resultate an. Wie interpretierst du die Modellparameter?
+
+```{r}
+# Für jede Zunahme um eins in Prozent_PhD (der Anteil Angestellter mit einem PhD), steigt die erwartete Abschlussrate um 0.33. 
+```
+
+4. Nun extrahiere die gefitteten Werte mittels `predict()`. Speichere die extrahierten Werte als `glm_fit`.
+
+```{r, echo = TRUE, eval = FALSE}
+# Extrahiere gefittete Werte
+glm_fit <- predict(XX)
+```
+
+```{r}
+# Extrahiere gefittete Werte
+glm_fit <- predict(abschluss_glm)
+```
+
+
+### D - Evaluiere Modellperformanz
+
+1. Nun evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in `graduation_train` und nenne diesen `criterion` (Kriterium).
+
+```{r, echo = TRUE, eval = TRUE}
+# Definiere einen Vektor mit den tatsächlichen Werten
+criterion <- graduation_train$Abschlussrate
+```
+
+2. Verwende nun die `postResample()` Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.
+
+Genauer:
+
+- setze das `pred` Argument auf `glm_fit` (die vorhergesagten/ gefitteten Werte).
+- setze das `obs` Argument auf `criterion` (die tatsächlichen Werte).
+
+```{r, echo = TRUE, eval = FALSE}
+# Modellperformanz der gerechneten Regression
+postResample(pred = XX,   # Vorhergesagte/ gefittete Werte 
+             obs = XX)    # Tatsächliche Werte
+```
+
+```{r}
+# Modellperformanz der gerechneten Regression
+postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte 
+             obs = criterion)  # Tatsächliche Werte
+```
+
+3. Der Output der `postResample()` Funktion zeigt drei Werte, *RMSE*, *Rsquared* und *MAE*. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?
+
+```{r}
+# Im Schnitt sind die Vorhersagen des Modells 12.86 Prozent von den wahren Werten
+# entfernt. Von der gesammten Varianz in der Variable Abschlussrate, kann unser Modell
+# nur gerade zehn Prozent erklären. Das Modell macht also nur schlechte Vorhersagen.
+```
+
+### E - Mehr Features
+
+Bisher hast du nur ein Feature - `Prozent_PhD` - zur Vorhersage von `Abschlussrate` verwendet. Das Modell hatte keine sonderlich gute Performanz, daher macht es Sinn nun zu testen, ob ein Modell mit zusätzlichen Features die Daten vielleicht besser abbilden kann. Verwende die folgenden drei Variablen: 
+
+- `Prozent_PhD` - der Prozentsatz der Dozentenschaft mit einem PhD.
+- `Kosten_Unterkunft` - Raumkosten.
+- `Verhaeltnis_Stud.Doz.` - Verhältnis der Anzahl Studenten zu Dozentenschaft
+
+1. Verwende die gleichen Schritte wie oben um ein Regressionsmodell mit drei Features zur Vorhersage von `Abschlussrate` zu rechnen. Speichere den Output unter `abschluss_glm_three`. Genauer,...
+
+- setze das `form` Argument auf `Abschlussrate ~ Prozent_PhD + Kosten_Unterkunft + Verhaeltnis_Stud.Doz.`.
+- setze das `data` Argument auf `graduation_train`.
+- setze das `method` Argument auf `"glm"` für Regression.
+- setze das `trControl` Argument auf `ctrl_none`.
+
+```{r, echo = TRUE, eval = FALSE}
+# abschluss_glm_three: Regressionsmodell
+abschluss_glm_three <- train(form = XX ~ XX + XX + XX,
+                             data = XX,
+                             method = "XX",
+                             trControl = XX)
+```
+
+```{r}
+# abschluss_glm_three: Regressionsmodell
+abschluss_glm_three <- train(form = Abschlussrate ~ Prozent_PhD + Kosten_Unterkunft + Verhaeltnis_Stud.Doz.,
+                             data = graduation_train,
+                             method = "glm",
+                             trControl = ctrl_none)
+```
+
+2. Exploriere den Output mit der `summary()` Funktion. Welche Features sind wichtig?
+
+```{r, echo = TRUE, eval = FALSE}
+summary(XX)
+```
+
+```{r}
+summary(abschluss_glm_three)
+```
+
+3. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_three`.
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die Vorhersagen
+glm_fit_three <- predict(XX)
+```
+
+```{r}
+# Speichere die Vorhersagen
+glm_fit_three <- predict(abschluss_glm_three)
+```
+
+4. Quantifiziere die Performanz des Modells mit der `postResample()` Funktion. Wie gut ist das Modell im Vergleich zum vorherigen Modell mit nur einem Feature? 
+
+```{r, echo = TRUE, eval = FALSE}
+# Modellperformanz des neuen Modells
+postResample(pred = XX, # Vorhergesagte Werte 
+             obs = XX)  # Tatsächliche Werte
+```
+
+```{r}
+# Modellperformanz des neuen Modells
+postResample(pred = glm_fit_three,   # Vorhergesagte Werte  
+             obs = criterion)        # Tatsächliche Werte
+```
+
+```{r}
+# Der neue MAE ist 11.78. Das ist kleiner und daher besser als der Wert des Modells
+# mit nur einem Feature. Diese Verbesserung zeigt sich natürlich auch in Rsquared Wert,
+# das neue Modell kann fast 22% der gesammten Varianz erklären, also doppelt so viel
+# wie das vorherige Modell
+```
+
+### F - Verwende Alle Features
+
+1. Nun verwende alle Features! Mit den gleichen Schritten wie oben, rechne ein Regressionsmodell zur Vorhersage von `Abschlussrate` mit *allen* vorhandenen Features. Setze dazu das `form` Argument auf `Abschlussrate ~ .`, der Punkt bedeutet, dass alle Features (additiv) im Modell verwendet werden. Speichere den Output unter dem Namen `abschluss_glm_all`.
+
+```{r, echo = TRUE, eval = FALSE}
+abschluss_glm_all <- train(form = XX ~ .,
+                           data = XX,
+                           method = "glm",
+                           trControl = XX)
+```
+
+```{r}
+abschluss_glm_all <- train(form = Abschlussrate ~ .,
+                           data = graduation_train,
+                           method = "glm",
+                           trControl = ctrl_none)
+```
+
+2. Exploriere das Modell mit der `summary()` Funktion. Welche Features sind wichtig?
+
+```{r, echo = TRUE, eval = FALSE}
+summary(XX)
+```
+
+```{r}
+summary(abschluss_glm_all)
+```
+
+3. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_all`.
+
+```{r, echo = TRUE, eval = FALSE}
+# Speichere die Vorhersagen
+glm_fit_all <- predict(XX)
+```
+
+```{r}
+# Speichere die Vorhersagen
+glm_fit_all <- predict(abschluss_glm_all)
+```
+
+4. Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?
+
+```{r}
+# Modellperformanz des neuen Modells
+postResample(pred = glm_fit_all,   
+             obs = criterion)   
+```
+
+<br>
+<p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width=100%>
+Teil 2: <b>Klassifikationsfall</b>
+</p>
+
+### G - Faktor als Kriterium
+
+Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in `caret` Funktionen für Klassifikationsprobleme das Kriterium die Klasse `factor` haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die `Privatuniversitaet` Variable).
+
+1. Verwende die `class()` Funktion, um die Klasse der `Privatuniversitaet` Variable zu testen. Wenn der Output `factor` ist, kannst du mit dem maschinellen Lernen beginnen.
+
+```{r, echo = TRUE}
+# Überprüfe die Klasse der Privatuniversitaet Variable
+class(graduation_train$Privatuniversitaet)
+```
+
+2. Speichere die `Privatuniversitaet` Variable als neues Objekt, `criterion`, so wie du das oben bei den Regressionsproblemen bereits getan hast.
+
+```{r}
+criterion <- graduation_train$Privatuniversitaet
+```
+
+### H - Rechne ein Klassifikationsmodell
+
+1. Verwende die `train()` Funktion um eine logistische Regression zu rechnen, mit der du `Privatuniversitaet` unter Verwendung aller Features vorhersagst.
+**Tipp:** Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.
+
+
+```{r}
+Privatuniversitaet_glm <- train(form = Privatuniversitaet ~ .,
+                     data = graduation_train,
+                     method = "glm",
+                     trControl = ctrl_none)
+```
+
+2. Exploriere den Modelloutput mit der `summary()` Funktion.
+
+
+```{r}
+summary(Privatuniversitaet_glm)
+```
+
+3. Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?
+
+```{r}
+# Basierend auf den z-Werten, scheinen vor allem die Variablen Outstate und
+# Enroll wichtige Prädiktoren zu sein. Ausserdem scheinen die Variablen Accept
+# F.Undergrad, Room.Board, und S.F.Ration wichtig zu sein.e
+```
+
+### I - Evaluiere den Fit
+
+1. Nun evaluiere den Fit. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_Privatuniversitaet`.
+
+```{r, echo = TRUE, eval = FALSE}
+glm_fit_Privatuniversitaet <- predict(XX)
+```
+
+```{r}
+glm_fit_Privatuniversitaet <- predict(Privatuniversitaet_glm)
+```
+
+2. Verwende die `confusionMatrix()` Funktion um die Performanz zu bestimmen.
+
+```{r, eval = FALSE, echo = TRUE}
+# Evaluiere Modellperformanz
+confusionMatrix(data = XX,      # Vorhersagen
+                reference = XX) # Tatsächliche Werte
+```
+
+
+```{r}
+# Evaluiere Modellperformanz
+confusionMatrix(data = glm_fit_Privatuniversitaet,   # Vorhersagen
+                reference = criterion)    # Tatsächliche Werte
+```
+
+3. Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?
+
+```{r}
+# Die Richtigkeit ist 0.942. Über alle Fälle gesehen, sagt das Modell also in
+# 94.2% die richtige Klasse vorher.
+```
+
+4. Wie hoch ist die Sensitivität? Was bedeutet diese Zahl?
+
+```{r}
+# Die Sensitivität ist 0.893. Von den tatsächlich Privatuniversitaeten,
+# erkennt das Modell 89.3% als solche.
+```
+
+5. Wie hoch ist der *positive predictive value*? Wie interpretierst du diese Zahl?
+
+```{r}
+# Der PPV ist 0.911. Von den Colleges, die vom Modell als privat klassifiziert
+# wurden, sind 91.1% tatsächlich privat.
+```
+
+6. Wie hoch ist die Spezifität? Wie interpretierst du diese Zahl?
+
+```{r}
+# Die Spezifität ist 0.963. Von den tatsächlich öffentlichen Colleges, werden
+# 96.3% als solche erkannt. 
+```
+
+7. Wie hoch ist der *negative predictive value*? Wie interpretierst du diese Zahl?
+
+```{r}
+# Der NPV ist 0.955. Von den Colleges, die vom Modell als öffentlich klassifiziert
+# werden, sind 95.5% tatsächlich öffentlich.
+```
+
+
+### Z - Challenges
+
+1. Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (`Prozent_Spenden`). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?
+
+```{r}
+mod <- train(form = Prozent_Spenden ~ .,
+             data = graduation_train,
+             method = "glm",
+             trControl = ctrl_none)
+
+summary(mod)
+mod_predictions <- predict(mod)
+postResample(pred = mod_predictions,
+             obs = graduation_train$Prozent_Spenden)
+
+```
+
+
+2. Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen `Bewerbungen`). Verwende dazu den untenstehenden Code um zunächst das Kriterium `hot` zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?
+
+```{r, echo = TRUE}
+# Kreiere neue Variable hot
+graduation_train <- graduation_train %>%
+  mutate(hot = factor(Bewerbungen >= 10000))
+```
+
+```{r}
+
+# Die Variablen, welche den Namen und die Anzahl Bewerbungen beinhalten müssen
+# wir entfernen, da wir das Modell sonst nicht problemlos rechnen können. Ausserdem
+# sind die F.Undergrad, Enroll, und Accept Zahlen sehr stark mit den Bewerbungen
+# korreliert und sollten daher entfernt werden.
+mod_hot <- train(form = hot ~ . - Bewerbungen -Eingeschrieben -Angenommen - Vollzeit,
+                 data = graduation_train,
+                 method = "glm",
+                 trControl = ctrl_none)
+
+summary(mod_hot)
+mod_predictions <- predict(mod_hot)
+plot(mod_predictions)
+confusionMatrix(data = mod_predictions,
+                reference = graduation_train$hot)
+
+```
+
+
+
+## Beispiele
+
+```{r, eval = FALSE, echo = TRUE}
+# Rechnen und Evaluieren eines Regressionsmodells ------------------------------
+
+# Schritt 0: Lade Pakete-----------
+library(tidyverse)
+library(caret)
+
+# Schritt 1: Einlesen, Aufbereiten und Explorieren der Daten -------------------
+
+# Wir verwenden den mpg Datensatz des ggplot2 pakets
+data_train <- read_csv("1_Data/mpg_train.csv")
+
+# Konvertiere alle character zu factor Variablen
+data_train <- data_train %>%
+  mutate_if(is.character, factor)
+
+# Exploriere den Datensatz
+data_train        # Printe den Datensatz
+View(data_train)  # Öffne Datensatz in separatem Fenster
+dim(data_train)   # Dimensionen des Datensatzes
+names(data_train) # Variablennamen
+
+# Schritt 2: Definiere Kontrollparameter -------------
+
+# Für den Moment method = "none", später werden wir
+# hier Anpassungen vornehmen
+train_control <- trainControl(method = "none") 
+
+# Schritt 3: Fitte Modell: -----------------------------
+#   Kriterium: hwy
+#   Features: year, cyl, displ, trans
+
+# Regression
+hwy_glm <- train(form = hwy ~ year + cyl + displ + trans,
+                 data = data_train,
+                 method = "glm",
+                 trControl = train_control)
+
+# Inspiziere Modell
+summary(hwy_glm)
+
+# Schritt 4: Evaluiere Fit ------------------------------
+
+# Extrahiere gefittete Werte
+glm_fit <- predict(hwy_glm)
+
+# Extrahiere tatsächliche Kriteriumswerte
+criterion <- data_train$hwy
+
+# Evaluiere die Performanz
+postResample(pred = glm_fit, 
+             obs = criterion)
+
+#     RMSE Rsquared      MAE 
+# 3.246182 0.678465 2.501346 
+
+
+```
+
+
+## Datensätze
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+|Datei  |Zeilen | Spalten |
+|:----|:-----|:------|
+|[graduation_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_train.csv)| 1000 | 21|
+
+Die `graduation_train` und `graduation_test` Datensätze entstammen dem `College` Datensatz aus dem `ISLR` Paket. Sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des *US News and World Reports* aus dem Jahr 1995.
+
+| Name | Beschreibung |
+|:-------------|:-------------------------------------|
+|Privatuniversitaet| Ja oder Nein |
+|Bewerbungen| Anzahl Bewerbungen |
+|Angenommen| Anzahl angenommene Bewerbungen  |
+|Eingeschrieben| Anzahl eingeschrieben  |
+|Prozent_Top10| Prozent der Studierenden innerhalb Top 10% in High School |
+|Prozent_Top25| Prozent der Studierenden innerhalb Top 25% in High School   |
+|Vollzeit| Anzahl Studierende in Vollzeit  |
+|Teilzeit| Anzahl Studierende in Teilzeit  |
+|Kosten_ausserhalb| Kosten für Studierende aus einem anderen Staat |
+|Kosten_Unterkunft| Kosten für Studierende für Unterkunft und Verpflegung  |
+|Kosten_Buecher| Kosten für Studierende für Bücher  |
+|Kosten_persoenlich| Kosten für Studierende für Persönliches  |
+|Prozent_PhD| Anteil PhDs innerhalb der Dozentenschaft |
+|Prozent_Degree| Anteil Abschlüsse innerhalb der Dozentenschaft |
+|Verhaeltnis_Stud.Doz.| Verhältnis Studierene zu Dozenten  |
+|Prozent_Spenden| Anteil Alumnis, die an das College spenden |
+|Kosten_Student| Ausbildungskosten für das College pro Student |
+|Abschlussrate| Abschlussrate |
+
+
+## Funktionen
+
+### Pakete
+
+|Paket| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`caret`|`install.packages("caret")`|
+
+### Funktion
+
+| Funktion| Paket | Beschreibung |
+|:---|:------|:---------------------------------------------|
+| `trainControl()`|`caret`| Definiere Kontrollparameter | 
+| `train()`|`caret`|    Fitte Modell|
+| `predict(object, newdata)`|`base`|    Vorhersage von `newdata` basierend auf `object`|
+| `postResample()`|`caret`|   Berechne Modellperformanz für Regressionsproblem |
+| `confusionMatrix()`|`caret`|   Berechne Modellperformanz für Klassifikationsproblem| 
+
+
+## Materialien
+
+### Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>

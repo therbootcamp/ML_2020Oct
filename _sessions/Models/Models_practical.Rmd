@@ -1,0 +1,209 @@
+---
+title: "Modelling Wettberweb"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
+      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>The R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "100%", fig.cap=""}
+knitr::include_graphics("image/twitter.gif")
+```
+
+# {.tabset}
+
+## Überblick
+
+Demonstriere dein Können im maschinellen Lernen in einem Modelling Wettbewerb. Sage das Geschlecht eines Tweeters auf Basis von Meta Informationen vorher und gewinne &#127851;&#127851;&#127851;.
+
+Der Wettbewerb läuft noch...
+
+<font style="font-size:32px"><p id="demo" align="center"></p></font>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Apr 4, 2020 17:05:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+## Wettbewerb
+
+### A - Setup
+
+1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Modelling Wettbewerb" als Kommentare an den Anfang des Skripts.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Modelling Wettbewerb
+```
+
+3. Speichere das neue Skript unter dem Namen `modelling_wettbewerb.R` im `2_Code` Ordner.
+
+4. Lade die Pakete `tidyverse`, `caret`, `party`, und `partykit`.
+
+5. Mit dem Code unten lade den `tweets` Datensatz und ändere `character` in `factor`. 
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+
+# Lade tweets daten
+tweets <- read_csv(file = "1_Data/tweets_train.csv")
+
+# Ändere character zu factor
+tweets <- tweets %>% mutate_if(is.character, as.factor)
+
+```
+
+### B - Wettbewerbsregeln
+
+1. Das Ziel des Wettbewerbs ist die maximale `Accuracy` in der Vorhersage, ob der Twitter User `female` oder `male` ist, zu erzielen. 
+
+2. Um am Wettbewerb teilzunehmen, reicht <b>bis zu drei</b> `train`-Objekte (also der Output der `train()`-Funktion ein).
+
+3. Um ein `train`-Objekt einzureichen, speichert es zuerst als `.RDS`-Datei, die ihr benennt mit `PSEUDONYM_VERSION.RDS`, wobei ihr `PSEUDONYM` mit einem selbstgewählten Pseudonym ersetzt und `VERSION` mit einer selbstgewählten Beschreibung des verwendeten Ansatzes. Siehe den Code unten. 
+
+```{r}
+# Fitte Modell
+my_train <- train(...)
+
+# Speichere train Objekt
+saveRDS(my_train,'1_Data/PSEUDONYM_VERSION.RDS')
+```
+
+5. Reiche deine `.RDS` Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schicke uns das Objekt oder die Objekte per [**Mail**](mailto:therbootcamp@gmail.com). 
+
+<div align = "center">
+<table>
+<tr>
+<th>Problemtyp</th>
+<th>Kriterium</th>
+<th>Gütekriterium</th>
+<th>Submission link</th>
+</tr>
+<tr>
+  <td>Klassifikation</td> 
+  <td>tweets (`gender`)</td>
+  <td>Accuracy</td>
+  <td>[**Submit candidate**](https://www.dropbox.com/request/qNeX6wMNDbDtbJuVnxx0)</td>
+</tr>
+</table>
+</div>
+
+6. Du darfst alle Waffen in `caret`s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungsmethoden. Verwende alle oder nur einige Features. 
+
+7. <font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen Vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das `preProcess`-Argument der `train()` Funktion durchgeführt werden. </font>
+
+
+## Datensatz
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyverse)
+library(ggthemes)
+```
+
+|Datei  |Zeilen | Spalten |
+|:----|:-----|:------|
+|[tweets.csv](https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/tweets_train.csv)| 2500 | 23|
+
+Der `tweets.csv` Datensatz ist ein (stark) vor-verarbeiteter Ausschnitt dieses Datensatzes von [Kaggle](https://www.kaggle.com/crowdflower/twitter-user-gender-classification). 
+
+|Name  | Beschreibung |
+|:--------------------------|:-----------------------------------------|
+|gender| Das Kriterium. Ob die tweetende Person männlich (`male`) oder weiblich (`female`) ist.|
+|year_created| Das Jahr in dem der Twitter Account erstellt wurde.|
+|hour_created| Die Stunde des Tages (1:24h) in der der Twitter Account erstellt wurde.|
+|tweet_count| Die Anzahl der Tweets, die über den Account gepostet wurden.|
+|retweet_count | Die Anzahl der Retweets, die über den Account gepostet wurden. |
+|user_timezone| Die Zeitzone des Accounts relativ zu GMT. |
+|name_nchar| Die Anzahl der Buchstaben im Namen des Accounts.|
+|name_male| `1`, wenn der Account Name einen der 1,000 Häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`. |
+|name_female|`1`, wenn der Account Name einen der 1,000 Häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`. |
+|descr_nchar| Die Anzahl der Buchstaben im Namen Description Feld des Accounts|
+|descr_male| `1`, wenn das Description Feld des Accounts einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`. |
+|descr_female| `1`, wenn das Description Feld des Accounts einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`.|
+|descr_sent| Durchschnittlicher Sentiment Score (>0 = positives Sentiment) des Texts im Description Feld des Accounts. |
+|tweet_nchar| Die Anzahl der Buchstaben in einem zufällig ausgewählten Tweets des Accounts.|
+|tweet_male| `1`, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten männlichen Babynamen in Amerika enthält, ansonsten `0`.|
+|tweet_female| `1`, wenn der zufällig ausgewählte Tweet einen der 1,000 häufigsten weiblichen Babynamen in Amerika enthält, ansonsten `0`.|
+|tweet_sent| Durchschnittlicher Sentiment Score (>0 = positives Sentiment) des Texts zufällig ausgewählte Tweets. |
+|linkcol_red| Rotwert (1:255) in der Linkfarbe des Accounts. |
+|linkcol_green| Grünwert (1:255) in der Linkfarbe des Accounts.|
+|linkcol_blue| Blauwert (1:255) in der Linkfarbe des Accounts.|
+|sidecol_red| Rotwert (1:255) in Seitenbande des Accounts.|
+|sidecol_green| Grünwert (1:255) in Seitenbande des Accounts.|
+|sidecol_blue| Blauwert (1:255) in Seitenbande des Accounts.|
+
+
+## Cheatsheet
+
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
+ <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+

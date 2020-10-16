@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585993633991.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "416249553",
+    "id" : "EC9062DB",
+    "lastKnownWriteTime" : 1586003774,
+    "last_content_update" : 1586003774388,
+    "path" : "~/Dropbox (2.0)/Work/Software/RBootcamps/ML_2020Apr/TheRBootcamp/2_Code/plenum_unsupervised.R",
+    "project_path" : "2_Code/plenum_unsupervised.R",
+    "properties" : {
+        "cursorPosition" : "15,39",
+        "scrollLine" : "10",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

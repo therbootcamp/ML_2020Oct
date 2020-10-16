@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>R for ML</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Machine Learning with R   Basel R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R for ML
+### Machine Learning with R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2019Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### October 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Machine Learning with R | October 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+# R is a programming language
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_model) (emphasis added):
+
+&gt; A programming language is a **formal language** that specifies a set of instructions that can be used to produce various kinds of output. Programming languages generally consist of **instructions for a computer**. Programming languages can be used to create programs that **implement specific algorithms**.
+
+.pull-left4[
+### Algorithm
+1. Load data
+2. Extract variables
+3. Run analysis
+4. Print result
+]
+
+.pull-right6[
+### Implementation in R
+
+
+
+```r
+#data &lt;- read.table(link)
+#variables &lt;- data[,c('group','variable')]
+#analysis &lt;- lm(variable ~ group, data = variables)
+#summary(analysis)
+```
+]
+
+---
+
+# Why R?
+
+.pull-left3[
+R steadily **grows in popularity**. 
+
+Today, R is one of the **most popular languages for data science** and overall. 
+
+In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
+
+&lt;p style="font-size:10px;float:bottom"&gt;
+  Image source: https://i0.wp.com/r4stats.com/
+&lt;p&gt;
+
+
+]
+
+.pull-right6[
+&lt;p align="center"&gt;
+  &lt;img src="https://i0.wp.com/r4stats.com/wp-content/uploads/2017/02/Fig-1a-IndeedJobs-2017.png" height="450"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# R is so popular because
+
+There are many good reasons to prefer R over superficially more user friendly software such as **Excel** or **SPSS** or more complex programming languages like **C++** or **Python**. 
+
+.pull-left45[
+### Pro
+1. **It's free**
+2. Relatively **easy**
+3. **Extensibility** ([CRAN](https://cran.r-project.org/), packages)
+4. **User base** (e.g., [stackoverflow](https://stackoverflow.com/))
+5. [**Tidyverse**](https://www.tidyverse.org/) (`dplyr`, `ggplot`, etc.)
+6. [**RStudio**](https://www.rstudio.com/)
+7. **Productivity** options: [Latex](https://www.latex-project.org/), [Markdown](https://daringfireball.net/projects/markdown/), [GitHub](https://github.com/)
+]
+
+.pull-right45[
+### Con (?)
+It's slow, but... 
+
+[Tidyverse](https://www.tidyverse.org/)
+[Rcpp](http://www.rcpp.org/), [BH](https://cran.r-project.org/web/packages/BH/index.html): Links R to C++ and high-performance C++ libraries&lt;br&gt;
+[rPython](http://rpython.r-forge.r-project.org/): Links R to Python&lt;br&gt;
+[RHadoop](https://github.com/RevolutionAnalytics/RHadoop/wiki): Links R to Hadoop for big data applications.&lt;br&gt;
+]
+
+
+---
+
+# R is great for ML
+
+...because of high-performance R packages (extensions) downloaded and used millions of times.
+
+&lt;p align="center"&gt;&lt;img src="image/ml_package_dl.png" width="620"&gt;&lt;/p&gt;
+
+---
+
+# `caret`
+
+.pull-left55[
+
+The &lt;high&gt;C&lt;/high&gt;lassification &lt;high&gt;A&lt;/high&gt;nd &lt;high&gt;RE&lt;/high&gt;gression &lt;high&gt;T&lt;/high&gt;raining package is a meta-package to streamline the application of R's best machine learning tools.  
+
+`caret` facilitates...&lt;br&gt;&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1) &lt;high&gt;data pre-processing&lt;/high&gt;&lt;br&gt;&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2) &lt;high&gt;feature selection&lt;/high&gt;&lt;br&gt;&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3) &lt;high&gt;fitting, tuning, &amp; model prediction&lt;/high&gt;&lt;br&gt;&lt;br&gt;
+
+Includes dozens of algorithms/models including...
+
+&lt;high&gt;regression&lt;/high&gt;, &lt;high&gt;decision trees&lt;/high&gt;, &lt;high&gt;random forests&lt;/high&gt;, neural nets, AdaBoost, elastic nets, &lt;high&gt;lasso &amp; ridge regression&lt;/high&gt;, support vector machines, etc.
+
+]
+
+.pull-right4[
+&lt;p align="center"&gt;&lt;img src="image/caret.png"&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img src="image/caret.png"&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img src="image/caret.png"&gt;&lt;/p&gt;
+]
+---
+
+&lt;div class="center_text"&gt;
+  &lt;span&gt;
+  6+3+2 basic R lessons
+  &lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. &lt;high&gt;Everything is an object&lt;/high&gt;
+2. &lt;high&gt;&lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects&lt;/high&gt;
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model 
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt;
+  &lt;img src="image/assignment.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. &lt;high&gt;Everything is an object&lt;/high&gt;
+2. &lt;high&gt;&lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects&lt;/high&gt;
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model 
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+# an object called one_two_three
+one_two_three &lt;- c(1, 2, 3)
+
+# print object
+one_two_three
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+# add 100 to the object's numbers (without &lt;- )
+one_two_three + 100
+```
+
+```
+## [1] 101 102 103
+```
+
+```r
+# print object (no &lt;-, no change!)
+one_two_three
+```
+
+```
+## [1] 1 2 3
+```
+]
+
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. &lt;high&gt;Everything is an object&lt;/high&gt;
+2. &lt;high&gt;&lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects&lt;/high&gt;
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+# print object
+one_two_three
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+# make change permanent (with &lt;- )
+one_two_three &lt;- one_two_three + 100
+
+# print object (it has changed!)
+one_two_three
+```
+
+```
+## [1] 101 102 103
+```
+]
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. &lt;high&gt;Everything happens through functions&lt;/high&gt;
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+# function c()
+one_two_three &lt;- c(1, 2, 3)
+
+# function `+`()
+one_two_three + 100
+```
+
+```
+## [1] 101 102 103
+```
+
+```r
+# function print()
+one_two_three
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+# function mean()
+mean(x = one_two_three)
+```
+
+```
+## [1] 2
+```
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. &lt;high&gt;Functions have (default) arguments&lt;/high&gt;
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+# no argument
+mean()
+```
+
+```
+## Error in mean.default(): argument "x" is missing, with no default
+```
+
+```r
+# one (required) argument
+mean(c(1, 2, 3))
+```
+
+```
+## [1] 2
+```
+
+```r
+# assume a missing value (NA)
+mean(c(1, 2, 3, NA))
+```
+
+```
+## [1] NA
+```
+
+```r
+# changing default to handle NA
+mean(c(1, 2, 3, NA), na.rm = TRUE)
+```
+
+```
+## [1] 2
+```
+]
+
+---
+
+# 6+3+2 basic R lessons  
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. &lt;high&gt;Functions have (default) arguments&lt;/high&gt;
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+# mean with pipe %&gt;%
+c(1, 2, 3) %&gt;% mean()
+```
+
+```
+## [1] 2
+```
+
+```r
+# mean with pipe %&gt;% and NA
+c(1, 2, 3, NA) %&gt;% mean()
+```
+
+```
+## [1] NA
+```
+
+```r
+# changing default to handle NA
+c(1, 2, 3, NA) %&gt;% mean(na.rm = TRUE)
+```
+
+```
+## [1] 2
+```
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. &lt;high&gt;Functions live in packages&lt;/high&gt;
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt;&lt;img src="image/packages.png" height="400"&gt;&lt;/p&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. &lt;high&gt;Functions live in packages&lt;/high&gt;
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+&lt;high&gt;Install new packages&lt;/high&gt; with `install.packages()`
+
+
+```r
+# install package: Only do this once!
+install.packages("tidyverse")
+```
+
+&lt;high&gt;Load existing packages&lt;/high&gt; with `library()`
+
+
+```r
+# load package: EVERY TIME you write code
+library(tidyverse)
+```
+
+&lt;p align="center"&gt;&lt;img src="image/tidyverse.png" height="200"&gt;&lt;/p&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. &lt;high&gt;Find help with &lt;mono&gt;?&lt;/mono&gt;&lt;/high&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+?mean
+```
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help.png" width="500"&gt;&lt;/p&gt;
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. &lt;high&gt;Find help with &lt;mono&gt;?&lt;/mono&gt;&lt;/high&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+```r
+?cor
+```
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"&gt;&lt;/p&gt;
+]
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a&gt;Interactive&lt;/a&gt;&lt;/h1&gt;
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. &lt;high&gt;Data lives in data frames&lt;/high&gt;
+8. 3 data types + factors
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right55[
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/main_objects.png"&gt;&lt;/img&gt;
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. &lt;high&gt;3 data types + factors&lt;/high&gt;
+9. `formula` and `data` specify a model 
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+
+.pull-right5[
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"&gt;&lt;/img&gt;
+]
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. &lt;high&gt;3 data types + factors&lt;/high&gt;
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+
+.pull-right5[
+
+
+
+```r
+print(baselers)
+```
+
+```
+## # A tibble: 10,000 x 20
+##       id sex     age height weight income
+##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 male     44   174.  113.    6300
+##  2     2 male     65   180.   75.2  10900
+##  3     3 fema…    31   168.   55.5   5100
+##  4     4 male     27   209    93.8   4200
+##  5     5 male     24   177.   NA     4000
+##  6     6 male     63   187.   67.4  11400
+##  7     7 male     71   152.   83.3  12000
+##  8     8 fema…    41   156.   67.8   7600
+##  9     9 male     43   176.   69.3   8500
+## 10    10 fema…    31   166.   66.3   6100
+## # … with 9,990 more rows, and 14 more variables
+```
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. &lt;high&gt;3 data types + factors&lt;/high&gt;
+9. `formula` and `data` specify a model
+
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+
+
+
+```r
+# select sex veriable using $
+baselers$sex
+```
+
+```
+## [1] "male"   "male"   "female" "male"  
+## [5] "male"   "male"   "male"   "female"
+##  [ reached getOption("max.print") -- omitted 9992 entries ]
+```
+
+```r
+# select sex veriable using %&gt;% select
+baselers %&gt;% select(sex) %&gt;% pull()
+```
+
+```
+## [1] "male"   "male"   "female" "male"  
+## [5] "male"   "male"   "male"   "female"
+##  [ reached getOption("max.print") -- omitted 9992 entries ]
+```
+
+
+```r
+# Possible, but less pretty...
+baselers[['sex']]
+baselers[[2]]
+```
+
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. &lt;high&gt;3 data types + factors&lt;/high&gt;
+9. `formula` and `data` specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+
+.pull-right5[
+
+
+
+```r
+# original sex vector
+baselers$sex
+```
+
+```
+## [1] "male"   "male"   "female" "male"   "male"  
+##  [ reached getOption("max.print") -- omitted 9995 entries ]
+```
+
+```r
+as.factor(baselers$sex)
+```
+
+```
+## [1] male   male   female male   male  
+##  [ reached getOption("max.print") -- omitted 9995 entries ]
+## Levels: female male
+```
+
+```r
+as.factor(baselers$weight)
+```
+
+```
+## [1] 113.4 75.2  55.5  93.8  &lt;NA&gt; 
+##  [ reached getOption("max.print") -- omitted 9995 entries ]
+## 719 Levels: 37.9 38.3 39.2 39.6 40.3 ... 125.4
+```
+
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;high&gt;&lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model&lt;/high&gt;
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+
+
+.pull-right5[
+
+
+```r
+# Run a regression and store result in my_lm
+my_lm &lt;- lm(formula = income ~ age + height,
+            data = baselers)
+```
+&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png"&gt;&lt;/img&gt;
+]
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;high&gt;&lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model&lt;/high&gt;
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. Use editor, shortcuts, auto-complete
+]
+
+
+.pull-right5[
+&lt;high&gt;Add variables&lt;/high&gt; using `+` 
+
+
+```r
+# Include multiple terms with +
+my_lm &lt;- lm(formula = income ~ age + height,
+            data = baselers)
+```
+
+&lt;high&gt;Include all variables&lt;/high&gt; using `formula = y ~ .`
+
+
+```r
+# Use  y ~ . to include ALL variables
+my_lm &lt;- lm(formula = income ~ .,
+            data = baselers)
+```
+
+&lt;high&gt;Subtract variables&lt;/high&gt; using `-`
+
+
+```r
+# Remove variables with -
+my_lm &lt;- lm(formula = income ~ . - id,
+            data = baselers)
+```
+
+]
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. &lt;high&gt;Use RStudio and projects&lt;/high&gt;
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+### Projects help...
+save workspace and history &amp;#9679; set project specific options &amp;#9679; access files &amp;#9679; version control &amp;#9679; etc.
+&lt;p align="left"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/projects_1.png" width="360"&gt;&lt;/p&gt;
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. &lt;high&gt;Use RStudio and projects&lt;/high&gt;
+11. Use editor, shortcuts, auto-complete
+]
+
+.pull-right5[
+### Folder structure
+Complement projects by a &lt;high&gt;folder structure&lt;/high&gt; appropriate for your project.
+&lt;br&gt;&lt;br&gt;
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/folder_structure.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. &lt;high&gt;Use editor, shortcuts, auto-complete&lt;/high&gt;
+]
+
+
+.pull-right5[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/editor_edit.png"&gt;&lt;/img&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Shortcut to &lt;high&gt;send to console&lt;/high&gt;:&lt;br&gt;&lt;br2&gt;&lt;font size = 6&gt;&amp;#8984;/ctrl + &amp;#9166;&lt;/font&gt;&lt;br&gt;&lt;br2&gt;&lt;br2&gt;
+Shortcut to &lt;high&gt;rerun chunk&lt;/high&gt;:&lt;br&gt;&lt;br2&gt;&lt;font size = 6&gt;  &amp;#8984;/ctrl + &amp;#8679; + p&lt;/font&gt;
+]
+
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. &lt;high&gt;Use editor, shortcuts, auto-complete&lt;/high&gt;
+]
+
+
+.pull-right5[
+
+
+```r
+# Load packages with library()
+library(tidyverse)
+library(yarrr)
+library(lme4)
+
+# import data with 
+baselers &lt;- read_delim(file = "baselers.txt",
+                       delim = '\t')
+```
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. &lt;high&gt;Use editor, shortcuts, auto-complete&lt;/high&gt;
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_1.png"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. &lt;high&gt;Use editor, shortcuts, auto-complete&lt;/high&gt;
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_2.png"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# 6+3+2 basic R lessons 
+
+.pull-left4[
+&lt;i&gt;R essentials&lt;/i&gt;
+1. Everything is an object
+2. &lt;mono&gt;&lt;-&lt;/mono&gt; creates/changes objects
+3. Everything happens through functions
+4. Functions have (default) arguments
+5. Functions live in packages
+6. Find help with &lt;mono&gt;?&lt;/mono&gt;
+
+&lt;i&gt;Analytic essentials&lt;/i&gt;
+7. Data lives in data frames
+8. 3 data types + factors&lt;/high&gt;
+9. &lt;mono&gt;formula&lt;/mono&gt; and &lt;mono&gt;data&lt;/mono&gt; specify a model
+
+&lt;i&gt;Productivity essentials&lt;/i&gt;
+10. Use RStudio and projects
+11. &lt;high&gt;Use editor, shortcuts, auto-complete&lt;/high&gt;
+]
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_3.png"&gt;&lt;/img&gt;
+
+]
+
+
+---
+
+class: middle, center
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2019Oct/1_Data/baselrbootcamp_MLdata.zip"&gt;Download&lt;/a&gt;&lt;/h1&gt;
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a&gt;Interactive&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Optimizing</title>
+
+<script src="Optimization_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Optimization_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Optimization_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Optimization_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Optimization_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Optimization_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="Optimization_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Optimization_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Optimizing</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Maschinelles Lernen mit R</font><br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p align="center">
+<img width="100%" src="image/rexthor.png" margin=0><br> <font style="font-size:10px">from <a href="https://xkcd.com/1725/">xkcd.com</a></font>
+</p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="uberblick" class="section level2">
+<h2>Überblick</h2>
+<p>In diesem Practical wirst du optimale Tuning Parameter identifizieren für bestmögliche Vorhersageperformanz.</p>
+<p>Am Ende des Practicals wirst du wissen wie man…</p>
+<ol style="list-style-type: decimal">
+<li>Cross-Validation zur Auswahl der Tuning Parameter verwendet.</li>
+<li>Schätzungen für Vorhersageperformanz durch Cross-Validation erhält.</li>
+<li>Wie sich eine simple Regression von Lasso und Ridge unterscheidet.</li>
+</ol>
+</div>
+<div id="aufgaben" class="section level2">
+<h2>Aufgaben</h2>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
+<ol style="list-style-type: decimal">
+<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Optimizing Practical” als Kommentare an den Anfang des Skripts.</p></li>
+</ol>
+<pre class="r"><code>## NAME
+## DATUM
+## Optimizing Practical</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Speichere das neue Skript unter dem Namen <code>optimizing_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
+<li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, <code>partykit</code>.</p></li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
+</div>
+<div id="b---lade-die-baseball-datensatze" class="section level3">
+<h3>B - Lade die <code>baseball</code> Datensätze</h3>
+<ol style="list-style-type: decimal">
+<li>Verwende die <code>read_csv()</code> Funktion um die Datensätze <code>baseball_train.csv</code> und <code>baseball_test.csv</code> einzulesen.</li>
+</ol>
+<pre class="r"><code># Lese Daten ein
+baseball_train &lt;- read_csv(file = &quot;1_Data/baseball_train.csv&quot;)
+baseball_test &lt;- read_csv(file = &quot;1_Data/baseball_test.csv&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Printe die Datensätze.</p></li>
+<li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
+<li><p>Wiederum, führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
+</ol>
+<pre class="r"><code># Konvertiere alle character zu factor
+baseball_train &lt;- baseball_train %&gt;%
+          mutate_if(is.character, factor)
+
+baseball_test &lt;- baseball_test %&gt;%
+          mutate_if(is.character, factor)</code></pre>
+</div>
+<div id="c---definiere-traincontrol" class="section level3">
+<h3>C - Definiere <code>trainControl</code></h3>
+<ol style="list-style-type: decimal">
+<li>Definiere ein Objekt <code>ctrl_cv</code> das 10-fold Cross-Validation als Resampling Methode bestimmt. Im Detail,…</li>
+</ol>
+<ul>
+<li>setze das <code>method</code> Argument auf <code>&quot;cv&quot;</code> für Cross-Validation.</li>
+<li>setze das <code>number</code> Argument auf <code>10</code> für 10 folds.</li>
+</ul>
+<pre class="r"><code># Verwende 10-fold Cross-Validation
+ctrl_cv &lt;- trainControl(method = &quot;XX&quot;, 
+                        number = XX) </code></pre>
+<pre class="r"><code># Verwende 10-fold Cross-Validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) </code></pre>
+</div>
+<div id="c---regression" class="section level3">
+<h3>C - Regression</h3>
+<ol style="list-style-type: decimal">
+<li>Fitte eine normale Regression auf bekanntem Wege (wie z.b. im Practical zu <a href="_sessions/Prediction/Prediction_practical.html">Prediction</a>), die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das <code>trControl</code> Argument auf das eben definierte <code>ctrl_cv</code> Objekt.</li>
+</ol>
+<pre class="r"><code># Normal Regression
+gehalt_glm &lt;- train(form = XX ~ .,
+                    data = XX,
+                    method = &quot;XX&quot;,
+                    trControl = XX)</code></pre>
+<pre class="r"><code># Normal Regression
+gehalt_glm &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;glm&quot;,
+                   trControl = ctrl_cv)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Exploriere <code>gehalt_glm</code> indem du <code>gehalt_glm$finalModel</code> printest und <code>summary()</code> auf das Fit-Objekt anwendest. Wie beurteilst du die Outputs?</li>
+</ol>
+<pre class="r"><code>gehalt_glm</code></pre>
+<pre><code>Generalized Linear Model 
+
+213 samples
+ 19 predictor
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 192, 191, 191, 192, 191, 192, ... 
+Resampling results:
+
+  RMSE  Rsquared  MAE
+  312   0.528     229</code></pre>
+</div>
+<div id="d---ridge-regression" class="section level3">
+<h3>D - Ridge Regression</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du ein Regressionsmodel mit Ridge fitten kannst, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vector von möglichen <code>lambda</code> Werten.</li>
+</ol>
+<pre class="r"><code># Kandidaten für lambda
+lambda_vec &lt;- 10 ^ (seq(-4, 4, length = 100))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fitte eine Ridge Regression, die das <code>Gehalt</code> des Baseballspielers durch alle Feature im Datensatz vorhersagt. Hierzu kannst du mit dem Code der normalen Regression beginnen und anschliessend zwei Änderungen vornehmen:</li>
+</ol>
+<ul>
+<li>setze das <code>preProcess</code> Argument auf <code>c(&quot;center&quot;, &quot;scale&quot;)</code> um möglichen Problemen mit unterschielichen Skalierungen aus dem Weg zu gehen, die bei Regularisierung auftreten können.</li>
+<li>setze das <code>tuneGrid</code> auf <code>expand.grid(alpha = 0, lambda = lambda_vec)</code> um Ridge auszuwählen und alle verschiedenen Kandidaten in <code>lambda_vec</code> durchlaufen zu lassen.</li>
+</ul>
+<pre class="r"><code># Ridge Regression
+gehalt_ridge &lt;- train(form = XX ~ .,
+                      data = XX,
+                      method = &quot;XX&quot;,
+                      trControl = XX,
+                      preProcess = XX,  
+                      tuneGrid = XX)</code></pre>
+<pre class="r"><code># Ridge Regression
+gehalt_ridge &lt;- train(form = Gehalt ~ .,
+                      data = baseball_train,
+                      method = &quot;glmnet&quot;,
+                      trControl = ctrl_cv,
+                      preProcess = c(&quot;center&quot;, &quot;scale&quot;), 
+                      tuneGrid = expand.grid(alpha = 0, 
+                                             lambda = lambda_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Plotte das Objekt <code>gehalt_ridge</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_ridge)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
+</ol>
+<pre class="r"><code># Printe besten lambda parameter
+gehalt_ridge$bestTune$lambda</code></pre>
+<pre><code>[1] 242</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Lasse dir mit dem Code unten die Parameter des finale Modells anzeigen. Wie beurteilst du den Output?</li>
+</ol>
+<pre class="r"><code># Erhalte die Modellparameter für das Modell unter dem optimalen lambda
+coef(gehalt_ridge$finalModel, 
+     gehalt_ridge$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                    1
+(Intercept)   518.822
+Schlaeger86    19.721
+Getroffen86    50.952
+Home_runs86     3.052
+Runs86         30.331
+Runs_andere86  20.753
+Walks86        41.547
+Putout86       55.907
+Vorlage86     -16.550
+Fehler86       -8.857
+Erfahrung       9.199
+Schlaeger      22.937
+Getroffen      38.660
+Home_runs      38.065
+Runs           37.822
+Runs_andere    40.529
+Walks           5.158
+LigaN          -0.234
+DivisionW     -38.463
+Liga87N         1.474</code></pre>
+</div>
+<div id="e---lasso-regression" class="section level3">
+<h3>E - Lasso Regression</h3>
+<ol style="list-style-type: decimal">
+<li>Fitte eine Lasso Regression, die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem Code für die Ridge Regression und definiere als einzige Änderung <code>alpha = 1</code>.</li>
+</ol>
+<pre class="r"><code># Fit a lasso regression
+gehalt_lasso &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;),
+                   tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
+                                          lambda = lambda_vec))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Plotte das Objekt <code>gehalt_lasso</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_lasso)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
+</ol>
+<pre class="r"><code># Printe besten lambda Parameter
+gehalt_lasso$bestTune$lambda</code></pre>
+<pre><code>[1] 12.3</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Lasse dir mit dem Code unten die Parameter des finalen Modells anzeigen. Wie beurteilst du den Output? Hat sich was im Vergleich zu Ridge verändert?</li>
+</ol>
+<pre class="r"><code># Erhalte die Modellparameter für das Modell unter dem optimalen lambda
+coef(gehalt_lasso$finalModel, 
+     gehalt_lasso$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                  1
+(Intercept)   518.8
+Schlaeger86     .  
+Getroffen86   116.5
+Home_runs86     .  
+Runs86          .  
+Runs_andere86   .  
+Walks86        49.8
+Putout86       70.2
+Vorlage86     -24.5
+Fehler86        .  
+Erfahrung       .  
+Schlaeger       .  
+Getroffen       .  
+Home_runs      25.3
+Runs           71.8
+Runs_andere   102.2
+Walks           .  
+LigaN           .  
+DivisionW     -47.1
+Liga87N         .  </code></pre>
+</div>
+<div id="f---decision-tree" class="section level3">
+<h3>F - Decision Tree</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du einen Decision Tree per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>cp</code> Werten.</li>
+</ol>
+<pre class="r"><code># Kandidaten für cp
+cp_vec &lt;- seq(from = 0, to = 1, length = 100)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fitte einen Decision Tree, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</li>
+</ol>
+<ul>
+<li>setze das <code>trControl</code> Argument auf das <code>ctrl_cv</code> Objekt.</li>
+<li>setze das <code>tuneGrid</code> Argument auf <code>expand.grid(cp = cp_vec)</code>.</li>
+</ul>
+<pre class="r"><code># Decision Tree 
+gehalt_rpart &lt;- train(form = XX ~ .,
+                  data = XX,
+                  method = &quot;XX&quot;,
+                  trControl = XX,
+                  tuneGrid = XX)</code></pre>
+<pre class="r"><code># Decision Tree
+gehalt_rpart &lt;- train(form = Gehalt ~ .,
+                  data = baseball_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_cv,
+                  tuneGrid = expand.grid(cp = cp_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Plotte das Objekt <code>gehalt_rpart</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>cp</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_rpart)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-24-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als besten <code>cp</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
+</ol>
+<pre class="r"><code># Print besten cp Parameter
+gehalt_rpart$bestTune$cp</code></pre>
+<pre><code>[1] 0.0101</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Plotte das finale Modell mit dem folgenden Code.</li>
+</ol>
+<pre class="r"><code># Visualisiere den Decision Tree
+plot(as.party(gehalt_rpart$finalModel)) </code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="g---random-forests" class="section level3">
+<h3>G - Random Forests</h3>
+<ol style="list-style-type: decimal">
+<li>Bevor du einen Random Forest per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>mtry</code> Werten.</li>
+</ol>
+<pre class="r"><code># Kandidaten für mtry
+mtry_vec &lt;- 1:10</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fitte einen Random Forest, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</li>
+</ol>
+<ul>
+<li>setze das <code>trControl</code> Argument auf das <code>ctrl_cv</code> Objekt.</li>
+<li>setze das <code>tuneGrid</code> Argument auf <code>expand.grid(mtry = mtry_vec)</code>.</li>
+</ul>
+<pre class="r"><code># Random Forest 
+gehalt_rf &lt;- train(form = XX ~ .,
+                   data = XX,
+                   method = &quot;XX&quot;,
+                   trControl = XX,
+                   tuneGrid = XX)</code></pre>
+<pre class="r"><code># Random Forest 
+gehalt_rf &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;rf&quot;,
+                   trControl = ctrl_cv,
+                   tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Plotte das Objekt <code>gehalt_rf</code> mit <code>plot()</code>. Was verrät dir der Plot? Welche <code>mtry</code> Werte könnten optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_rf)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>mtry</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
+</ol>
+<pre class="r"><code># Printe besten mtry Parameter
+gehalt_rf$bestTune$mtry</code></pre>
+<pre><code>[1] 4</code></pre>
+</div>
+<div id="h---schatze-die-vorhersageperformanz-uber-cross-validation" class="section level3">
+<h3>H - Schätze die Vorhersageperformanz über Cross Validation</h3>
+<ol style="list-style-type: decimal">
+<li>Verwende <code>resamples()</code> um die geschätzte Vorhersageleistung der einzelnen Modelle zu bestimmen. Übergebe hierzu die einzelnen gefitteten Modelle (z.b., <code>gehalt_glm</code>) an die Funktion.</li>
+</ol>
+<pre class="r"><code># Geschätzte Vorhersageleistung
+gehalt_resamples &lt;- resamples(list(glm = XXX,
+                                   ridge = XXX, 
+                                   lasso = XXX, 
+                                   rpart = XXX, 
+                                   rf = XXX))</code></pre>
+<pre class="r"><code># Geschätzte Vorhersageleistung
+gehalt_resamples &lt;- resamples(list(glm = gehalt_glm,
+                                   ridge = gehalt_ridge, 
+                                   lasso = gehalt_lasso, 
+                                   dt = gehalt_rpart, 
+                                   rf = gehalt_rf))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Erhalte einen Überblick über die Ergennisse mit <code>summary(gehalt_resamples)</code>. Wie interpretierst du den Ouput? Welches Modell hat die beste geschätzte Vorhersageleistung?</li>
+</ol>
+</div>
+<div id="i---berechne-tatsachliche-vorhersageleistung" class="section level3">
+<h3>I - Berechne tatsächliche Vorhersageleistung</h3>
+<ol style="list-style-type: decimal">
+<li>Speichere das Kriterium (<code>Gehalt</code>) der Testdaten <code>baseball_test</code> in einem Objekt namens <code>criterion_test</code>.</li>
+</ol>
+<pre class="r"><code># Testkriterium
+criterion_test &lt;- XXX$XXX</code></pre>
+<pre class="r"><code># Geschätzte Vorhersageleistung
+criterion_test &lt;- baseball_test$Gehalt</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Verwende <code>predict()</code> um auf bekanntem Wege Vorhersagen für die Testdaten <code>baseball_test</code> auf Basis der Modelle zu bestimmen.</li>
+</ol>
+<pre class="r"><code># Vorhersagen der Modelle
+ridge_pred &lt;- predict(XXX, newdata = XXX)
+lasso_pred &lt;- predict(XXX, newdata = XXX)
+rpart_pred &lt;- predict(XXX, newdata = XXX)
+rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
+<pre class="r"><code># Vorhersagen der Modelle
+ridge_pred &lt;- predict(gehalt_ridge, newdata = baseball_test)
+lasso_pred &lt;- predict(gehalt_lasso, newdata = baseball_test)
+rpart_pred &lt;- predict(gehalt_rpart, newdata = baseball_test)
+rf_pred &lt;- predict(gehalt_rf, newdata = baseball_test)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Verwende <code>postResample()</code> um die Vorhersagen mit den tatsächlichen Kriteriumswerten zu vergleichen. Welches Modell hat in der Vorhersage der Testdaten die beste Performanz?</li>
+</ol>
+<pre class="r"><code>postResample(ridge_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 445.415    0.254  258.965 </code></pre>
+<pre class="r"><code>postResample(lasso_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 446.113    0.256  262.016 </code></pre>
+<pre class="r"><code>postResample(rpart_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 496.719    0.248  292.957 </code></pre>
+<pre class="r"><code>postResample(rf_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 397.953    0.402  214.714 </code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Vergleiche die geschätzten Vorhersageleistungen auf Basis von <code>resamples()</code> (aus der letzten Sektion) mit der Leistung für tatsächliche Vorhersage. Wie gross sind die Unterschiede?</li>
+</ol>
+</div>
+<div id="x---challenges-abschlussrate" class="section level3">
+<h3>X - Challenges: Abschlussrate</h3>
+<p>Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die <code>graduation_train</code> und <code>graduation_test</code> Datensätze aus dem letzten Practical. Lass die Modelle das Kriterium <code>Privatuniversität</code> auf Basis aller anderen Features vorhersagen. Nicht vergessen für Klassifikation muss das Kriterium ein <code>factor</code> sein.</p>
+<ol style="list-style-type: decimal">
+<li>Welches Modell ist das beste?</li>
+<li>Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnissen des letzten Practicals.</li>
+<li>Setzt Lasso die Gewichte einzelner Features auf 0? Was könnte das für die Relevanz des Features bedeuten?</li>
+</ol>
+</div>
+<div id="y---challenges-hauspreise" class="section level3">
+<h3>Y - Challenges: Hauspreise</h3>
+<p>Vergleiche auf Basis der Schritte in diesem Practical die Performanz von Regression, Lasso, Ridge, Decision Tree und Random Forest für die <code>house_train</code> und <code>house_test</code> Datensätze aus dem letzten Practical. Lass die Modelle das Kriterium <code>Preis</code> auf Basis aller anderen Features vorhersagen.</p>
+<ol style="list-style-type: decimal">
+<li>Welches Modell ist das beste?</li>
+<li>Wie viel besser werden die Modelle durch Model Tuning? Vergleiche mit den Ergebnissen des letzten Practicals.</li>
+<li>Setzt Lasso die Gewichte einzelner Features auf 0? Was könnte das für die Relevanz des Features bedeuten?</li>
+</ol>
+</div>
+</div>
+<div id="beispiele" class="section level2">
+<h2>Beispiele</h2>
+<pre class="r"><code># Schritt 0: Lade Pakete-----------
+library(tidyverse)   
+library(caret)      
+library(partykit)  
+library(party)  
+
+# Step 1: Lade und bereite Daten ----------------------
+
+# Training und Testdaten
+data_train &lt;- read_csv(&quot;1_Data/diamonds_train.csv&quot;)
+data_test &lt;- read_csv(&quot;1_Data/diamonds_test.csv&quot;)
+
+# Konvertiere alle character zu factor
+data_train &lt;- data_train %&gt;% mutate_if(is.character, factor)
+data_test &lt;- data_test %&gt;% mutate_if(is.character, factor)
+
+# Definiere Kriterien
+criterion_train &lt;- data_train$price
+criterion_test &lt;- data_test$price
+
+# Schritt 2: Definiere die Training-Kontrollparameter -------------
+
+# Verwende 10-fold Cross Validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) 
+
+# Scrhitt 3: Trainieree Modelle -----------------------------
+
+# Simple Regression ----
+price_glm &lt;- train(form = price ~ carat + depth + table + x + y,
+                   data = data_train,
+                   method = &quot;glm&quot;,
+                   trControl = ctrl_cv)
+
+
+# Zeige Outputs
+price_glm
+coef(price_glm$finalModel)
+
+# Lasso ----
+
+# Kandidatenset für lambda
+lambda_vec &lt;- 10 ^ seq(-3, 3, length = 100)
+
+# Lasso Regression
+price_lasso &lt;- train(form = price ~ carat + depth + table + x + y,
+                   data = data_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;), # Standardisiere 
+                   tuneGrid = expand.grid(alpha = 1,  
+                                          lambda = lambda_vec))
+
+# Zeige Outputs
+price_lasso 
+plot(price_lasso)
+
+# Zeige beste Regularisierungsparameter
+price_lasso$bestTune$lambda
+
+# Zeige finales Modell
+coef(price_lasso$finalModel, 
+     price_lasso$bestTune$lambda)
+
+
+# Ridge ----
+
+# Kandidatenset für lambda
+lambda_vec &lt;- 10 ^ seq(-3, 3, length = 100)
+
+# Ridge Regression
+price_ridge &lt;- train(form = price ~ carat + depth + table + x + y,
+                     data = data_train,
+                     method = &quot;glmnet&quot;,
+                     trControl = ctrl_cv,
+                     preProcess = c(&quot;center&quot;, &quot;scale&quot;), # Standardisiere
+                     tuneGrid = expand.grid(alpha = 0,
+                                            lambda = lambda_vec))
+
+# Zeige Outputs
+price_ridge
+plot(price_ridge)
+
+# Zeige beste Regularisierungsparameter
+price_ridge$bestTune$lambda
+
+# Zeige finales Modell
+coef(price_ridge$finalModel, 
+     price_ridge$bestTune$lambda)
+
+
+# Decision Trees --------------------------
+
+# Kandidatenset für cp
+cp_vec &lt;- seq(0, .1, length = 100)
+
+price_rpart &lt;- train(form = price ~ carat + depth + table + x + y,
+                  data = data_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_cv,
+                  tuneGrid = expand.grid(cp = cp_vec))
+
+# Zeige Outputs
+price_rpart
+
+# Zeige beste Regularisierungsparameter
+plot(price_rpart)
+price_rpart$bestTune$cp
+
+
+# Schritt 3: Vorhersageperformanz in folds ----
+
+# Berechne Performanz
+resamples_price &lt;- resamples(list(ridge = price_ridge, 
+                                  lasso = price_lasso, 
+                                  glm = price_glm))
+
+# Zusammenfassung
+summary(resamples_price)
+
+
+# Schritt 4: Vorhersageevaluation -------------------
+
+# GLM
+glm_pred &lt;- predict(price_glm, newdata = data_test)
+postResample(pred = glm_pred, obs = criterion_test)
+
+# Ridge
+ridge_pred &lt;- predict(price_ridge, newdata = data_test)
+postResample(pred = ridge_pred, obs = criterion_test)
+
+# Lasso
+lasso_pred &lt;- predict(price_lasso, newdata = data_test)
+postResample(pred = lasso_pred, obs = criterion_test)</code></pre>
+</div>
+<div id="datensatze" class="section level2">
+<h2>Datensätze</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Datei</th>
+<th align="left">Zeilen</th>
+<th align="left">Spalten</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/baseball_train.csv">baseball_train.csv</a></td>
+<td align="left">213</td>
+<td align="left">20</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/baseball_test.csv">baseball_test.csv</a></td>
+<td align="left">50</td>
+<td align="left">20</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_train.csv">graduation_train.csv</a></td>
+<td align="left">500</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/graduation_test.csv">graduation_test.csv</a></td>
+<td align="left">277</td>
+<td align="left">18</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/house_train.csv">house_train.csv</a></td>
+<td align="left">5000</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2020Apr/master/1_Data/house_test.csv">house_test.csv</a></td>
+<td align="left">1000</td>
+<td align="left">21</td>
+</tr>
+</tbody>
+</table>
+<div id="baseball_train-and-baseball_test" class="section level4">
+<h4><code>baseball_train</code> and <code>baseball_test</code></h4>
+<p>Die <code>baseball_train</code> und <code>baseball_test</code> Datensätze entstammen dem <code>Hitters</code> Datensatz des <code>ISLR</code> Pakets. Sie enthalten Daten über Major League Baseball Spieler aus den Saisons 1986 und 1987.</p>
+<div class="line-block">Name | Beschreibung |</div>
+<p>|Gehalt| Jahresgehalt zu Beginn des Jahres 1987 | |Schlaeger86| Einsätze als Schläger im Jahr 1986 | |Getroffen86| Treffer des Balls im Jahr 1986 | |Home_runs86| Home runs im Jahr 1986 | |Runs86| Runs im Jahr 1986 | |Runs_andere86| Runs anderer ermöglicht im Jahr 1986 | |Walks86| Walks durch Fehlwürfe des Werfers im Jahr 1986 | |Putout86| Putouts eines Schlägers als Fänger im 1986 | |Vorlage86| Vorlage zum Putout als Fänger im Jahr 1986 | |Fehler86| Fehler der Fänger im Jahr 1986 | |Erfahrung| Erfahrung in Jahren in Major Ligen zu Beginn des Jahres 1987 | |Schlaeger| Einsätze als Schläger insgesamt | |Getroffen| Treffer des Balls insgesamt | |Home_runs| Home runs insgesamt | |Runs| Runs insgesamt | |Runs_andere| Runs anderer ermöglicht insgesamt | |Walks| Walks durch Fehlwürfe des Werfers insgesamt | |Liga| Ligakürzel: A = American, N = National | |Division| Divisionskürzel: E = East, W = West | |Liga87| Ligakürzel in 1987: A = American, N = National |</p>
+</div>
+<div id="graduation_train-und-graduation_test" class="section level4">
+<h4><code>graduation_train</code> und <code>graduation_test</code></h4>
+<p>Die <code>graduation_train</code> und <code>graduation_test</code> Datensätze entstammen dem <code>College</code> Datensatz aus dem <code>ISLR</code> Paket. sie enthalten Statistiken für eine grosse Anzahl US Colleges auf Basis des <em>US News and World Reports</em> aus dem Jahr 1995.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Privatuniversitaet</td>
+<td align="left">Ja oder Nein</td>
+</tr>
+<tr class="even">
+<td align="left">Bewerbungen</td>
+<td align="left">Anzahl Bewerbungen</td>
+</tr>
+<tr class="odd">
+<td align="left">Angenommen</td>
+<td align="left">Anzahl angenommene Bewerbungen</td>
+</tr>
+<tr class="even">
+<td align="left">Eingeschrieben</td>
+<td align="left">Anzahl eingeschrieben</td>
+</tr>
+<tr class="odd">
+<td align="left">Prozent_Top10</td>
+<td align="left">Prozent der Studierenden innerhalb Top 10% in High School</td>
+</tr>
+<tr class="even">
+<td align="left">Prozent_Top25</td>
+<td align="left">Prozent der Studierenden innerhalb Top 25% in High School</td>
+</tr>
+<tr class="odd">
+<td align="left">Vollzeit</td>
+<td align="left">Anzahl Studierende in Vollzeit</td>
+</tr>
+<tr class="even">
+<td align="left">Teilzeit</td>
+<td align="left">Anzahl Studierende in Teilzeit</td>
+</tr>
+<tr class="odd">
+<td align="left">Kosten_ausserhalb</td>
+<td align="left">Kosten für Studierende aus einem anderen Staat</td>
+</tr>
+<tr class="even">
+<td align="left">Kosten_Unterkunft</td>
+<td align="left">Kosten für Studierende für Unterkunft und Verpflegung</td>
+</tr>
+<tr class="odd">
+<td align="left">Kosten_Buecher</td>
+<td align="left">Kosten für Studierende für Bücher</td>
+</tr>
+<tr class="even">
+<td align="left">Kosten_persoenlich</td>
+<td align="left">Kosten für Studierende für Persönliches</td>
+</tr>
+<tr class="odd">
+<td align="left">Prozent_PhD</td>
+<td align="left">Anteil PhDs innerhalb der Dozentenschaft</td>
+</tr>
+<tr class="even">
+<td align="left">Prozent_Degree</td>
+<td align="left">Anteil Abschlüsse innerhalb der Dozentenschaft</td>
+</tr>
+<tr class="odd">
+<td align="left">Verhaeltnis_Stud.Doz.</td>
+<td align="left">Verhältnis Studierene zu Dozenten</td>
+</tr>
+<tr class="even">
+<td align="left">Prozent_Spenden</td>
+<td align="left">Anteil Alumnis, die an das College spenden</td>
+</tr>
+<tr class="odd">
+<td align="left">Kosten_Student</td>
+<td align="left">Ausbildungskosten für das College pro Student</td>
+</tr>
+<tr class="even">
+<td align="left">Abschlussrate</td>
+<td align="left">Abschlussrate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="house_train-and-house_test" class="section level4">
+<h4><code>house_train</code> and <code>house_test</code></h4>
+<p>Die <code>house_train</code> und <code>house_test</code> Datensätze enthalten Hauspreise und -Eigenschaften in der King County in den USA, welches die Stadt Seattle beinhaltet. Quelle der Daten ist <a href="https://www.kaggle.com/harlfoxem/housesalesprediction">Kaggle</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Preis</td>
+<td align="left">Preis des Hauses</td>
+</tr>
+<tr class="even">
+<td align="left">Schlafzimmer</td>
+<td align="left">Anzahl Schlafzimmer</td>
+</tr>
+<tr class="odd">
+<td align="left">Baeder</td>
+<td align="left">Anzahl Bäder</td>
+</tr>
+<tr class="even">
+<td align="left">Gesamt_sqft</td>
+<td align="left">Gesamtfläche des Hauses in square foot</td>
+</tr>
+<tr class="odd">
+<td align="left">Grundstück_sqft</td>
+<td align="left">Fläche des Grundstücks in square foot</td>
+</tr>
+<tr class="even">
+<td align="left">Stockwerke</td>
+<td align="left">Anzahl Stockwerke</td>
+</tr>
+<tr class="odd">
+<td align="left">Uferlage</td>
+<td align="left">0 = Nein, 1 = Ja</td>
+</tr>
+<tr class="even">
+<td align="left">Besichtigung</td>
+<td align="left">Wurde das Haus besichtigt</td>
+</tr>
+<tr class="odd">
+<td align="left">Zustand</td>
+<td align="left">Wie gut ist der Zustand des Hauses</td>
+</tr>
+<tr class="even">
+<td align="left">Einstufung</td>
+<td align="left">Einstufung gemäss King County Einstufungssystem</td>
+</tr>
+<tr class="odd">
+<td align="left">Wohnraum_sqft</td>
+<td align="left">Wohnraum des Hauses in square foot</td>
+</tr>
+<tr class="even">
+<td align="left">Keller_sqft</td>
+<td align="left">Kellerraum des Hauses in square foot</td>
+</tr>
+<tr class="odd">
+<td align="left">Baujahr</td>
+<td align="left">Baujahr</td>
+</tr>
+<tr class="even">
+<td align="left">Renovationsjahr</td>
+<td align="left">Renovationsjahr</td>
+</tr>
+<tr class="odd">
+<td align="left">Postleitzahl</td>
+<td align="left">Postleitzahl</td>
+</tr>
+<tr class="even">
+<td align="left">Breitengrad</td>
+<td align="left">Breitengrad</td>
+</tr>
+<tr class="odd">
+<td align="left">Laengengrad</td>
+<td align="left">Längengrad</td>
+</tr>
+<tr class="even">
+<td align="left">Gesamt_sqft_2015</td>
+<td align="left">Gesamtfläche des Hauses in square foot in 2015</td>
+</tr>
+<tr class="odd">
+<td align="left">Grundstück_sqft_2015</td>
+<td align="left">Fläche des Grundstücks in square foot in 2015</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="funktionen" class="section level2">
+<h2>Funktionen</h2>
+<div id="pakete" class="section level3">
+<h3>Pakete</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Paket</th>
+<th align="left">Installation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>caret</code></td>
+<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>partykit</code></td>
+<td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>party</code></td>
+<td align="left"><code>install.packages(&quot;party&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="funktionen-1" class="section level3">
+<h3>Funktionen</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Funktion</th>
+<th align="left">Paket</th>
+<th align="left">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>trainControl()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Definiere wie das Modell trainiert wird</td>
+</tr>
+<tr class="even">
+<td align="left"><code>train()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Trainiere (fitte) ein Modell</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict(object, newdata)</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">Vorhersage des Kriteriumswerts in <code>newdata</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>postResample()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Evaluiere Performanz in Regressionsfällen</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>confusionMatrix()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Evaluiere Performanz in Klassifikationsfällen</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="materialien" class="section level2">
+<h2>Materialien</h2>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

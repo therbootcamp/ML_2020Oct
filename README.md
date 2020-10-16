@@ -1,2 +1,5 @@
-# ML_2020Oct
-Machine learning with R October 2020
+# Applied ML @ Basel January 2019
+
+Notes (aka todo):
+
+Everything!

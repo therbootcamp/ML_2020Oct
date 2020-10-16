@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586012752332.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "430292787",
+    "id" : "BFEE05A",
+    "lastKnownWriteTime" : 1586093702,
+    "last_content_update" : 1586093702354,
+    "path" : "~/Dropbox (2.0)/Work/Software/RBootcamps/ML_2020Apr/_sessions/Models/eval_comp.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "48,7",
+        "scrollLine" : "44"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
