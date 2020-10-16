@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Features</title>
     <meta charset="utf-8" />
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Features
-### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Apr/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### April 2020
+### Maschinelles Lernen mit R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/ML_2020Oct/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Oktober 2020
 
 ---
 
@@ -34,7 +34,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Maschinelles Lernen mit R | April 2020
+      Maschinelles Lernen mit R | Oktober 2020
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -213,13 +213,13 @@ lm variable importance
 
         Overall
 alter   100.000
-essen    53.793
-glueck   32.530
-alkohol  29.211
-kinder    5.732
-tattoos   4.987
-fitness   4.689
-groesse   3.463
+essen    49.760
+glueck   32.560
+alkohol  28.523
+kinder    5.083
+fitness   4.367
+groesse   2.845
+tattoos   2.137
 ```
 
 ]
@@ -275,12 +275,12 @@ Outer resampling method: Bootstrapped (25 reps)
 
 Resampling performance over subset size:
 
- Variables  RMSE Rsquared   MAE RMSESD RsquaredSD   MAESD Selected
-         3 0.392    0.853 0.312 0.0125     0.0105 0.00987         
-         4 0.364    0.873 0.289 0.0123     0.0104 0.01019        *
-         5 0.365    0.872 0.290 0.0127     0.0109 0.01087         
-        10 0.367    0.871 0.292 0.0125     0.0109 0.01052         
-        14 0.367    0.871 0.292 0.0125     0.0110 0.01046         
+ Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
+         3 0.384    0.856 0.308 0.0145    0.01330 0.0127         
+         4 0.354    0.878 0.280 0.0108    0.00998 0.0101        *
+         5 0.356    0.876 0.283 0.0114    0.01032 0.0109         
+        10 0.356    0.876 0.284 0.0117    0.01070 0.0112         
+        14 0.356    0.876 0.285 0.0117    0.01062 0.0112         
 
 The top 4 variables (out of 4):
    alter, essen, alkohol, glueck
@@ -604,6 +604,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -621,17 +647,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

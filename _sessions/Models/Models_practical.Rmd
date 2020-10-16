@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Maschinelles Lernen mit R</font><br>
-      <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+      <a href='https://therbootcamp.github.io/ML_2020Oct/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -59,7 +59,7 @@ Der Wettbewerb läuft noch...
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Apr 4, 2020 17:05:00").getTime();
+var countDownDate = new Date("Oct 24, 2020 17:05:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {

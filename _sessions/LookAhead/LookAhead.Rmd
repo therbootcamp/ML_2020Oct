@@ -291,10 +291,9 @@ Das Netz ist vll. der beste Ort für Informationen über R.
 
 # Support
 
-<table class="tg"  style="cellspacing:0; cellpadding:0; border:none">
-  <col width="22%">
-  <col width="22%">
-  <col width="22%">
+<table width=80% class="tg"  style="cellspacing:0; cellpadding:0; border:none">
+  <col width="50%">
+  <col width="50%">
   <tr>
     <th class="tg-yw4l" valign='top'>
     <p align="center"><br>
@@ -308,18 +307,7 @@ Das Netz ist vll. der beste Ort für Informationen über R.
     <a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://cran.r-project.org/web/packages/memnet/index.html"><b>memnet</b> <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
     </p>  
   </th>
-  
-  <th class="tg-yw4l" valign='top'><p align="center"><br>
-    <a href="https://psychologie.unibas.ch/en/persons/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://therbootcamp.github.io/img/team/2.png" height="230" style="border-radius:50%"></a><br>
-    <p align="center">
-    <font size = 5>Markus Steiner</font><br><br>
-    <a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
-    <font size=4><i>packages: </i></font> 
-    <a href="https://github.com/mdsteiner/ShinyPsych"><b>ShinyPsych</b></a>, <br>
-    <a href="https://github.com/mdsteiner/EFAtools"><b>EFAtools</b></a> <br><br>
-    </p>
-  </th>
-  
+
   <th class="tg-yw4l" valign='top'>
     <p align="center">
     <p align="center"><br>
@@ -344,42 +332,59 @@ Das Netz ist vll. der beste Ort für Informationen über R.
 
 <table class="tg"  style="cellspacing:0; cellpadding:0; border:none;">
 <tr valign="top">
-  <col width="25%">
-  <col width="25%">
-  <col width="25%">
+  <col width="20%">
+  <col width="20%">
+  <col width="20%">
+  <col width="20%">
+  <col width="20%">
   <td>
     <p align="center">
-      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
-      <font style="font-size:20px;weight:700"><br>Statistik mit R<br></font><br>
+      <a class="project-link" href="https://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Einführung in die moderne Datenanalyse mit R</font><br>
       <br>
-      <img src="https://therbootcamp.github.io/img/courses/2.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>Mai 8/9, 2020</high><br><br><br>
+      <img src="https://therbootcamp.github.io/img/courses/0.png" height="180px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>August 28,<br>2020</high><br><br><br><br>
+    </p>
+  </td>
+  <td>
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Explorative Datenanalyse mit R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/1.png" height="180px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>September 4/5,<br>2020</high><br><br><br><br>
+    </p>
+  </td>
+  <td>
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Statistik mit R<br><br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/2.png" height="180px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>September 25/26,<br>2020</high><br><br><br><br>
       </a>
     </p>
   </td>
-
   <td>
     <p align="center">
-      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
-      <font style="font-size:20px;weight:700"><br>Reporting mit R<br></font><br>
+      <a class="project-link" href="https://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Maschinelles Lernen mit R<br></font><br>
       <br>
-      <img src="https://therbootcamp.github.io/img/courses/4.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>Juni 5/6, 2020</high><br><br><br>
+      <img src="https://therbootcamp.github.io/img/courses/3.png" height="180px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>Oktober 23/24,<br>2020</high><br><br><br><br>
       </a>
     </p>
   </td>
-  
   <td>
     <p align="center">
-      <a class="project-link" href="http://therbootcamp.github.io/#courses" align="center">
-      <font style="font-size:20px;weight:700"><br>Explorative Datenanalyse<br></font><br>
+      <a class="project-link" href="https://therbootcamp.github.io/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Reporting mit R<br><br></font><br>
       <br>
-      <img src="https://therbootcamp.github.io/img/courses/3.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
-      <high>September 4/5, 2020</high><br><br><br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="180px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>November 5/6,<br>2020</high><br><br><br><br>
       </a>
     </p>
   </td>
-  
   </tr>
 
 
@@ -399,11 +404,10 @@ Das Netz ist vll. der beste Ort für Informationen über R.
 .pull-right45[
 
 <p align="center"><br><br>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc7mIQxM9Ll32l2e5P6DNLv0yl5ugiSwmZgDRzRhcOnpHQveg/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJIkAN60drEswJWu6Ov6z5KHQ1jxej2YNHow_xvFzq2STDyw/viewform?embedded=true" width="430" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 ]
 
 ---
 class: center, middle
 
-# Herzlichen Dank! und noch eine Sache...
-
+# Herzlichen Dank! 

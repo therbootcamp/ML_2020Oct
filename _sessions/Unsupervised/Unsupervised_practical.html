@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -146,6 +145,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -211,7 +199,7 @@ $(document).ready(function () {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="uberblick" class="section level2">
+<div id="überblick" class="section level2">
 <h2>Überblick</h2>
 <p>In diesem Practical wirst die Clusteranalyse an zwei Datensätzen üben.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
@@ -260,57 +248,20 @@ gap2007 &lt;- gap %&gt;%
 </ol>
 <pre class="r"><code># kmeans für gap in 2007
 gap2007_km &lt;- kmeans(x = XX, centers = XX) </code></pre>
-<pre class="r"><code># kmeans für gap in 2007
-gap2007_km &lt;- kmeans(x = gap2007, centers = 3) </code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Printe <code>gap2007_km</code> in die Console und studiere den Output.</li>
-</ol>
-<pre class="r"><code># kmeans für gap in 2007
-gap2007_km</code></pre>
-<pre><code>K-means clustering with 3 clusters of sizes 27, 80, 34
-
-Cluster means:
-  BIP pro Kopf Lebenserwartung
-1        34099            79.9
-2         2809            60.3
-3        13701            72.1
-
-Clustering vector:
-  [1] 2 2 2 2 3 1 1 1 2 1 2 2 2 3 3 3 2 2 2 2 1 2 2 3 2 2 2 2 2 3 2 3 3 3 1
- [36] 2 2 2 2 2 3 2 2 1 1 3 2 1 2 1 2 2 2 2 2 1 3 1 2 2 3 2 1 1 1 2 1 2 2 2
- [71] 3 3 2 2 3 2 2 3 2 2 3 3 2 3 2 2 2 2 2 1 1 2 2 2 1 3 2 3 2 2 2 3 3 3 2
-[106] 3 2 2 3 2 3 2 1 3 1 2 3 1 2 2 2 1 1 2 1 2 2 2 3 2 3 2 1 1 3 3 2 2 2 2
-[141] 2
-
-Within cluster sum of squares by cluster:
-[1] 9.86e+08 3.76e+08 6.82e+08
- (between_SS / total_SS =  90.7 %)
-
-Available components:
-
-[1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
-[5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
-[9] &quot;ifault&quot;      </code></pre>
-<ol start="3" style="list-style-type: decimal">
+<li><p>Printe <code>gap2007_km</code> in die Console und studiere den Output.</p></li>
 <li><p>Die erste Zeile und die Tabelle Cluster means geben Aufschluss darüber, welche Cluster das Modell identifiziert hat.</p></li>
 <li><p>Ganz unten im Output steht eine Liste der im Objekt enthaltenen Elemente. Verwende <code>gap2007_km$XX</code> um das Element <code>cluster</code> als eigenes Objekt <code>clusters</code> und das Element <code>centers</code> als eigenes Objekt <code>centers</code> zu speichern.</p></li>
-</ol>
-<pre class="r"><code># gap2007_km 
-clusters &lt;- gap2007_km$cluster
-centers &lt;- gap2007_km$centers</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Verwende den Code unten um eine Abbildung mit den Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr dafür natürlich auch <code>ggplot2</code> benutzen.</li>
+<li><p>Verwende den Code unten um eine Abbildung mit den Daten mit Clusterzuweisungen zu erstellen. Wenn ihr damit vertraut seit, dürft ihr dafür natürlich auch <code>ggplot2</code> benutzen.</p></li>
 </ol>
 <pre class="r"><code># kmeans plot für gap in 2007
 plot(gap2007, col = clusters)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Mit dem Code unten ergänze nun die Zentroide der Cluster.</li>
 </ol>
 <pre class="r"><code># kmeans plot für gap in 2007
 plot(gap2007, col = clusters)
 points(centers, pch = 16, col = 1:3, cex = 2)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li><p>Etwas ist seltsam oder? Einige der Punkte des mittleren Clusters scheinen eigentlich deutlich näher am unteren als am eigenen Cluster zu liegen. Das sollte nicht sein. Hast du eine Idee wie das zustande kommen konnte?</p></li>
 <li><p>Das Problem ist, dass die Variablen sehr verschiedene Skalen haben. Die Werte von <code>BIP pro Kopf</code> sind deutlich grösser und damit absolut gesehen weiter voneinander entfernt: Der Unterschied zwischen <code>10000</code> und <code>20000</code> <code>BIP pro Kopf</code> ist deutlich grösser als der zwischen <code>50</code> und <code>60</code> Jahren <code>Lebenserwartung</code>. Aus diesem Grund spielt <code>BIP pro Kopf</code> bei der Zuweisung zu den Clustern eine deutlich grössere Rolle als Lebenserwartung. Um dieses Problem zu beheben verwende den Code unten um einen neuen Datensatz mit standardisierten Featuren zu generieren.</p></li>
@@ -322,17 +273,6 @@ gap2007_stand &lt;- gap2007 %&gt;%
 <ol start="9" style="list-style-type: decimal">
 <li>Nun führe nochmals <code>kmeans()</code> aus, diesmal mit <code>gap2007_stand</code> und plotte die Daten mit den neuen Clusterzuweisungen. Problem behoben?</li>
 </ol>
-<pre class="r"><code># kmeans plot für gap in 2007 (standardisiert)
-gap2007_stand_km &lt;- kmeans(x = gap2007_stand, centers = 3) 
-
-# extrahiere Elemente
-clusters &lt;- gap2007_stand_km$cluster
-centers &lt;- gap2007_stand_km$centers
-
-# plot
-plot(gap2007_stand, col = clusters)
-points(centers, pch = 16, col = 1:3, cex = 2)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="d---k-selection" class="section level3">
 <h3>D - <em>k</em>-selection</h3>
@@ -344,49 +284,17 @@ km_verlauf &lt;- purrr::map(2:20, kmeans, x = gap2007_stand)
 binnenvarianz &lt;- purrr::map_dbl(km_verlauf, 
                                `[[`, i = &#39;tot.withinss&#39;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Benutze <code>plot(XX)</code> um den Verlauf der <code>binnenvarianz</code> zu plotten.</li>
-</ol>
-<pre class="r"><code># kmeans plot für gap in 2007 (standardisiert)
-plot(binnenvarianz)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="3" style="list-style-type: decimal">
+<li><p>Benutze <code>plot(XX)</code> um den Verlauf der <code>binnenvarianz</code> zu plotten.</p></li>
 <li><p>Was sagt euch der Plot? Gibt es Ellbogen im Verlauf, die bestimmte Werte für <em>k</em> nahelegen?</p></li>
 <li><p>Auf Basis des Verlaufs erscheinen verschiedene Werte für <em>k</em> plausibel: 1, 3, oder 7. Verwende die <code>cDistance()</code> Funktion aus dem <code>cstab</code> Paket im Code unten um Schätzungen für <em>k</em> innerhalb der Werte <code>2:20</code> auf Basis der Gap- und Slope-Statistik zu erhalten.</p></li>
 </ol>
 <pre class="r"><code># schätze k mit cstab
 k_est &lt;- cDistance(data = as.matrix(XX),
                    kseq = XX:XX)</code></pre>
-<pre class="r"><code># schätze k mit cstab
-k_est &lt;- cDistance(data = as.matrix(gap2007_stand),
-                   kseq = 2:20)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Lass dir mit <code>k_est$k_Gap</code> und <code>k_est$k_Slope</code> ausgeben. Sinnvolle Schätzungen?</li>
+<li><p>Lass dir mit <code>k_est$k_Gap</code> und <code>k_est$k_Slope</code> ausgeben. Sinnvolle Schätzungen?</p></li>
+<li><p>Versuche nun das selbe mit <code>cStability()</code>. Lass dir im Anschluss den Wert <code>k_instab</code> ausgeben. Sinnvoller?</p></li>
 </ol>
-<pre class="r"><code># schätze k mit cstab
-k_est$k_Gap</code></pre>
-<pre><code>[1] 14</code></pre>
-<pre class="r"><code>k_est$k_Slope</code></pre>
-<pre><code>[1] 3</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Versuche nun das selbe mit <code>cStability()</code>. Lass dir im Anschluss den Wert <code>k_instab</code> ausgeben. Sinnvoller?</li>
-</ol>
-<pre class="r"><code># schätze k mit cstab
-k_est &lt;- cStability(data = as.matrix(gap2007_stand),
-                   kseq = 2:20)</code></pre>
-<pre><code>
-
-========
-===============
-======================
-==============================
-======================================
-=============================================
-====================================================
-============================================================
-====================================================================
-===========================================================================</code></pre>
-<pre class="r"><code>k_est$k_instab</code></pre>
-<pre><code>[1] 3</code></pre>
 <p>Notiz: Erinnere dich, es gibt kein richtiges <em>k</em>. Aus diesem Grund ist in Fällen, in denen die Clusterlösung visuell inspiziert werden kann, das Augenmass der etablierte Goldstandard. Bei mehr als zwei Features wird dies natürlich zunehmend schwieriger, sodass einem nichts anderes übrig bleibt als sich auf komputationale Verfahren zu stützen.</p>
 </div>
 <div id="e---dbscan" class="section level3">
@@ -397,9 +305,6 @@ k_est &lt;- cStability(data = as.matrix(gap2007_stand),
 <pre class="r"><code># clustere mit DBSCAN
 gap2007_stand_dbscan &lt;- dbscan(x = XX, 
                                eps = XX)</code></pre>
-<pre class="r"><code># clustere mit DBSCAN
-gap2007_stand_dbscan &lt;- dbscan(x = gap2007_stand, 
-                               eps = .5)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe das Objekt <code>gap2007_stand_dbscan</code> um es zu inspizieren.</p></li>
 <li><p>Was verrät euch der Output? Erinnert euch ein Cluster von 0 bedeutet Outlier.</p></li>
@@ -410,27 +315,9 @@ clusters &lt;- gap2007_stand_dbscan$XX
 
 # plot
 plot(XX, col = XX + 1)</code></pre>
-<pre class="r"><code># extrahiere Elemente
-clusters &lt;- gap2007_stand_dbscan$cluster
-
-# plot
-plot(gap2007_stand, col = clusters + 1)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="5" style="list-style-type: decimal">
-<li>Lasse <code>dbscan()</code> erneut laufen, aber mit anderen Werten für <code>eps</code>. Versuche <code>eps = .3</code> und <code>eps = .1</code> und plotte jeweils das Ergebnis. Ändert sich was?</li>
-</ol>
-<pre class="r"><code># clustere mit DBSCAN
-gap2007_stand_dbscan.3 &lt;- dbscan(x = gap2007_stand, eps = .3)
-gap2007_stand_dbscan.1 &lt;- dbscan(x = gap2007_stand, eps = .1)
-
-# plot
-par(mfrow = c(1, 3))
-plot(gap2007_stand, col = gap2007_stand_dbscan$cluster + 1)
-plot(gap2007_stand, col = gap2007_stand_dbscan.3$cluster + 1)
-plot(gap2007_stand, col = gap2007_stand_dbscan.1$cluster + 1)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="6" style="list-style-type: decimal">
-<li><code>dbscan</code> hat einen weiteren Parameter <code>minPts</code>, welcher bestimmt, wie viele Punkte in einem Abstand von <code>eps</code> liegen müssen, damit der Punkt ein Kernpunkt wird. Versuche ein paar verschiedene Werte und versuche zu verstehen was passiert.</li>
+<li><p>Lasse <code>dbscan()</code> erneut laufen, aber mit anderen Werten für <code>eps</code>. Versuche <code>eps = .3</code> und <code>eps = .1</code> und plotte jeweils das Ergebnis. Ändert sich was?</p></li>
+<li><p><code>dbscan</code> hat einen weiteren Parameter <code>minPts</code>, welcher bestimmt, wie viele Punkte in einem Abstand von <code>eps</code> liegen müssen, damit der Punkt ein Kernpunkt wird. Versuche ein paar verschiedene Werte und versuche zu verstehen was passiert.</p></li>
 </ol>
 </div>
 <div id="f---gaussian-mixtures" class="section level3">
@@ -440,60 +327,29 @@ plot(gap2007_stand, col = gap2007_stand_dbscan.1$cluster + 1)</code></pre>
 </ol>
 <pre class="r"><code># clustere mit Gaussian mixtures
 gap2007_gm &lt;- Mclust(XX)</code></pre>
-<pre class="r"><code># clustere mit Gaussian mixtures
-gap2007_gm &lt;- Mclust(gap2007)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe das Objekt <code>gap2007_gm</code> um es zu inspizieren.</p></li>
 <li><p>Der Output verrät relativ wenig, nur welche Elemente enthalten sind. Verwende <code>table(gap2007_gm$classification)</code> um einen Überblick über die Clusterzuweisungen zu erhalten. Wie viele Cluster wurden identifiziert?</p></li>
 <li><p>Verwende das <code>classification</code> Element um wie üblich die Daten mit den Clusterzuweisungen zu plotten.</p></li>
-</ol>
-<pre class="r"><code># plot
-plot(gap2007_stand, col = gap2007_gm$classification)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="5" style="list-style-type: decimal">
-<li>Führe nun alternativ <code>plot(gap2007_gm, what = 'classification')</code> aus, um den eigenen Plot des <code>mclust</code> Pakets zu sehen.</li>
-</ol>
-<pre class="r"><code># plot
-plot(gap2007_gm, what = &#39;classification&#39;)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-27-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="6" style="list-style-type: decimal">
+<li><p>Führe nun alternativ <code>plot(gap2007_gm, what = 'classification')</code> aus, um den eigenen Plot des <code>mclust</code> Pakets zu sehen.</p></li>
 <li><p>Versuche nachzuvollziehen was der <code>mclust</code> Plot euch zeigt. Erinnere dich, die Ellipsen sind Normalverteilungen, die jeweils eigene Skalen und Feature-Zusammenhänge berücksichtigen können.</p></li>
 <li><p>Eine interessante Eigenschaft von Gaussian Mixtures ist, dass man direkt die Unsicherheit der Clusterzuweisung evaluieren kann. Führe <code>plot(gap2007_gm, what = 'uncertainty')</code> aus. Die Grössen der Punkte zeigen an, wie gross die Unsicherheit (oder Rivalität) in der Zuweisung der Punkte zu den Clustern war.</p></li>
 </ol>
-<pre class="r"><code># plot
-plot(gap2007_gm, what = &#39;uncertainty&#39;)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-28-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="x---challenges-modellselektion-gaussian-mixtures" class="section level3">
 <h3>X - Challenges: Modellselektion Gaussian mixtures</h3>
 <ol style="list-style-type: decimal">
 <li>Eine nützliche Eigenschaft der <code>Mclust()</code> Funktion ist, dass parallel verschieden komplexe Varianten des Modells mit verschiedenem <em>k</em> geschätzt werden und dass am Ende nicht nur das beste <em>k</em> ausgewählt wird, sondern die beste Kombination von <em>k</em> und Modell. Du erhälst einen Überblick über den Prozess mit <code>plot(gap2007_gm, what = 'BIC')</code>.</li>
 </ol>
-<pre class="r"><code># plot
-plot(gap2007_gm, what = &#39;BIC&#39;)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-29-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>BIC ist das sogenannte Bayesian Information Criterion und dient der Auswahl eines Modells unter Berücksichtigung der Komplexität des Modells. In diesem Fall sind hohe Werte besser. In der Abbildung siehst du nun wie sich der BIC Wert über verschiedene <em>k</em> (Number of components) und Modelle (verschiedene Linien) entwickelt.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Verwende <code>plot(gap2007_gm, what = 'BIC', ylim = c(-4200, -3900))</code> um einen besseren Ausschnitt zu erhalten. Nun solltest du sehen können, dass das <code>EVV</code> Modell den besten BIC für 4 Komponenten erzielt. Entsprechend wurde dieses Modell ausgewählt.</li>
-</ol>
-<pre class="r"><code># plot
-plot(gap2007_gm, what = &#39;BIC&#39;, ylim = c(-4200, -3900))</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Lasse dir mit <code>?mclustModelNames</code> die Erläuterung zu den Modellbezeichnungen anzeigen. Dort findest zu heraus, dass das Modell annimmt, dass das Volumen der einzelnen Cluster (hier die Fläche der Ellipsoide) gleich ist. Dies lässt sich auch in <code>plot(gap2007_gm, what = 'classification')</code> erkennen.</li>
-</ol>
-<pre class="r"><code>plot(gap2007_gm, what = &#39;classification&#39;)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-31-1.png" width="576" style="display: block; margin: auto;" /></p>
-<ol start="4" style="list-style-type: decimal">
-<li>Verwende nun den Code unten um explizit nur bestimmte Gaussian Mixture Modelle zu verwenden. Verwende hierzu <code>modelNames = 'XX'</code> wobei ‘XX’ das Kürzel des jeweiligen Modells ist. Plotte im Anschluss die gefunden Lösungen. Probiere zunächst <code>EEI</code> aus. Danach spiele ein wenig herum.</li>
+<li><p>Verwende <code>plot(gap2007_gm, what = 'BIC', ylim = c(-4200, -3900))</code> um einen besseren Ausschnitt zu erhalten. Nun solltest du sehen können, dass das <code>EVV</code> Modell den besten BIC für 4 Komponenten erzielt. Entsprechend wurde dieses Modell ausgewählt.</p></li>
+<li><p>Lasse dir mit <code>?mclustModelNames</code> die Erläuterung zu den Modellbezeichnungen anzeigen. Dort findest zu heraus, dass das Modell annimmt, dass das Volumen der einzelnen Cluster (hier die Fläche der Ellipsoide) gleich ist. Dies lässt sich auch in <code>plot(gap2007_gm, what = 'classification')</code> erkennen.</p></li>
+<li><p>Verwende nun den Code unten um explizit nur bestimmte Gaussian Mixture Modelle zu verwenden. Verwende hierzu <code>modelNames = 'XX'</code> wobei ‘XX’ das Kürzel des jeweiligen Modells ist. Plotte im Anschluss die gefunden Lösungen. Probiere zunächst <code>EEI</code> aus. Danach spiele ein wenig herum.</p></li>
 </ol>
 <pre class="r"><code># Wähle Gaussian Mixture Modell explizit aus
 gap2007_gm &lt;- Mclust(gap2007, modelNames = &#39;XX&#39;)
 plot(gap2007_gm, what = &#39;classification&#39;)</code></pre>
-<pre class="r"><code># Wähle Gaussian Mixture Modell explizit aus
-gap2007_gm &lt;- Mclust(gap2007, modelNames = &#39;EEI&#39;)
-plot(gap2007_gm, what = &#39;classification&#39;)</code></pre>
-<p><img src="Unsupervised_practical_files/figure-html/unnamed-chunk-33-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="y---challenges-neuer-datensatz" class="section level3">
 <h3>Y - Challenges: Neuer Datensatz</h3>
@@ -585,7 +441,7 @@ table(mpg_km$cluster, mpg_dbscan$cluster)
 table(mpg_km$cluster, mpg_gm$classification)
 table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 </div>
-<div id="datensatze" class="section level2">
+<div id="datensätze" class="section level2">
 <h2>Datensätze</h2>
 <table>
 <thead>
@@ -711,19 +567,19 @@ table(mpg_dbscan$cluster, mpg_gm$classification)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>cstab</code></td>
-<td align="left"><code>install.packages(&quot;cstab&quot;)</code></td>
+<td align="left"><code>install.packages("cstab")</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>dbscan</code></td>
-<td align="left"><code>install.packages(&quot;dbscan&quot;)</code></td>
+<td align="left"><code>install.packages("dbscan")</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>mclust</code></td>
-<td align="left"><code>install.packages(&quot;mclust&quot;)</code></td>
+<td align="left"><code>install.packages("mclust")</code></td>
 </tr>
 </tbody>
 </table>
@@ -814,6 +670,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
