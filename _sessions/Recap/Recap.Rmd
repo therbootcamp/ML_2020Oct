@@ -5,7 +5,7 @@ author: "Maschinelles Lernen mit R<br>
     The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/ML_2020Apr/'>
+  <a href='https://therbootcamp.github.io/ML_2020Oct/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Maschinelles Lernen mit R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "April 2020"
+date: "Oktober 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Maschinelles Lernen mit R | April 2020
+       Maschinelles Lernen mit R | Oktober 2020
       </font>
     </a>
     </span>
