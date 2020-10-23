@@ -439,5 +439,5 @@ postResample(pred = mod_pred,
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2020Apr/index.html>Schedule</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Oct/index.html>Agenda</a></h1>
 

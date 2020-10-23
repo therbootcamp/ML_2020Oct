@@ -74,7 +74,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 ### A - Setup
 
-1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+1. Öffne dein `TheRBootcamp` R project. 
 
 2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Unsupervised learning Practical" als Kommentare an den Anfang des Skripts.
 
@@ -109,7 +109,6 @@ gap2007 <- gap %>%
   filter(Jahr == 2007) %>% 
   select(`BIP pro Kopf`, Lebenserwartung)
 ```
-
 
 ### C - *k*-means
 
@@ -147,7 +146,6 @@ centers <- gap2007_km$centers
 ```{r, echo = T}
 # kmeans plot für gap in 2007
 plot(gap2007, col = clusters)
-
 ```
 
 6. Mit dem Code unten ergänze nun die Zentroide der Cluster.
@@ -165,7 +163,7 @@ points(centers, pch = 16, col = 1:3, cex = 2)
 ```{r, echo = T}
 # standardisiere gap in 2007
 gap2007_stand <- gap2007 %>% 
-  scale %>% 
+  scale() %>% 
   as_tibble()
 ```
 

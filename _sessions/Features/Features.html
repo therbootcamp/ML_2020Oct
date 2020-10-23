@@ -133,7 +133,7 @@ layout: true
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Manuelle Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Features können manuell auf Basis &lt;high&gt;statistischer oder theoretischer Gesichtspunkte&lt;/high&gt; ausgewählt werden.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Features können manuell auf Basis &lt;high&gt;statistischer&lt;/high&gt; oder &lt;high&gt;theoretischer Gesichtspunkte&lt;/high&gt; ausgewählt werden.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Automatische Selektion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
@@ -141,7 +141,7 @@ layout: true
   &lt;/ul&gt;&lt;br&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Automatische Reduktion&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;Komprimiere die Dimensionalität&lt;/high&gt; mit Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA).&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Reduziere die Dimensionalität mit Methoden der &lt;high&gt;Dimensionsreduktion&lt;/high&gt;, z.B. mit Principal Component Analysis (PCA).&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -161,14 +161,14 @@ layout: true
 
 ---
 
-# Feature Wichtigkeit
+# Feature-Wichtigkeit
 
 .pull-left4[
 
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die Feature Wichtigkeit ist ein Mass für die &lt;high&gt;Bedeutung eines Features für Fit/Vorhersage der Daten&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; berechnet die Feature Wichtigkeit &lt;high&gt;Modell-spezifisch und skaliert&lt;/high&gt; sie auf Werte innerhalb &lt;mono&gt;[0, 100]&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mass für die Bedeutung eines Features &lt;high&gt;für Fit/Vorhersage der Daten&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; berechnet die Feature-Wichtigkeit &lt;high&gt;Modell-spezifisch und skaliert&lt;/high&gt; sie auf Werte innerhalb &lt;mono&gt;[0, 100]&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Strategien&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;&lt;high&gt;1-Feature&lt;/high&gt; Modelle (z.B. &lt;mono&gt;LOESS&lt;/mono&gt;)&lt;/span&gt;&lt;/li&gt;
@@ -184,7 +184,7 @@ layout: true
 .pull-right5[
 
 ```r
-# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+# Plotte Feature-Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -199,7 +199,7 @@ plot(varImp(einkommen_lm))
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;varImp()&lt;/mono&gt; Funktion liefert &lt;high&gt;Modell-spezifische Schätzungen&lt;/high&gt; der Feature Wichtigkeit&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;varImp()&lt;/mono&gt; Funktion liefert &lt;high&gt;Modell-spezifische Schätzungen&lt;/high&gt; der Feature-Wichtigkeit.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -212,14 +212,14 @@ varImp(einkommen_lm)
 lm variable importance
 
         Overall
-alter   100.000
-essen    49.760
-glueck   32.560
-alkohol  28.523
-kinder    5.083
-fitness   4.367
-groesse   2.845
-tattoos   2.137
+alter    100.00
+essen     46.99
+alkohol   29.32
+glueck    27.90
+datause    4.01
+groesse    3.62
+tattoos    3.42
+gewicht    2.90
 ```
 
 ]
@@ -227,7 +227,7 @@ tattoos   2.137
 .pull-right5[
 
 ```r
-# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+# Plotte Feature-Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -276,11 +276,11 @@ Outer resampling method: Bootstrapped (25 reps)
 Resampling performance over subset size:
 
  Variables  RMSE Rsquared   MAE RMSESD RsquaredSD  MAESD Selected
-         3 0.384    0.856 0.308 0.0145    0.01330 0.0127         
-         4 0.354    0.878 0.280 0.0108    0.00998 0.0101        *
-         5 0.356    0.876 0.283 0.0114    0.01032 0.0109         
-        10 0.356    0.876 0.284 0.0117    0.01070 0.0112         
-        14 0.356    0.876 0.285 0.0117    0.01062 0.0112         
+         3 0.392    0.852 0.314 0.0129    0.00989 0.0110         
+         4 0.372    0.867 0.296 0.0121    0.00950 0.0101        *
+         5 0.374    0.866 0.298 0.0125    0.01020 0.0106         
+        10 0.377    0.864 0.300 0.0127    0.01017 0.0107         
+        14 0.377    0.864 0.300 0.0131    0.01034 0.0110         
 
 The top 4 variables (out of 4):
    alter, essen, alkohol, glueck
@@ -295,9 +295,9 @@ The top 4 variables (out of 4):
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Das &lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Verwendet ein lineares Modell (Regression) um die Features in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt; zu re-repräsentieren.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum wird so gewählt, dass er die &lt;high&gt;maximal mögliche Varianz&lt;/high&gt; an den ursprünglichen Features präserviert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Standardmodell&lt;/high&gt; für Dimensionsreduktion.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Lineares Modell (Regression) repräsentiert die Features in einem &lt;high&gt;neuen, kleineren Featureraum&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Der neue Featureraum erklärt &lt;high&gt;maximal viel Varianz&lt;/high&gt; an den ursprünglichen Features.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -358,7 +358,7 @@ plot(varImp(model))
 ### Multikollinearität
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Multikollinearität bedeutet, dass Features zu stark korreliert sind, was in schädlicher Redundanz, &lt;high&gt;instabilen Fits resultiert&lt;/high&gt;, und zu &lt;high&gt;schlechteren Vorhersagen führt&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Unter Multikollinearität korrelieren Features zu stark, was in schädlicher Redundanz, &lt;high&gt;instabilen Fits resultiert&lt;/high&gt;, und zu &lt;high&gt;schlechteren Vorhersagen führt&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -470,7 +470,7 @@ New York Times &lt;a href="https://www.nytimes.com/2017/10/09/science/stanford-s
 ]
 
 
----
+&lt;!---
 
 # Triviale Features
 
@@ -495,6 +495,8 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 
 ]
+
+---&gt;
 
 ---
 
@@ -555,7 +557,7 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 class: middle, center
 
-&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Features/Features_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/ML_2020Oct/_sessions/Features/Features_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

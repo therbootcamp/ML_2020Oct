@@ -636,10 +636,10 @@ gap_dbscan
 # Gaussian mixtures
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Eine &lt;high&gt;probabilistische Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern &lt;high&gt;verschiedener Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt;&lt;/high&gt;über Modellvergleiche&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="m4"&gt;&lt;span&gt;Komplexe "Topologien" bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine probabilistische &lt;high&gt;Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern verschiedener &lt;high&gt;Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m3"&gt;&lt;span&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt; über &lt;high&gt;Modellvergleiche&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Komplexe Topologien&lt;/high&gt; bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -661,10 +661,10 @@ gap_dbscan
 # Gaussian mixtures
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Eine &lt;high&gt;probabilistische Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern &lt;high&gt;verschiedener Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt;&lt;/high&gt;über Modellvergleiche&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Komplexe "Topologien"&lt;/high&gt; bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine probabilistische &lt;high&gt;Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern verschiedener &lt;high&gt;Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m3"&gt;&lt;span&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt; über &lt;high&gt;Modellvergleiche&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Komplexe Topologien&lt;/high&gt; bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -679,11 +679,105 @@ gap_dbscan
 
 ]
 
+---
+
+.pull-left4[
+
+# Gaussian mixtures
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine probabilistische &lt;high&gt;Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern verschiedener &lt;high&gt;Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m3"&gt;&lt;span&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt; über &lt;high&gt;Modellvergleiche&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Komplexe Topologien&lt;/high&gt; bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+
+
+
+```r
+# lade gaussian mixture
+library(mclust)
+
+# berechne gaussian mixture
+gap_mclust &lt;- Mclust(gap1952)
+
+# zeige Ergebnis
+gap_mclust
+```
+
+```
+## 'Mclust' model object: (VVE,3) 
+## 
+## Available components: 
+##  [1] "call"           "data"          
+##  [3] "modelName"      "n"             
+##  [5] "d"              "G"             
+##  [7] "BIC"            "loglik"        
+##  [9] "df"             "bic"           
+## [11] "icl"            "hypvol"        
+## [13] "parameters"     "z"             
+## [15] "classification" "uncertainty"
+```
+
+]
+
+---
+
+.pull-left4[
+
+# Gaussian mixtures
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Eine probabilistische &lt;high&gt;Erweiterung des &lt;i&gt;k&lt;/i&gt;-means Algorithmus&lt;/high&gt; auf Basis multivariater Normalverteilungen&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Guter Umgang mit Clustern verschiedener &lt;high&gt;Orientierungen und Dichten&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m3"&gt;&lt;span&gt;Einfache Schätzung &lt;i&gt;k&lt;/i&gt; über &lt;high&gt;Modellvergleiche&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Komplexe Topologien&lt;/high&gt; bereiten Gaussian mixtures jedoch Schwierigkeiten&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+
+
+
+```r
+# lade gaussian mixture
+library(mclust)
+
+# berechne gaussian mixture
+gap_mclust &lt;- Mclust(gap1952)
+
+# zeige Ergebnis
+gap_mclust$classification
+```
+
+```
+##   [1] 1 2 2 2 3 3 3 2 1 3 1 2 2 1 2 2 1 1 1 1 3 1
+##  [23] 1 2 1 2 1 1 2 2 1 2 2 3 3 2 1 2 1 2 1 1 1 3
+##  [45] 3 2 1 3 1 3 2 1 1 1 2 2 3 3 1 1 2 2 3 3 3 2
+##  [67] 3 1 1 2 1 2 1 1 2 1 1 2 1 1 2 2 1 2 1 1 1 2
+##  [89] 1 3 3 2 1 1 3 1 1 2 3 2 1 2 2 3 2 2 1 1 2 1
+## [111] 2 1 2 3 3 1 2 3 2 1 1 3 3 2 2 1 2 1 2 1 2 1
+## [133] 3 3 3 2 1 1 1 1 1
+```
+
+]
+
 
 ---
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Unsupervised/Unsupervised_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2020Oct/_sessions/Unsupervised/Unsupervised_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

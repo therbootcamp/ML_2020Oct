@@ -641,10 +641,10 @@ gap_dbscan
 # Gaussian mixtures
 
 <ul>
-  <li class="m1"><span>Eine <high>probabilistische Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
-  <li class="m2"><span>Guter Umgang mit Clustern <high>verschiedener Orientierungen und Dichten</high></span></li>
-    <li class="m3"><span><high>Einfache Schätzung <i>k</i></high>über Modellvergleiche</span></li>
-    <li class="m4"><span>Komplexe "Topologien" bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
+  <li class="m1"><span>Eine probabilistische <high>Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
+  <li class="m2"><span>Guter Umgang mit Clustern verschiedener <high>Orientierungen und Dichten</high></span></li>
+    <li class="m3"><span>Einfache Schätzung <i>k</i> über <high>Modellvergleiche</high></span></li>
+    <li class="m4"><span><high>Komplexe Topologien</high> bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
 </ul>
 
 ]
@@ -666,10 +666,10 @@ gap_dbscan
 # Gaussian mixtures
 
 <ul>
-  <li class="m1"><span>Eine <high>probabilistische Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
-  <li class="m2"><span>Guter Umgang mit Clustern <high>verschiedener Orientierungen und Dichten</high></span></li>
-    <li class="m3"><span><high>Einfache Schätzung <i>k</i></high>über Modellvergleiche</span></li>
-    <li class="m4"><span><high>Komplexe "Topologien"</high> bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
+  <li class="m1"><span>Eine probabilistische <high>Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
+  <li class="m2"><span>Guter Umgang mit Clustern verschiedener <high>Orientierungen und Dichten</high></span></li>
+    <li class="m3"><span>Einfache Schätzung <i>k</i> über <high>Modellvergleiche</high></span></li>
+    <li class="m4"><span><high>Komplexe Topologien</high> bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
 </ul>
 
 ]
@@ -684,8 +684,84 @@ gap_dbscan
 
 ]
 
+---
+
+.pull-left4[
+
+# Gaussian mixtures
+
+<ul>
+  <li class="m1"><span>Eine probabilistische <high>Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
+  <li class="m2"><span>Guter Umgang mit Clustern verschiedener <high>Orientierungen und Dichten</high></span></li>
+    <li class="m3"><span>Einfache Schätzung <i>k</i> über <high>Modellvergleiche</high></span></li>
+    <li class="m4"><span><high>Komplexe Topologien</high> bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+<br><br><br><br>
+
+```{r, echo = F, message=F}
+options(width=50)
+```
+
+```{r, eval = T, message = F}
+
+# lade gaussian mixture
+library(mclust)
+
+# berechne gaussian mixture
+gap_mclust <- Mclust(gap1952)
+
+# zeige Ergebnis
+gap_mclust
+
+```
+
+]
+
+---
+
+.pull-left4[
+
+# Gaussian mixtures
+
+<ul>
+  <li class="m1"><span>Eine probabilistische <high>Erweiterung des <i>k</i>-means Algorithmus</high> auf Basis multivariater Normalverteilungen</span></li>
+  <li class="m2"><span>Guter Umgang mit Clustern verschiedener <high>Orientierungen und Dichten</high></span></li>
+    <li class="m3"><span>Einfache Schätzung <i>k</i> über <high>Modellvergleiche</high></span></li>
+    <li class="m4"><span><high>Komplexe Topologien</high> bereiten Gaussian mixtures jedoch Schwierigkeiten</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+<br><br><br><br>
+
+```{r, echo = F, message=F}
+options(width=50)
+```
+
+```{r, eval = T, message = F}
+
+# lade gaussian mixture
+library(mclust)
+
+# berechne gaussian mixture
+gap_mclust <- Mclust(gap1952)
+
+# zeige Ergebnis
+gap_mclust$classification
+
+```
+
+]
+
 
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Unsupervised/Unsupervised_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Oct/_sessions/Unsupervised/Unsupervised_practical.html>Practical</a></h1>

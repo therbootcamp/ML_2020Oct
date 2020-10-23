@@ -213,7 +213,7 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R project.</p></li>
 <li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Unsupervised learning Practical” als Kommentare an den Anfang des Skripts.</p></li>
 </ol>
 <pre class="r"><code>## NAME
@@ -268,7 +268,7 @@ points(centers, pch = 16, col = 1:3, cex = 2)</code></pre>
 </ol>
 <pre class="r"><code># standardisiere gap in 2007
 gap2007_stand &lt;- gap2007 %&gt;% 
-  scale %&gt;% 
+  scale() %&gt;% 
   as_tibble()</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>Nun führe nochmals <code>kmeans()</code> aus, diesmal mit <code>gap2007_stand</code> und plotte die Daten mit den neuen Clusterzuweisungen. Problem behoben?</li>

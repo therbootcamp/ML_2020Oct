@@ -1443,4 +1443,4 @@ class: middle, center
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Oct/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>

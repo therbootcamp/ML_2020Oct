@@ -106,9 +106,7 @@ under consideration."</i>
 
 .pull-left4[
 
-# Kenne dein Problem
-
-<u>Bias-Variance Dilemma</u>
+# Bias-Variance Dilemma
 
 <br>
 
@@ -123,7 +121,7 @@ $$\large Error = Bias + Variance\;(+ Noise)$$
   <li class="m2"><span><b>Variance</b></span></li>
   <ul class="level">
     <li><span>Ensteht, wenn <high>Modellflexibilität</high> zu hoch ist.</span></li>
-  </ul>
+  </ul><br>
   <li class="m3"><span><b>Noise</b></span></li>
   <ul class="level">
     <li><span>(Absolut) zufälliges Rauschen.</span></li>
@@ -220,7 +218,7 @@ class: center, middle
 
 <ul>
   <li class="m1"><span><high>Deep learning</high> (insbesondere Convolutional Neural Networks) sind besonders gut darin, <high>Features selber zu entwickeln</high>.</span></li><br>
-  <li class="m2"><span>Das <mono>tensorflow</mono> Paket bietet Zugang zur mächtigen <high>Tensorflow</high> Library für Deep Learning von Google.</span></li><br>
+  <li class="m2"><span>Das <mono>tensorflow</mono> Paket bietet Zugang zu Google's mächtiger <high>Tensorflow</high> Library für Deep Learning.</span></li><br>
 </ul>
 
 ]
@@ -242,7 +240,7 @@ class: center, middle
 
 class: center, middle
 
-<h1><a>Sorge für Robustheit</a></h1>
+<h1><a>Bleibe robust</a></h1>
 
 ---
 
@@ -547,7 +545,7 @@ overfit_gg
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Models/Models_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/ML_2020Oct/_sessions/Models/Models_practical.html">Practical</a></h1>
 
 
 

@@ -201,7 +201,7 @@ library(ggthemes)
 <ul>
   <li class="m1"><span><b>Manuelle Selektion</b></span></li>
   <ul class="level">
-    <li><span>Features können manuell auf Basis <high>statistischer oder theoretischer Gesichtspunkte</high> ausgewählt werden.</span></li>
+    <li><span>Features können manuell auf Basis <high>statistischer</high> oder <high>theoretischer Gesichtspunkte</high> ausgewählt werden.</span></li>
   </ul><br>
   <li class="m2"><span><b>Automatische Selektion</b></span></li>
   <ul class="level">
@@ -209,7 +209,7 @@ library(ggthemes)
   </ul><br>
   <li class="m3"><span><b>Automatische Reduktion</b></span></li>
   <ul class="level">
-    <li><span><high>Komprimiere die Dimensionalität</high> mit Methoden der Dimensionsreduktion, z.B. mit Principal Component Analysis (PCA).</span></li>
+    <li><span>Reduziere die Dimensionalität mit Methoden der <high>Dimensionsreduktion</high>, z.B. mit Principal Component Analysis (PCA).</span></li>
   </ul>
   </span></li>
 </ul>
@@ -229,14 +229,14 @@ library(ggthemes)
 
 ---
 
-# Feature Wichtigkeit
+# Feature-Wichtigkeit
 
 .pull-left4[
 
 
 <ul>
-  <li class="m1"><span>Die Feature Wichtigkeit ist ein Mass für die <high>Bedeutung eines Features für Fit/Vorhersage der Daten</high>.</span></li>
-  <li class="m2"><span><mono>caret</mono> berechnet die Feature Wichtigkeit <high>Modell-spezifisch und skaliert</high> sie auf Werte innerhalb <mono>[0, 100]</mono></span></li>
+  <li class="m1"><span>Mass für die Bedeutung eines Features <high>für Fit/Vorhersage der Daten</high>.</span></li>
+  <li class="m2"><span><mono>caret</mono> berechnet die Feature-Wichtigkeit <high>Modell-spezifisch und skaliert</high> sie auf Werte innerhalb <mono>[0, 100]</mono></span></li>
   <li class="m3"><span><b>Strategien</b></span></li>
   <ul class="level">
     <li><span><high>1-Feature</high> Modelle (z.B. <mono>LOESS</mono>)</span></li>
@@ -251,7 +251,7 @@ library(ggthemes)
 
 .pull-right5[
 ```{r, eval = FALSE}
-# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+# Plotte Feature-Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -268,7 +268,7 @@ plot(varImp(einkommen_lm),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheight
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Die <mono>varImp()</mono> Funktion liefert <high>Modell-spezifische Schätzungen</high> der Feature Wichtigkeit</span></li>
+  <li class="m1"><span>Die <mono>varImp()</mono> Funktion liefert <high>Modell-spezifische Schätzungen</high> der Feature-Wichtigkeit.</span></li>
 </ul>
 
 ```{r eval = FALSE}
@@ -283,7 +283,7 @@ print2(varImp(einkommen_lm_short), 11)
 
 .pull-right5[
 ```{r, eval = FALSE}
-# Plotte Feature Wichtigkeit für lm(einkommen ~ .)
+# Plotte Feature-Wichtigkeit für lm(einkommen ~ .)
 plot(varImp(einkommen_lm))
 ```
 
@@ -343,9 +343,9 @@ print2(out, 20)
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Das <high>Standardmodell</high> für Dimensionsreduktion.</span></li><br>
-  <li class="m2"><span>Verwendet ein lineares Modell (Regression) um die Features in einem <high>neuen, kleineren Featureraum</high> zu re-repräsentieren.</span></li><br>
-  <li class="m3"><span>Der neue Featureraum wird so gewählt, dass er die <high>maximal mögliche Varianz</high> an den ursprünglichen Features präserviert.</span></li>
+  <li class="m1"><span><high>Standardmodell</high> für Dimensionsreduktion.</span></li><br>
+  <li class="m2"><span>Lineares Modell (Regression) repräsentiert die Features in einem <high>neuen, kleineren Featureraum</high>.</span></li><br>
+  <li class="m3"><span>Der neue Featureraum erklärt <high>maximal viel Varianz</high> an den ursprünglichen Features.</span></li>
 </ul>
 
 ]
@@ -417,7 +417,7 @@ plot(varImp(model, scale=F),col='#EA4B68',cex=1.3,scales = list(cex=1.3,lineheig
 ### Multikollinearität
 
 <ul>
-  <li class="m1"><span>Multikollinearität bedeutet, dass Features zu stark korreliert sind, was in schädlicher Redundanz, <high>instabilen Fits resultiert</high>, und zu <high>schlechteren Vorhersagen führt</high>.</span></li>
+  <li class="m1"><span>Unter Multikollinearität korrelieren Features zu stark, was in schädlicher Redundanz, <high>instabilen Fits resultiert</high>, und zu <high>schlechteren Vorhersagen führt</high>.</span></li>
 </ul>
 
 ```{r}
@@ -517,7 +517,7 @@ New York Times <a href="https://www.nytimes.com/2017/10/09/science/stanford-sexu
 ]
 
 
----
+<!---
 
 # Triviale Features
 
@@ -542,6 +542,8 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 
 ]
+
+--->
 
 ---
 
@@ -602,5 +604,5 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/ML_2020Apr/_sessions/Features/Features_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/ML_2020Oct/_sessions/Features/Features_practical.html">Practical</a></h1>
 
