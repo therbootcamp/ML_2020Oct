@@ -947,8 +947,8 @@ glmnet_mod <- train(form = einkommen ~ .,
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Spezifiziere über <mono>tuneGrid</mono> die <high>Kandidatensets</high> für die Tuning Parameter</span></li><br>
-  <li class="m2"><span><mono>tuneGrid</mono> eine <mono>liste</mono> oder einen <mono>data.frame</mono>; komfortabel durch <mono>expand.grid()</mono> erstellt</span></li><br>
+  <li class="m1"><span>Spezifiziere über <mono>tuneGrid</mono> die <high>Kandidatensets</high> für die Tuning Parameter.</span></li><br>
+  <li class="m2"><span><mono>tuneGrid</mono> eine <mono>liste</mono> oder einen <mono>data.frame</mono>; komfortabel durch <mono>expand.grid()</mono> erstellt.</span></li><br>
 </ul>
 
 
@@ -1138,4 +1138,4 @@ summary(resamples_mod)
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2020Apr/_sessions/Optimization/Optimization_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2020Oct/_sessions/Optimization/Optimization_practical.html>Practical</a></h1>
