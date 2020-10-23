@@ -65,19 +65,18 @@ baseball_test <- read_csv("1_Data/baseball_test.csv")
 
 ## Überblick
 
-In diesem Practical wirst du optimale Tuning Parameter identifizieren für bestmögliche Vorhersageperformanz. 
+In diesem Practical wirst du optimale Tuning Parameter identifizieren für eine bestmögliche Vorhersageperformanz. 
 
 Am Ende des Practicals wirst du wissen wie man...
 
 1. Cross-Validation zur Auswahl der Tuning Parameter verwendet. 
-2. Schätzungen für Vorhersageperformanz durch Cross-Validation erhält. 
-3. Wie sich eine simple Regression von Lasso und Ridge unterscheidet.
+2. Wie sich eine simple Regression von Lasso und Ridge unterscheidet.
 
 ## Aufgaben
 
 ### A - Setup
 
-1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+1. Öffne dein `TheRBootcamp` R project. 
 
 2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Optimizing Practical" als Kommentare an den Anfang des Skripts.
 
@@ -111,7 +110,7 @@ baseball_test <- read_csv(file = "1_Data/baseball_test.csv")
 
 2. Printe die Datensätze. 
 
-3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
+3. Verwende `names(XX)`, `summary(XX)`, und `View(XX)` um einen weiteren Überblick über die Daten zu bekommen.
 
 4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
 
@@ -146,7 +145,7 @@ ctrl_cv <- trainControl(method = "cv",
 
 ### C - Regression
 
-1. Fitte eine normale Regression auf bekanntem Wege (wie z.b. im Practical zu [Prediction](_sessions/Prediction/Prediction_practical.html)), die das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das `trControl` Argument auf das eben definierte `ctrl_cv` Objekt. 
+1. Fitte eine normale Regression auf bekanntem Wege (z.B. wie im Practical zu [Prediction](_sessions/Prediction/Prediction_practical.html)), die das `Gehalt` des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das `trControl` Argument auf das eben definierte `ctrl_cv` Objekt. 
 
 
 ```{r, echo = TRUE, eval = FALSE}

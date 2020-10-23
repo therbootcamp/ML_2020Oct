@@ -76,13 +76,13 @@ layout: true
 
 ---
 
-# Tuning Parameter
+# Tuning durch Validation-Daten
 
 .pull-left45[
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Die meisten ML Modelle besitzen Tuning Parameter, die die &lt;high&gt;Modellkomplexität&lt;/high&gt; kontrollieren&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Um diese Tuning Parameter zu fitten wird ein &lt;high&gt;Validationsdatensatz&lt;/high&gt; kreiert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Um diese Tuning Parameter zu fitten wird ein &lt;high&gt;Validationsdatensatz&lt;/high&gt; kreiert.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;b&gt;Vorgehen&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;  
   &lt;ol&gt;
     &lt;li&gt;&lt;span&gt;Fitte Modell mit &lt;high&gt;verschiedenen Tuning Parameter&lt;/high&gt; Werte&lt;/span&gt;&lt;/li&gt;
@@ -108,7 +108,7 @@ layout: true
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Resampling-Methoden &lt;high&gt;automatisieren&lt;/high&gt; und generalisieren das Tuning der Modelle&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling-Methoden &lt;high&gt;automatisieren&lt;/high&gt; und generalisieren das Tuning der Modelle.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -249,12 +249,290 @@ layout: true
 
 class: center, middle
 
-&lt;high&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/high&gt;
+&lt;high&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+---
+
+# Decision trees
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Decision Trees heisst &lt;mono&gt;cp&lt;/mono&gt; (&lt;high&gt;complexity parameter&lt;/high&gt;).&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+&lt;u&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; Einstellungen&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedriger &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedrige Strafe, die zu &lt;high&gt;komplexen Bäumen&lt;/high&gt; führt.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Hoher &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Hohe Strafe, die zu &lt;high&gt;einfachen Bäumen&lt;/high&gt; führt.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/cp.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# Decision trees
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Decision Trees heisst &lt;mono&gt;cp&lt;/mono&gt; (&lt;high&gt;complexity parameter&lt;/high&gt;).&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+&lt;u&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; Einstellungen&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedriger &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedrige Strafe, die zu &lt;high&gt;komplexen Bäumen&lt;/high&gt; führt.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Hoher &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Hohe Strafe, die zu &lt;high&gt;einfachen Bäumen&lt;/high&gt; führt.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Decision Tree mit cp = .01
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rpart", 
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(cp = .01))
+
+# Decision Tree mit cp = .2
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rpart", 
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(cp = .2))
+```
+
+]
+
+---
+
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+---
+
+# Random Forest
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Random Trees heisst &lt;mono&gt;mtry&lt;/mono&gt; und kontrolliert die &lt;high&gt;Diversität&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;mtry&lt;/mono&gt; bestimmt &lt;high&gt;wie viele Feature&lt;/high&gt; für den Split eines Knoten herangezogen werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;u&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; Einstellungen&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedriges &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 1&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Diverser Wald.&lt;/high&gt; Auf eine Weise, weniger komplex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Hohes &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 5&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Monotoner Wald.&lt;/high&gt; Auf eine Weise, komplexer.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/mtry_parameter.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Random Forest
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Random Trees heisst &lt;mono&gt;mtry&lt;/mono&gt; und kontrolliert die &lt;high&gt;Diversität&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;mtry&lt;/mono&gt; bestimmt &lt;high&gt;wie viele Feature&lt;/high&gt; für den Split eines Knoten herangezogen werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;u&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; Einstellungen&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Beschreibung&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Niedriges &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 1&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Diverser Wald.&lt;/high&gt; Auf eine Weise, weniger komplex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Hohes &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 5&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Monotoner Wald.&lt;/high&gt; Auf eine Weise, komplexer.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Random forest mit mtry = 2
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rf",  
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(mtry = 2)) 
+
+# Random forest mit mtry = 5
+train(form = einkommen ~ .,
+      data = basel,
+      method = "rf",  
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(mtry = 5)) 
+```
+
+]
+
+
+
+---
+
+class: center, middle
 
 &lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
 
 &lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
 
+&lt;high&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/high&gt;
 
 ---
 
@@ -381,7 +659,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
   &lt;/ul&gt;
 &lt;/ul&gt;
 
-&lt;u&gt;&lt;mono&gt;tuneGrid Einstellungen&lt;/mono&gt;&lt;/u&gt;
+&lt;u&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; Einstellungen&lt;/u&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
 &lt;tr&gt;
@@ -445,288 +723,6 @@ train(form = einkommen ~ .,
 ```
 
 ]
-
-
----
-
-class: center, middle
-
-&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
-
-&lt;high&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/high&gt;
-
-&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
-
----
-
-# Decision trees
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Decision Trees heisst &lt;mono&gt;cp&lt;/mono&gt; (&lt;high&gt;complexity parameter&lt;/high&gt;).&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ul&gt;
-
-&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
-
-$$
-\large
-`\begin{split}
-Loss = &amp; Impurity\,+\\
-&amp;cp*(n\:terminal\:nodes)\\
-\end{split}`
-$$
-&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
-
-&lt;u&gt;&lt;mono&gt;tuneGrid Einstellungen&lt;/mono&gt;&lt;/u&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Parameter&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Beschreibung&lt;/b&gt;
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedriger &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedrige Strafe, die zu &lt;high&gt;komplexen Bäumen&lt;/high&gt; führt.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Hoher &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Hohe Strafe, die zu &lt;high&gt;einfachen Bäumen&lt;/high&gt; führt.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-
-.pull-right5[
-
-&lt;p align = "center"&gt;
-  &lt;img src="image/cp.png"&gt;
-&lt;/p&gt;
-
-
-]
-
-
----
-
-# Decision trees
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Decision Trees heisst &lt;mono&gt;cp&lt;/mono&gt; (&lt;high&gt;complexity parameter&lt;/high&gt;).&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ul&gt;
-
-&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
-
-$$
-\large
-`\begin{split}
-Loss = &amp; Impurity\,+\\
-&amp;cp*(n\:terminal\:nodes)\\
-\end{split}`
-$$
-&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
-
-&lt;u&gt;&lt;mono&gt;tuneGrid Einstellungen&lt;/mono&gt;&lt;/u&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Parameter&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Beschreibung&lt;/b&gt;
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedriger &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedrige Strafe, die zu &lt;high&gt;komplexen Bäumen&lt;/high&gt; führt.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Hoher &lt;mono&gt;cp&lt;/mono&gt;, z.B. &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Hohe Strafe, die zu &lt;high&gt;einfachen Bäumen&lt;/high&gt; führt.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right5[
-
-
-```r
-# Decision Tree mit cp = .01
-train(form = einkommen ~ .,
-      data = basel,
-      method = "rpart", 
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(cp = .01))
-
-# Decision Tree mit cp = .2
-train(form = einkommen ~ .,
-      data = basel,
-      method = "rpart", 
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(cp = .2))
-```
-
-]
-
----
-
-class: center, middle
-
-&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
-
-&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
-
-&lt;high&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/high&gt;
-
-
----
-
-# Random Forest
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Random Trees heisst &lt;mono&gt;mtry&lt;/mono&gt; und kontrolliert die &lt;high&gt;Diversität&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;mtry&lt;/mono&gt; bestimmt &lt;high&gt;wie viele Feature&lt;/high&gt; für den Split eines Knoten herangezogen werden.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ul&gt;
-
-&lt;u&gt;&lt;mono&gt;tuneGrid Einstellungen&lt;/mono&gt;&lt;/u&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Parameter&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Beschreibung&lt;/b&gt;
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedriges &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 1&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Diverser Wald.&lt;/high&gt; Auf eine Weise, weniger komplex.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Hohes &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 5&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Monotoner Wald.&lt;/high&gt; Auf eine Weise, komplexer.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right5[
-
-&lt;p align = "center"&gt;
-  &lt;img src="image/mtry_parameter.png"&gt;
-&lt;/p&gt;
-
-]
-
----
-
-# Random Forest
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Der Tuning Parameter in Random Trees heisst &lt;mono&gt;mtry&lt;/mono&gt; und kontrolliert die &lt;high&gt;Diversität&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;mtry&lt;/mono&gt; bestimmt &lt;high&gt;wie viele Feature&lt;/high&gt; für den Split eines Knoten herangezogen werden.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ul&gt;
-
-&lt;u&gt;&lt;mono&gt;tuneGrid Einstellungen&lt;/mono&gt;&lt;/u&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Parameter&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Beschreibung&lt;/b&gt;
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Niedriges &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 1&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Diverser Wald.&lt;/high&gt; Auf eine Weise, weniger komplex.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    Hohes &lt;mono&gt;mtry&lt;/mono&gt;, z.B., &lt;mono&gt;mtry = 5&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Monotoner Wald.&lt;/high&gt; Auf eine Weise, komplexer.
-  &lt;/td&gt; 
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right5[
-
-
-```r
-# Random forest mit mtry = 2
-train(form = einkommen ~ .,
-      data = basel,
-      method = "rf",  
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(mtry = 2)) 
-
-# Random forest mit mtry = 5
-train(form = einkommen ~ .,
-      data = basel,
-      method = "rf",  
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(mtry = 5)) 
-```
-
-]
-
-
-
 
 
 ---
@@ -1005,7 +1001,7 @@ sehhilfenein                       -0.1204
 
 ]
 
----
+&lt;!---
 
 # Model comparison
 
@@ -1040,7 +1036,6 @@ summary(resamples_mod)
 
 ]
 
----
 
 .pull-left35[
 
@@ -1085,6 +1080,7 @@ glm    0.8558  0.8647 0.8736 0.8719  0.8768 0.8847    0
 
 ]
 
+---&gt;
 
 ---
 class: middle, center

@@ -70,7 +70,7 @@ baselers <- read_csv("1_Data/basel.csv")
 
 class: middle, center
 
-<h1><a>Was denkt ihr?</a></h1>
+<h1><a>Was denkt Du?</a></h1>
 
 Nicht Googlen :)
 
@@ -589,7 +589,8 @@ class: middle, center
 ]
 
 
----
+<!---
+
 
 # Reinforcement learning
 
@@ -607,6 +608,8 @@ class: middle, center
 </ul>
 
 ]
+
+--->
 
 .pull-right4[
 

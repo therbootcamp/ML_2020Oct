@@ -191,8 +191,8 @@ logreg2 = logreg1 +
 <p style="padding-top:1px"></p>
 
 <ul>
-<li class="m1"><span>Modelle sind eigentlich <high>Familie von Modellen</high>, wobei jede Parameterkombination ein unterschiedliches Modell definiert</span></li>
-<li class="m2"><span>Ein Modell zu fitten bedeutet, von der Familie von Modellen dasjenige zu <high>identifizieren welches die Daten am besten abbildet</high>.</span></li>
+<li class="m1"><span>Jedes Modell beinhaltet <high>mehrere Versionen</high>, die sich durch spezifische Parameterkombination auszeichnen</span></li>
+<li class="m2"><span>Ein Modell zu fitten bedeutet, diejenige Version zu <high>identifizieren, die die Daten am besten beschreibt</high>.</span></li>
 </ul>
 
 ]
@@ -233,8 +233,8 @@ ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
 .pull-left45[
 
 <ul>
-<li class="m1"><span>Eines <high>zentrales Konzepte</high> in der Statistik und im maschinellen Lernen.</span></li>
-<li class="m2"><span>Die Loss Funktion ist eine <high>Zusammenfassung der durch ein Modell begangenen Fehler</high>.</span></li>
+<li class="m1"><span><high>Zentrales Konzepte</high> in Statistik und maschinellem Lernen.</span></li>
+<li class="m2"><span>Eine <high>Zusammenfassung</high> der durch ein Modell begangenen <high>Fehler</high>.</span></li>
 </ul>
 <p style="padding-top:7px">
 
@@ -266,7 +266,7 @@ $$\Large Loss = f(Fehler)$$
     Evaluation
   </td>
   <td>
-    Berechne den Verlust für ein gefittetes Modell.
+    Berechne den Fehler eines gefitteten Modells.
   </td>
 </tr>
 </table>
@@ -330,7 +330,7 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 ---
 
-# Loss function in der Regression
+# Fehler in der Regression
 
 .pull-left45[
 
@@ -384,7 +384,7 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
   <li class="m1"><span><b>Analytisch</b>
   <br><br>
   <ul class="level">
-    <li><span>In gewissen Fällen, können die Parameterwerte <high>direkt berechnet</high> werden, z.B., mit der <i>Normalgleichung</i>:</span></li>
+    <li><span>Manchmal können die Parameterwerte <high>direkt berechnet</high> werden, z.B., mit der <i>Normalgleichung</i>:</span></li>
   </ul>
   </span></li>
 </ul>
@@ -395,7 +395,7 @@ $$ \large \boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\bol
   <li class="m2"><span><b>Numerisch</b>
   <br><br>
   <ul class="level">
-    <li><span>In den meisten Fällen, müssen die Parameter jedoch mittels <high>gerichtetem trial and error</high> Verfahren gefunden werden, z.B., mittels <i>gradient descent</i>:</span></li>
+    <li><span>Meistens müssen die Parameter mittels <high>gerichtetem trial and error</high> Verfahren gefunden werden, z.B., mittels <i>gradient descent</i>:</span></li>
   </ul>
   </span></li>
 </ul>
@@ -501,7 +501,7 @@ $$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
-  <li class="m1"><span>In der <a href="https://de.wikipedia.org/wiki/Logistische_Regression">logistischen Regression</a>, modellieren wir eine kategoriale Variable <font style="font-size:22px"><mono>y &isin; (0,1)</mono></font> als <high>gewichtete Summe der Features</high>, wobei wir die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformieren:</span></li>
+  <li class="m1"><span>Die <a href="https://de.wikipedia.org/wiki/Logistische_Regression">logistische Regression</a>, modelliert eine binäre Variable <font style="font-size:22px"><mono>y &isin; (0,1)</mono></font> als <high>gewichtete Summe der Features</high>, wobei die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformiert wird:</span></li>
 </ul>
 
 <p style="padding-top:10px"></p>
@@ -535,7 +535,7 @@ logreg1
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
-  <li class="m1"><span>In der <a href="https://de.wikipedia.org/wiki/Logistische_Regression">logistischen Regression</a>, modellieren wir eine kategoriale Variable <font style="font-size:22px"><mono>y &isin; (0,1)</mono></font> als <high>gewichtete Summe der Features</high>, wobei wir die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformieren:</span></li>
+  <li class="m1"><span>Die <a href="https://de.wikipedia.org/wiki/Logistische_Regression">logistische Regression</a>, modelliert eine binäre Variable <font style="font-size:22px"><mono>y &isin; (0,1)</mono></font> als <high>gewichtete Summe der Features</high>, wobei die Vorhersage mit einer <high>logistischen Linkfunktion</high> transformiert wird:</span></li>
 </ul>
 
 <p style="padding-top:10px"></p>
@@ -564,14 +564,14 @@ logreg2
 
 ---
 
-# Loss in Klassifikation
+# Fehler in Klassifikation
 
 .pull-left45[
 
 <ul style="margin-bottom:-20px">
   <li class="m1"><span><b>Distanz</b></span></li>
   <ul class="level">
-  <li><span>LogLoss wird i.A.R. <high>zum Fitten von Parametern</high>, verwendet, und wie MSE und MAE auch zur Evaluation.</span></li>
+  <li><span>LogLoss wird i.A. <high>zum Fitten von Parametern</high>, verwendet, und wie MSE und MAE auch zur Evaluation.</span></li>
   </ul>
 </ul>
 
@@ -582,7 +582,7 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2; \: MAE = \frac{1}{n}\sum_{i
 <ul>
   <li class="m2"><span><b>Übereinstimmung</b></span></li>
   <ul class="level">
-    <li><span>0-1 loss evaluiert die Übereinstimmung zwischen <high>vorhergesagter Klasse und tatsächlicher Klasse </high>, was im Vergleich <high>leicht zu interpretieren</high> ist.</span></li>
+    <li><span>0-1 loss evaluiert wie genau <high>vorhergesagte und tatsächliche Klassen </high> übereinstimmmen.</span></li>
   </ul>
 </ul>
 
@@ -598,7 +598,7 @@ logreg2
 
 ]
 
----
+<!---
 
 # Wahrheitsmatrix
 
@@ -677,8 +677,6 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 ]
 
 
----
-
 # Wahrheitsmatrix
 
 .pull-left45[
@@ -756,6 +754,7 @@ $$\small Spezifität = \frac{RN}{ RN + FP }$$
 
 ]
 
+--->
 
 ---
 
@@ -763,7 +762,7 @@ class: center,  middle
 
 <br><br>
 
-<h1><a>Fitten mit <mono>caret</mono></h1>
+<h1><a>Fitten in <mono>caret</mono></h1>
 
 
 
@@ -793,7 +792,7 @@ data(cars)
     <mono>trainControl()</mono>
   </td>
   <td bgcolor="white">
-    Wähle Spezifikationen dafür, wie das Modell gefittet werden soll.
+    Wähle Spezifiziert wie das Modell gefittet werden soll.
   </td>
 </tr>
 <tr>
@@ -801,7 +800,7 @@ data(cars)
     <mono>train()</mono>
   </td>
   <td>
-    Spezifiziere das Modell und finde die <i>besten</i> Parameterschätzwerte.
+    Fittet das Modell: findet die <i>besten</i> Parameterschätzwerte.
   </td>
 </tr>
 <tr>
@@ -809,7 +808,7 @@ data(cars)
     <mono>postResample()</mono>
   </td>
   <td bgcolor="white">
-    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Regressionsprobleme.
+    Evaluiert den Fehler für Regressionsprobleme.
   </td>
 </tr>
 <tr>
@@ -817,7 +816,7 @@ data(cars)
     <mono>confusionMatrix()</mono>
   </td>
   <td bgcolor="white">
-    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Klassifikationsprobleme.
+    Evaluiere Fehler für Klassifikationsprobleme.
   </td>
 </tr>
 </table>
@@ -864,8 +863,8 @@ confusionMatrix(fit, truth)
 .pull-left45[
 
 <ul>
-  <li class="m1"><span><mono>trainControl()</mono> steuert, <high>wie <mono>caret</mono> ein Modell fittet</high>.</span></li>
-  <li class="m2"><span>Bis zur Session <b>Optimisierung</b> verwenden wir <highm>method = "none"</highm>.</span></li>
+  <li class="m1"><span>Spezifiziert <high>wie <mono>caret</mono> ein Modell fittet</high>.</span></li>
+  <li class="m2"><span>Wir verwenden bis zur Session <b>Optimisierung</b> <highm>method = "none"</highm>.</span></li>
 </ul>
 
 <br>
@@ -899,7 +898,7 @@ knitr::include_graphics("image/traincontrol_help.jpg")
 .pull-left4[
 
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
+  <li class="m1"><span><mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Erlaubt die Spezifikation von <high>über 200 Modellen</high>.</span></li>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -980,7 +979,7 @@ eink_mod
 
 .pull-left4[
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
+  <li class="m1"><span><mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Erlaubt die Spezifikation von <high>über 200 Modellen</high>.</span></li>
 </ul>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
@@ -1063,7 +1062,7 @@ eink_mod
 # `train()`
 
 <ul>
-  <li class="m1"><span><mono>train()</mono> ist <mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Es können <high>über 200 Modelle</high> mit nur leichten Änderungen im <high>method</high> Argument gefittet werden.</span></li>
+  <li class="m1"><span><mono>caret</mono>'s <high>Zugpferd</high>, wenn es um Fitting geht. Erlaubt die Spezifikation von <high>über 200 Modellen</high>.</span></li>
   <li class="m2"><span>Alle 200+ Modelle findest du <a href="http://topepo.github.io/caret/available-models.html">hier</a>.</span></li>
 </ul>
 
@@ -1138,8 +1137,8 @@ load_mod <- train(form = factor(Ausfall) ~ .,
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Die <mono>train()</mono> Funktion gibt eine <mono>list</mono>e zurück. Diese enthält ein <mono>finalModel</mono> Element - das ist unser <high>bestes gefittetes Model</high>.</span></li>
-  <li class="m2"><span>Greife auf das Modell mit <mono>.$finalModel</mono> zu und <high>exploriere</high> das Objekt mit generischen Funktionen:</span></li>
+  <li class="m1"><span><mono>train()</mono> gibt eine Liste zurück, die das <mono>finalModel</mono> Element mit dem <high>besten gefitteten Modell</high> beinhaltet.</span></li>
+  <li class="m2"><span><mono>.$finalModel</mono> <high>extrahiert das Modell</high>, welches anschliessend folgenden Funktionen exploriert werden kann:</span></li>
 </ul>
 
 <br>
@@ -1201,8 +1200,8 @@ names(eink_mod$finalModel)
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Die <mono>train()</mono> Funktion gibt eine <mono>list</mono>e zurück. Diese enthält ein <mono>finalModel</mono> Element - das ist unser <high>bestes gefittetes Model</high>.</span></li>
-  <li class="m2"><span>Greife auf das Modell mit <mono>.$finalModel</mono> zu und <high>exploriere</high> das Objekt mit generischen Funktionen:</span></li>
+  <li class="m1"><span><mono>train()</mono> gibt eine Liste zurück, die das <mono>finalModel</mono> Element mit dem <high>besten gefitteten Modell</high> beinhaltet.</span></li>
+  <li class="m2"><span><mono>.$finalModel</mono> <high>extrahiert das Modell</high>, welches anschliessend folgenden Funktionen exploriert werden kann:</span></li>
 </ul>
 
 <br>
@@ -1263,8 +1262,8 @@ eink_mod$finalModel$coefficients
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Die <mono>train()</mono> Funktion gibt eine <mono>list</mono>e zurück. Diese enthält ein <mono>finalModel</mono> Element - das ist unser <high>bestes gefittetes Model</high>.</span></li>
-  <li class="m2"><span>Greife auf das Modell mit <mono>.$finalModel</mono> zu und <high>exploriere</high> das Objekt mit generischen Funktionen:</span></li>
+  <li class="m1"><span><mono>train()</mono> gibt eine Liste zurück, die das <mono>finalModel</mono> Element mit dem <high>besten gefitteten Modell</high> beinhaltet.</span></li>
+  <li class="m2"><span><mono>.$finalModel</mono> <high>extrahiert das Modell</high>, welches anschliessend folgenden Funktionen exploriert werden kann:</span></li>
 </ul>
 
 <br>
@@ -1318,7 +1317,7 @@ summary(eink_mod)
 .pull-left5[
 
 <ul>
-  <li class="m1"><span>Die <mono>predict()</mono> Funktion <high>macht Modellvorhersagen</high>. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren.</span></li>
+  <li class="m1"><span><high>Generiert Vorhersagen des Modells</high> auf Basis des Modellobjekts.</span></li>
 </ul>
 
 <br>
@@ -1351,7 +1350,8 @@ great_err + labs(title=element_blank(),subtitle = element_blank())
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Die <mono>postResample()</mono> Funktion <high>erstellt eine einfache Zusammenfassung</high> der Modellperformanz bei <high>Regressionsproblemen</high>. Zu spezifizierende Argumente sind die vorhergesagten Werte und die tatsächlichen Werte.</span></li>
+  <li class="m1"><span><high>Erstellt eine einfache Zusammenfassung</high> der Modellperformanz bei <high>Regressionsproblemen</high>.</span></li>
+  <li class="m2"><span>Vorhergesagten und tatsächlichen Werte sind zu spezifizieren.</span></li>
 </ul>
 
 <br>
@@ -1383,7 +1383,8 @@ great_err + labs(title=element_blank(),subtitle = element_blank())
 <p style="padding-top:10px"></p>
 
 <ul>
-  <li class="m1"><span><mono>confusionMatrix()</mono> erstellt eine Zusammenfassung der <high>Modellperformanz bei Klassifikationsproblemen</high>. Inputs sind wiederum die vorhergesagten und tatsächlichen Werte.</span></li>
+  <li class="m1"><span><high>Erstellt eine einfache Zusammenfassung</high> der Modellperformanz bei <high>Klassifikationsproblemen</high>.</span></li>
+  <li class="m2"><span>Vorhergesagten und tatsächlichen Werte sind zu spezifizieren.</span></li>
 </ul>
 
 <br>
@@ -1431,6 +1432,12 @@ res
 
 
 ]
+
+---
+
+class: middle, center
+
+<h1><a href=https://raw.githubusercontent.com/therbootcamp/ML_2020Oct/main/TheRBootcamp.zip>Project</a></h1>
 
 ---
 

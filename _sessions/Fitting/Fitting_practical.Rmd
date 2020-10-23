@@ -52,33 +52,25 @@ options(digits = 3)
 
 ## Überblick
 
-In diesem Practical wirst du die Grundlagen des Modellfittings und von Regressionsmodellen lernen.
+In diesem Practical wirst du die Grundlagen des Modellfittings bei Regressionsmodellen lernen.
 
 Am Ende dieses Practicals wirst du wissen wie du:
 
-1. Ein Regressionsmodell in R fitten kannst.
-2. Die Modelloutputs in R explorieren kannst.
-3. Die Modellperformanz einschätzen kannst.
-4. Den Effekt zusätzlicher Features erfassen kannst.
+1. Ein Regressionsmodell in R fittest.
+2. Die Modelloutputs in R explorierst.
+3. Die Modellperformanz einschätzts.
+4. Den Effekt zusätzlicher Features erfassts.
 
 
 ## Tasks
 
 ### A - Setup
 
-1. Öffne dein `TheRBootcamp` R Projekt. Es sollte bereits die Ordner `1_Data` und `2_Code` enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, im  `1_Data` Ordner vorhanden sind.
-
-```{r}
-# Gemacht!
-```
+1. Öffne dein `TheRBootcamp` R Projekt. 
 
 2. Öffne ein neues R Skript. Schreibe am Anfang des Skripts mithilfe von Kommentaren deinen Namen und das Datum. Speichere das neue Skript unter dem Namen `Fitting_practical.R` im `2_Code` Ordner.  
 
-```{r}
-# Gemacht!
-```
-
-3. Verwende `library()` um die `tidyverse` und `caret` Pakete zu laden.
+3. Verwende `library()` um die Pakete `tidyverse` und `caret` zu laden.
 
 ```{r, echo = TRUE, message = FALSE}
 # Lade benötigte Pakete
@@ -119,13 +111,7 @@ names(XX)
 names(graduation_train)
 ```
 
-7. Öffne den Datensatz in einem separaten Fenster mithilfe von `View()` und schaue dir die Daten an.
-
-```{r, echo = TRUE, eval = FALSE}
-View(XX)
-```
-
-9. Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, musst du noch sicherstellen, dass alle `character` Variablen als `factor` vorliegen. Lasse dazu den untenstehenden Code laufen:
+7. Du hast einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, stelle sicher, dass alle `character` Variablen als `factor` vorliegen. Verwende dazu den untenstehenden Code.
 
 ```{r, echo = TRUE}
 # Konvertiere alle character variablen zu factor
@@ -135,7 +121,7 @@ graduation_train <- graduation_train %>%
 
 ### B - Definiere die Kontrollparameter
 
-1. In `caret` wird die `trainControl()` Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument `method = "none"` und speichere das Objekt als `ctrl_none`. 
+1. In `caret` bestimmt die `trainControl()` Funktion wie genau Modelle gefittet werden. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument `method = "none"` und speichere das Objekt als `ctrl_none`. 
 
 ```{r echo = TRUE}
 # Setze Samplingmethode auf "none" um für den Moment alles einfach zu halten.
@@ -154,7 +140,7 @@ Teil 1: <b>Regressionsfall</b>
 - setze das `form` Argument auf `Abschlussrate ~ Prozent_PhD`.
 - setze das `data` Argument auf `graduation_train`.
 - setze das `method` Argument auf `"glm"` für Regression.
-- setze das `trControl` Argument auf `ctrl_none`, das oben erstellte Objekt mit den Kontrollparametern.
+- setze das `trControl` Argument auf `ctrl_none`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # abschluss_glm: Regressionsmodell
@@ -173,7 +159,7 @@ abschluss_glm <- train(form = Abschlussrate ~ Prozent_PhD,
                        trControl = ctrl_none)
 ```
 
-2. Exploriere den Modelloutput mithilfe der `summary()` Funktion.
+2. Exploriere den Modelloutput mithilfe der `summary()` Funktion. Wie interpretierst den Output und insbesondere die Modellparameter?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Zeige Regressionstabelle
@@ -183,15 +169,11 @@ summary(XX)
 ```{r}
 # Zeige Regressionstabelle
 summary(abschluss_glm)
-```
 
-3. Schaue dir die Resultate an. Wie interpretierst du die Modellparameter?
-
-```{r}
 # Für jede Zunahme um eins in Prozent_PhD (der Anteil Angestellter mit einem PhD), steigt die erwartete Abschlussrate um 0.33. 
 ```
 
-4. Nun extrahiere die gefitteten Werte mittels `predict()`. Speichere die extrahierten Werte als `glm_fit`.
+3. Extrahiere die gefitteten Werte mittels `predict()`. Speichere die extrahierten Werte als `glm_fit`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Extrahiere gefittete Werte
@@ -203,17 +185,16 @@ glm_fit <- predict(XX)
 glm_fit <- predict(abschluss_glm)
 ```
 
-
 ### D - Evaluiere Modellperformanz
 
-1. Nun evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in `graduation_train` und nenne diesen `criterion` (Kriterium).
+1. Evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in `graduation_train` und nenne diesen `criterion` (Kriterium).
 
 ```{r, echo = TRUE, eval = TRUE}
 # Definiere einen Vektor mit den tatsächlichen Werten
 criterion <- graduation_train$Abschlussrate
 ```
 
-2. Verwende nun die `postResample()` Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.
+2. Verwende die `postResample()` Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.
 
 Genauer:
 
@@ -232,7 +213,7 @@ postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte
              obs = criterion)  # Tatsächliche Werte
 ```
 
-3. Der Output der `postResample()` Funktion zeigt drei Werte, *RMSE*, *Rsquared* und *MAE*. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?
+3. Der Output der `postResample()` Funktion zeigt drei Werte, *RMSE*, *Rsquared* und *MAE*. Wie interpretierst du die Resultate; ist die Performanz gut oder schlecht?
 
 ```{r}
 # Im Schnitt sind die Vorhersagen des Modells 12.86 Prozent von den wahren Werten
@@ -271,7 +252,7 @@ abschluss_glm_three <- train(form = Abschlussrate ~ Prozent_PhD + Kosten_Unterku
                              trControl = ctrl_none)
 ```
 
-2. Exploriere den Output mit der `summary()` Funktion. Welche Features sind wichtig?
+2. Exploriere den Output mit der `summary()` Funktion. Welche Parameter wurden für die Feature geschätzt?
 
 ```{r, echo = TRUE, eval = FALSE}
 summary(XX)
@@ -332,7 +313,7 @@ abschluss_glm_all <- train(form = Abschlussrate ~ .,
                            trControl = ctrl_none)
 ```
 
-2. Exploriere das Modell mit der `summary()` Funktion. Welche Features sind wichtig?
+2. Exploriere das Modell mit der `summary()` Funktion.  Welche Parameter wurden für die Feature geschätzt?
 
 ```{r, echo = TRUE, eval = FALSE}
 summary(XX)
@@ -354,7 +335,7 @@ glm_fit_all <- predict(XX)
 glm_fit_all <- predict(abschluss_glm_all)
 ```
 
-4. Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?
+4. Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert? Verwende `postResample()`.
 
 ```{r}
 # Modellperformanz des neuen Modells
@@ -369,7 +350,7 @@ Teil 2: <b>Klassifikationsfall</b>
 
 ### G - Faktor als Kriterium
 
-Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in `caret` Funktionen für Klassifikationsprobleme das Kriterium die Klasse `factor` haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die `Privatuniversitaet` Variable).
+Begib dich nun an ein Klassifikationsproblem. Erinnere, dass für Klassifikationsprobleme das Kriterium die Klasse `factor` haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um eine Privatuniversität oder öffentliches College handelt (die `Privatuniversitaet` Variable).
 
 1. Verwende die `class()` Funktion, um die Klasse der `Privatuniversitaet` Variable zu testen. Wenn der Output `factor` ist, kannst du mit dem maschinellen Lernen beginnen.
 
@@ -386,8 +367,7 @@ criterion <- graduation_train$Privatuniversitaet
 
 ### H - Rechne ein Klassifikationsmodell
 
-1. Verwende die `train()` Funktion um eine logistische Regression zu rechnen, mit der du `Privatuniversitaet` unter Verwendung aller Features vorhersagst.
-**Tipp:** Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.
+1. Verwende die `train()` Funktion um eine logistische Regression zu rechnen, mit der du `Privatuniversitaet` unter Verwendung aller Features vorhersagst. Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.
 
 
 ```{r}
@@ -399,22 +379,15 @@ Privatuniversitaet_glm <- train(form = Privatuniversitaet ~ .,
 
 2. Exploriere den Modelloutput mit der `summary()` Funktion.
 
-
 ```{r}
 summary(Privatuniversitaet_glm)
-```
 
-3. Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?
-
-```{r}
 # Basierend auf den z-Werten, scheinen vor allem die Variablen Outstate und
 # Enroll wichtige Prädiktoren zu sein. Ausserdem scheinen die Variablen Accept
 # F.Undergrad, Room.Board, und S.F.Ration wichtig zu sein.e
 ```
 
-### I - Evaluiere den Fit
-
-1. Nun evaluiere den Fit. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_Privatuniversitaet`.
+3. Extrahiere die gefitteten Werte und speichere sie als `glm_fit_Privatuniversitaet`.
 
 ```{r, echo = TRUE, eval = FALSE}
 glm_fit_Privatuniversitaet <- predict(XX)
@@ -424,7 +397,7 @@ glm_fit_Privatuniversitaet <- predict(XX)
 glm_fit_Privatuniversitaet <- predict(Privatuniversitaet_glm)
 ```
 
-2. Verwende die `confusionMatrix()` Funktion um die Performanz zu bestimmen.
+4. Verwende die `confusionMatrix()` Funktion um die Performanz des Klassifikationsmodells zu bestimmen.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Evaluiere Modellperformanz
@@ -439,41 +412,12 @@ confusionMatrix(data = glm_fit_Privatuniversitaet,   # Vorhersagen
                 reference = criterion)    # Tatsächliche Werte
 ```
 
-3. Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?
+5. Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?
 
 ```{r}
 # Die Richtigkeit ist 0.942. Über alle Fälle gesehen, sagt das Modell also in
 # 94.2% die richtige Klasse vorher.
 ```
-
-4. Wie hoch ist die Sensitivität? Was bedeutet diese Zahl?
-
-```{r}
-# Die Sensitivität ist 0.893. Von den tatsächlich Privatuniversitaeten,
-# erkennt das Modell 89.3% als solche.
-```
-
-5. Wie hoch ist der *positive predictive value*? Wie interpretierst du diese Zahl?
-
-```{r}
-# Der PPV ist 0.911. Von den Colleges, die vom Modell als privat klassifiziert
-# wurden, sind 91.1% tatsächlich privat.
-```
-
-6. Wie hoch ist die Spezifität? Wie interpretierst du diese Zahl?
-
-```{r}
-# Die Spezifität ist 0.963. Von den tatsächlich öffentlichen Colleges, werden
-# 96.3% als solche erkannt. 
-```
-
-7. Wie hoch ist der *negative predictive value*? Wie interpretierst du diese Zahl?
-
-```{r}
-# Der NPV ist 0.955. Von den Colleges, die vom Modell als öffentlich klassifiziert
-# werden, sind 95.5% tatsächlich öffentlich.
-```
-
 
 ### Z - Challenges
 
@@ -491,7 +435,6 @@ postResample(pred = mod_predictions,
              obs = graduation_train$Prozent_Spenden)
 
 ```
-
 
 2. Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen `Bewerbungen`). Verwende dazu den untenstehenden Code um zunächst das Kriterium `hot` zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?
 
@@ -519,8 +462,6 @@ confusionMatrix(data = mod_predictions,
                 reference = graduation_train$hot)
 
 ```
-
-
 
 ## Beispiele
 

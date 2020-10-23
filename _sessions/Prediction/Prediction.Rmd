@@ -167,7 +167,7 @@ Evan Esar, Satiriker
 <img src="image/testing_flow.png" height=390px>
 </p>
 
----
+<!---
 
 # Warum wird Training und Test getrennt?
 
@@ -198,6 +198,7 @@ knitr::kable(present, format = "markdown")
 
 ]
 
+--->
 
 
 ---
@@ -609,7 +610,7 @@ class: center, middle
 
 <ul>
   <li class="m1"><span>Fitte einen Random Forest in <mono>caret</mono> mit <highm>method = "rf"</highm>.</span></li>
-  <li class="m2"><span>Wenn das <high>Kriterium ein <mono>factor</mono></high> ist, verwendet <mono>caret</mono> Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest</highm>.</span></li>
+  <li class="m2"><span>Wenn das <high>Kriterium ein <mono>factor</mono></high> ist, verwendet <mono>caret</mono> Classificaton trees, anonsten Regression trees als Grundlage des Random Forests</highm>.</span></li>
 </ul>
 
 ]
@@ -652,7 +653,7 @@ data(cars)
 ```
 
 
----
+<!---
 
 # <mono>createDataPartition()</mono>
 
@@ -720,7 +721,7 @@ basel_test <- basel %>%
 
 ]
 
-
+--->
 
 
 ---
@@ -730,7 +731,7 @@ basel_test <- basel %>%
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Verwende <mono>predict()</mono> um auf Basis des Testdatensatzes neue Vorhersagen zu berechnen.</span></li>
+  <li class="m1"><span>Generiert auf Basis des Modells und des Testdatensatzes <high>neue Vorhersagen</high>.</span></li>
 </ul>
 
 <br>

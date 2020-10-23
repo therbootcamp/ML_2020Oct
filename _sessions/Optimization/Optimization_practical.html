@@ -201,11 +201,10 @@ summary {
 <h1></h1>
 <div id="überblick" class="section level2">
 <h2>Überblick</h2>
-<p>In diesem Practical wirst du optimale Tuning Parameter identifizieren für bestmögliche Vorhersageperformanz.</p>
+<p>In diesem Practical wirst du optimale Tuning Parameter identifizieren für eine bestmögliche Vorhersageperformanz.</p>
 <p>Am Ende des Practicals wirst du wissen wie man…</p>
 <ol style="list-style-type: decimal">
 <li>Cross-Validation zur Auswahl der Tuning Parameter verwendet.</li>
-<li>Schätzungen für Vorhersageperformanz durch Cross-Validation erhält.</li>
 <li>Wie sich eine simple Regression von Lasso und Ridge unterscheidet.</li>
 </ol>
 </div>
@@ -214,7 +213,7 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R project.</p></li>
 <li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Optimizing Practical” als Kommentare an den Anfang des Skripts.</p></li>
 </ol>
 <pre class="r"><code>## NAME
@@ -235,7 +234,7 @@ baseball_train &lt;- read_csv(file = &quot;1_Data/baseball_train.csv&quot;)
 baseball_test &lt;- read_csv(file = &quot;1_Data/baseball_test.csv&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe die Datensätze.</p></li>
-<li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
+<li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View(XX)</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
 <li><p>Wiederum, führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
 </ol>
 <pre class="r"><code># Konvertiere alle character zu factor
@@ -261,7 +260,7 @@ ctrl_cv &lt;- trainControl(method = &quot;XX&quot;,
 <div id="c---regression" class="section level3">
 <h3>C - Regression</h3>
 <ol style="list-style-type: decimal">
-<li>Fitte eine normale Regression auf bekanntem Wege (wie z.b. im Practical zu <a href="_sessions/Prediction/Prediction_practical.html">Prediction</a>), die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das <code>trControl</code> Argument auf das eben definierte <code>ctrl_cv</code> Objekt.</li>
+<li>Fitte eine normale Regression auf bekanntem Wege (z.B. wie im Practical zu <a href="_sessions/Prediction/Prediction_practical.html">Prediction</a>), die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Einziger Unterschied: Setze das <code>trControl</code> Argument auf das eben definierte <code>ctrl_cv</code> Objekt.</li>
 </ol>
 <pre class="r"><code># Normal Regression
 gehalt_glm &lt;- train(form = XX ~ .,

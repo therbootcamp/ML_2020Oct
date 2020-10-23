@@ -201,13 +201,13 @@ summary {
 <h1></h1>
 <div id="überblick" class="section level2">
 <h2>Überblick</h2>
-<p>In diesem Practical wirst du die Grundlagen des Modellfittings und von Regressionsmodellen lernen.</p>
+<p>In diesem Practical wirst du die Grundlagen des Modellfittings bei Regressionsmodellen lernen.</p>
 <p>Am Ende dieses Practicals wirst du wissen wie du:</p>
 <ol style="list-style-type: decimal">
-<li>Ein Regressionsmodell in R fitten kannst.</li>
-<li>Die Modelloutputs in R explorieren kannst.</li>
-<li>Die Modellperformanz einschätzen kannst.</li>
-<li>Den Effekt zusätzlicher Features erfassen kannst.</li>
+<li>Ein Regressionsmodell in R fittest.</li>
+<li>Die Modelloutputs in R explorierst.</li>
+<li>Die Modellperformanz einschätzts.</li>
+<li>Den Effekt zusätzlicher Features erfassts.</li>
 </ol>
 </div>
 <div id="tasks" class="section level2">
@@ -215,9 +215,9 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Öffne dein <code>TheRBootcamp</code> R Projekt. Es sollte bereits die Ordner <code>1_Data</code> und <code>2_Code</code> enhalten. Stelle sicher, dass die Datensätze, welche im Datensätze Register gelistet sind, im <code>1_Data</code> Ordner vorhanden sind.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R Projekt.</p></li>
 <li><p>Öffne ein neues R Skript. Schreibe am Anfang des Skripts mithilfe von Kommentaren deinen Namen und das Datum. Speichere das neue Skript unter dem Namen <code>Fitting_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
-<li><p>Verwende <code>library()</code> um die <code>tidyverse</code> und <code>caret</code> Pakete zu laden.</p></li>
+<li><p>Verwende <code>library()</code> um die Pakete <code>tidyverse</code> und <code>caret</code> zu laden.</p></li>
 </ol>
 <pre class="r"><code># Lade benötigte Pakete
 library(tidyverse)
@@ -233,11 +233,7 @@ graduation_train &lt;- read_csv(file = &quot;1_Data/graduation_train.csv&quot;)<
 </ol>
 <pre class="r"><code>names(XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Öffne den Datensatz in einem separaten Fenster mithilfe von <code>View()</code> und schaue dir die Daten an.</li>
-</ol>
-<pre class="r"><code>View(XX)</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Nun hast du einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, musst du noch sicherstellen, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Lasse dazu den untenstehenden Code laufen:</li>
+<li>Du hast einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, stelle sicher, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Verwende dazu den untenstehenden Code.</li>
 </ol>
 <pre class="r"><code># Konvertiere alle character variablen zu factor
 graduation_train &lt;- graduation_train %&gt;%
@@ -246,7 +242,7 @@ graduation_train &lt;- graduation_train %&gt;%
 <div id="b---definiere-die-kontrollparameter" class="section level3">
 <h3>B - Definiere die Kontrollparameter</h3>
 <ol style="list-style-type: decimal">
-<li>In <code>caret</code> wird die <code>trainControl()</code> Funktion verwendet, um zu definieren wie genau die Modelle gefittet werden sollen. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument <code>method = "none"</code> und speichere das Objekt als <code>ctrl_none</code>.</li>
+<li>In <code>caret</code> bestimmt die <code>trainControl()</code> Funktion wie genau Modelle gefittet werden. Da aktuell der Fokus auf den Grundlagen des Fittings liegt, setze für das gesamte Practical das Argument <code>method = "none"</code> und speichere das Objekt als <code>ctrl_none</code>.</li>
 </ol>
 <pre class="r"><code># Setze Samplingmethode auf &quot;none&quot; um für den Moment alles einfach zu halten.
 ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
@@ -264,7 +260,7 @@ Teil 1: <b>Regressionsfall</b>
 <li>setze das <code>form</code> Argument auf <code>Abschlussrate ~ Prozent_PhD</code>.</li>
 <li>setze das <code>data</code> Argument auf <code>graduation_train</code>.</li>
 <li>setze das <code>method</code> Argument auf <code>"glm"</code> für Regression.</li>
-<li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>, das oben erstellte Objekt mit den Kontrollparametern.</li>
+<li>setze das <code>trControl</code> Argument auf <code>ctrl_none</code>.</li>
 </ul>
 <pre class="r"><code># abschluss_glm: Regressionsmodell
 abschluss_glm &lt;- train(form = XX ~ XX,
@@ -272,13 +268,12 @@ abschluss_glm &lt;- train(form = XX ~ XX,
                        method = &quot;XX&quot;,
                        trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Exploriere den Modelloutput mithilfe der <code>summary()</code> Funktion.</li>
+<li>Exploriere den Modelloutput mithilfe der <code>summary()</code> Funktion. Wie interpretierst den Output und insbesondere die Modellparameter?</li>
 </ol>
 <pre class="r"><code># Zeige Regressionstabelle
 summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Schaue dir die Resultate an. Wie interpretierst du die Modellparameter?</p></li>
-<li><p>Nun extrahiere die gefitteten Werte mittels <code>predict()</code>. Speichere die extrahierten Werte als <code>glm_fit</code>.</p></li>
+<li>Extrahiere die gefitteten Werte mittels <code>predict()</code>. Speichere die extrahierten Werte als <code>glm_fit</code>.</li>
 </ol>
 <pre class="r"><code># Extrahiere gefittete Werte
 glm_fit &lt;- predict(XX)</code></pre>
@@ -286,12 +281,12 @@ glm_fit &lt;- predict(XX)</code></pre>
 <div id="d---evaluiere-modellperformanz" class="section level3">
 <h3>D - Evaluiere Modellperformanz</h3>
 <ol style="list-style-type: decimal">
-<li>Nun evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in <code>graduation_train</code> und nenne diesen <code>criterion</code> (Kriterium).</li>
+<li>Evaluiere die Modellperformanz. Definiere dazu zunächst einen Vektor mit den tatsächlichen Kriteriumswerten in <code>graduation_train</code> und nenne diesen <code>criterion</code> (Kriterium).</li>
 </ol>
 <pre class="r"><code># Definiere einen Vektor mit den tatsächlichen Werten
 criterion &lt;- graduation_train$Abschlussrate</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Verwende nun die <code>postResample()</code> Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
+<li>Verwende die <code>postResample()</code> Funktion um die Modellperformanz quantifizieren. Dazu musst du die gefitteten und die tatsächlichen Werte als Argumente in die Funktion geben.</li>
 </ol>
 <p>Genauer:</p>
 <ul>
@@ -302,7 +297,7 @@ criterion &lt;- graduation_train$Abschlussrate</code></pre>
 postResample(pred = XX,   # Vorhergesagte/ gefittete Werte 
              obs = XX)    # Tatsächliche Werte</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Was bedeuten diese Werte? Wie interpretierst du die Resultate des Regressionsmodells; ist die Performanz gut oder schlecht?</li>
+<li>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Wie interpretierst du die Resultate; ist die Performanz gut oder schlecht?</li>
 </ol>
 </div>
 <div id="e---mehr-features" class="section level3">
@@ -328,7 +323,7 @@ abschluss_glm_three &lt;- train(form = XX ~ XX + XX + XX,
                              method = &quot;XX&quot;,
                              trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Exploriere den Output mit der <code>summary()</code> Funktion. Welche Features sind wichtig?</li>
+<li>Exploriere den Output mit der <code>summary()</code> Funktion. Welche Parameter wurden für die Feature geschätzt?</li>
 </ol>
 <pre class="r"><code>summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -353,7 +348,7 @@ postResample(pred = XX, # Vorhergesagte Werte
                            method = &quot;glm&quot;,
                            trControl = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Exploriere das Modell mit der <code>summary()</code> Funktion. Welche Features sind wichtig?</li>
+<li>Exploriere das Modell mit der <code>summary()</code> Funktion. Welche Parameter wurden für die Feature geschätzt?</li>
 </ol>
 <pre class="r"><code>summary(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -362,7 +357,7 @@ postResample(pred = XX, # Vorhergesagte Werte
 <pre class="r"><code># Speichere die Vorhersagen
 glm_fit_all &lt;- predict(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert?</li>
+<li>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert? Verwende <code>postResample()</code>.</li>
 </ol>
 <br>
 <p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
@@ -371,7 +366,7 @@ Teil 2: <b>Klassifikationsfall</b>
 </div>
 <div id="g---faktor-als-kriterium" class="section level3">
 <h3>G - Faktor als Kriterium</h3>
-<p>Nun wage dich an ein Klassifikationsproblem. Erinnere, dass in <code>caret</code> Funktionen für Klassifikationsprobleme das Kriterium die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um ein Privatuniversitaets oder öffentliches College handelt (die <code>Privatuniversitaet</code> Variable).</p>
+<p>Begib dich nun an ein Klassifikationsproblem. Erinnere, dass für Klassifikationsprobleme das Kriterium die Klasse <code>factor</code> haben muss. In den folgenden Aufgaben sage vorher, ob es sich bei einem College um eine Privatuniversität oder öffentliches College handelt (die <code>Privatuniversitaet</code> Variable).</p>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>class()</code> Funktion, um die Klasse der <code>Privatuniversitaet</code> Variable zu testen. Wenn der Output <code>factor</code> ist, kannst du mit dem maschinellen Lernen beginnen.</li>
 </ol>
@@ -384,29 +379,19 @@ class(graduation_train$Privatuniversitaet)</code></pre>
 <div id="h---rechne-ein-klassifikationsmodell" class="section level3">
 <h3>H - Rechne ein Klassifikationsmodell</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Privatuniversitaet</code> unter Verwendung aller Features vorhersagst. <strong>Tipp:</strong> Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
+<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Privatuniversitaet</code> unter Verwendung aller Features vorhersagst. Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
 <li><p>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</p></li>
-<li><p>Schaue dir die Resultate an. Welche Features scheinen wichtig für eine gute Modellperformanz zu sein?</p></li>
-</ol>
-</div>
-<div id="i---evaluiere-den-fit" class="section level3">
-<h3>I - Evaluiere den Fit</h3>
-<ol style="list-style-type: decimal">
-<li>Nun evaluiere den Fit. Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_Privatuniversitaet</code>.</li>
+<li><p>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_Privatuniversitaet</code>.</p></li>
 </ol>
 <pre class="r"><code>glm_fit_Privatuniversitaet &lt;- predict(XX)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Verwende die <code>confusionMatrix()</code> Funktion um die Performanz zu bestimmen.</li>
+<ol start="4" style="list-style-type: decimal">
+<li>Verwende die <code>confusionMatrix()</code> Funktion um die Performanz des Klassifikationsmodells zu bestimmen.</li>
 </ol>
 <pre class="r"><code># Evaluiere Modellperformanz
 confusionMatrix(data = XX,      # Vorhersagen
                 reference = XX) # Tatsächliche Werte</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?</p></li>
-<li><p>Wie hoch ist die Sensitivität? Was bedeutet diese Zahl?</p></li>
-<li><p>Wie hoch ist der <em>positive predictive value</em>? Wie interpretierst du diese Zahl?</p></li>
-<li><p>Wie hoch ist die Spezifität? Wie interpretierst du diese Zahl?</p></li>
-<li><p>Wie hoch ist der <em>negative predictive value</em>? Wie interpretierst du diese Zahl?</p></li>
+<ol start="5" style="list-style-type: decimal">
+<li>Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?</li>
 </ol>
 </div>
 <div id="z---challenges" class="section level3">

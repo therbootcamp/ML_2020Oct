@@ -118,7 +118,7 @@ Evan Esar, Satiriker
 &lt;img src="image/testing_flow.png" height=390px&gt;
 &lt;/p&gt;
 
----
+&lt;!---
 
 # Warum wird Training und Test getrennt?
 
@@ -159,6 +159,7 @@ Evan Esar, Satiriker
 
 ]
 
+---&gt;
 
 
 ---
@@ -493,7 +494,7 @@ class: center, middle
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Fitte einen Random Forest in &lt;mono&gt;caret&lt;/mono&gt; mit &lt;highm&gt;method = "rf"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten einen Regression trees als Grundlage des Random Forest&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wenn das &lt;high&gt;Kriterium ein &lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; ist, verwendet &lt;mono&gt;caret&lt;/mono&gt; Classificaton trees, anonsten Regression trees als Grundlage des Random Forests&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -533,7 +534,7 @@ class: center,  middle
 
 
 
----
+&lt;!---
 
 # &lt;mono&gt;createDataPartition()&lt;/mono&gt;
 
@@ -602,7 +603,7 @@ basel_test &lt;- basel %&gt;%
 
 ]
 
-
+---&gt;
 
 
 ---
@@ -612,7 +613,7 @@ basel_test &lt;- basel %&gt;%
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Verwende &lt;mono&gt;predict()&lt;/mono&gt; um auf Basis des Testdatensatzes neue Vorhersagen zu berechnen.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Generiert auf Basis des Modells und des Testdatensatzes &lt;high&gt;neue Vorhersagen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;

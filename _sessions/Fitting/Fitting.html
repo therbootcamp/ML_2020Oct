@@ -57,8 +57,8 @@ layout: true
 &lt;p style="padding-top:1px"&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li class="m1"&gt;&lt;span&gt;Modelle sind eigentlich &lt;high&gt;Familie von Modellen&lt;/high&gt;, wobei jede Parameterkombination ein unterschiedliches Modell definiert&lt;/span&gt;&lt;/li&gt;
-&lt;li class="m2"&gt;&lt;span&gt;Ein Modell zu fitten bedeutet, von der Familie von Modellen dasjenige zu &lt;high&gt;identifizieren welches die Daten am besten abbildet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m1"&gt;&lt;span&gt;Jedes Modell beinhaltet &lt;high&gt;mehrere Versionen&lt;/high&gt;, die sich durch spezifische Parameterkombination auszeichnen&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Ein Modell zu fitten bedeutet, diejenige Version zu &lt;high&gt;identifizieren, die die Daten am besten beschreibt&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -95,8 +95,8 @@ layout: true
 .pull-left45[
 
 &lt;ul&gt;
-&lt;li class="m1"&gt;&lt;span&gt;Eines &lt;high&gt;zentrales Konzepte&lt;/high&gt; in der Statistik und im maschinellen Lernen.&lt;/span&gt;&lt;/li&gt;
-&lt;li class="m2"&gt;&lt;span&gt;Die Loss Funktion ist eine &lt;high&gt;Zusammenfassung der durch ein Modell begangenen Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Zentrales Konzepte&lt;/high&gt; in Statistik und maschinellem Lernen.&lt;/span&gt;&lt;/li&gt;
+&lt;li class="m2"&gt;&lt;span&gt;Eine &lt;high&gt;Zusammenfassung&lt;/high&gt; der durch ein Modell begangenen &lt;high&gt;Fehler&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p style="padding-top:7px"&gt;
 
@@ -128,7 +128,7 @@ layout: true
     Evaluation
   &lt;/td&gt;
   &lt;td&gt;
-    Berechne den Verlust für ein gefittetes Modell.
+    Berechne den Fehler eines gefitteten Modells.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -188,7 +188,7 @@ Wenn `\(b_{i} = 0\)`, heisst das, `\(x_{i}\)` &lt;high&gt;bringt keinen Zusatznu
 
 ---
 
-# Loss function in der Regression
+# Fehler in der Regression
 
 .pull-left45[
 
@@ -239,7 +239,7 @@ $$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert y_{i} - \hat{y}_{i} \rvert$$
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Analytisch&lt;/b&gt;
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In gewissen Fällen, können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Manchmal können die Parameterwerte &lt;high&gt;direkt berechnet&lt;/high&gt; werden, z.B., mit der &lt;i&gt;Normalgleichung&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -250,7 +250,7 @@ $$ \large \boldsymbol b = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\bol
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Numerisch&lt;/b&gt;
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In den meisten Fällen, müssen die Parameter jedoch mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Meistens müssen die Parameter mittels &lt;high&gt;gerichtetem trial and error&lt;/high&gt; Verfahren gefunden werden, z.B., mittels &lt;i&gt;gradient descent&lt;/i&gt;:&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -356,7 +356,7 @@ $$ \large \boldsymbol b_{n+1} = \boldsymbol b_{n}+\gamma \nabla F(\boldsymbol b_
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;In der &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistischen Regression&lt;/a&gt;, modellieren wir eine kategoriale Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistische Regression&lt;/a&gt;, modelliert eine binäre Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformiert wird:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
@@ -388,7 +388,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;In der &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistischen Regression&lt;/a&gt;, modellieren wir eine kategoriale Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei wir die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformieren:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;a href="https://de.wikipedia.org/wiki/Logistische_Regression"&gt;logistische Regression&lt;/a&gt;, modelliert eine binäre Variable &lt;font style="font-size:22px"&gt;&lt;mono&gt;y &amp;isin; (0,1)&lt;/mono&gt;&lt;/font&gt; als &lt;high&gt;gewichtete Summe der Features&lt;/high&gt;, wobei die Vorhersage mit einer &lt;high&gt;logistischen Linkfunktion&lt;/high&gt; transformiert wird:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
@@ -415,14 +415,14 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ---
 
-# Loss in Klassifikation
+# Fehler in Klassifikation
 
 .pull-left45[
 
 &lt;ul style="margin-bottom:-20px"&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Distanz&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-  &lt;li&gt;&lt;span&gt;LogLoss wird i.A.R. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, und wie MSE und MAE auch zur Evaluation.&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;LogLoss wird i.A. &lt;high&gt;zum Fitten von Parametern&lt;/high&gt;, verwendet, und wie MSE und MAE auch zur Evaluation.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -433,7 +433,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 &lt;ul&gt;
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Übereinstimmung&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;0-1 loss evaluiert die Übereinstimmung zwischen &lt;high&gt;vorhergesagter Klasse und tatsächlicher Klasse &lt;/high&gt;, was im Vergleich &lt;high&gt;leicht zu interpretieren&lt;/high&gt; ist.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;0-1 loss evaluiert wie genau &lt;high&gt;vorhergesagte und tatsächliche Klassen &lt;/high&gt; übereinstimmmen.&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/ul&gt;
 
@@ -447,7 +447,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ]
 
----
+&lt;!---
 
 # Wahrheitsmatrix
 
@@ -526,8 +526,6 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 ]
 
 
----
-
 # Wahrheitsmatrix
 
 .pull-left45[
@@ -605,6 +603,7 @@ $$ logistisch(x) = \frac{1}{1+exp(-x)}$$
 
 ]
 
+---&gt;
 
 ---
 
@@ -612,7 +611,7 @@ class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;h1&gt;&lt;a&gt;Fitten mit &lt;mono&gt;caret&lt;/mono&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a&gt;Fitten in &lt;mono&gt;caret&lt;/mono&gt;&lt;/h1&gt;
 
 
 
@@ -639,7 +638,7 @@ class: center,  middle
     &lt;mono&gt;trainControl()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Wähle Spezifikationen dafür, wie das Modell gefittet werden soll.
+    Wähle Spezifiziert wie das Modell gefittet werden soll.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -647,7 +646,7 @@ class: center,  middle
     &lt;mono&gt;train()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td&gt;
-    Spezifiziere das Modell und finde die &lt;i&gt;besten&lt;/i&gt; Parameterschätzwerte.
+    Fittet das Modell: findet die &lt;i&gt;besten&lt;/i&gt; Parameterschätzwerte.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -655,7 +654,7 @@ class: center,  middle
     &lt;mono&gt;postResample()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Regressionsprobleme.
+    Evaluiert den Fehler für Regressionsprobleme.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -663,7 +662,7 @@ class: center,  middle
     &lt;mono&gt;confusionMatrix()&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    Evaluiere die Modellperformanz (Fitting oder Vorhersage) für Klassifikationsprobleme.
+    Evaluiere Fehler für Klassifikationsprobleme.
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -710,8 +709,8 @@ confusionMatrix(fit, truth)
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; steuert, &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Bis zur Session &lt;b&gt;Optimisierung&lt;/b&gt; verwenden wir &lt;highm&gt;method = "none"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Spezifiziert &lt;high&gt;wie &lt;mono&gt;caret&lt;/mono&gt; ein Modell fittet&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Wir verwenden bis zur Session &lt;b&gt;Optimisierung&lt;/b&gt; &lt;highm&gt;method = "none"&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -743,7 +742,7 @@ ctrl &lt;- trainControl(method = "none")
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Erlaubt die Spezifikation von &lt;high&gt;über 200 Modellen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -835,7 +834,7 @@ Resampling: None
 
 .pull-left4[
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Erlaubt die Spezifikation von &lt;high&gt;über 200 Modellen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
@@ -929,7 +928,7 @@ Resampling: None
 # `train()`
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; ist &lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Es können &lt;high&gt;über 200 Modelle&lt;/high&gt; mit nur leichten Änderungen im &lt;high&gt;method&lt;/high&gt; Argument gefittet werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt;'s &lt;high&gt;Zugpferd&lt;/high&gt;, wenn es um Fitting geht. Erlaubt die Spezifikation von &lt;high&gt;über 200 Modellen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Alle 200+ Modelle findest du &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;hier&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1006,8 +1005,8 @@ load_mod &lt;- train(form = factor(Ausfall) ~ .,
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; gibt eine Liste zurück, die das &lt;mono&gt;finalModel&lt;/mono&gt; Element mit dem &lt;high&gt;besten gefitteten Modell&lt;/high&gt; beinhaltet.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;.$finalModel&lt;/mono&gt; &lt;high&gt;extrahiert das Modell&lt;/high&gt;, welches anschliessend folgenden Funktionen exploriert werden kann:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1074,8 +1073,8 @@ names(eink_mod$finalModel)
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; gibt eine Liste zurück, die das &lt;mono&gt;finalModel&lt;/mono&gt; Element mit dem &lt;high&gt;besten gefitteten Modell&lt;/high&gt; beinhaltet.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;.$finalModel&lt;/mono&gt; &lt;high&gt;extrahiert das Modell&lt;/high&gt;, welches anschliessend folgenden Funktionen exploriert werden kann:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1140,8 +1139,8 @@ eink_mod$finalModel$coefficients
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;train()&lt;/mono&gt; Funktion gibt eine &lt;mono&gt;list&lt;/mono&gt;e zurück. Diese enthält ein &lt;mono&gt;finalModel&lt;/mono&gt; Element - das ist unser &lt;high&gt;bestes gefittetes Model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Greife auf das Modell mit &lt;mono&gt;.$finalModel&lt;/mono&gt; zu und &lt;high&gt;exploriere&lt;/high&gt; das Objekt mit generischen Funktionen:&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; gibt eine Liste zurück, die das &lt;mono&gt;finalModel&lt;/mono&gt; Element mit dem &lt;high&gt;besten gefitteten Modell&lt;/high&gt; beinhaltet.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;.$finalModel&lt;/mono&gt; &lt;high&gt;extrahiert das Modell&lt;/high&gt;, welches anschliessend folgenden Funktionen exploriert werden kann:&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1219,7 +1218,7 @@ Number of Fisher Scoring iterations: 2
 .pull-left5[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;predict()&lt;/mono&gt; Funktion &lt;high&gt;macht Modellvorhersagen&lt;/high&gt;. Dazu muss man lediglich den Modelloutput als erstes Argument spezifizieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Generiert Vorhersagen des Modells&lt;/high&gt; auf Basis des Modellobjekts.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1254,7 +1253,8 @@ glm_fits[1:8]
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Die &lt;mono&gt;postResample()&lt;/mono&gt; Funktion &lt;high&gt;erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;. Zu spezifizierende Argumente sind die vorhergesagten Werte und die tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Regressionsproblemen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vorhergesagten und tatsächlichen Werte sind zu spezifizieren.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1290,7 +1290,8 @@ postResample(glm_fits,
 &lt;p style="padding-top:10px"&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;confusionMatrix()&lt;/mono&gt; erstellt eine Zusammenfassung der &lt;high&gt;Modellperformanz bei Klassifikationsproblemen&lt;/high&gt;. Inputs sind wiederum die vorhergesagten und tatsächlichen Werte.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Erstellt eine einfache Zusammenfassung&lt;/high&gt; der Modellperformanz bei &lt;high&gt;Klassifikationsproblemen&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vorhergesagten und tatsächlichen Werte sind zu spezifizieren.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
