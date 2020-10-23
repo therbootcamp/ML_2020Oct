@@ -210,8 +210,8 @@ summary {
 <li>Den Effekt zusätzlicher Features erfassts.</li>
 </ol>
 </div>
-<div id="tasks" class="section level2">
-<h2>Tasks</h2>
+<div id="aufgaben" class="section level2">
+<h2>Aufgaben</h2>
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
@@ -228,10 +228,38 @@ library(caret)</code></pre>
 <pre class="r"><code># Lese den graduation_train.csv Datensatz ein
 graduation_train &lt;- read_csv(file = &quot;1_Data/graduation_train.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Schaue dir die ersten paar Zeilen des Datensatzes in der Konsole an.</p></li>
-<li><p>Schaue dir die Namen des Datensatzes mithilfe der <code>names()</code> Funktion an.</p></li>
+<li>Schaue dir die ersten paar Zeilen des Datensatzes in der Konsole an.</li>
+</ol>
+<pre class="r"><code>graduation_train</code></pre>
+<pre><code># A tibble: 500 x 18
+   Privatuniversit… Bewerbungen Angenommen Eingeschrieben Prozent_Top10
+   &lt;chr&gt;                  &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+ 1 Ja                      1202       1054            326            18
+ 2 Ja                      1415        714            338            18
+ 3 Ja                      4778       2767            678            50
+ 4 Ja                      1220        974            481            28
+ 5 Ja                      1981       1541            514            18
+ 6 Ja                      1217       1088            496            36
+ 7 Nein                    8579       5561           3681            25
+ 8 Nein                     833        669            279             3
+ 9 Nein                   10706       7219           2397            12
+10 Ja                       938        864            511            29
+# … with 490 more rows, and 13 more variables: Prozent_Top25 &lt;dbl&gt;,
+#   Vollzeit &lt;dbl&gt;, Teilzeit &lt;dbl&gt;, Kosten_ausserhalb &lt;dbl&gt;,
+#   Kosten_Unterkunft &lt;dbl&gt;, Kosten_Buecher &lt;dbl&gt;, Kosten_persoenlich &lt;dbl&gt;,
+#   Prozent_PhD &lt;dbl&gt;, Prozent_Degree &lt;dbl&gt;, Verhaeltnis_Stud.Doz. &lt;dbl&gt;,
+#   Prozent_Spenden &lt;dbl&gt;, Kosten_Student &lt;dbl&gt;, Abschlussrate &lt;dbl&gt;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Schaue dir die Namen des Datensatzes mithilfe der <code>names()</code> Funktion an.</li>
 </ol>
 <pre class="r"><code>names(XX)</code></pre>
+<pre class="r"><code>names(graduation_train)</code></pre>
+<pre><code> [1] &quot;Privatuniversitaet&quot;    &quot;Bewerbungen&quot;           &quot;Angenommen&quot;           
+ [4] &quot;Eingeschrieben&quot;        &quot;Prozent_Top10&quot;         &quot;Prozent_Top25&quot;        
+ [7] &quot;Vollzeit&quot;              &quot;Teilzeit&quot;              &quot;Kosten_ausserhalb&quot;    
+[10] &quot;Kosten_Unterkunft&quot;     &quot;Kosten_Buecher&quot;        &quot;Kosten_persoenlich&quot;   
+[13] &quot;Prozent_PhD&quot;           &quot;Prozent_Degree&quot;        &quot;Verhaeltnis_Stud.Doz.&quot;
+[16] &quot;Prozent_Spenden&quot;       &quot;Kosten_Student&quot;        &quot;Abschlussrate&quot;        </code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Du hast einen ersten Überblick über die Daten gewonnen. Bevor du nun mit dem maschinellen Lernen beginnen kannst, stelle sicher, dass alle <code>character</code> Variablen als <code>factor</code> vorliegen. Verwende dazu den untenstehenden Code.</li>
 </ol>
@@ -267,16 +295,48 @@ abschluss_glm &lt;- train(form = XX ~ XX,
                        data = XX,
                        method = &quot;XX&quot;,
                        trControl = XX)</code></pre>
+<pre class="r"><code># abschluss_glm: Regressionsmodell
+abschluss_glm &lt;- train(form = Abschlussrate ~ Prozent_PhD,
+                       data = graduation_train,
+                       method = &quot;glm&quot;,
+                       trControl = ctrl_none)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere den Modelloutput mithilfe der <code>summary()</code> Funktion. Wie interpretierst den Output und insbesondere die Modellparameter?</li>
 </ol>
 <pre class="r"><code># Zeige Regressionstabelle
 summary(XX)</code></pre>
+<pre class="r"><code># Zeige Regressionstabelle
+summary(abschluss_glm)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-43.83  -10.44    0.49   10.93   41.47  
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   41.372      3.382   12.23  &lt; 2e-16 ***
+Prozent_PhD    0.330      0.045    7.33  9.1e-13 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 257)
+
+    Null deviance: 141641  on 499  degrees of freedom
+Residual deviance: 127832  on 498  degrees of freedom
+AIC: 4197
+
+Number of Fisher Scoring iterations: 2</code></pre>
+<pre class="r"><code># Für jede Zunahme um eins in Prozent_PhD (der Anteil Angestellter mit einem PhD), steigt die erwartete Abschlussrate um 0.33. </code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Extrahiere die gefitteten Werte mittels <code>predict()</code>. Speichere die extrahierten Werte als <code>glm_fit</code>.</li>
 </ol>
 <pre class="r"><code># Extrahiere gefittete Werte
 glm_fit &lt;- predict(XX)</code></pre>
+<pre class="r"><code># Extrahiere gefittete Werte
+glm_fit &lt;- predict(abschluss_glm)</code></pre>
 </div>
 <div id="d---evaluiere-modellperformanz" class="section level3">
 <h3>D - Evaluiere Modellperformanz</h3>
@@ -296,9 +356,17 @@ criterion &lt;- graduation_train$Abschlussrate</code></pre>
 <pre class="r"><code># Modellperformanz der gerechneten Regression
 postResample(pred = XX,   # Vorhergesagte/ gefittete Werte 
              obs = XX)    # Tatsächliche Werte</code></pre>
+<pre class="r"><code># Modellperformanz der gerechneten Regression
+postResample(pred = glm_fit,   # Vorhergesagte/ gefittete Werte 
+             obs = criterion)  # Tatsächliche Werte</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 15.9895   0.0975  12.8633 </code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Der Output der <code>postResample()</code> Funktion zeigt drei Werte, <em>RMSE</em>, <em>Rsquared</em> und <em>MAE</em>. Wie interpretierst du die Resultate; ist die Performanz gut oder schlecht?</li>
 </ol>
+<pre class="r"><code># Im Schnitt sind die Vorhersagen des Modells 12.86 Prozent von den wahren Werten
+# entfernt. Von der gesammten Varianz in der Variable Abschlussrate, kann unser Modell
+# nur gerade zehn Prozent erklären. Das Modell macht also nur schlechte Vorhersagen.</code></pre>
 </div>
 <div id="e---mehr-features" class="section level3">
 <h3>E - Mehr Features</h3>
@@ -322,21 +390,62 @@ abschluss_glm_three &lt;- train(form = XX ~ XX + XX + XX,
                              data = XX,
                              method = &quot;XX&quot;,
                              trControl = XX)</code></pre>
+<pre class="r"><code># abschluss_glm_three: Regressionsmodell
+abschluss_glm_three &lt;- train(form = Abschlussrate ~ Prozent_PhD + Kosten_Unterkunft + Verhaeltnis_Stud.Doz.,
+                             data = graduation_train,
+                             method = &quot;glm&quot;,
+                             trControl = ctrl_none)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere den Output mit der <code>summary()</code> Funktion. Welche Parameter wurden für die Feature geschätzt?</li>
 </ol>
 <pre class="r"><code>summary(XX)</code></pre>
+<pre class="r"><code>summary(abschluss_glm_three)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-45.05   -9.61    0.42   10.09   48.72  
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           38.223793   5.019118    7.62  1.3e-13 ***
+Prozent_PhD            0.200978   0.044618    4.50  8.3e-06 ***
+Kosten_Unterkunft      0.004647   0.000666    6.97  1.0e-11 ***
+Verhaeltnis_Stud.Doz. -0.524762   0.176812   -2.97   0.0031 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 223)
+
+    Null deviance: 141641  on 499  degrees of freedom
+Residual deviance: 110827  on 496  degrees of freedom
+AIC: 4129
+
+Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_three</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
 glm_fit_three &lt;- predict(XX)</code></pre>
+<pre class="r"><code># Speichere die Vorhersagen
+glm_fit_three &lt;- predict(abschluss_glm_three)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Quantifiziere die Performanz des Modells mit der <code>postResample()</code> Funktion. Wie gut ist das Modell im Vergleich zum vorherigen Modell mit nur einem Feature?</li>
 </ol>
 <pre class="r"><code># Modellperformanz des neuen Modells
 postResample(pred = XX, # Vorhergesagte Werte 
              obs = XX)  # Tatsächliche Werte</code></pre>
+<pre class="r"><code># Modellperformanz des neuen Modells
+postResample(pred = glm_fit_three,   # Vorhergesagte Werte  
+             obs = criterion)        # Tatsächliche Werte</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  14.888    0.218   11.780 </code></pre>
+<pre class="r"><code># Der neue MAE ist 11.78. Das ist kleiner und daher besser als der Wert des Modells
+# mit nur einem Feature. Diese Verbesserung zeigt sich natürlich auch in Rsquared Wert,
+# das neue Modell kann fast 22% der gesammten Varianz erklären, also doppelt so viel
+# wie das vorherige Modell</code></pre>
 </div>
 <div id="f---verwende-alle-features" class="section level3">
 <h3>F - Verwende Alle Features</h3>
@@ -347,18 +456,68 @@ postResample(pred = XX, # Vorhergesagte Werte
                            data = XX,
                            method = &quot;glm&quot;,
                            trControl = XX)</code></pre>
+<pre class="r"><code>abschluss_glm_all &lt;- train(form = Abschlussrate ~ .,
+                           data = graduation_train,
+                           method = &quot;glm&quot;,
+                           trControl = ctrl_none)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere das Modell mit der <code>summary()</code> Funktion. Welche Parameter wurden für die Feature geschätzt?</li>
 </ol>
 <pre class="r"><code>summary(XX)</code></pre>
+<pre class="r"><code>summary(abschluss_glm_all)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-38.10   -7.24   -0.58    7.51   47.10  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            32.712812   5.544068    5.90  6.8e-09 ***
+PrivatuniversitaetNein -1.701840   2.114677   -0.80  0.42135    
+Bewerbungen             0.001926   0.000572    3.37  0.00082 ***
+Angenommen             -0.001754   0.001046   -1.68  0.09417 .  
+Eingeschrieben          0.005550   0.002872    1.93  0.05387 .  
+Prozent_Top10          -0.049727   0.086281   -0.58  0.56466    
+Prozent_Top25           0.206252   0.066972    3.08  0.00219 ** 
+Vollzeit               -0.001069   0.000461   -2.32  0.02068 *  
+Teilzeit               -0.001294   0.000444   -2.92  0.00369 ** 
+Kosten_ausserhalb       0.001782   0.000297    6.01  3.7e-09 ***
+Kosten_Unterkunft       0.000871   0.000721    1.21  0.22790    
+Kosten_Buecher         -0.000932   0.004089   -0.23  0.81988    
+Kosten_persoenlich     -0.001457   0.000998   -1.46  0.14494    
+Prozent_PhD             0.104743   0.071027    1.47  0.14095    
+Prozent_Degree         -0.101789   0.076321   -1.33  0.18293    
+Verhaeltnis_Stud.Doz.   0.275943   0.191423    1.44  0.15008    
+Prozent_Spenden         0.219944   0.061576    3.57  0.00039 ***
+Kosten_Student         -0.000683   0.000202   -3.39  0.00077 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 155)
+
+    Null deviance: 141641  on 499  degrees of freedom
+Residual deviance:  74595  on 482  degrees of freedom
+AIC: 3960
+
+Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_all</code>.</li>
 </ol>
 <pre class="r"><code># Speichere die Vorhersagen
 glm_fit_all &lt;- predict(XX)</code></pre>
+<pre class="r"><code># Speichere die Vorhersagen
+glm_fit_all &lt;- predict(abschluss_glm_all)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Wie stark hat sich die Modellperformanz gegenüber der vorherigen Modelle verbessert? Verwende <code>postResample()</code>.</li>
 </ol>
+<pre class="r"><code># Modellperformanz des neuen Modells
+postResample(pred = glm_fit_all,   
+             obs = criterion)   </code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  12.214    0.473    9.250 </code></pre>
 <br>
 <p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
 Teil 2: <b>Klassifikationsfall</b>
@@ -372,37 +531,250 @@ Teil 2: <b>Klassifikationsfall</b>
 </ol>
 <pre class="r"><code># Überprüfe die Klasse der Privatuniversitaet Variable
 class(graduation_train$Privatuniversitaet)</code></pre>
+<pre><code>[1] &quot;factor&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Speichere die <code>Privatuniversitaet</code> Variable als neues Objekt, <code>criterion</code>, so wie du das oben bei den Regressionsproblemen bereits getan hast.</li>
 </ol>
+<pre class="r"><code>criterion &lt;- graduation_train$Privatuniversitaet</code></pre>
 </div>
 <div id="h---rechne-ein-klassifikationsmodell" class="section level3">
 <h3>H - Rechne ein Klassifikationsmodell</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Privatuniversitaet</code> unter Verwendung aller Features vorhersagst. Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</p></li>
-<li><p>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</p></li>
-<li><p>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_Privatuniversitaet</code>.</p></li>
+<li>Verwende die <code>train()</code> Funktion um eine logistische Regression zu rechnen, mit der du <code>Privatuniversitaet</code> unter Verwendung aller Features vorhersagst. Der Code dafür hat dieselbe Struktur wie bei den vorherigen Aufgaben, du musst nur die Formel anpassen.</li>
+</ol>
+<pre class="r"><code>Privatuniversitaet_glm &lt;- train(form = Privatuniversitaet ~ .,
+                     data = graduation_train,
+                     method = &quot;glm&quot;,
+                     trControl = ctrl_none)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Exploriere den Modelloutput mit der <code>summary()</code> Funktion.</li>
+</ol>
+<pre class="r"><code>summary(Privatuniversitaet_glm)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.5261  -0.1179  -0.0272   0.0453   2.9426  
+
+Coefficients:
+                       Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)           -1.25e+00   2.28e+00   -0.55   0.5839    
+Bewerbungen            2.79e-04   2.71e-04    1.03   0.3028    
+Angenommen             1.21e-03   5.48e-04    2.20   0.0276 *  
+Eingeschrieben        -3.90e-03   1.40e-03   -2.80   0.0052 ** 
+Prozent_Top10          1.67e-02   3.82e-02    0.44   0.6619    
+Prozent_Top25         -3.09e-02   2.76e-02   -1.12   0.2640    
+Vollzeit               4.14e-04   1.68e-04    2.46   0.0140 *  
+Teilzeit               1.76e-04   2.05e-04    0.86   0.3899    
+Kosten_ausserhalb     -8.48e-04   1.55e-04   -5.47  4.5e-08 ***
+Kosten_Unterkunft     -7.35e-04   3.60e-04   -2.04   0.0410 *  
+Kosten_Buecher        -3.42e-03   1.83e-03   -1.87   0.0619 .  
+Kosten_persoenlich     6.20e-04   3.88e-04    1.60   0.1097    
+Prozent_PhD            5.63e-02   3.73e-02    1.51   0.1315    
+Prozent_Degree         6.57e-02   3.68e-02    1.79   0.0739 .  
+Verhaeltnis_Stud.Doz.  1.91e-01   7.46e-02    2.56   0.0104 *  
+Prozent_Spenden       -4.77e-02   2.79e-02   -1.71   0.0876 .  
+Kosten_Student        -2.81e-05   1.53e-04   -0.18   0.8542    
+Abschlussrate         -7.30e-03   1.48e-02   -0.49   0.6220    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.16  on 499  degrees of freedom
+Residual deviance: 144.29  on 482  degrees of freedom
+AIC: 180.3
+
+Number of Fisher Scoring iterations: 8</code></pre>
+<pre class="r"><code># Basierend auf den z-Werten, scheinen vor allem die Variablen Outstate und
+# Enroll wichtige Prädiktoren zu sein. Ausserdem scheinen die Variablen Accept
+# F.Undergrad, Room.Board, und S.F.Ration wichtig zu sein.e</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Extrahiere die gefitteten Werte und speichere sie als <code>glm_fit_Privatuniversitaet</code>.</li>
 </ol>
 <pre class="r"><code>glm_fit_Privatuniversitaet &lt;- predict(XX)</code></pre>
+<pre class="r"><code>glm_fit_Privatuniversitaet &lt;- predict(Privatuniversitaet_glm)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Verwende die <code>confusionMatrix()</code> Funktion um die Performanz des Klassifikationsmodells zu bestimmen.</li>
 </ol>
 <pre class="r"><code># Evaluiere Modellperformanz
 confusionMatrix(data = XX,      # Vorhersagen
                 reference = XX) # Tatsächliche Werte</code></pre>
+<pre class="r"><code># Evaluiere Modellperformanz
+confusionMatrix(data = glm_fit_Privatuniversitaet,   # Vorhersagen
+                reference = criterion)    # Tatsächliche Werte</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction  Ja Nein
+      Ja   338   16
+      Nein  13  133
+                                        
+               Accuracy : 0.942         
+                 95% CI : (0.918, 0.961)
+    No Information Rate : 0.702         
+    P-Value [Acc &gt; NIR] : &lt;2e-16        
+                                        
+                  Kappa : 0.861         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.71          
+                                        
+            Sensitivity : 0.963         
+            Specificity : 0.893         
+         Pos Pred Value : 0.955         
+         Neg Pred Value : 0.911         
+             Prevalence : 0.702         
+         Detection Rate : 0.676         
+   Detection Prevalence : 0.708         
+      Balanced Accuracy : 0.928         
+                                        
+       &#39;Positive&#39; Class : Ja            
+                                        </code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Schaue dir die Resultate an. Wie hoch ist die Genauigkeit (accuracy) des Modells? Was bedeutet diese Zahl?</li>
 </ol>
+<pre class="r"><code># Die Richtigkeit ist 0.942. Über alle Fälle gesehen, sagt das Modell also in
+# 94.2% die richtige Klasse vorher.</code></pre>
 </div>
 <div id="z---challenges" class="section level3">
 <h3>Z - Challenges</h3>
 <ol style="list-style-type: decimal">
-<li><p>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>Prozent_Spenden</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</p></li>
-<li><p>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Bewerbungen</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</p></li>
+<li>Rechne eine Regression zur Vorhersage des Anteils an Alumni, welche ihrem College Geld spenden (<code>Prozent_Spenden</code>). Wie gut ist die Modellperformanz? Welche Variablen scheinen für die Vorhersage wichtig zu sein?</li>
+</ol>
+<pre class="r"><code>mod &lt;- train(form = Prozent_Spenden ~ .,
+             data = graduation_train,
+             method = &quot;glm&quot;,
+             trControl = ctrl_none)
+
+summary(mod)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-24.48   -6.05   -0.30    5.12   31.93  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             5.71e+00   4.18e+00    1.36  0.17324    
+PrivatuniversitaetNein -1.48e+00   1.54e+00   -0.96  0.33690    
+Bewerbungen            -7.58e-04   4.21e-04   -1.80  0.07231 .  
+Angenommen             -1.66e-03   7.62e-04   -2.18  0.02984 *  
+Eingeschrieben          6.88e-03   2.08e-03    3.31  0.00101 ** 
+Prozent_Top10           3.65e-02   6.30e-02    0.58  0.56276    
+Prozent_Top25           7.30e-02   4.93e-02    1.48  0.13894    
+Vollzeit               -3.32e-04   3.38e-04   -0.98  0.32622    
+Teilzeit                5.27e-05   3.27e-04    0.16  0.87191    
+Kosten_ausserhalb       1.09e-03   2.19e-04    4.95    1e-06 ***
+Kosten_Unterkunft      -1.75e-03   5.21e-04   -3.35  0.00088 ***
+Kosten_Buecher         -3.72e-04   2.99e-03   -0.12  0.90100    
+Kosten_persoenlich     -2.18e-03   7.23e-04   -3.01  0.00276 ** 
+Prozent_PhD            -4.28e-02   5.19e-02   -0.82  0.41045    
+Prozent_Degree          1.40e-01   5.55e-02    2.53  0.01173 *  
+Verhaeltnis_Stud.Doz.  -2.55e-01   1.40e-01   -1.82  0.06873 .  
+Kosten_Student          8.48e-05   1.49e-04    0.57  0.56928    
+Abschlussrate           1.17e-01   3.28e-02    3.57  0.00039 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 82.5)
+
+    Null deviance: 73707  on 499  degrees of freedom
+Residual deviance: 39764  on 482  degrees of freedom
+AIC: 3645
+
+Number of Fisher Scoring iterations: 2</code></pre>
+<pre class="r"><code>mod_predictions &lt;- predict(mod)
+postResample(pred = mod_predictions,
+             obs = graduation_train$Prozent_Spenden)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+   8.918    0.461    7.024 </code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Rechne ein Klassifikationsmodell zur Vorhersage, ob ein College begehrt ist (definiert als mehr als 10000 Bewerbungen <code>Bewerbungen</code>). Verwende dazu den untenstehenden Code um zunächst das Kriterium <code>hot</code> zu generieren. Ausserdem wirst du beim Rechnen des Modells Probleme haben, wenn du gewisse Variablen als Features verwendest. Welche Variablen musst du weglassen und wie gut ist das Modell?</li>
 </ol>
 <pre class="r"><code># Kreiere neue Variable hot
 graduation_train &lt;- graduation_train %&gt;%
   mutate(hot = factor(Bewerbungen &gt;= 10000))</code></pre>
+<pre class="r"><code># Die Variablen, welche den Namen und die Anzahl Bewerbungen beinhalten müssen
+# wir entfernen, da wir das Modell sonst nicht problemlos rechnen können. Ausserdem
+# sind die F.Undergrad, Enroll, und Accept Zahlen sehr stark mit den Bewerbungen
+# korreliert und sollten daher entfernt werden.
+mod_hot &lt;- train(form = hot ~ . - Bewerbungen -Eingeschrieben -Angenommen - Vollzeit,
+                 data = graduation_train,
+                 method = &quot;glm&quot;,
+                 trControl = ctrl_none)
+
+summary(mod_hot)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.0603  -0.1783  -0.0609  -0.0177   3.0120  
+
+Coefficients:
+                        Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)            -1.97e+01   4.65e+00   -4.25  2.1e-05 ***
+PrivatuniversitaetNein  4.85e+00   1.32e+00    3.67  0.00025 ***
+Prozent_Top10           2.42e-02   2.60e-02    0.93  0.35115    
+Prozent_Top25           2.66e-02   2.73e-02    0.98  0.32940    
+Teilzeit                5.22e-04   1.62e-04    3.23  0.00124 ** 
+Kosten_ausserhalb       8.41e-05   1.30e-04    0.65  0.51670    
+Kosten_Unterkunft       7.85e-04   3.33e-04    2.36  0.01826 *  
+Kosten_Buecher         -2.08e-03   2.33e-03   -0.90  0.37057    
+Kosten_persoenlich      2.77e-04   4.08e-04    0.68  0.49704    
+Prozent_PhD             1.65e-02   5.69e-02    0.29  0.77228    
+Prozent_Degree          1.97e-02   6.10e-02    0.32  0.74625    
+Verhaeltnis_Stud.Doz.  -2.56e-03   8.09e-02   -0.03  0.97480    
+Prozent_Spenden        -3.23e-02   3.21e-02   -1.01  0.31366    
+Kosten_Student          2.68e-05   6.19e-05    0.43  0.66542    
+Abschlussrate           6.40e-02   2.60e-02    2.47  0.01369 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 253.64  on 499  degrees of freedom
+Residual deviance: 121.87  on 485  degrees of freedom
+AIC: 151.9
+
+Number of Fisher Scoring iterations: 8</code></pre>
+<pre class="r"><code>mod_predictions &lt;- predict(mod_hot)
+plot(mod_predictions)</code></pre>
+<p><img src="Fitting_practical_files/figure-html/unnamed-chunk-47-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>confusionMatrix(data = mod_predictions,
+                reference = graduation_train$hot)</code></pre>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction FALSE TRUE
+     FALSE   458   18
+     TRUE      7   17
+                                        
+               Accuracy : 0.95          
+                 95% CI : (0.927, 0.967)
+    No Information Rate : 0.93          
+    P-Value [Acc &gt; NIR] : 0.0429        
+                                        
+                  Kappa : 0.551         
+                                        
+ Mcnemar&#39;s Test P-Value : 0.0455        
+                                        
+            Sensitivity : 0.985         
+            Specificity : 0.486         
+         Pos Pred Value : 0.962         
+         Neg Pred Value : 0.708         
+             Prevalence : 0.930         
+         Detection Rate : 0.916         
+   Detection Prevalence : 0.952         
+      Balanced Accuracy : 0.735         
+                                        
+       &#39;Positive&#39; Class : FALSE         
+                                        </code></pre>
 </div>
 </div>
 <div id="beispiele" class="section level2">

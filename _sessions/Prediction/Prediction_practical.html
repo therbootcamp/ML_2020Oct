@@ -222,7 +222,13 @@ summary {
 <ol start="3" style="list-style-type: decimal">
 <li><p>Speichere das neue Skript unter dem Namen <code>predicting_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
 <li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, <code>partykit</code>.</p></li>
-<li><p>Definiere wie zuvor ein <code>ctrl_none</code> Objekt mit dem wir im Traning die Samplingmethode auf <code>none</code> setzen. Erst in der nächsten Session beginnen wir dies zu ändern.</p></li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Definiere wie zuvor ein <code>ctrl_none</code> Objekt mit dem wir im Traning die Samplingmethode auf <code>none</code> setzen. Erst in der nächsten Session beginnen wir dies zu ändern.</li>
 </ol>
 <pre class="r"><code># Setze Samplingmethode auf none
 ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
@@ -268,22 +274,92 @@ graduation_test &lt;- graduation_test %&gt;%
                   data = XX,
                   method = &quot;XX&quot;,
                   trControl = ctrl_none)</code></pre>
+<pre class="r"><code>abschluss_glm &lt;- train(form = Abschlussrate ~ .,
+                  data = graduation_train,
+                  method = &quot;glm&quot;,
+                  trControl = ctrl_none)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Exploriere <code>abschluss_glm</code> indem du <code>abschluss_glm$finalModel</code> printest und <code>summary()</code> auf das Fit-Objekt anwendest. Wie beurteilst du die Outputs?</li>
 </ol>
 <pre class="r"><code>abschluss_glm$XX
 summary(XX)</code></pre>
+<pre class="r"><code>abschluss_glm$finalModel</code></pre>
+<pre><code>
+Call:  NULL
+
+Coefficients:
+           (Intercept)  PrivatuniversitaetNein             Bewerbungen  
+             32.712812               -1.701840                0.001926  
+            Angenommen          Eingeschrieben           Prozent_Top10  
+             -0.001754                0.005550               -0.049727  
+         Prozent_Top25                Vollzeit                Teilzeit  
+              0.206252               -0.001069               -0.001294  
+     Kosten_ausserhalb       Kosten_Unterkunft          Kosten_Buecher  
+              0.001782                0.000871               -0.000932  
+    Kosten_persoenlich             Prozent_PhD          Prozent_Degree  
+             -0.001457                0.104743               -0.101789  
+ Verhaeltnis_Stud.Doz.         Prozent_Spenden          Kosten_Student  
+              0.275943                0.219944               -0.000683  
+
+Degrees of Freedom: 499 Total (i.e. Null);  482 Residual
+Null Deviance:      142000 
+Residual Deviance: 74600    AIC: 3960</code></pre>
+<pre class="r"><code>summary(abschluss_glm)</code></pre>
+<pre><code>
+Call:
+NULL
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-38.10   -7.24   -0.58    7.51   47.10  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            32.712812   5.544068    5.90  6.8e-09 ***
+PrivatuniversitaetNein -1.701840   2.114677   -0.80  0.42135    
+Bewerbungen             0.001926   0.000572    3.37  0.00082 ***
+Angenommen             -0.001754   0.001046   -1.68  0.09417 .  
+Eingeschrieben          0.005550   0.002872    1.93  0.05387 .  
+Prozent_Top10          -0.049727   0.086281   -0.58  0.56466    
+Prozent_Top25           0.206252   0.066972    3.08  0.00219 ** 
+Vollzeit               -0.001069   0.000461   -2.32  0.02068 *  
+Teilzeit               -0.001294   0.000444   -2.92  0.00369 ** 
+Kosten_ausserhalb       0.001782   0.000297    6.01  3.7e-09 ***
+Kosten_Unterkunft       0.000871   0.000721    1.21  0.22790    
+Kosten_Buecher         -0.000932   0.004089   -0.23  0.81988    
+Kosten_persoenlich     -0.001457   0.000998   -1.46  0.14494    
+Prozent_PhD             0.104743   0.071027    1.47  0.14095    
+Prozent_Degree         -0.101789   0.076321   -1.33  0.18293    
+Verhaeltnis_Stud.Doz.   0.275943   0.191423    1.44  0.15008    
+Prozent_Spenden         0.219944   0.061576    3.57  0.00039 ***
+Kosten_Student         -0.000683   0.000202   -3.39  0.00077 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 155)
+
+    Null deviance: 141641  on 499  degrees of freedom
+Residual deviance:  74595  on 482  degrees of freedom
+AIC: 3960
+
+Number of Fisher Scoring iterations: 2</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Mittels <code>predict()</code> generiere die gefitteten Werte von <code>abschluss_glm</code> und speichere sie als <code>glm_fit</code> ab.</li>
 </ol>
 <pre class="r"><code># Speichere die gefitteten Werte
 glm_fit &lt;- predict(XX)</code></pre>
+<pre class="r"><code>glm_fit &lt;- predict(abschluss_glm)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Printe <code>glm_fit</code> und kriere ein Histogramm der Werte mittels <code>hist()</code>. Sind die Werte in einer plausiblen Region?</li>
 </ol>
 <pre class="r"><code># Inspeziere die gefitteten Werte
 XX
 hist(XX)</code></pre>
+<pre class="r"><code>glm_fit[1:10]</code></pre>
+<pre><code>   1    2    3    4    5    6    7    8    9   10 
+71.8 56.4 91.8 62.9 69.2 68.5 57.4 52.0 57.4 71.0 </code></pre>
+<pre class="r"><code>hist(glm_fit)</code></pre>
+<p><img src="Prediction_practical_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="decision-trees" class="section level4">
 <h4>Decision Trees</h4>
@@ -302,18 +378,60 @@ hist(XX)</code></pre>
                          method = &quot;XX&quot;,
                          trControl = XX,
                          tuneGrid = expand.grid(cp = XX)) </code></pre>
+<pre class="r"><code>abschluss_rpart &lt;- train(form = Abschlussrate ~ .,
+                  data = graduation_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_none,
+                  tuneGrid = expand.grid(cp = .01))</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li><p>Exploriere <code>abschluss_rpart</code> indem du <code>abschluss_rpart$finalModel</code> printest und mit <code>plot(as.party(abschluss_rpart$finalModel))</code> den Decision Tree plottest. Wie beurteilst du die Outputs?</p></li>
-<li><p>Mittels <code>predict()</code> generiere die gefitteten Werte von <code>abschluss_rpart</code> und speichere sie als <code>rpart_fit</code> ab.</p></li>
+<li>Exploriere <code>abschluss_rpart</code> indem du <code>abschluss_rpart$finalModel</code> printest und mit <code>plot(as.party(abschluss_rpart$finalModel))</code> den Decision Tree plottest. Wie beurteilst du die Outputs?</li>
+</ol>
+<pre class="r"><code>abschluss_rpart$finalModel</code></pre>
+<pre><code>n= 500 
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+ 1) root 500 142000 65.6  
+   2) Kosten_ausserhalb&lt; 1.06e+04 292  69000 58.0  
+     4) Prozent_Top25&lt; 47.5 135  34100 53.3  
+       8) Kosten_ausserhalb&lt; 8.56e+03 86  20000 48.9  
+        16) Kosten_Student&gt;=6.97e+03 26   6430 41.9 *
+        17) Kosten_Student&lt; 6.97e+03 60  11700 52.0  
+          34) Kosten_Buecher&gt;=388 53   9310 50.0 *
+          35) Kosten_Buecher&lt; 388 7    639 66.7 *
+       9) Kosten_ausserhalb&gt;=8.56e+03 49   9520 61.1 *
+     5) Prozent_Top25&gt;=47.5 157  29600 61.9  
+      10) Prozent_Top10&lt; 51.5 147  26100 61.0  
+        20) Prozent_Spenden&lt; 24.5 110  16700 58.9 *
+        21) Prozent_Spenden&gt;=24.5 37   7500 67.2 *
+      11) Prozent_Top10&gt;=51.5 10   1570 75.3 *
+   3) Kosten_ausserhalb&gt;=1.06e+04 208  31500 76.4  
+     6) Kosten_ausserhalb&lt; 1.68e+04 158  21500 73.3  
+      12) Prozent_Spenden&lt; 22.5 55   8180 68.7 *
+      13) Prozent_Spenden&gt;=22.5 103  11500 75.8  
+        26) Vollzeit&lt; 1.42e+03 55   4770 71.2 *
+        27) Vollzeit&gt;=1.42e+03 48   4200 81.1 *
+     7) Kosten_ausserhalb&gt;=1.68e+04 50   4040 85.9 *</code></pre>
+<pre class="r"><code>plot(as.party(abschluss_rpart$finalModel))</code></pre>
+<p><img src="Prediction_practical_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>Mittels <code>predict()</code> generiere die gefitteten Werte von <code>abschluss_rpart</code> und speichere sie als <code>rpart_fit</code> ab.</li>
 </ol>
 <pre class="r"><code># Speichere die gefitteten Werte
 rpart_fit &lt;- predict(XX)</code></pre>
+<pre class="r"><code>rpart_fit &lt;- predict(abschluss_rpart)</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>Printe <code>rpart_fit</code> und kriere ein Histogramm der Werte mittels <code>hist()</code>. Sind die Werte in einer plausiblen Region?</li>
 </ol>
 <pre class="r"><code># Inspeziere die gefitteten Werte
 XX
 hist(XX)</code></pre>
+<pre class="r"><code>rpart_fit[1:10]</code></pre>
+<pre><code>   1    2    3    4    5    6    7    8    9   10 
+71.2 58.9 85.9 58.9 68.7 81.1 58.9 50.0 50.0 81.1 </code></pre>
+<pre class="r"><code>hist(rpart_fit)</code></pre>
+<p><img src="Prediction_practical_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="random-forests" class="section level4">
 <h4>Random Forests</h4>
@@ -332,17 +450,28 @@ hist(XX)</code></pre>
                  method = &quot;XX&quot;,
                  trControl = XX,
                  tuneGrid = expand.grid(mtry = 2))  </code></pre>
+<pre class="r"><code>abschluss_rf &lt;- train(form = Abschlussrate ~ .,   
+                 data = graduation_train,
+                 method = &quot;rf&quot;,
+                 trControl = ctrl_none,
+                 tuneGrid = expand.grid(mtry = 2))  </code></pre>
 <ol start="11" style="list-style-type: decimal">
 <li>Mittels <code>predict()</code> generiere die gefitteten Werte von <code>abschluss_rf</code> und speichere sie als <code>rf_fit</code> ab.</li>
 </ol>
 <pre class="r"><code># Speichere die gefitteten Werte
 rf_fit &lt;- predict(XX)</code></pre>
+<pre class="r"><code>rf_fit &lt;- predict(abschluss_rf)</code></pre>
 <ol start="12" style="list-style-type: decimal">
 <li>Printe <code>rf_fit</code> und kriere ein Histogramm der Werte mittels <code>hist()</code>. Sind die Werte in einer plausiblen Region?</li>
 </ol>
 <pre class="r"><code># Inspiziere die gefitteten Werte
 XX
 hist(XX)</code></pre>
+<pre class="r"><code>rf_fit[1:10]</code></pre>
+<pre><code>   1    2    3    4    5    6    7    8    9   10 
+68.7 64.6 85.4 55.2 77.3 66.6 58.1 43.1 57.7 73.0 </code></pre>
+<pre class="r"><code>hist(rf_fit)</code></pre>
+<p><img src="Prediction_practical_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="beruteile-die-accuracy-im-fitting" class="section level4">
 <h4>Beruteile die Accuracy im Fitting</h4>
@@ -351,6 +480,7 @@ hist(XX)</code></pre>
 </ol>
 <pre class="r"><code># Speichere die Kriteriumswerte im Training
 criterion_train &lt;- XX$XX</code></pre>
+<pre class="r"><code>criterion_train &lt;- graduation_train$Abschlussrate</code></pre>
 <ol start="14" style="list-style-type: decimal">
 <li>Verwende <code>postResample()</code> um die Fitting Performanz der drei Modelle zu vergleichen. Setze hierfür das <code>obs</code> Argument auf das eben erstellte <code>criterion_train</code> und das <code>pred</code> Argument auf die gefitteten Werte des jeweiligen Modells (z.B. <code>glm_fit</code>).</li>
 </ol>
@@ -362,6 +492,18 @@ postResample(pred = XX, obs = XX)
 
 # Random Forest
 postResample(pred = XX, obs = XX)</code></pre>
+<pre class="r"><code># Regression
+postResample(pred = glm_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  12.214    0.473    9.250 </code></pre>
+<pre class="r"><code># Decision Trees
+postResample(pred = rpart_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  12.072    0.486    9.536 </code></pre>
+<pre class="r"><code># Random Forests
+postResample(pred = rf_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+   5.724    0.928    4.343 </code></pre>
 <ol start="15" style="list-style-type: decimal">
 <li>Welches Modell hat den besten Fit?</li>
 </ol>
@@ -380,11 +522,21 @@ rpart_pred &lt;- predict(XX, newdata = XX)
 
 # Random Forests
 rf_pred &lt;- predict(XX, newdata = XX)</code></pre>
+<pre class="r"><code># Regression
+glm_pred &lt;- predict(abschluss_glm, newdata = graduation_test)
+
+# Decision Tree
+rpart_pred &lt;- predict(abschluss_rpart, newdata = graduation_test)
+
+# Random Forest
+rf_pred &lt;- predict(abschluss_rf, newdata = graduation_test)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Speichere das Kriterium im <strong>Testdatensatz</strong> (<code>graduation_test$Abschlussrate</code>) als eigenes Objekt mit dem Namen <code>criterion_test</code> ab.</li>
 </ol>
 <pre class="r"><code># Speichere die Kriteriumswerte des Testdatensatzes
 criterion_test &lt;- XX$XX</code></pre>
+<pre class="r"><code># Speichere die Kriteriumswerte des Testdatensatzes
+criterion_test &lt;- graduation_test$Abschlussrate</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Verwende wiederum <code>postResample()</code> um nun die <em>Vorhersage</em> Performanz der drei Modelle zu vergleichen. Setze hierfür das <code>obs</code> Argument auf das eben erstellte <code>criterion_test</code> und das <code>pred</code> Argument auf die gefitteten Werte des jeweiligen Modells (z.B. <code>glm_pred</code>).</li>
 </ol>
@@ -396,10 +548,27 @@ postResample(pred = XX, obs = XX)
 
 # Random Forests
 postResample(pred = XX, obs = XX)</code></pre>
+<pre class="r"><code># Regression
+postResample(pred = glm_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  13.727    0.404    9.964 </code></pre>
+<pre class="r"><code># Decision Trees
+postResample(pred = rpart_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  14.741    0.321   11.104 </code></pre>
+<pre class="r"><code># Random Forests
+postResample(pred = rf_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  13.244    0.461    9.722 </code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Welches Modell zeigt die beste Vorhersageperformanz?</p></li>
-<li><p>Vergleiche jeweils die Performanz der Modelle für Training und Test. In welchem Fall sind die Modelle schlechter? Welches Modell zeigt den grössten Unterschied?</p></li>
+<li>Welches Modell zeigt die beste Vorhersageperformanz?</li>
 </ol>
+<pre class="r"><code># Der Random Forest!</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Vergleiche jeweils die Performanz der Modelle für Training und Test. In welchem Fall sind die Modelle schlechter? Welches Modell zeigt den grössten Unterschied?</li>
+</ol>
+<pre class="r"><code># Der Fit der Regression blieb relativ konstant. Die Performanz des Random
+# hat deutlich abgenommen.</code></pre>
 <br>
 <p style="font-size:20px;background-color:#6ABA9A;color:white;padding-left:20px" align="left" width="100%">
 Datensatz 2: <b>Hauspreise King County, Washington</b>
@@ -428,7 +597,28 @@ house_test &lt;- house_test %&gt;%
 <div id="f---modelliere-die-house-daten" class="section level3">
 <h3>F - Modelliere die <code>house</code> Daten</h3>
 <ol style="list-style-type: decimal">
-<li><p>Fitte eine Regression, einen Decision Tree und einen Random Forest für <code>house_train.csv</code> wobei du <code>Preis</code> durch alle anderen Features im Datensatz vorherzusagen versuchst.</p></li>
+<li>Fitte eine Regression, einen Decision Tree und einen Random Forest für <code>house_train.csv</code> wobei du <code>Preis</code> durch alle anderen Features im Datensatz vorherzusagen versuchst.</li>
+</ol>
+<pre class="r"><code># Regression
+preis_glm &lt;- train(form = Preis ~ .,
+                  data = house_train,
+                  method = &quot;glm&quot;,
+                  trControl = ctrl_none)
+
+# Decision tree
+preis_rpart &lt;- train(form = Preis ~ .,
+                  data = house_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_none,
+                  tuneGrid = expand.grid(cp = .01)) 
+
+# Random Forest
+preis_rf &lt;- train(form = Preis ~ .,
+                 data = house_train,
+                 method = &quot;rf&quot;,
+                 trControl = ctrl_none,
+                 tuneGrid = expand.grid(mtry = 2))</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Exploriere die Objekte indem du <code>XX$finalModel</code> inspizierst und <code>summary()</code> anwendest.</p></li>
 <li><p>Verwende <code>predict()</code> um jeweils für die drei Modelle die vorhergesagten Werte separat für den Trainingsdatensatz und für den Testdatensatz zu generieren. Kreiere also drei Objekte mit Namen <code>XX_fit</code> und drei Objekte mit Namen <code>XX_pred</code>.</p></li>
 </ol>
@@ -442,10 +632,40 @@ glm_pred &lt;- predict(preis_glm, newdata = house_test)
 rpart_pred &lt;- predict(preis_rpart, newdata = house_test)
 rf_pred &lt;- predict(preis_rf, newdata = house_test)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Speichere die Kriteriumswerte im Trainings- und Testdatensatz separat als <code>criterion_train</code> und <code>criterion_test</code> ab.</p></li>
-<li><p>Verwende <code>postResample()</code> um nun die <em>Fitting</em> und <em>Vorhersage</em> Performanz der drei Modelle zu vergleichen.</p></li>
-<li><p>Welches Modell hat die beste Performanz im Fit? Welches in der Vorhersage? Welches zeigt den grössten Unterschied zwischen Fit und Vorhersage?</p></li>
-<li><p>Welches Modell würdet ihr nun für den Einsatz in der Praxis empfehlen? Und welche Vorhersagegenauigkeit ist in der Realität zu erwarten?</p></li>
+<li>Speichere die Kriteriumswerte im Trainings- und Testdatensatz separat als <code>criterion_train</code> und <code>criterion_test</code> ab.</li>
+</ol>
+<pre class="r"><code># Speichere die Kriteriumswerte
+criterion_train &lt;- house_train$Preis
+criterion_test &lt;- house_test$Preis</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Verwende <code>postResample()</code> um nun die <em>Fitting</em> und <em>Vorhersage</em> Performanz der drei Modelle zu vergleichen.</li>
+</ol>
+<pre class="r"><code># Fitting
+postResample(pred = glm_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  651540       NA   536932 </code></pre>
+<pre class="r"><code>postResample(pred = rpart_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  651540       NA   536932 </code></pre>
+<pre class="r"><code>postResample(pred = rf_fit, obs = criterion_train)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  651540       NA   536932 </code></pre>
+<pre class="r"><code># Prediction
+postResample(pred = glm_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  631672       NA   524818 </code></pre>
+<pre class="r"><code>postResample(pred = rpart_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  631671       NA   524817 </code></pre>
+<pre class="r"><code>postResample(pred = rf_pred, obs = criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+  631672       NA   524818 </code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Welches Modell hat die beste Performanz im Fit? Welches in der Vorhersage? Welches zeigt den grössten Unterschied zwischen Fit und Vorhersage?</li>
+</ol>
+<pre class="r"><code># Random Forest!</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Welches Modell würdet ihr nun für den Einsatz in der Praxis empfehlen? Und welche Vorhersagegenauigkeit ist in der Realität zu erwarten?</li>
 </ol>
 </div>
 <div id="x---challenges-model-tuning-parameter" class="section level3">
