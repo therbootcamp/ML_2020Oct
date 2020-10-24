@@ -74,7 +74,7 @@ Am Ende des Practicals wirst du wissen...
 
 ### A - Setup
 
-1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+1. Öffne dein `TheRBootcamp` R project. 
 
 2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Features Practical" als Kommentare an den Anfang des Skripts.
 
@@ -123,7 +123,7 @@ diabetes <- diabetes %>% mutate_if(is.character, factor)
 
 ### C - Trenne Training und Test
 
-1. Bevor du irgendwas machst solltest du den Datensatz erst in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `diabetes_train` und `diabetes_test` zu erstellen. Das Kriterium ist das Feature `Diabetes`. Dabei sollen *nur* `5%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
+1. Bevor du irgendwas machst trenne den Datensatz in Traning und Test. Verwende `createDataPartition()` um zwei Datensätze `diabetes_train` und `diabetes_test` zu erstellen. Das Kriterium ist das Feature `Diabetes`. Dabei sollen *nur* `5%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Setze Random seed
@@ -187,7 +187,7 @@ corr_matrix <- cor(diabetes_train_pred)
 findCorrelation(corr_matrix)
 ```
 
-8. Nun teste, ob es vll. Features mit limitierter "Varianz" gibt. Gibes es welche?
+8. Nun teste, ob es vll. Features mit limitierter "Varianz" gibt. Gibt es welche?
 
 ```{r, echo = TRUE, eval = FALSE}
 # Identifiziere Features ohne "Varianz"
@@ -213,7 +213,7 @@ diabetes_train <- diabetes_train_crit %>% bind_cols(diabetes_train_pred)
 
 ### E - Featurewichtigkeit
 
-1. Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium `Diabetes` durch die anderen Features vorhersagt.   
+1. Feature-Wichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium `Diabetes` durch die anderen Features vorhersagt.   
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fitte Regression
@@ -313,7 +313,7 @@ murders <- read_csv(file = "1_Data/murders_crime.csv")
 
 3. Verwende `names(XX)`, `summary(XX)`, und `View()` um einen weiteren Überblick über die Daten zu bekommen.
 
-4. Wiederum, führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
+4. Führe den Code unten aus um sicherzustellen, dass alle `character` Features als Faktoren vorliegen. 
 
 ```{r, echo = TRUE}
 # Konvertiere alle character zu factor
@@ -322,7 +322,7 @@ murders <- murders %>% mutate_if(is.character, factor)
 
 ### H - Trenne Training und Test
 
-1. Trenne den Datensatz in Traning und Test trennen. Verwende `createDataPartition()` um zwei Datensätze `murders_train` und `murders_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
+1. Trenne den Datensatz in Traning und Test. Verwende `createDataPartition()` um zwei Datensätze `murders_train` und `murders_test` zu erstellen. Das Kriterium ist `murders`. Dabei sollen *nur* `25%` der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf `100` damit die Aufteilung reproduzierbar ist.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Setze Random seed
@@ -442,7 +442,7 @@ murders_glm_reduziert <- train(murders ~ .,
                                method = "glm")
 ```
 
-2. Berechne und Plotte die Featurewichtigkeit mittels `varImp()`
+2. Berechne und Plotte die Featurewichtigkeit mittels `varImp()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Bestimme Featurewichtigkeit
@@ -481,7 +481,7 @@ murders_train_reduziert30 <- murders_train_reduziert %>%
 
 ### K - Datenkomprimierung mit PCA
 
-1. Eine Alternative zu manueller Featurereduktion ist die `principal component analysis`. Fitte zwei Regressionsmodelle, die `murders` durch die anderen Features vorhersagen unter Verwendung des Arguments `preProcess = c("pca")`. Zusätzlich verwende das `trControl` Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.
+1. Eine Alternative zu manueller Featurereduktion ist die *principal component analysis*. Fitte zwei Regressionsmodelle, die `murders` durch die anderen Features vorhersagen unter Verwendung des Arguments `preProcess = c("pca")`. Zusätzlich verwende das `trControl` Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.
 
 ```{r echo = TRUE}
 # Fitte Regression mit 80% Varianz präserviert

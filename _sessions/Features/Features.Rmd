@@ -602,6 +602,75 @@ In 2012 sagte [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver) die Ausg�
 
 ---
 
+# <mono>createDataPartition()</mono>
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Verwende <mono>createDataPartition()</mono> um den <high>Datensatz aufzuteilen</high> in Trainings- und Testdaten.</span></li>
+</ul>
+
+<br>
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+  <col width="30%">
+  <col width="70%">
+<tr>
+  <td bgcolor="white">
+    <b>Argument</b>
+  </td>
+  <td bgcolor="white">
+    <b>Beschreibung</b>
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>y</mono>
+  </td>
+  <td bgcolor="white">
+    Das Kriterion. Wichtig für eine <high>ausgewogene Aufteilung</high> der Daten.  
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>p</mono>
+  </td>
+  <td bgcolor="white">
+    Der <high>Antei der Daten</high> der den Trainingsdaten zugewisen wird. Oft <mono>.8</mono> oder <mono>.5</mono>.    
+  </td>  
+</tr>
+</table>
+
+
+]
+
+.pull-right5[
+
+```{r, eval = FALSE, echo = TRUE}
+# Wichtig für konstante Ergebnisse
+set.seed(100)
+
+# Indizes für Training
+index <- 
+  createDataPartition(y = basel$einkommen,
+                             p = .8,
+                             list = FALSE)
+
+# Kreiere Trainingsdaten
+basel_train <- basel %>% 
+  slice(index)
+
+# Kreiere Testdaten
+basel_test <- basel %>% 
+  slice(-index)
+```
+
+
+]
+
+
+---
+
 class: middle, center
 
 <h1><a href="https://therbootcamp.github.io/ML_2020Oct/_sessions/Features/Features_practical.html">Practical</a></h1>

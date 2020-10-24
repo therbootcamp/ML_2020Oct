@@ -223,6 +223,10 @@ summary {
 <li><p>Speichere das neue Skript unter dem Namen <code>optimizing_practical.R</code> im <code>2_Code</code> Ordner.</p></li>
 <li><p>Lade die Pakete <code>tidyverse</code>, <code>caret</code>, <code>party</code>, <code>partykit</code>.</p></li>
 </ol>
+<pre class="r"><code>library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
 </div>
 <div id="b---lade-die-baseball-datensätze" class="section level3">
 <h3>B - Lade die <code>baseball</code> Datensätze</h3>
@@ -256,6 +260,9 @@ baseball_test &lt;- baseball_test %&gt;%
 <pre class="r"><code># Verwende 10-fold Cross-Validation
 ctrl_cv &lt;- trainControl(method = &quot;XX&quot;, 
                         number = XX) </code></pre>
+<pre class="r"><code># Verwende 10-fold Cross-Validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) </code></pre>
 </div>
 <div id="c---regression" class="section level3">
 <h3>C - Regression</h3>
@@ -267,9 +274,27 @@ gehalt_glm &lt;- train(form = XX ~ .,
                     data = XX,
                     method = &quot;XX&quot;,
                     trControl = XX)</code></pre>
+<pre class="r"><code># Normal Regression
+gehalt_glm &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;glm&quot;,
+                   trControl = ctrl_cv)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exploriere <code>gehalt_glm</code> indem du <code>gehalt_glm$finalModel</code> printest und <code>summary()</code> auf das Fit-Objekt anwendest. Wie beurteilst du die Outputs?</li>
 </ol>
+<pre class="r"><code>gehalt_glm</code></pre>
+<pre><code>Generalized Linear Model 
+
+213 samples
+ 19 predictor
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 192, 191, 191, 192, 191, 192, ... 
+Resampling results:
+
+  RMSE  Rsquared  MAE
+  312   0.528     229</code></pre>
 </div>
 <div id="d---ridge-regression" class="section level3">
 <h3>D - Ridge Regression</h3>
@@ -292,40 +317,116 @@ gehalt_ridge &lt;- train(form = XX ~ .,
                       trControl = XX,
                       preProcess = XX,  
                       tuneGrid = XX)</code></pre>
+<pre class="r"><code># Ridge Regression
+gehalt_ridge &lt;- train(form = Gehalt ~ .,
+                      data = baseball_train,
+                      method = &quot;glmnet&quot;,
+                      trControl = ctrl_cv,
+                      preProcess = c(&quot;center&quot;, &quot;scale&quot;), 
+                      tuneGrid = expand.grid(alpha = 0, 
+                                             lambda = lambda_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Plotte das Objekt <code>gehalt_ridge</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</p></li>
-<li><p>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</p></li>
+<li>Plotte das Objekt <code>gehalt_ridge</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_ridge)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
 </ol>
 <pre class="r"><code># Printe besten lambda parameter
 gehalt_ridge$bestTune$lambda</code></pre>
+<pre><code>[1] 242</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Lasse dir mit dem Code unten die Parameter des finale Modells anzeigen. Wie beurteilst du den Output?</li>
 </ol>
 <pre class="r"><code># Erhalte die Modellparameter für das Modell unter dem optimalen lambda
 coef(gehalt_ridge$finalModel, 
      gehalt_ridge$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                    1
+(Intercept)   518.822
+Schlaeger86    19.721
+Getroffen86    50.952
+Home_runs86     3.052
+Runs86         30.331
+Runs_andere86  20.753
+Walks86        41.547
+Putout86       55.907
+Vorlage86     -16.550
+Fehler86       -8.857
+Erfahrung       9.199
+Schlaeger      22.937
+Getroffen      38.660
+Home_runs      38.065
+Runs           37.822
+Runs_andere    40.529
+Walks           5.158
+LigaN          -0.234
+DivisionW     -38.463
+Liga87N         1.474</code></pre>
 </div>
 <div id="e---lasso-regression" class="section level3">
 <h3>E - Lasso Regression</h3>
 <ol style="list-style-type: decimal">
-<li><p>Fitte eine Lasso Regression, die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem Code für die Ridge Regression und definiere als einzige Änderung <code>alpha = 1</code>.</p></li>
-<li><p>Plotte das Objekt <code>gehalt_lasso</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</p></li>
-<li><p>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</p></li>
+<li>Fitte eine Lasso Regression, die das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem Code für die Ridge Regression und definiere als einzige Änderung <code>alpha = 1</code>.</li>
+</ol>
+<pre class="r"><code># Fit a lasso regression
+gehalt_lasso &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;),
+                   tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
+                                          lambda = lambda_vec))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Plotte das Objekt <code>gehalt_lasso</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>lambda</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_lasso)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>lambda</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
 </ol>
 <pre class="r"><code># Printe besten lambda Parameter
 gehalt_lasso$bestTune$lambda</code></pre>
+<pre><code>[1] 12.3</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Lasse dir mit dem Code unten die Parameter des finalen Modells anzeigen. Wie beurteilst du den Output? Hat sich was im Vergleich zu Ridge verändert?</li>
 </ol>
 <pre class="r"><code># Erhalte die Modellparameter für das Modell unter dem optimalen lambda
 coef(gehalt_lasso$finalModel, 
      gehalt_lasso$bestTune$lambda)</code></pre>
+<pre><code>20 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                  1
+(Intercept)   518.8
+Schlaeger86     .  
+Getroffen86   116.5
+Home_runs86     .  
+Runs86          .  
+Runs_andere86   .  
+Walks86        49.8
+Putout86       70.2
+Vorlage86     -24.5
+Fehler86        .  
+Erfahrung       .  
+Schlaeger       .  
+Getroffen       .  
+Home_runs      25.3
+Runs           71.8
+Runs_andere   102.2
+Walks           .  
+LigaN           .  
+DivisionW     -47.1
+Liga87N         .  </code></pre>
 </div>
 <div id="f---decision-tree" class="section level3">
 <h3>F - Decision Tree</h3>
 <ol style="list-style-type: decimal">
-<li><p>Bevor du einen Decision Tree per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>cp</code> Werten.</p></li>
-<li><p>Fitte einen Decision Tree, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</p></li>
+<li>Bevor du einen Decision Tree per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>cp</code> Werten.</li>
+</ol>
+<pre class="r"><code># Kandidaten für cp
+cp_vec &lt;- seq(from = 0, to = 1, length = 100)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fitte einen Decision Tree, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</li>
 </ol>
 <ul>
 <li>setze das <code>trControl</code> Argument auf das <code>ctrl_cv</code> Objekt.</li>
@@ -337,23 +438,39 @@ gehalt_rpart &lt;- train(form = XX ~ .,
                   method = &quot;XX&quot;,
                   trControl = XX,
                   tuneGrid = XX)</code></pre>
+<pre class="r"><code># Decision Tree
+gehalt_rpart &lt;- train(form = Gehalt ~ .,
+                  data = baseball_train,
+                  method = &quot;rpart&quot;,
+                  trControl = ctrl_cv,
+                  tuneGrid = expand.grid(cp = cp_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Plotte das Objekt <code>gehalt_rpart</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>cp</code> Wert könnte optimal sein?</p></li>
-<li><p>Printe mit dem Code unten den durch die Cross-Validation als besten <code>cp</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</p></li>
+<li>Plotte das Objekt <code>gehalt_rpart</code> mit <code>plot()</code>. Was verrät dir der Plot? Welcher <code>cp</code> Wert könnte optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_rpart)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-24-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als besten <code>cp</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
 </ol>
 <pre class="r"><code># Print besten cp Parameter
 gehalt_rpart$bestTune$cp</code></pre>
+<pre><code>[1] 0.0101</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Plotte das finale Modell mit dem folgenden Code.</li>
 </ol>
 <pre class="r"><code># Visualisiere den Decision Tree
 plot(as.party(gehalt_rpart$finalModel)) </code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="g---random-forests" class="section level3">
 <h3>G - Random Forests</h3>
 <ol style="list-style-type: decimal">
-<li><p>Bevor du einen Random Forest per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>mtry</code> Werten.</p></li>
-<li><p>Fitte einen Random Forest, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</p></li>
+<li>Bevor du einen Random Forest per Cross-Validation fittest, benötigst du das Kandidatenset für die Tuning Parameter. Erstelle hierzu mit dem Code einen Vektor von möglichen <code>mtry</code> Werten.</li>
+</ol>
+<pre class="r"><code># Kandidaten für mtry
+mtry_vec &lt;- 1:10</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Fitte einen Random Forest, der das <code>Gehalt</code> des Baseballspielers durch alle Features im Datensatz vorhersagt. Beginne mit dem bekannten Code und zusätzlich…</li>
 </ol>
 <ul>
 <li>setze das <code>trControl</code> Argument auf das <code>ctrl_cv</code> Objekt.</li>
@@ -365,12 +482,23 @@ gehalt_rf &lt;- train(form = XX ~ .,
                    method = &quot;XX&quot;,
                    trControl = XX,
                    tuneGrid = XX)</code></pre>
+<pre class="r"><code># Random Forest 
+gehalt_rf &lt;- train(form = Gehalt ~ .,
+                   data = baseball_train,
+                   method = &quot;rf&quot;,
+                   trControl = ctrl_cv,
+                   tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Plotte das Objekt <code>gehalt_rf</code> mit <code>plot()</code>. Was verrät dir der Plot? Welche <code>mtry</code> Werte könnten optimal sein?</p></li>
-<li><p>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>mtry</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</p></li>
+<li>Plotte das Objekt <code>gehalt_rf</code> mit <code>plot()</code>. Was verrät dir der Plot? Welche <code>mtry</code> Werte könnten optimal sein?</li>
+</ol>
+<pre class="r"><code>plot(gehalt_rf)</code></pre>
+<p><img src="Optimization_practical_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Printe mit dem Code unten den durch die Cross-Validation als bestes <code>mtry</code> identifizierten Wert. Passt er zum Plot in der letzten Aufgabe?</li>
 </ol>
 <pre class="r"><code># Printe besten mtry Parameter
 gehalt_rf$bestTune$mtry</code></pre>
+<pre><code>[1] 4</code></pre>
 </div>
 <div id="h---schätze-die-vorhersageperformanz-über-cross-validation" class="section level3">
 <h3>H - Schätze die Vorhersageperformanz über Cross Validation</h3>
@@ -383,6 +511,12 @@ gehalt_resamples &lt;- resamples(list(glm = XXX,
                                    lasso = XXX, 
                                    rpart = XXX, 
                                    rf = XXX))</code></pre>
+<pre class="r"><code># Geschätzte Vorhersageleistung
+gehalt_resamples &lt;- resamples(list(glm = gehalt_glm,
+                                   ridge = gehalt_ridge, 
+                                   lasso = gehalt_lasso, 
+                                   dt = gehalt_rpart, 
+                                   rf = gehalt_rf))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Erhalte einen Überblick über die Ergennisse mit <code>summary(gehalt_resamples)</code>. Wie interpretierst du den Ouput? Welches Modell hat die beste geschätzte Vorhersageleistung?</li>
 </ol>
@@ -394,6 +528,8 @@ gehalt_resamples &lt;- resamples(list(glm = XXX,
 </ol>
 <pre class="r"><code># Testkriterium
 criterion_test &lt;- XXX$XXX</code></pre>
+<pre class="r"><code># Geschätzte Vorhersageleistung
+criterion_test &lt;- baseball_test$Gehalt</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Verwende <code>predict()</code> um auf bekanntem Wege Vorhersagen für die Testdaten <code>baseball_test</code> auf Basis der Modelle zu bestimmen.</li>
 </ol>
@@ -402,9 +538,28 @@ ridge_pred &lt;- predict(XXX, newdata = XXX)
 lasso_pred &lt;- predict(XXX, newdata = XXX)
 rpart_pred &lt;- predict(XXX, newdata = XXX)
 rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
+<pre class="r"><code># Vorhersagen der Modelle
+ridge_pred &lt;- predict(gehalt_ridge, newdata = baseball_test)
+lasso_pred &lt;- predict(gehalt_lasso, newdata = baseball_test)
+rpart_pred &lt;- predict(gehalt_rpart, newdata = baseball_test)
+rf_pred &lt;- predict(gehalt_rf, newdata = baseball_test)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Verwende <code>postResample()</code> um die Vorhersagen mit den tatsächlichen Kriteriumswerten zu vergleichen. Welches Modell hat in der Vorhersage der Testdaten die beste Performanz?</p></li>
-<li><p>Vergleiche die geschätzten Vorhersageleistungen auf Basis von <code>resamples()</code> (aus der letzten Sektion) mit der Leistung für tatsächliche Vorhersage. Wie gross sind die Unterschiede?</p></li>
+<li>Verwende <code>postResample()</code> um die Vorhersagen mit den tatsächlichen Kriteriumswerten zu vergleichen. Welches Modell hat in der Vorhersage der Testdaten die beste Performanz?</li>
+</ol>
+<pre class="r"><code>postResample(ridge_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 445.415    0.254  258.965 </code></pre>
+<pre class="r"><code>postResample(lasso_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 446.113    0.256  262.016 </code></pre>
+<pre class="r"><code>postResample(rpart_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 496.719    0.248  292.957 </code></pre>
+<pre class="r"><code>postResample(rf_pred, criterion_test)</code></pre>
+<pre><code>    RMSE Rsquared      MAE 
+ 397.953    0.402  214.714 </code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Vergleiche die geschätzten Vorhersageleistungen auf Basis von <code>resamples()</code> (aus der letzten Sektion) mit der Leistung für tatsächliche Vorhersage. Wie gross sind die Unterschiede?</li>
 </ol>
 </div>
 <div id="x---challenges-abschlussrate" class="section level3">

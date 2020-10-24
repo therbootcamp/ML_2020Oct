@@ -212,7 +212,7 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Öffne dein <code>TheRBootcamp</code> R project. Es sollte die Ordner <code>1_Data</code> und <code>2_Code</code> enthalten. Stelle sicher, dass du alle Datensätze, welche im <code>Datensätze</code> Tab aufgelisted sind, in deinem <code>1_Data</code> Ordner hast.</p></li>
+<li><p>Öffne dein <code>TheRBootcamp</code> R project.</p></li>
 <li><p>Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und “Features Practical” als Kommentare an den Anfang des Skripts.</p></li>
 </ol>
 <pre class="r"><code>## NAME
@@ -245,7 +245,7 @@ diabetes &lt;- diabetes %&gt;% mutate_if(is.character, factor)</code></pre>
 <div id="c---trenne-training-und-test" class="section level3">
 <h3>C - Trenne Training und Test</h3>
 <ol style="list-style-type: decimal">
-<li>Bevor du irgendwas machst solltest du den Datensatz erst in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist das Feature <code>Diabetes</code>. Dabei sollen <em>nur</em> <code>5%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+<li>Bevor du irgendwas machst trenne den Datensatz in Traning und Test. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>diabetes_train</code> und <code>diabetes_test</code> zu erstellen. Das Kriterium ist das Feature <code>Diabetes</code>. Dabei sollen <em>nur</em> <code>5%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
 </ol>
 <pre class="r"><code># Setze Random seed
 set.seed(100)
@@ -276,7 +276,7 @@ corr_matrix &lt;- cor(XX_pred)
 # Identifiziere übermässig korrelierte Features
 findCorrelation(corr_matrix)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>Nun teste, ob es vll. Features mit limitierter “Varianz” gibt. Gibes es welche?</li>
+<li>Nun teste, ob es vll. Features mit limitierter “Varianz” gibt. Gibt es welche?</li>
 </ol>
 <pre class="r"><code># Identifiziere Features ohne &quot;Varianz&quot;
 nearZeroVar(XX_pred)</code></pre>
@@ -289,7 +289,7 @@ diabetes_train &lt;- XX_crit %&gt;% bind_cols(XX_pred)</code></pre>
 <div id="e---featurewichtigkeit" class="section level3">
 <h3>E - Featurewichtigkeit</h3>
 <ol style="list-style-type: decimal">
-<li>Featurewichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium <code>Diabetes</code> durch die anderen Features vorhersagt.</li>
+<li>Feature-Wichtigkeit existiert nicht für sich allein, sondern kann nur innerhalb eines Modells bestimmt werden. Fitte eine logistische Regression auf die Trainingsdaten, die das Kriterium <code>Diabetes</code> durch die anderen Features vorhersagt.</li>
 </ol>
 <pre class="r"><code># Fitte Regression
 diabetes_glm &lt;- train(Diabetes ~ .,
@@ -344,7 +344,7 @@ murders &lt;- read_csv(file = &quot;1_Data/murders_crime.csv&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe den Datensatz.</p></li>
 <li><p>Verwende <code>names(XX)</code>, <code>summary(XX)</code>, und <code>View()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
-<li><p>Wiederum, führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
+<li><p>Führe den Code unten aus um sicherzustellen, dass alle <code>character</code> Features als Faktoren vorliegen.</p></li>
 </ol>
 <pre class="r"><code># Konvertiere alle character zu factor
 murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
@@ -352,7 +352,7 @@ murders &lt;- murders %&gt;% mutate_if(is.character, factor)</code></pre>
 <div id="h---trenne-training-und-test" class="section level3">
 <h3>H - Trenne Training und Test</h3>
 <ol style="list-style-type: decimal">
-<li>Trenne den Datensatz in Traning und Test trennen. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>murders_train</code> und <code>murders_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
+<li>Trenne den Datensatz in Traning und Test. Verwende <code>createDataPartition()</code> um zwei Datensätze <code>murders_train</code> und <code>murders_test</code> zu erstellen. Das Kriterium ist <code>murders</code>. Dabei sollen <em>nur</em> <code>25%</code> der Datenpunkte im Trainingsset landen. Wichtig: Setze den Random Seed auf <code>100</code> damit die Aufteilung reproduzierbar ist.</li>
 </ol>
 <pre class="r"><code># Setze Random seed
 set.seed(100)
@@ -413,7 +413,7 @@ murders_glm_reduziert &lt;- train(murders ~ .,
                                data = XX,
                                method = &quot;XX&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Berechne und Plotte die Featurewichtigkeit mittels <code>varImp()</code></li>
+<li>Berechne und Plotte die Featurewichtigkeit mittels <code>varImp()</code>.</li>
 </ol>
 <pre class="r"><code># Bestimme Featurewichtigkeit
 varimp_glm &lt;- varImp(XX)
@@ -437,7 +437,7 @@ murders_train_reduziert30 &lt;- murders_train_reduziert %&gt;%
 <div id="k---datenkomprimierung-mit-pca" class="section level3">
 <h3>K - Datenkomprimierung mit PCA</h3>
 <ol style="list-style-type: decimal">
-<li>Eine Alternative zu manueller Featurereduktion ist die <code>principal component analysis</code>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Features vorhersagen unter Verwendung des Arguments <code>preProcess = c("pca")</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
+<li>Eine Alternative zu manueller Featurereduktion ist die <em>principal component analysis</em>. Fitte zwei Regressionsmodelle, die <code>murders</code> durch die anderen Features vorhersagen unter Verwendung des Arguments <code>preProcess = c("pca")</code>. Zusätzlich verwende das <code>trControl</code> Argument um festzulegen, wie viel Varianz durch die PCA aufgeklärt werden soll. Siehe Code.</li>
 </ol>
 <pre class="r"><code># Fitte Regression mit 80% Varianz präserviert
 murders_glm_pca80 = train(murders ~ .,

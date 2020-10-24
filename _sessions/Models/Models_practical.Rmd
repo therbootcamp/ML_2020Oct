@@ -134,7 +134,7 @@ my_train <- train(...)
 saveRDS(my_train,'1_Data/PSEUDONYM_VERSION.RDS')
 ```
 
-5. Reiche deine `.RDS` Datei über den folgenden Link ein. Wenn der Upload nicht funktioniert, dann schicke uns das Objekt oder die Objekte per [**Mail**](mailto:therbootcamp@gmail.com). 
+5. Reiche deine `.RDS` Datei per [**Mail**](mailto:therbootcamp@gmail.com) ein. 
 
 <div align = "center">
 <table>
@@ -148,14 +148,14 @@ saveRDS(my_train,'1_Data/PSEUDONYM_VERSION.RDS')
   <td>Klassifikation</td> 
   <td>tweets (`gender`)</td>
   <td>Accuracy</td>
-  <td>[**Submit candidate**](https://www.dropbox.com/request/qNeX6wMNDbDtbJuVnxx0)</td>
+  <td>[**Submit candidate**](mailto:therbootcamp@gmail.com)</td>
 </tr>
 </table>
 </div>
 
 6. Du darfst alle Waffen in `caret`s Arsenal verwenden. Versuche neue Modelle oder Tuning Parameter oder neue Präprozessierungsmethoden. Verwende alle oder nur einige Features. 
 
-7. <font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen Vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das `preProcess`-Argument der `train()` Funktion durchgeführt werden. </font>
+7. <font style="font-color:#EA4B68">Was du nicht darfst, ist neue Variablen zu erstellen. Ansonsten können wir nämlich später dein Modell nicht mit anderen vergleichen. D.h. alle Manipulationen der Features (jenseits deren Eliminiation z.B. dadurch, dass nur bestimmte Features in der Formula für die Vorhersage ausgewählt werden) müssen über das `preProcess`-Argument der `train()` Funktion durchgeführt werden. </font>
 
 
 ## Datensatz
