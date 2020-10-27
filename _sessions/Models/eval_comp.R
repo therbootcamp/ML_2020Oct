@@ -4,14 +4,14 @@ require(stringr)
 
 # DATA --------------
 
-data_test = readr::read_csv('../_sessions/Models/competition2/1_Data/tweets_test.csv')
+data_test = readr::read_csv('_sessions/Models/competition2/1_Data/tweets_test.csv')
 
 # MODELS --------------
 
 repeat {
 
 # get files
-files = list.files('../_sessions/Models/submissions',full.names = T)
+files = list.files('_sessions/Models/submissions',full.names = T)
 
 # exclude markus
 files = files[!str_detect(files, "Markus Steiner")]
@@ -28,7 +28,7 @@ sel = classes == 'train'
 mods = mods[sel]
 
 # extract names
-nams = sapply(str_split(files[sel],'/'),'[[',5)
+nams = sapply(str_split(files[sel],'/'),'[[',4)
 nams = str_sub(nams, 1, nchar(nams)-4)
 
 # mods[[1]]$finalModel$model$.outcome
@@ -61,14 +61,13 @@ ACCs = sort(ACCs, decreasing = T)
 
 cols = yarrr::piratepal("ipod")
 
-par(mar=c(17,5,1,1))
+par(mar=c(10,5,1,1))
 plot.new();plot.window(xlim=c(.5,length(ACCs)+.5),ylim=c(0,1))
 rect((1:length(ACCs))-.45,0,(1:length(ACCs))+.45,ACCs, col = cols, border=NA)
 mtext(seq(0,1,.1),at=seq(0,1,.1),side=2,las=1)
 mtext("ACC",side=2,las=1,line=2)
 text(1:length(ACCs),rep(.2,length(ACCs)),labels=round(ACCs,3),col='white',cex=1)
 
-#i = 1
 #mtext(names(ACCs),side=1,las=2,at=(1:length(ACCs)))
 
 i = 1
